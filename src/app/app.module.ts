@@ -9,13 +9,15 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
+import { LandingComponent } from './landing/landing.component';
+import { LandingHeaderComponent } from './landing/landing-header/landing-header.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
-  declarations: [AppComponent, LanguageSwitcherComponent],
+  declarations: [AppComponent, LanguageSwitcherComponent, LandingComponent, LandingHeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
