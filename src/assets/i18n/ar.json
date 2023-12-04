@@ -1,4 +1,59 @@
 {
-  "companyName": "باوند",
-  "welcomeMessage": "Welcome to Our Company"
+  "common": {
+    "company": {
+      "name": "باوند",
+      "version": "1.0"
+    }
+  },
+  "routing": {
+    "landing": {
+      "header": {
+        "nav": {
+          "home": "Home",
+          "service": "Service",
+          "pricing": "Pricing",
+          "products": {
+            "products": "Products",
+            "children": {
+              "home": "Home"
+            }
+          },
+          "demos": {
+            "demos": "Demos",
+            "home": "Home"
+          }
+        }
+      },
+      "hero": {
+        "primary": {
+          "text": {
+            "main": "منصّة باوند",
+            "red": "شروطك.",
+            "dark": "تدريبك على"
+          },
+          "button": "برامجنا"
+        },
+        "secondary": {
+          "text": "لأول مرة في الوطن العربي, إختر مدربك الخاص بك, لمدّة أنت تحددها.",
+          "button": "اختر مدرّبك"
+        },
+        "cat": {
+          "left": {
+            "title": "ذكور",
+            "sub-title": "برامج تدريبية احترافية مخصصة للذكور تصلك إلى أهدافك"
+          },
+          "right": {
+            "title": "إناث",
+            "sub-title": "برامج تدريبية احترافية مخصصة للإناث تصلك إلى أهدافك"
+          }
+        }
+      },
+      "categories": {},
+      "top-coaches": {},
+      "partners": {},
+      "story": {},
+      "cards": {},
+      "footer": {}
+    }
+  }
 }

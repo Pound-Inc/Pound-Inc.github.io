@@ -1,0 +1,25 @@
+img {
+  object-fit: cover;
+  object-position: center;
+}
+.verified-pro-badge {
+  top: -10px;
+  left: -10px;
+  width: 110px;
+  height: 110px;
+  padding: 10px;
+  position: absolute;
+  // background-image: url("../../../../assets/images/cert/cert.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body {
+  flex-grow: 1;
+  overflow: hidden;
+}

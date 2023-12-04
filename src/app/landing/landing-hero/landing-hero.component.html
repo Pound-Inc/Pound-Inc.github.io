@@ -1,0 +1,83 @@
+<section class="bg-video-studio d-flex align-items-center" id="home">
+  <div class="bg-video-wrapper">
+    <iframe
+      src="https://player.vimeo.com/video/302450585?end=24s&background=1&autoplay=1&loop=1&byline=0&title=0#t=20s"
+    ></iframe>
+  </div>
+  <div
+    class="bg-overlay"
+    style="background: url('assets/images/overlay.png')"
+  ></div>
+  <div class="bg-overlay bg-linear-gradient-3" style="opacity: 0.9"></div>
+  <div class="container">
+    <div class="row mt-5 mt-md-4">
+      <div class="col-12">
+        <div class="title-heading">
+          <h5 class="fw-bold text-white title-dark">
+            <i class="mdi mdi-weight-lifter text-danger align-middle"></i>
+            {{ "routing.landing.hero.primary.text.main" | translate }}
+          </h5>
+          <h4 class="display-3 mt-4 fw-bold text-white title-dark">
+            {{ "routing.landing.hero.primary.text.dark" | translate }} <br />
+            <span class="text-danger">
+              {{ "routing.landing.hero.primary.text.red" | translate }}
+            </span>
+          </h4>
+          <span
+            class="text-primary typewrite"
+            data-period="2000"
+            data-type='[ "Agency", "Software", "Technology", "Studio", "Webapps" ]'
+          >
+            <span class="wrap"> </span>
+          </span>
+          <p class="para-desc text-white-50">
+            {{ "routing.landing.hero.secondary.text" | translate }}
+          </p>
+          <div class="mt-4">
+            <a href="" class="btn btn-lg btn-dark rounded-pill mt-1 ms-3">
+              {{ "routing.landing.hero.primary.button" | translate }}
+            </a>
+
+            <a href="" class="btn btn-lg btn-outline-danger rounded-pill mt-1">
+              {{ "routing.landing.hero.secondary.button" | translate }}
+            </a>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+</section>
+<!-- FEATURES START -->
+<section class="section pb-0">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="features-absolute">
+          <div class="row g-2" [ngStyle]="{ opacity: isScrolled ? '1' : '0' }">
+            <div class="col-md-6 col-12" *ngFor="let card of cat">
+              <div
+                class="card features feature-primary feature-full-bg rounded shadow p-4 position-relative overflow-hidden border-0"
+              >
+                <div class="card-body p-0 content">
+                  <h5 class="mb-3">
+                    {{ card.title | translate }}
+                  </h5>
+                  <p class="para text-muted mb-3">
+                    {{ card.subTitle | translate }}
+                  </p>
+                </div>
+                <div class="position-absolute top-0 end-0">
+                  <span
+                    class="mdi mdi-human-female display-1 opacity-05"
+                  ></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

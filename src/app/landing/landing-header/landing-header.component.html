@@ -1,1 +1,109 @@
-<p>landing-header works!</p>
+<header id="topnav" class="defaultscroll sticky">
+  <div class="container">
+    <!-- Logo container-->
+    <a class="logo" href="index.html">
+      <span class="logo-light-mode mt-1">
+        <!-- dark -->
+        <img src="assets/imgs/common/pound.png" width="50" alt="logo" />
+        <!-- light -->
+      </span>
+    </a>
+
+    <!-- End Logo container-->
+    <div class="menu-extras">
+      <div class="menu-item">
+        <!-- Mobile menu toggle-->
+        <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+          <div class="lines">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </a>
+        <!-- End mobile menu toggle-->
+      </div>
+    </div>
+
+    <div id="navigation">
+      <ul class="navigation-menu nav-light" #navbar>
+        <!-- NO CHILDREN -->
+        <ng-container class="align-self-start">
+          <ng-container *ngFor="let item of navbarItems">
+            <li *ngIf="item.children === undefined" id="{{ item.title }}">
+              <a
+                [routerLink]="item.routerLink"
+                class="sub-menu-item"
+                *ngIf="item.position"
+                (click)="scrollToElement(item.position)"
+              >
+                {{ item.title | translate }}
+              </a>
+            </li>
+            <!-- WITH CHILDREN -->
+            <li
+              *ngIf="item.children !== undefined"
+              class="has-submenu parent-parent-menu-item"
+            >
+              <a href="javascript:void(0)" class="sub-menu-item">
+                {{ item.title | translate }}
+              </a>
+              <span class="menu-arrow"> </span>
+              <ul class="submenu megamenu">
+                <li *ngFor="let child of item.children">
+                  <!-- (click)="scrollToElement(child.position)" -->
+                  <a href="" class="sub-menu-item">
+                    <div class="text-lg-center">
+                      <span class="d-none d-lg-block"
+                        ><img
+                          src="{{ child.image }}"
+                          class="img-fluid rounded shadow-md"
+                          alt="product"
+                      /></span>
+                      <span class="mt-lg-2 d-block">
+                        {{ child.title | translate }}
+                      </span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ng-container>
+        </ng-container>
+        <ng-container
+          class="align-self-end"
+          *ngIf="!user || user.username == ''; else logged"
+        >
+          <li class="list-inline-item mb-0"></li>
+          <li class="list-inline-item mb-0">
+            <a
+              href="javascript:void(0)"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasRight"
+              aria-controls="offcanvasRight"
+            >
+              <span class="mdi mdi-lock text-success"></span>
+              <span class="sub-menu-item"> Account</span>
+            </a>
+          </li>
+        </ng-container>
+        <ng-template class="align-self-end" #logged>
+          <li class="list-inline-item mb-0"></li>
+          <li class="list-inline-item mb-0">
+            <a
+              href="javascript:void(0)"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasRight"
+              aria-controls="offcanvasRight"
+            >
+              <span class="mdi mdi-lock text-success"></span>
+              <span class="sub-menu-item"> {{ user.username }}</span>
+            </a>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+
+    <!--end navigation-->
+  </div>
+  <!--end container-->
+</header>
