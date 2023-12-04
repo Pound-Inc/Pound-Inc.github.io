@@ -1,11 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  constructor(private translate: TranslateService) {
+    // Set the default language
+    translate.setDefaultLang('en');
+
+    // Use the browser language by default
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang?.match(/en|ar/) ? browserLang : 'en');
+  }
+
+  ngOnInit() {
+    const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+    this.translate.use(savedLanguage);
+    this.translate.setDefaultLang('en');
+
+    // Set the text direction based on the selected language
+    this.setDirection(savedLanguage);
+  }
+
+  private setDirection(savedLanguage: string) {
+    document.dir = savedLanguage === 'ar' ? 'rtl' : 'ltr';
+  }
+
   // Company Information
   companyName: string = 'Your Company';
   companyLogoUrl: string = 'assets/logo.png';

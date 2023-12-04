@@ -26,6 +26,8 @@
     "@iconscout/unicons": "^4.0.8",
     "@mdi/font": "^7.3.67",
     "@ng-bootstrap/ng-bootstrap": "^14.2.0",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
     "@popperjs/core": "^2.11.7",
     "autobind-decorator": "^2.4.0",
     "bootstrap": "^5.2.3",
