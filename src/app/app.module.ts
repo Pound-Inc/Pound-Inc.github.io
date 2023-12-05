@@ -23,6 +23,12 @@ import { LandingCardsComponent } from './landing/landing-cards/landing-cards.com
 import { LandingHowItWorksComponent } from './landing/landing-how-it-works/landing-how-it-works.component';
 import { LandingOffCanvasComponent } from './landing/landing-off-canvas/landing-off-canvas.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
+import { ProfileComponent } from './profile/profile.component';
+import { LoadingComponent } from './loading/loading.component';
+import { LoadingService } from './services/loading.service';
+import { AdminModule } from './admin/admin.module';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthRoutingModule } from './auth/auth-routing.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -46,11 +52,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     LandingHowItWorksComponent,
     LandingOffCanvasComponent,
     TestimonialsComponent,
+    ProfileComponent,
+    LoadingComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    AdminModule,
+    AuthRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -60,7 +71,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
   ],
-  providers: [],
+  providers: [LoadingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
