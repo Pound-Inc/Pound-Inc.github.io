@@ -1,0 +1,19 @@
+{
+  "info": {
+    "name": "Pound",
+    "version": 1.0,
+    "domain": ""
+  },
+  "contact": {
+    "email": "",
+    "phone": "",
+    "address": ""
+  },
+  "socials": [
+    {
+      "name": "",
+      "icon": "",
+      "link": ""
+    }
+  ]
+}

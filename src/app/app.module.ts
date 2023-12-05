@@ -22,6 +22,7 @@ import { LandingStoryComponent } from './landing/landing-story/landing-story.com
 import { LandingCardsComponent } from './landing/landing-cards/landing-cards.component';
 import { LandingHowItWorksComponent } from './landing/landing-how-it-works/landing-how-it-works.component';
 import { LandingOffCanvasComponent } from './landing/landing-off-canvas/landing-off-canvas.component';
+import { TestimonialsComponent } from './testimonials/testimonials.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -44,6 +45,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LandingCardsComponent,
     LandingHowItWorksComponent,
     LandingOffCanvasComponent,
+    TestimonialsComponent,
   ],
   imports: [
     BrowserModule,

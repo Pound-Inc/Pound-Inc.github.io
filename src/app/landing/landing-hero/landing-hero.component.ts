@@ -6,7 +6,7 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./landing-hero.component.scss'],
 })
 export class LandingHeroComponent {
-  private translateBaseRoute = 'routing.landing.hero.';
+  translateBaseRoute = 'routing.landing.hero.';
   isScrolled = false;
   public cat: { title: string; subTitle: string }[];
 
