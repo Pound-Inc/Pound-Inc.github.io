@@ -1,0 +1,31 @@
+<h5 class="mt-4 mb-0">
+  {{ translateBaseRoute + "customer-stories" | translate }}:
+</h5>
+<div class="row">
+  <div class="col-md-6 mt-4 pt-2" *ngFor="let story of coach.clientStories">
+    <div class="card blog blog-primary rounded border-0 shadow">
+      <div class="position-relative">
+        <ngb-carousel>
+          <ng-template ngbSlide *ngFor="let img of story.imgs">
+            <div class="picsum-img-wrapper">
+              <img [src]="img" alt="..." class="card-img-top rounded-top" />
+            </div>
+          </ng-template>
+        </ngb-carousel>
+        <div class="overlay rounded-top"></div>
+      </div>
+      <div class="card-body content">
+        <h5>
+          <a href="javascript:void(0)" class="card-title title text-dark">
+            {{ story.title }}
+          </a>
+        </h5>
+      </div>
+      <div class="author">
+        <small class="user d-block">
+          {{ story.clientId }} <i class="uil uil-user"></i>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>

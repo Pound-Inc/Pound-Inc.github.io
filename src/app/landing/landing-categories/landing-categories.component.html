@@ -1,34 +1,40 @@
 <div class="section pt-0 my-4">
   <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-3 col-md-4 mt-4 mt-sm-0 pt-2 pt-sm-0">
-        <div class="form custom-form">
-          <h1 class="mb-0">
-            {{ translateBaseRoute + "title" | translate }}
-          </h1>
+    <div class="row align-items-center justify-content-center">
+      <div class="col-lg-10">
+        <div>
+          <div class="col-lg-3 col-md-4 mt-4 mt-sm-0 pt-2 pt-sm-0">
+            <div class="form custom-form">
+              <h1 class="mb-0">
+                {{ translateBaseRoute + "title" | translate }}
+              </h1>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-lg-4 col-md-6 mt-4 pt-2" *ngFor="let card of cards">
-        <div
-          class="card features feature-primary feature-clean explore-feature p-4 border-0 rounded-md shadow text-center"
-        >
-          <div class="img-holder">
-            <img src="{{ card.imgUrl }}" alt="{{ card.title | translate }}" />
-          </div>
-          <div class="gradient-overlay"></div>
-          <div class="icons text-center mx-auto"></div>
+    <div class="row justify-content-center">
+      <div class="col-lg-10 row">
+        <div class="col-lg-4 col-md-6 mt-4 pt-2" *ngFor="let card of cards">
+          <div
+            class="card features feature-primary feature-clean explore-feature p-4 border-0 rounded-md shadow text-center"
+          >
+            <div class="img-holder">
+              <img src="{{ card.imgUrl }}" alt="{{ card.title | translate }}" />
+            </div>
+            <div class="gradient-overlay"></div>
+            <div class="icons text-center mx-auto"></div>
 
-          <div class="card-body p-0 content">
-            <h5>
-              <a href="javascript:void(0)" class="text-light">
-                {{ card.title | translate }}
-              </a>
-            </h5>
-            <p class="text-light">
-              {{ card.subTitle | translate }}
-            </p>
+            <div class="card-body p-0 content">
+              <h5>
+                <a href="javascript:void(0)" class="text-light">
+                  {{ card.title | translate }}
+                </a>
+              </h5>
+              <p class="text-light">
+                {{ card.subTitle | translate }}
+              </p>
+            </div>
           </div>
         </div>
       </div>

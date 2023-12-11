@@ -13,6 +13,6 @@ export class UsersService {
 
   public getUser(id: string): Observable<any> {
     const user = { name: 'Default User' };
-    return of(user).pipe(delay(2000));
+    return of(user).pipe(delay(0));
   }
 }

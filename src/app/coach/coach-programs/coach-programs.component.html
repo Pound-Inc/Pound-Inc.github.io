@@ -1,0 +1,47 @@
+<h5 class="mt-4 mb-0">
+  {{ translateBaseRoute + "training-programs" | translate }}:
+</h5>
+<div class="row border-bottom pb-4">
+  <div
+    class="col-md-6 mt-4 pt-2"
+    *ngFor="let program of coach.trainingPrograms"
+  >
+    <a href="">
+      <div
+        class="card blog blog-primary rounded border-0 bg-light border-bottom"
+      >
+        <div class="position-relative">
+          <div class="picsum-img-wrapper">
+            <img
+              [src]="program.img"
+              alt="..."
+              class="card-img-top rounded-top"
+            />
+          </div>
+        </div>
+        <div class="card-body content">
+          <div class="d-flex justify-content-between">
+            <h5 class="mb-0">{{ program.title }}</h5>
+            <h5 class="text-success mb-0">
+              <span>15.99$</span>
+            </h5>
+          </div>
+          <p class="text-secondary mb-0">
+            <span>٢</span>
+            <span class="me-1">طلب في قائمة الإنتظار</span>
+          </p>
+
+          <div class="d-flex align-items-center">
+            <div>
+              <p class="text-muted mb-0 text-end">
+                <span>(442)</span>
+                <span class="me-1 text-primary">5</span>
+                <span class="mdi mdi-star text-primary"></span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

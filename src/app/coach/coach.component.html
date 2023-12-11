@@ -1,0 +1,48 @@
+<section
+  class="bg-profile d-table w-100 bg-primary"
+  style="
+    background: url('https://picsum.photos/1920/1080?random=1') center;
+    background-attachment: fixed;
+  "
+></section>
+<section class="section p-0 pt-2">
+  <div class="container mt-lg-3">
+    <div class="row">
+      <div
+        class="bg-white rounded p-4 col-lg-4 mt-md-0 mt-4 col-12 d-lg-block d-md-block mb-4"
+        style="
+          top: -160px;
+          position: relative;
+          margin-bottom: -140px !important;
+        "
+      >
+        <app-coach-card
+          [translateBaseRoute]="translateBaseRoute"
+          [coach]="coach"
+        ></app-coach-card>
+      </div>
+
+      <div class="col-lg-8 col-md-6 col-12">
+        <app-coach-info
+          [translateBaseRoute]="translateBaseRoute"
+          [coach]="coach"
+        ></app-coach-info>
+
+        <app-coach-programs
+          [translateBaseRoute]="translateBaseRoute"
+          [coach]="coach"
+        ></app-coach-programs>
+
+        <app-coach-experiences
+          [translateBaseRoute]="translateBaseRoute"
+          [coach]="coach"
+        ></app-coach-experiences>
+
+        <app-customers-story
+          [translateBaseRoute]="translateBaseRoute"
+          [coach]="coach"
+        ></app-customers-story>
+      </div>
+    </div>
+  </div>
+</section>

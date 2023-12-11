@@ -1,18 +1,14 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Coach } from '../model/coach.model';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
-
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
+import { Coach } from '../model/coach.model';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
+  selector: 'app-coach',
+  templateUrl: './coach.component.html',
+  styleUrls: ['./coach.component.scss'],
 })
-export class ProfileComponent implements OnInit, AfterViewInit {
+export class CoachComponent implements OnInit, AfterViewInit {
   translateBaseRoute = 'routing.coach.';
   public coach: Coach;
   constructor(private route: ActivatedRoute, config: NgbCarouselConfig) {

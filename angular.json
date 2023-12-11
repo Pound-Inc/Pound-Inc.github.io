@@ -30,6 +30,7 @@
               "node_modules/simplebar/dist/simplebar.min.css",
               "node_modules/@iconscout/unicons/css/line.css",
               "node_modules/tobii/dist/css/tobii.min.css",
+              "node_modules/flag-icons/css/flag-icons.min.css",
               "src/assets/css/style.css",
               "src/styles.scss"
             ],
@@ -100,6 +101,7 @@
               "node_modules/simplebar/dist/simplebar.min.css",
               "node_modules/@iconscout/unicons/css/line.css",
               "node_modules/tobii/dist/css/tobii.min.css",
+              "node_modules/flag-icons/css/flag-icons.min.css",
               "src/assets/css/style.css",
               "src/styles.scss"
             ],

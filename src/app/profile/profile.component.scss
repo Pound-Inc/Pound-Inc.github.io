@@ -1,0 +1,19 @@
+.online-status-circle {
+    width: 17px;
+    height: 17px;
+    background-color: #2ecc71; /* Green color for online status */
+    position: absolute;
+    top: 0px;
+    left: 19px;
+    border: 2px solid #fff; /* White border for contrast */
+  }
+
+  .floating-chat-icon {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  

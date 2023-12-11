@@ -1,1 +1,288 @@
-<p>{{ username.name }}</p>
+<section
+  class="bg-profile d-table w-100 bg-primary"
+  style="
+    background: url('https://picsum.photos/1920/1080?random=1') center;
+    background-attachment: fixed;
+  "
+>
+  <div class="container">
+    <div class="row"></div>
+  </div>
+</section>
+<section class="section p-0 pt-2">
+  <div class="container mt-lg-3">
+    <div class="row">
+      <div
+        class="bg-white rounded p-4 col-lg-4 mt-md-0 mt-4 col-12 d-lg-block d-md-block mb-4"
+        style="
+          top: -160px;
+          position: relative;
+          margin-bottom: -140px !important;
+        "
+      >
+        <div class="sticky-bar p-4 rounded shadow" style="top: 20px">
+          <div class="widget">
+            <div class="row justify-content-around">
+              <div class="col-lg-12">
+                <div
+                  class="p-2 public-profile border-bottom rounded bg-light mb-4"
+                  style="z-index: 1"
+                >
+                  <div class="card-body">
+                    <div class="row align-items-start">
+                      <div
+                        class="col-lg-2 col-md-3 text-center position-relative"
+                      >
+                        <img
+                          src="https://picsum.photos/200"
+                          class="avatar avatar-small rounded-circle d-block mx-auto"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-lg-10 col-md-9">
+                        <div class="row align-items-end me-lg-2 me-0 mt-2">
+                          <div
+                            class="col-md-8 text-lg-end text-md-end text-center"
+                          >
+                            <h5 class="mb-2">
+                              {{ coach.name }}
+                              <span
+                                class="mdi mdi-check-decagram text-info"
+                              ></span>
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-center d-flex gap-3 mb-4 mt-0">
+              <div
+                class="col-3 bg-light border-bottom py-2 rounded text-center"
+              >
+                <h5 class="text-dark pt-1">
+                  <span
+                    style="font-size: 12px"
+                    *ngFor="let lang of coach.languages"
+                    class="fi fi-{{ lang }} me-1 py-2"
+                  ></span>
+                </h5>
+                <p class="text-muted mb-0">
+                  {{ translateBaseRoute + "languages" | translate }}
+                </p>
+              </div>
+              <div
+                class="col-3 bg-light border-bottom py-2 rounded text-center"
+              >
+                <h5 class="text-dark pt-1">
+                  4,5
+                </h5>
+                <p class="text-muted mb-0">
+                  {{ translateBaseRoute + "rating" | translate }}
+                </p>
+              </div>
+              <div
+                class="col-3 bg-light border-bottom py-2 rounded text-center"
+              >
+                <h5 class="text-dark pt-1">9911D3E</h5>
+                <p class="text-muted mb-0">
+                  {{ translateBaseRoute + "certification-number" | translate }}
+                </p>
+              </div>
+            </div>
+            <div class="row justify-content-center d-flex gap-3">
+              <div
+                class="col-5 bg-light border-bottom py-2 rounded text-center"
+              >
+                <h5 class="text-dark pt-1">
+                  {{ coach.clientsServed }}
+                </h5>
+                <p class="text-muted mb-0">
+                  <i class="uil uil-users-alt"></i>
+                  {{
+                    translateBaseRoute + "profile-card.customers" | translate
+                  }}
+                </p>
+              </div>
+              <div
+                class="col-5 bg-light border-bottom py-2 rounded text-center"
+              >
+                <i
+                  data-feather="users"
+                  class="fea icon-ex-md text-primary mb-1"
+                ></i>
+                <h5 class="text-dark pt-1">
+                  {{ coach.trainingPrograms.length }}
+                </h5>
+                <p class="text-muted mb-0">
+                  <i class="uil uil-shield-check"></i>
+                  {{ translateBaseRoute + "profile-card.programs" | translate }}
+                </p>
+              </div>
+            </div>
+
+            <div class="row justify-content-center mt-3">
+              <button class="btn btn-warning col-11 mb-1 py-2 text-center">
+                <i class="uil uil-message p-2"></i>
+                {{
+                  translateBaseRoute + "profile-card.buttons.message"
+                    | translate
+                }}
+              </button>
+            </div>
+            <div class="row justify-content-center mt-1">
+              <button class="btn btn-dark col-6 ms-1 py-2 text-center">
+                <i class="uil uil-comments-alt p-2"></i>
+                {{
+                  translateBaseRoute + "profile-card.buttons.testimonials"
+                    | translate
+                }}
+              </button>
+              <button class="btn btn-secondary col-5 py-2 text-center">
+                <i class="uil uil-comments-alt p-2"></i>
+                {{
+                  translateBaseRoute + "profile-card.buttons.testimonials"
+                    | translate
+                }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8 col-md-6 col-12">
+        <div class="border-bottom pb-4">
+          <h5>
+            {{ coach.name }}
+            <span class="badge bg-light text-success" *ngIf="coach.isVerified">
+              {{ translateBaseRoute + "pound-selection" | translate }}
+              <img src="assets/imgs/common/pound.png" width="20" alt="logo" />
+            </span>
+          </h5>
+          <p class="text-muted mb-0">
+            {{ coach.bio }}
+          </p>
+        </div>
+
+        <h5 class="mt-4 mb-0">
+          {{ translateBaseRoute + "training-programs" | translate }}:
+        </h5>
+        <div class="row border-bottom pb-4">
+          <div
+            class="col-md-6 mt-4 pt-2"
+            *ngFor="let program of coach.trainingPrograms"
+          >
+            <a href="">
+              <div
+                class="card blog blog-primary rounded border-0 bg-light border-bottom"
+              >
+                <div class="position-relative">
+                  <div class="picsum-img-wrapper">
+                    <img
+                      [src]="program.img"
+                      alt="..."
+                      class="card-img-top rounded-top"
+                    />
+                  </div>
+                </div>
+                <div class="card-body content">
+                  <div class="d-flex justify-content-between">
+                    <h5 class="mb-0">{{ program.title }}</h5>
+                    <h5 class="text-success mb-0">
+                      <span>15.99$</span>
+                    </h5>
+                  </div>
+                  <p class="text-secondary mb-0">
+                    <span>٢</span>
+                    <span class="me-1">طلب في قائمة الإنتظار</span>
+                  </p>
+
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <p class="text-muted mb-0 text-end">
+                        <span>(442)</span>
+                        <span class="me-1 text-primary">5</span>
+                        <span class="mdi mdi-star text-primary"></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="border-bottom pb-4">
+          <div class="row">
+            <div class="col-md-6 mt-4 pt-2 pt-sm-0">
+              <h5>{{ translateBaseRoute + "certifications" | translate }}:</h5>
+              <div
+                class="d-flex features feature-primary key-feature align-items-center p-3 rounded bg-light mt-4"
+                *ngFor="let cert of coach.certifications"
+              >
+                <img
+                  src="{{ cert.imgUrl }}"
+                  class="avatar avatar-ex-sm"
+                  alt=""
+                />
+                <div class="flex-1 content me-3">
+                  <h4 class="title mb-0">{{ cert.title }}</h4>
+                  <p class="text-muted mb-0">{{ cert.desc }}</p>
+                  <p class="text-muted mb-0">
+                    <a href="javascript:void(0)" class="read-more">
+                      &#64;{{ cert.location }}
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mt-4 mb-0">
+          {{ translateBaseRoute + "customer-stories" | translate }}:
+        </h5>
+        <div class="row">
+          <div
+            class="col-md-6 mt-4 pt-2"
+            *ngFor="let story of coach.clientStories"
+          >
+            <div class="card blog blog-primary rounded border-0 shadow">
+              <div class="position-relative">
+                <ngb-carousel>
+                  <ng-template ngbSlide *ngFor="let img of story.imgs">
+                    <div class="picsum-img-wrapper">
+                      <img
+                        [src]="img"
+                        alt="..."
+                        class="card-img-top rounded-top"
+                      />
+                    </div>
+                  </ng-template>
+                </ngb-carousel>
+                <div class="overlay rounded-top"></div>
+              </div>
+              <div class="card-body content">
+                <h5>
+                  <a
+                    href="javascript:void(0)"
+                    class="card-title title text-dark"
+                  >
+                    {{ story.title }}
+                  </a>
+                </h5>
+              </div>
+              <div class="author">
+                <small class="user d-block">
+                  {{ story.clientId }} <i class="uil uil-user"></i>
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

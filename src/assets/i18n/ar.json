@@ -88,6 +88,24 @@
         }
       },
       "footer": {}
+    },
+    "coach": {
+      "profile-card": {
+        "customers": "عملاء",
+        "programs": "برامج",
+        "buttons": {
+          "message": "رسالة",
+          "testimonials": "المراجعات"
+        }
+      },
+      "pound-selection": "اختيار باوند",
+      "training-programs": "برامج التدريب",
+      "certifications": "الخبرات",
+      "certification-number": "رقم الشهادة",
+      "customer-stories": "قصص العملاء",
+      "languages": "اللغات",
+      "verified-coach": "مدرب معتمد",
+      "rating": "التقييم العام"
     }
   }
 }

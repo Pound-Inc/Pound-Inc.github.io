@@ -29,6 +29,13 @@ import { LoadingService } from './services/loading.service';
 import { AdminModule } from './admin/admin.module';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthRoutingModule } from './auth/auth-routing.module';
+import { TrainingProgramComponent } from './training-program/training-program.component';
+import { CoachComponent } from './coach/coach.component';
+import { CoachCardComponent } from './coach/coach-card/coach-card.component';
+import { CoachInfoComponent } from './coach/coach-info/coach-info.component';
+import { CoachProgramsComponent } from './coach/coach-programs/coach-programs.component';
+import { CoachExperiencesComponent } from './coach/coach-experiences/coach-experiences.component';
+import { CustomersStoryComponent } from './coach/customers-story/customers-story.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -55,6 +62,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProfileComponent,
     LoadingComponent,
     LoginComponent,
+    TrainingProgramComponent,
+    CoachComponent,
+    CoachCardComponent,
+    CoachInfoComponent,
+    CoachProgramsComponent,
+    CoachExperiencesComponent,
+    CustomersStoryComponent,
   ],
   imports: [
     BrowserModule,

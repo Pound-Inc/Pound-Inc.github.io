@@ -1,20 +1,26 @@
 <section class="section bg-light">
   <div class="container">
-    <div class="form custom-form">
-      <h1 class="mb-0">
-        {{ translateBaseRoute + "title" | translate }}
-      </h1>
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="form custom-form">
+          <h1 class="mb-0">
+            {{ translateBaseRoute + "title" | translate }}
+          </h1>
+        </div>
+      </div>
     </div>
-    <div class="row">
-      <div class="col-md-4 mt-4" *ngFor="let card of cards">
-        <div
-          class="card features feature-primary feature-clean work-process bg-transparent border-0 text-left"
-        >
-          <div class="card-body">
-            <h5 class="text-dark">{{ card.title | translate }}</h5>
-            <p class="text-muted mb-0">
-              {{ card.subTitle | translate }}
-            </p>
+    <div class="row justify-content-center">
+      <div class="col-lg-10 row">
+        <div class="col-md-4 mt-4" *ngFor="let card of cards">
+          <div
+            class="card features feature-primary feature-clean work-process bg-transparent border-0 text-left"
+          >
+            <div class="card-body">
+              <h5 class="text-dark">{{ card.title | translate }}</h5>
+              <p class="text-muted mb-0">
+                {{ card.subTitle | translate }}
+              </p>
+            </div>
           </div>
         </div>
       </div>
