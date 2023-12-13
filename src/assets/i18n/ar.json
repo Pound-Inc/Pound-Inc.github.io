@@ -95,17 +95,18 @@
         "programs": "برامج",
         "buttons": {
           "message": "رسالة",
-          "testimonials": "المراجعات"
+          "testimonials": "المراجعات",
+          "products": "المنتجات"
         }
       },
       "pound-selection": "اختيار باوند",
       "training-programs": "برامج التدريب",
       "certifications": "الخبرات",
-      "certification-number": "رقم الشهادة",
+      "certification-number": "الشهادة",
       "customer-stories": "قصص العملاء",
       "languages": "اللغات",
       "verified-coach": "مدرب معتمد",
-      "rating": "التقييم العام"
+      "rating": "التقييم"
     }
   }
 }

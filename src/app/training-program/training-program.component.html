@@ -1,560 +1,369 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <section
-      class="bg-profile d-table w-100 bg-primary"
-      style="background: url('assets/images/gym/cta.jpg') center center"
-    >
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
+<app-landing-header></app-landing-header>
+
+
+<section
+  class="bg-profile d-table w-100 bg-success"
+  style="
+    background: url('https://picsum.photos/1920/1080?random=1') center center;
+  "
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card public-profile rounded shadow mb-4" style="z-index: 1">
+          <div class="card-body">
             <div
-              class="card public-profile rounded shadow mb-4"
-              style="z-index: 1"
-            >
-              <div class="card-body">
-                <div class="ribbon ribbon-right ribbon-success overflow-hidden">
-                  <!-- <span class="text-center d-block shadow small h6">50%</span> -->
-                </div>
-                <div class="row align-items-center">
-                  <div class="col-lg-10 col-md-9">
-                    <div class="row align-items-end">
-                      <div class="col-md-9 text-md-end text-end mt-4 mt-sm-0">
-                        <h3 class="title mb-0">
-                          سأكون مدربك الشخصي وخبير التغذية عبر الإنترنت
-                        </h3>
-                        <div class="col-lg-6 col-md-8 col-12 mt-4 pt-2">
-                          <a href="job-detail-one.html">
-                            <div
-                              class="d-flex features feature-primary key-feature align-items-center p-3 rounded shadow"
-                            >
-                              <img
-                                src="assets/images/client/01.jpg"
-                                class="avatar avatar-small rounded"
-                                alt=""
-                              />
-                              <div class="me-3">
-                                <h4 class="title mb-0 text-dark text-end">
-                                  أحمد علي
-                                </h4>
-                                <p class="text-muted mb-0 text-end">
-                                  <span>(442)</span>
-                                  <span class="me-1 text-primary">5</span>
-                                  <span
-                                    class="mdi mdi-star text-primary"
-                                  ></span>
-                                </p>
-                                <p class="text-info mb-0">
-                                  <span>٢</span>
-                                  <span class="me-1"
-                                    >طلب في قائمة الإنتظار</span
-                                  >
-                                </p>
-                              </div>
-                            </div>
-                          </a>
+              class="ribbon ribbon-right ribbon-dark overflow-hidden"
+            ></div>
+            <div class="row align-items-center">
+              <div class="col-lg-10 col-md-9">
+                <div class="row align-items-end">
+                  <div class="col-md-9 text-md-end text-end mt-4 mt-sm-0">
+                    <h3 class="title mb-0">
+                      سأكون مدربك الشخصي وخبير التغذية عبر الإنترنت
+                    </h3>
+                    <div class="col-lg-6 col-md-8 col-12 mt-4 pt-2">
+                      <a href="job-detail-one.html">
+                        <div
+                          class="d-flex features feature-success key-feature align-items-center p-3 rounded shadow"
+                        >
+                          <img
+                            src="https://picsum.photos/1920/1080?random=1"
+                            class="avatar avatar-small rounded"
+                            alt=""
+                          />
+                          <div class="me-3">
+                            <h4 class="title mb-0 text-dark text-end">
+                              أحمد علي
+                            </h4>
+                            <p class="text-muted mb-0 text-end">
+                              <span>(442)</span>
+                              <span class="me-1 text-success">5</span>
+                              <span class="mdi mdi-star text-success"></span>
+                            </p>
+                            <p class="text-dark mb-0">
+                              <span>٢</span>
+                              <span class="me-1">طلب في قائمة الإنتظار</span>
+                            </p>
+                          </div>
                         </div>
-                        <ul class="list-inline mb-0 mt-3"></ul>
-                      </div>
+                      </a>
                     </div>
-                    <!--end row-->
+                    <ul class="list-inline mb-0 mt-3"></ul>
                   </div>
-                  <!--end col-->
                 </div>
                 <!--end row-->
               </div>
-            </div>
-          </div>
-          <!--end col-->
-        </div>
-        <!--end row-->
-      </div>
-      <!--ed container-->
-    </section>
-
-    <!--end section-->
-    <section class="section">
-      <div class="container">
-        <div class="row">
-          <div
-            class="job-profile-holder col-lg-5 col-md-6 col-12"
-            style="margin-top: 30px; margin-bottom: 30px"
-          >
-            <h4>الحزم:</h4>
-            <div class="card job-profile">
-              <div class="col-md-12">
-                <ul
-                  class="nav nav-pills nav-justified flex-row rounded shadow p-2 mb-0 sticky-bar"
-                  id="pills-tab"
-                  role="tablist"
-                >
-                  <li class="nav-item mx-1">
-                    <a
-                      class="nav-link rounded active"
-                      id="dentalcare"
-                      data-bs-toggle="pill"
-                      href="#dental"
-                      role="tab"
-                      aria-controls="dental"
-                      aria-selected="false"
-                    >
-                      <div class="text-center">
-                        <h6 class="mb-0">بسيط</h6>
-                      </div>
-                    </a>
-                    <!--end nav link-->
-                  </li>
-                  <!--end nav item-->
-
-                  <li class="nav-item mx-1">
-                    <a
-                      class="nav-link rounded"
-                      id="cardeography"
-                      data-bs-toggle="pill"
-                      href="#cardeo"
-                      role="tab"
-                      aria-controls="cardeo"
-                      aria-selected="false"
-                    >
-                      <div class="text-center">
-                        <h6 class="mb-0">قياسي</h6>
-                      </div>
-                    </a>
-                    <!--end nav link-->
-                  </li>
-                  <!--end nav item-->
-
-                  <li class="nav-item mx-1">
-                    <a
-                      class="nav-link rounded"
-                      id="eyecare"
-                      data-bs-toggle="pill"
-                      href="#eye"
-                      role="tab"
-                      aria-controls="eye"
-                      aria-selected="false"
-                    >
-                      <div class="text-center">
-                        <h6 class="mb-0">ممتاز</h6>
-                      </div>
-                    </a>
-                    <!--end nav link-->
-                  </li>
-                  <!--end nav item-->
-                </ul>
-                <!--end nav pills-->
-              </div>
-              <!--end col-->
-
-              <div class="col-12 mt-4 pt-2">
-                <div class="tab-content" id="pills-tabContent">
-                  <div
-                    class="tab-pane fade show active p-2"
-                    id="dental"
-                    role="tabpanel"
-                    aria-labelledby="dentalcare"
-                  >
-                    <div class="basic p-2">
-                      <div
-                        class="row justify-content-between align-items-center mb-2 text-primary"
-                      >
-                        <h2 class="col text-end px-4 m-0">بسيط</h2>
-                        <h4 class="col text-start px-4 m-0">١٢٨$</h4>
-                      </div>
-                      <h6 class="text-info px-3 mt-0 pt-0">٢٥٥ طلب</h6>
-                      <p class="px-3 text-muted mb-3">
-                        خطة تمارين ووجبات مخصصة لمدة ٤ أسابيع، والمكملات
-                        الغذائية، والكهارل، ومراقبة التقدم، والدردشة اليومية.
-                      </p>
-                      <h6 class="text-muted mb-3 px-3">
-                        <span class="mdi mdi-clock-outline"></span>
-                        مدّة التوصيل: <span class="px-2"> ١ يوم</span>
-                      </h6>
-                      <button class="btn btn-success w-100">
-                        طلب <span class="mdi mdi-check-bold"></span>
-                      </button>
-                      <button class="btn btn-light mt-2 w-100">
-                        مقارنة الحزم
-                        <span class="mdi mdi-package-variant-closed"></span>
-                      </button>
-                    </div>
-                  </div>
-                  <!--end teb pane-->
-
-                  <div
-                    class="tab-pane fade p-2 rounded shadow"
-                    id="cardeo"
-                    role="tabpanel"
-                    aria-labelledby="cardeography"
-                  >
-                    <div class="standard p-2">
-                      <div
-                        class="row justify-content-between align-items-center mb-2 text-primary"
-                      >
-                        <h2 class="col text-end px-4 m-0">قياسي</h2>
-                        <h4 class="col text-start px-4 m-0">٨٩$</h4>
-                      </div>
-                      <h6 class="text-info px-3 mt-0 pt-0">١٦٠ طلب</h6>
-                      <p class="px-3 text-muted mb-3">
-                        خطة تمارين أساسية ونظام غذائي متوازن لمدة ٣ أسابيع، مع
-                        دعم عبر البريد الإلكتروني ونصائح يومية.
-                      </p>
-                      <h6 class="text-muted mb-3 px-3">
-                        <span class="mdi mdi-clock-outline"></span>
-                        مدّة التوصيل: <span class="px-2"> ٣ أيام</span>
-                      </h6>
-                      <button class="btn btn-success w-100">
-                        طلب <span class="mdi mdi-check-bold"></span>
-                      </button>
-                      <button class="btn btn-light mt-2 w-100">
-                        مقارنة الحزم
-                        <span class="mdi mdi-package-variant-closed"></span>
-                      </button>
-                    </div>
-                  </div>
-                  <!--end teb pane-->
-
-                  <div
-                    class="tab-pane fade p-2"
-                    id="eye"
-                    role="tabpanel"
-                    aria-labelledby="eyecare"
-                  >
-                    <div class="premium p-2">
-                      <div
-                        class="row justify-content-between align-items-center mb-2 text-primary"
-                      >
-                        <h2 class="col text-end px-4 m-0">متميز</h2>
-                        <h4 class="col text-start px-4 m-0">١٩٩$</h4>
-                      </div>
-                      <h6 class="text-info px-3 mt-0 pt-0">٤٥٠ طلب</h6>
-                      <p class="px-3 text-muted mb-3">
-                        خطة تمارين متقدمة وخطة غذائية مخصصة لمدة ٦ أسابيع، مع
-                        مراقبة الوزن اليومية، ونصائح صحية حصرية.
-                      </p>
-                      <h6 class="text-muted mb-3 px-3">
-                        <span class="mdi mdi-clock-outline"></span>
-                        مدّة التوصيل: <span class="px-2"> ٢ أيام</span>
-                      </h6>
-                      <button class="btn btn-success w-100">
-                        طلب <span class="mdi mdi-check-bold"></span>
-                      </button>
-                      <button class="btn btn-light mt-2 w-100">
-                        مقارنة الحزم
-                        <span class="mdi mdi-package-variant-closed"></span>
-                      </button>
-                    </div>
-                  </div>
-                  <!--end teb pane-->
-                </div>
-                <!--end tab content-->
-              </div>
               <!--end col-->
             </div>
+            <!--end row-->
           </div>
-          <!--end col-->
-
-          <div class="col-lg-7 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-            <div class="ms-lg-4">
-              <h4>نبذة عني :</h4>
-              <p class="text-muted">
-                أنا مدرب لياقة بدنية بخبرة تزيد عن ٣ سنوات. لدي خبرة في جميع
-                مراحل دورة التطوير لمشاريع الويب الدينامية.
-              </p>
-              <p class="text-muted mb-0">
-                هياكل البيانات والخوارزميات هي قلب البرمجة. في البداية، قد لا
-                يدرك معظم المطورين أهميتها، ولكن عندما تبدأ مسيرتك في تطوير
-                البرمجيات، ستجد أن كودك إما يأخذ وقتًا طويلاً أو يأخذ مساحة
-                كبيرة.
-              </p>
-
-              <!-- Skills Start -->
-              <h4 class="mt-lg-5 mt-4">المهارات :</h4>
-              <div class="progress-box mt-4">
-                <h6 class="title text-muted">
-                  <span class="ms-2">84%</span>
-                  <span>تصميم ووردبريس</span>
-                </h6>
-                <div class="progress">
-                  <div
-                    class="progress-bar position-relative bg-primary"
-                    style="width: 84%"
-                  ></div>
-                </div>
-              </div>
-              <!--end process box-->
-              <div class="progress-box mt-4">
-                <h6 class="title text-muted">
-                  <span class="ms-2">84%</span>
-                  <span>تصميم ووردبريس</span>
-                </h6>
-                <div class="progress">
-                  <div
-                    class="progress-bar position-relative bg-primary"
-                    style="width: 84%"
-                  ></div>
-                </div>
-              </div>
-              <!--end process box-->
-              <div class="progress-box mt-4">
-                <h6 class="title text-muted">
-                  <span class="ms-2">84%</span>
-                  <span>تصميم ووردبريس</span>
-                </h6>
-                <div class="progress">
-                  <div
-                    class="progress-bar position-relative bg-primary"
-                    style="width: 84%"
-                  ></div>
-                </div>
-              </div>
-              <!--end process box-->
-              <!-- Skills End -->
-
-              <!-- Experience Start -->
-              <h4 class="mt-lg-5 mt-4">الخبرة :</h4>
-              <div class="row">
-                <div class="col-lg-12 mt-4 pt-2">
-                  <div class="d-flex">
-                    <div class="company-logo text-muted h6 ms-4 text-center">
-                      <img
-                        src="assets/images/job/Codepen.svg"
-                        class="avatar avatar-md-sm mx-auto d-block mb-2"
-                        alt=""
-                      />٢٠١٧-١٨
-                    </div>
-                    <div class="flex-1">
-                      <h5 class="title mb-0">مطور خلفي</h5>
-                      <small class="text-muted company-university"
-                        >Codepen - الصين</small
-                      >
-                      <p class="text-muted mt-2 mb-0">
-                        يبدو أنه تظل فقط شظايا من النص الأصلي في نصوص لوريم
-                        إيبسوم المستخدمة اليوم. يمكن للمرء أن يتسائل عما إذا
-                        كانت قد تمت إضافة أو حذف أحرف معينة في مواقع مختلفة داخل
-                        النص على مر الوقت.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-12 mt-4 pt-2">
-                  <div class="d-flex">
-                    <div class="company-logo text-muted h6 ms-4 text-center">
-                      <img
-                        src="assets/images/job/Circleci.svg"
-                        class="avatar avatar-md-sm mx-auto d-block mb-2"
-                        alt=""
-                      />٢٠١٤-١٧
-                    </div>
-                    <div class="flex-1">
-                      <h5 class="title mb-0">مصمم ويب أول</h5>
-                      <small class="text-muted company-university"
-                        >CircleCi - سان فرانسيسكو</small
-                      >
-                      <p class="text-muted mt-2 mb-0">
-                        يبدو أنه تظل فقط شظايا من النص الأصلي في نصوص لوريم
-                        إيبسوم المستخدمة اليوم. يمكن للمرء أن يتسائل عما إذا
-                        كانت قد تمت إضافة أو حذف أحرف معينة في مواقع مختلفة داخل
-                        النص على مر الوقت.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <!--end col-->
-              </div>
-              <!--end row-->
-              <!-- Experience End -->
-
-              <!-- Start Projects Work -->
-              <h4 class="mt-lg-5 mt-4">المشاريع :</h4>
-              <div class="row">
-                <div class="col-md-6 col-12 mt-1 pt-2">
-                  <div
-                    class="card border-0 work-container work-primary work-classic"
-                  >
-                    <div class="card-body p-0">
-                      <a href="portfolio-detail-one.html"
-                        ><img
-                          src="assets/images/work/1.jpg"
-                          class="img-fluid rounded work-image"
-                          alt=""
-                      /></a>
-                      <div class="content pt-3">
-                        <h5 class="mb-0">
-                          <a
-                            href="portfolio-detail-one.html"
-                            class="text-dark title"
-                            >نموذج آيفون</a
-                          >
-                        </h5>
-                        <h6 class="text-muted tag mb-0">تسويق</h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!--end col-->
-
-                <!-- Add more project cards as needed -->
-              </div>
-              <!--end row-->
-              <!-- End Projects Work -->
-
-              <div class="mt-4 pt-2">
-                <a href="javascript:void(0)" class="btn btn-primary ms-4"
-                  ><i class="uil uil-user-check"></i> توظيفني</a
-                >
-                <a href="javascript:void(0)" class="btn btn-outline-primary"
-                  ><i class="uil uil-print"></i> طباعة السيرة الذاتية</a
-                >
-              </div>
-            </div>
-          </div>
-          <!--end col-->
         </div>
-        <!--enn row-->
       </div>
-      <!--end container-->
-    </section>
-    <!--end section-->
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--ed container-->
+</section>
 
-    <!-- Modal Content Start -->
-    <div
-      class="modal fade"
-      id="Contactme"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalCenterTitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content rounded shadow border-0">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">Contact Me</h5>
-            <button
-              type="button"
-              class="btn btn-icon btn-close"
-              data-bs-dismiss="modal"
-              id="close-modal"
+<!--end section-->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div
+        class="job-profile-holder col-lg-5 col-md-6 col-12"
+        style="margin-top: 30px; margin-bottom: 30px"
+      >
+        <h4>الحزم:</h4>
+        <div class="card job-profile">
+          <div class="col-md-12">
+            <ul
+              class="nav nav-pills nav-justified flex-row rounded shadow p-2 mb-0 sticky-bar"
+              id="pills-tab"
+              role="tablist"
             >
-              <i class="uil uil-times fs-4 text-dark"></i>
-            </button>
+              <li class="nav-item mx-1">
+                <a
+                  class="nav-link rounded active"
+                  id="dentalcare"
+                  data-bs-toggle="pill"
+                  href="#dental"
+                  role="tab"
+                  aria-controls="dental"
+                  aria-selected="false"
+                >
+                  <div class="text-center text-dark">
+                    <h6 class="mb-0">بسيط</h6>
+                  </div>
+                </a>
+                <!--end nav link-->
+              </li>
+              <!--end nav item-->
+
+              <li class="nav-item mx-1">
+                <a
+                  class="nav-link rounded"
+                  id="cardeography"
+                  data-bs-toggle="pill"
+                  href="#cardeo"
+                  role="tab"
+                  aria-controls="cardeo"
+                  aria-selected="false"
+                >
+                  <div class="text-center text-dark">
+                    <h6 class="mb-0">قياسي</h6>
+                  </div>
+                </a>
+                <!--end nav link-->
+              </li>
+              <!--end nav item-->
+
+              <li class="nav-item mx-1">
+                <a
+                  class="nav-link rounded"
+                  id="eyecare"
+                  data-bs-toggle="pill"
+                  href="#eye"
+                  role="tab"
+                  aria-controls="eye"
+                  aria-selected="false"
+                >
+                  <div class="text-center text-dark">
+                    <h6 class="mb-0">ممتاز</h6>
+                  </div>
+                </a>
+                <!--end nav link-->
+              </li>
+              <!--end nav item-->
+            </ul>
+            <!--end nav pills-->
           </div>
-          <div class="modal-body p-4">
-            <div class="custom-form mt-3">
-              <form>
-                <div class="row">
-                  <div class="col-12">
-                    <div class="mb-3">
-                      <label class="form-label"
-                        >Your Name <span class="text-danger">*</span></label
-                      >
-                      <div class="form-icon position-relative">
-                        <i data-feather="user" class="fea icon-sm icons"></i>
-                        <input
-                          name="name"
-                          id="name2"
-                          type="text"
-                          class="form-control ps-5"
-                          placeholder="Name :"
-                        />
-                      </div>
-                    </div>
-                  </div>
+          <!--end col-->
 
-                  <div class="col-12">
-                    <div class="mb-3">
-                      <label class="form-label"
-                        >Your Email <span class="text-danger">*</span></label
-                      >
-                      <div class="form-icon position-relative">
-                        <i data-feather="mail" class="fea icon-sm icons"></i>
-                        <input
-                          name="email"
-                          id="email2"
-                          type="email"
-                          class="form-control ps-5"
-                          placeholder="Email :"
-                        />
-                      </div>
-                    </div>
+          <div class="col-12 mt-4 pt-2">
+            <div class="tab-content" id="pills-tabContent">
+              <div
+                class="tab-pane fade show active p-2"
+                id="dental"
+                role="tabpanel"
+                aria-labelledby="dentalcare"
+              >
+                <div class="basic p-2">
+                  <div
+                    class="row justify-content-between align-items-center mb-2 text-success"
+                  >
+                    <h2 class="col text-end px-4 m-0">بسيط</h2>
+                    <h4 class="col text-start px-4 m-0">١٢٨$</h4>
                   </div>
-                  <!--end col-->
-
-                  <div class="col-12">
-                    <div class="mb-3">
-                      <label class="form-label">Subject</label>
-                      <div class="form-icon position-relative">
-                        <i data-feather="book" class="fea icon-sm icons"></i>
-                        <input
-                          name="subject"
-                          id="subject2"
-                          class="form-control ps-5"
-                          placeholder="subject :"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <!--end col-->
-
-                  <div class="col-12">
-                    <div class="mb-3">
-                      <label class="form-label"
-                        >Comments <span class="text-danger">*</span></label
-                      >
-                      <div class="form-icon position-relative">
-                        <i
-                          data-feather="message-circle"
-                          class="fea icon-sm icons clearfix"
-                        ></i>
-                        <textarea
-                          name="comments"
-                          id="comments2"
-                          rows="4"
-                          class="form-control ps-5"
-                          placeholder="Message :"
-                        ></textarea>
-                      </div>
-                    </div>
-                  </div>
+                  <h6 class="text-dark px-3 mt-0 pt-0">٢٥٥ طلب</h6>
+                  <p class="px-3 text-muted mb-3">
+                    خطة تمارين ووجبات مخصصة لمدة ٤ أسابيع، والمكملات الغذائية،
+                    والكهارل، ومراقبة التقدم، والدردشة اليومية.
+                  </p>
+                  <h6 class="text-muted mb-3 px-3">
+                    <span class="mdi mdi-clock-outline"></span>
+                    مدّة التوصيل: <span class="px-2"> ١ يوم</span>
+                  </h6>
+                  <button class="btn btn-dark w-100">
+                    طلب <span class="mdi mdi-check-bold"></span>
+                  </button>
+                  <button class="btn btn-light mt-2 w-100">
+                    مقارنة الحزم
+                    <span class="mdi mdi-package-variant-closed"></span>
+                  </button>
                 </div>
-                <div class="row">
-                  <div class="col-12">
-                    <div class="d-grid">
-                      <button
-                        type="submit"
-                        id="submit2"
-                        name="send"
-                        class="btn btn-primary"
-                      >
-                        Send Message
-                      </button>
-                    </div>
+              </div>
+              <!--end teb pane-->
+
+              <div
+                class="tab-pane fade p-2 rounded"
+                id="cardeo"
+                role="tabpanel"
+                aria-labelledby="cardeography"
+              >
+                <div class="standard p-2">
+                  <div
+                    class="row justify-content-between align-items-center mb-2 text-success"
+                  >
+                    <h2 class="col text-end px-4 m-0">قياسي</h2>
+                    <h4 class="col text-start px-4 m-0">٨٩$</h4>
                   </div>
-                  <!--end col-->
+                  <h6 class="text-dark px-3 mt-0 pt-0">١٦٠ طلب</h6>
+                  <p class="px-3 text-muted mb-3">
+                    خطة تمارين أساسية ونظام غذائي متوازن لمدة ٣ أسابيع، مع دعم
+                    عبر البريد الإلكتروني ونصائح يومية.
+                  </p>
+                  <h6 class="text-muted mb-3 px-3">
+                    <span class="mdi mdi-clock-outline"></span>
+                    مدّة التوصيل: <span class="px-2"> ٣ أيام</span>
+                  </h6>
+                  <button class="btn btn-dark w-100">
+                    طلب <span class="mdi mdi-check-bold"></span>
+                  </button>
+                  <button class="btn btn-light mt-2 w-100">
+                    مقارنة الحزم
+                    <span class="mdi mdi-package-variant-closed"></span>
+                  </button>
                 </div>
-                <!--end row-->
-              </form>
+              </div>
+              <!--end teb pane-->
+
+              <div
+                class="tab-pane fade p-2"
+                id="eye"
+                role="tabpanel"
+                aria-labelledby="eyecare"
+              >
+                <div class="premium p-2">
+                  <div
+                    class="row justify-content-between align-items-center mb-2 text-success"
+                  >
+                    <h2 class="col text-end px-4 m-0">متميز</h2>
+                    <h4 class="col text-start px-4 m-0">١٩٩$</h4>
+                  </div>
+                  <h6 class="text-dark px-3 mt-0 pt-0">٤٥٠ طلب</h6>
+                  <p class="px-3 text-muted mb-3">
+                    خطة تمارين متقدمة وخطة غذائية مخصصة لمدة ٦ أسابيع، مع مراقبة
+                    الوزن اليومية، ونصائح صحية حصرية.
+                  </p>
+                  <h6 class="text-muted mb-3 px-3">
+                    <span class="mdi mdi-clock-outline"></span>
+                    مدّة التوصيل: <span class="px-2"> ٢ أيام</span>
+                  </h6>
+                  <button class="btn btn-dark w-100">
+                    طلب <span class="mdi mdi-check-bold"></span>
+                  </button>
+                  <button class="btn btn-light mt-2 w-100">
+                    مقارنة الحزم
+                    <span class="mdi mdi-package-variant-closed"></span>
+                  </button>
+                </div>
+              </div>
             </div>
-            <!--end custom-form-->
           </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+        <div class="ms-lg-4">
+          <h4>نبذة عني :</h4>
+          <p class="text-muted">
+            أنا مدرب لياقة بدنية بخبرة تزيد عن ٣ سنوات. لدي خبرة في جميع مراحل
+            دورة التطوير لمشاريع الويب الدينامية.
+          </p>
+          <p class="text-muted mb-0">
+            هياكل البيانات والخوارزميات هي قلب البرمجة. في البداية، قد لا يدرك
+            معظم المطورين أهميتها، ولكن عندما تبدأ مسيرتك في تطوير البرمجيات،
+            ستجد أن كودك إما يأخذ وقتًا طويلاً أو يأخذ مساحة كبيرة.
+          </p>
+
+          <!-- Skills Start -->
+          <h4 class="mt-lg-5 mt-4">المهارات :</h4>
+          <div class="progress-box mt-4">
+            <h6 class="title text-muted">
+              <span class="ms-2">15%</span>
+              <span>تصميم ووردبريس</span>
+            </h6>
+            <div class="progress">
+              <div
+                class="progress-bar position-relative bg-success"
+                style="width: 15%"
+              ></div>
+            </div>
+          </div>
+          <!--end process box-->
+          <div class="progress-box mt-4">
+            <h6 class="title text-muted">
+              <span class="ms-2">84%</span>
+              <span>تصميم ووردبريس</span>
+            </h6>
+            <div class="progress">
+              <div
+                class="progress-bar position-relative bg-success"
+                style="width: 84%"
+              ></div>
+            </div>
+          </div>
+          <!--end process box-->
+          <div class="progress-box mt-4">
+            <h6 class="title text-muted">
+              <span class="ms-2">84%</span>
+              <span>تصميم ووردبريس</span>
+            </h6>
+            <div class="progress">
+              <div
+                class="progress-bar position-relative bg-success"
+                style="width: 84%"
+              ></div>
+            </div>
+          </div>
+          <!--end process box-->
+          <!-- Skills End -->
+
+          <!-- Experience Start -->
+          <h4 class="mt-lg-5 mt-4">الخبرة :</h4>
+          <div class="row">
+            <div class="col-lg-12 mt-4 pt-2">
+              <div class="d-flex">
+                <div class="company-logo text-muted h6 ms-4 text-center">
+                  <img
+                    src="https://picsum.photos/1920/1080?random=4"
+                    class="avatar avatar-md-sm mx-auto d-block mb-2"
+                    alt=""
+                  />٢٠١٧-١٨
+                </div>
+                <div class="flex-1">
+                  <h5 class="title mb-0">مطور خلفي</h5>
+                  <small class="text-muted company-university"
+                    >Codepen - الصين</small
+                  >
+                  <p class="text-muted mt-2 mb-0">
+                    يبدو أنه تظل فقط شظايا من النص الأصلي في نصوص لوريم إيبسوم
+                    المستخدمة اليوم. يمكن للمرء أن يتسائل عما إذا كانت قد تمت
+                    إضافة أو حذف أحرف معينة في مواقع مختلفة داخل النص على مر
+                    الوقت.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+
+            <div class="col-lg-12 mt-4 pt-2">
+              <div class="d-flex">
+                <div class="company-logo text-muted h6 ms-4 text-center">
+                  <img
+                    src="https://picsum.photos/1920/1080?random=15"
+                    class="avatar avatar-md-sm mx-auto d-block mb-2"
+                    alt=""
+                  />٢٠١٤-١٧
+                </div>
+                <div class="flex-1">
+                  <h5 class="title mb-0">مصمم ويب أول</h5>
+                  <small class="text-muted company-university"
+                    >CircleCi - سان فرانسيسكو</small
+                  >
+                  <p class="text-muted mt-2 mb-0">
+                    يبدو أنه تظل فقط شظايا من النص الأصلي في نصوص لوريم إيبسوم
+                    المستخدمة اليوم. يمكن للمرء أن يتسائل عما إذا كانت قد تمت
+                    إضافة أو حذف أحرف معينة في مواقع مختلفة داخل النص على مر
+                    الوقت.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+          </div>
+          <!--end row-->
+          <!-- Experience End -->
+
+          <!-- Add more project cards as needed -->
         </div>
       </div>
     </div>
-
-    <section class="section">
-      <div class="container mt-100 mt-60">
-        <div class="row"></div>
-        <!--end row-->
-      </div>
-      <!--end container-->
-    </section>
-    <!--end section-->
-  </body>
-</html>
+    <!--end col-->
+  </div>
+  <!--enn row-->
+  <!--end container-->
+</section>
+<!--end section-->
