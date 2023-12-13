@@ -7,6 +7,56 @@
     }
   },
   "routing": {
+    "auth": {
+      "login": {
+        "login": "تسجيل الدخول",
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور",
+        "register": "تسجيل",
+        "don't have an account?": "ليس لديك حساب؟"
+      },
+      "register": {
+        "name": "الاسم",
+        "height": "الطول",
+        "weight": "الوزن",
+        "age": "العمر",
+        "gender": "الجنس",
+        "female": "أنثى",
+        "male": "ذكر",
+        "fitness level": "مستوى اللياقة البدنية",
+        "beginner": "مبتدئ",
+        "intermediate": "متوسط",
+        "advanced": "متقدم",
+        "cm": "سم",
+        "kg": "كج",
+        "year": "سنة",
+        "eg": "مثال",
+        "goals": "الأهداف",
+        "weight loss": "خسارة الوزن",
+        "muscle gain": "زيادة الكتلة العضلية",
+        "bulk": "تضخيم",
+        "cut": "تنشيف",
+        "new user": "مستخدم جديد",
+        "continue": "متابعة",
+        "required": "مطلوب",
+        "must be": "يجب أن يكون",
+        "characters": "أحرف",
+        "at least": "على الأقل",
+        "less than": "أقل من",
+        "username": "اسم المستخدم",
+        "does not match": "غير متطابقة",
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور",
+        "confirm password": "تأكيد كلمة المرور",
+        "I have read and agree to the Terms": "لقد قرأت وأوافق على الشروط",
+        "Accept Terms is required": "قبول الشروط مطلوب",
+        "register": "تسجيل",
+        "login": "تسجيل الدخول",
+        "already have an account?": "لديك حساب؟",
+        "registering means that you accept and agree to our terms.": "التسجيل يعني أنك تقبل وتوافق على شروطنا.",
+        "submitting means that you provide accurate information.": "التسجيل يعني أنك تقدم معلومات دقيقة."
+      }
+    },
     "landing": {
       "header": {
         "nav": {

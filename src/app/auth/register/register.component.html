@@ -1,17 +1,33 @@
 <app-landing-header></app-landing-header>
 
-<div class="background-container">
+<div class="background-container" *ngIf="step === 1">
   <div
     class="container d-flex align-items-center justify-content-center"
     style="min-height: 100vh; padding-top: 100px"
   >
     <div class="row col-12 col-md-9 col-lg-5 m-4">
       <h4 class="text-light text-center">
-        {{ translateBaseRoute + "login" | translate }}
+        {{ translateBaseRoute + "new user" | translate }}
       </h4>
 
       <div class="register-form">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label>{{ translateBaseRoute + "name" | translate }}*</label>
+            <input
+              type="text"
+              formControlName="name"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f['name'].errors }"
+            />
+            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+              <div *ngIf="f['name'].errors['required']">
+                {{ translateBaseRoute + "name" | translate }}
+                {{ translateBaseRoute + "required" | translate }}
+              </div>
+            </div>
+          </div>
+
           <div class="form-group">
             <label>{{ translateBaseRoute + "email" | translate }}*</label>
             <input
@@ -64,27 +80,63 @@
                 {{ translateBaseRoute + "characters" | translate }}
               </div>
             </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-dark col-12 py-3 mt-4">
-                {{ translateBaseRoute + "login" | translate }}
-              </button>
+          </div>
+
+          <div class="form-group">
+            <label
+              >{{ translateBaseRoute + "confirm password" | translate }}*</label
+            >
+            <input
+              type="password"
+              formControlName="confirmPassword"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid': submitted && f['confirmPassword'].errors
+              }"
+            />
+            <div
+              *ngIf="submitted && f['confirmPassword'].errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f['confirmPassword'].errors['required']">
+                {{ translateBaseRoute + "confirm password" | translate }}
+                {{ translateBaseRoute + "required" | translate }}
+              </div>
+              <div *ngIf="f['confirmPassword'].errors['matching']">
+                {{ translateBaseRoute + "confirm password" | translate }}
+                {{ translateBaseRoute + "does not match" | translate }}
+              </div>
             </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-dark col-12 py-3 mt-4">
+              {{ translateBaseRoute + "continue" | translate }}
+            </button>
+
+            <p style="font-size: 10px" class="mt-2 px-1">
+              {{
+                translateBaseRoute +
+                  "registering means that you accept and agree to our terms."
+                  | translate
+              }}
+            </p>
           </div>
         </form>
       </div>
       <p class="mb-0 mt-3">
         <small class="text-light me-2">{{
-          translateBaseRoute + "don't have an account?" | translate
+          translateBaseRoute + "already have an account?" | translate
         }}</small>
         <a
           href="javascript:void(0)"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasRight"
           aria-controls="offcanvasRight"
-          [routerLink]="['/auth/register']"
+          [routerLink]="['/auth/login']"
         >
           <span class="text-light me-2 fw-bold">
-            {{ translateBaseRoute + "register" | translate }}
+            {{ translateBaseRoute + "login" | translate }}
           </span>
           <span class="mdi mdi-lock text-dark"></span>
         </a>
@@ -92,3 +144,5 @@
     </div>
   </div>
 </div>
+
+<app-register-final *ngIf="step === 2"></app-register-final>

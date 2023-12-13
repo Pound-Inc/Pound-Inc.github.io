@@ -36,6 +36,9 @@ import { CoachInfoComponent } from './coach/coach-info/coach-info.component';
 import { CoachProgramsComponent } from './coach/coach-programs/coach-programs.component';
 import { CoachExperiencesComponent } from './coach/coach-experiences/coach-experiences.component';
 import { CustomersStoryComponent } from './coach/customers-story/customers-story.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './auth/register/register.component';
+import { RegisterFinalComponent } from './auth/register-final/register-final.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -62,6 +65,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProfileComponent,
     LoadingComponent,
     LoginComponent,
+    RegisterComponent,
+    RegisterFinalComponent,
     TrainingProgramComponent,
     CoachComponent,
     CoachCardComponent,
@@ -73,6 +78,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     NgbModule,
     AdminModule,
     AuthRoutingModule,

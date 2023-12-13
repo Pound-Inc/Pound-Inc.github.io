@@ -1078,7 +1078,6 @@ p {
   line-height: 26px;
   border-radius: 6px;
   color: #212529 !important;
-  text-align: left;
 }
 .form-control:focus {
   border-color: #e43f52;

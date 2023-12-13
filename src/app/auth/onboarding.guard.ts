@@ -3,14 +3,14 @@ import { Router } from '@angular/router';
 
 import { AuthService } from './auth.service';
 
-export const authGuard = () => {
+export const onBoardingGuard = () => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  if (authService.isLoggedIn) {
+  if (!authService.isLoggedIn) {
     return true;
   }
 
-  // Redirect to the login page
-  return router.parseUrl('auth/login');
+  // Redirect to the landing page
+  return router.parseUrl('');
 };
