@@ -39,6 +39,9 @@ import { CustomersStoryComponent } from './coach/customers-story/customers-story
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './auth/register/register.component';
 import { RegisterFinalComponent } from './auth/register-final/register-final.component';
+import { MaleComponent } from './categories/male/male.component';
+import { FemaleComponent } from './categories/female/female.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -74,6 +77,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CoachProgramsComponent,
     CoachExperiencesComponent,
     CustomersStoryComponent,
+    MaleComponent,
+    FemaleComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,6 +95,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    BrowserAnimationsModule,
   ],
   providers: [LoadingService],
   bootstrap: [AppComponent],

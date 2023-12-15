@@ -29,6 +29,7 @@
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "@popperjs/core": "^2.11.7",
+    "apexcharts": "^3.45.0",
     "autobind-decorator": "^2.4.0",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.11.2",

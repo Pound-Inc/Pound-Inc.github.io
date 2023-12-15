@@ -1,0 +1,25 @@
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 100;
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+th,
+td {
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+.clicked-row {
+  transition: background-color 0.3s ease; /* Add a smooth transition effect */
+}
+.clicked-row td,
+.clicked-row th {
+  background-color: #e0e0e0 !important;
+}

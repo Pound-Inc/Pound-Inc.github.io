@@ -15,6 +15,9 @@ export class AppComponent implements OnInit {
     private meta: Meta,
     private translate: TranslateService
   ) {
+    if (!localStorage.getItem('selectedLanguage')) {
+      localStorage.setItem('selectedLanguage', 'ar');
+    }
     // Add the JSON-LD structured data block
     this.addStructuredData();
 
