@@ -63,6 +63,10 @@
         "program": {
           "Training Programs": "برامج التدريب",
           "New Program": "برنامج جديد"
+        },
+        "plan": {
+          "Program plans": "خطط البرنامج",
+          "New Plan": "خطّة جديد"
         }
       }
     },
