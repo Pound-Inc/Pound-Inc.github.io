@@ -1,11 +1,13 @@
-import { TrainingPlan } from './program-plan.model';
-
 export class TrainingProgram {
   constructor(
-    public programId: string,
-    public title: string,
+    public id: string,
+    public coach_id: string,
+    public name: string,
     public img: string,
     public description: string,
-    public plans: TrainingPlan[] = []
+    public phases: Record<string, number>,
+    public rating?: any[]
   ) {}
+
+  [key: string]: any; //  allow indexing with strings
 }

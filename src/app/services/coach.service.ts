@@ -40,33 +40,36 @@ export class CoachService {
       },
       trainingPrograms: [
         {
-          programId: '11233',
-          title: 'تدريب غذائي',
+          id: '11233',
+          coach_id: '11233',
+          name: 'تدريب غذائي',
           img: 'https://picsum.photos/1920/1080?random=9',
           description: 'برنامج تدريب غذائي',
-          plans: [
-            {
-              planId: '14144',
-              planName: 'بسيط',
-              planDescription: '٣ اسابيع تمرين',
-              planPrice: 15,
-            },
-          ],
+          phases: { muscle: 80, cut: 10, bulk: 40 },
+          // plans: [
+          //   {
+          //     planId: '14144',
+          //     planName: 'بسيط',
+          //     planDescription: '٣ اسابيع تمرين',
+          //     planPrice: 15,
+          //   },
+          // ],
         },
-
         {
-          programId: '11233',
-          title: 'تدريب غذائي',
-          img: 'https://picsum.photos/1920/1080?random=19',
+          id: '11233',
+          coach_id: '11233',
+          name: 'تدريب غذائي',
+          img: 'https://picsum.photos/1920/1080?random=9',
           description: 'برنامج تدريب غذائي',
-          plans: [
-            {
-              planId: '14144',
-              planName: 'بسيط',
-              planDescription: '٣ اسابيع تمرين',
-              planPrice: 15,
-            },
-          ],
+          phases: { muscle: 80, cut: 10, bulk: 40 },
+          // plans: [
+          //   {
+          //     planId: '14144',
+          //     planName: 'بسيط',
+          //     planDescription: '٣ اسابيع تمرين',
+          //     planPrice: 15,
+          //   },
+          // ],
         },
       ],
       languages: ['gb', 'sa', 'se'],

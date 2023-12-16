@@ -21,45 +21,28 @@
         </div>
         <div class="card-body content">
           <div class="d-flex justify-content-between row border-bottom pb-4">
-            <div class="progress-box col">
+            <!-- your-component.component.html -->
+
+            <div
+              *ngFor="let item of program.phases | keyvalue"
+              class="progress-box col"
+            >
               <h6 class="title text-muted">
-                <span class="ms-2">90%</span>
-                <span>تنحيف</span>
+                <span class="ms-2">{{ item.value }}%</span>
+                <span>{{
+                  translateBaseRoute + "phases." + item.key | translate
+                }}</span>
               </h6>
               <div class="progress">
                 <div
                   class="progress-bar position-relative bg-secondary"
-                  style="width: 90%"
-                ></div>
-              </div>
-            </div>
-            <div class="progress-box col">
-              <h6 class="title text-muted">
-                <span class="ms-2">40%</span>
-                <span>نحت</span>
-              </h6>
-              <div class="progress">
-                <div
-                  class="progress-bar position-relative bg-secondary"
-                  style="width: 40%"
-                ></div>
-              </div>
-            </div>
-            <div class="progress-box col">
-              <h6 class="title text-muted">
-                <span class="ms-2">15%</span>
-                <span>عضل</span>
-              </h6>
-              <div class="progress">
-                <div
-                  class="progress-bar position-relative bg-secondary"
-                  style="width: 15%"
+                  [style.width.%]="item.value"
                 ></div>
               </div>
             </div>
           </div>
           <div class="d-flex justify-content-between pt-4">
-            <h5 class="mb-0">{{ program.title }}</h5>
+            <h5 class="mb-0">{{ program.name }}</h5>
             <h2 class="text-success mb-0">
               $<span>15.<small>99</small></span>
             </h2>

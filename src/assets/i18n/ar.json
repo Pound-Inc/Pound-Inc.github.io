@@ -57,6 +57,15 @@
         "submitting means that you provide accurate information.": "التسجيل يعني أنك تقدم معلومات دقيقة."
       }
     },
+    "admin": {
+      "dashboard": {
+        "Visitor": "الزوار",
+        "program": {
+          "Training Programs": "برامج التدريب",
+          "New Program": "برنامج جديد"
+        }
+      }
+    },
     "landing": {
       "header": {
         "nav": {
@@ -140,6 +149,13 @@
       "footer": {}
     },
     "coach": {
+      "phases": {
+        "muscle": "عضلات",
+        "weight loss": "خسارة الوزن",
+        "muscle gain": "زيادة الكتلة العضلية",
+        "bulk": "تضخيم",
+        "cut": "تنشيف"
+      },
       "profile-card": {
         "customers": "عملاء",
         "programs": "برامج",

@@ -16,10 +16,4 @@ td {
   padding: 8px;
   text-align: left;
 }
-.clicked-row {
-  transition: background-color 0.3s ease; /* Add a smooth transition effect */
-}
-.clicked-row td,
-.clicked-row th {
-  background-color: #e0e0e0 !important;
-}
+
