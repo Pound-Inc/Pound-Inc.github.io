@@ -1,3 +1,5 @@
+import { UserRole } from 'src/app/model/user.model';
+
 export interface DataGridColumn {
   /** Identifier for the grid columns. */
   id: string;
@@ -23,5 +25,5 @@ export interface DataGridColumn {
   /** Icon file to use. */
   iconFile?: string;
 
-  type: 'link' | 'text' | 'array' | 'object' | 'number' | 'lookup';
+  type: 'link' | 'text' | 'array' | 'object' | 'number' | 'lookup' | 'date';
 }

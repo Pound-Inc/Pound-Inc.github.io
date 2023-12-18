@@ -1,23 +1,22 @@
-import { Certifications } from './certifications.model';
-import { ClientStories } from './client-stories.model';
-import { TrainingProgram } from './training-program.model';
+import { User, UserRole } from './user.model';
 
-export class Coach {
+export class Coach extends User {
   constructor(
-    public coachId: string,
-    public name: string,
-    public bio: string,
-    public certifications: Certifications[],
-    public imageUrl: string,
-    public contactEmail: string,
-    public socialLinks: { [key: string]: string } = {},
-    public trainingPrograms: TrainingProgram[] = [],
-    public languages: string[],
+    id: string,
+    name: string,
+    email: string,
+    dob: string,
+    img: string,
+    role: UserRole,
+    location: string,
     public availability: string,
-    public clientsServed: number,
-    public clientStories: ClientStories[],
-    public birthday: string,
-    public location: string,
-    public isVerified: boolean
-  ) {}
+    public is_verified: boolean,
+    public verified_by: string,
+    public languages: string[],
+    public ratings: [],
+    public tags: { name: string; color: string }[]
+  ) {
+    super(id, name, email, dob, img, location, role);
+  }
+  [key: string]: any; //  allow indexing with strings
 }

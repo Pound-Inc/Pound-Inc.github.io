@@ -2,8 +2,8 @@ import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn, Router } from '@angular/router';
 import { EMPTY, of } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
-import { Coach } from '../model/coach.model';
 import { CoachService } from '../services/coach.service';
+import { Coach } from '../model/coach.model';
 
 export const coachResolver: ResolveFn<Coach> = (
   route: ActivatedRouteSnapshot

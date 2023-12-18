@@ -13,7 +13,7 @@ export class CoachService {
     return of(this.getDummyCoachData(coachId)).pipe(delay(100));
   }
 
-  private getDummyCoachData(coachId: string): Coach {
+  private getDummyCoachData(coachId: string): any {
     return {
       coachId: coachId,
       name: 'احمد محسن',
@@ -46,14 +46,6 @@ export class CoachService {
           img: 'https://picsum.photos/1920/1080?random=9',
           description: 'برنامج تدريب غذائي',
           phases: { muscle: 80, cut: 10, bulk: 40 },
-          // plans: [
-          //   {
-          //     planId: '14144',
-          //     planName: 'بسيط',
-          //     planDescription: '٣ اسابيع تمرين',
-          //     planPrice: 15,
-          //   },
-          // ],
         },
         {
           id: '11233',
@@ -62,14 +54,6 @@ export class CoachService {
           img: 'https://picsum.photos/1920/1080?random=9',
           description: 'برنامج تدريب غذائي',
           phases: { muscle: 80, cut: 10, bulk: 40 },
-          // plans: [
-          //   {
-          //     planId: '14144',
-          //     planName: 'بسيط',
-          //     planDescription: '٣ اسابيع تمرين',
-          //     planPrice: 15,
-          //   },
-          // ],
         },
       ],
       languages: ['gb', 'sa', 'se'],

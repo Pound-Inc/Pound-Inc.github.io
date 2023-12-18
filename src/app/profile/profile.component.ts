@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Coach } from '../model/coach.model';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Coach } from '../model/coach.model';
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({

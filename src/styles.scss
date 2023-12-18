@@ -93,12 +93,32 @@ video {
   font-family: "Tajawal", sans-serif !important;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 .clicked-row {
   transition: background-color 0.3s ease; /* Add a smooth transition effect */
 }
 .clicked-row td,
 .clicked-row th {
   background-color: #e0e0e0 !important;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 100;
+}
+
+td {
+  color: rgb(52, 52, 52);
+  font-weight: 100;
+  padding-right: 30px;
+  min-width: max-content;
 }
