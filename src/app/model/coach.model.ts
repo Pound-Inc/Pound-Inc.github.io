@@ -11,7 +11,8 @@ export class Coach extends User {
     location: string,
     public availability: string,
     public is_verified: boolean,
-    public verified_by: string,
+    public certified_by_id: string,
+    public certification_id: string,
     public languages: string[],
     public ratings: [],
     public tags: { name: string; color: string }[]

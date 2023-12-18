@@ -42,6 +42,8 @@ import { RegisterFinalComponent } from './auth/register-final/register-final.com
 import { MaleComponent } from './categories/male/male.component';
 import { FemaleComponent } from './categories/female/female.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoryComponent } from './story/story.component';
+import { ArticleComponent } from './article/article.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -79,6 +81,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CustomersStoryComponent,
     MaleComponent,
     FemaleComponent,
+    StoryComponent,
+    ArticleComponent,
   ],
   imports: [
     BrowserModule,

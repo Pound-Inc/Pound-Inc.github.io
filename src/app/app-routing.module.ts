@@ -6,12 +6,17 @@ import { TrainingProgramComponent } from './training-program/training-program.co
 import { CoachComponent } from './coach/coach.component';
 import { MaleComponent } from './categories/male/male.component';
 import { FemaleComponent } from './categories/female/female.component';
+import { ArticleComponent } from './article/article.component';
+import { StoryComponent } from './story/story.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
+  { path: '*', component: LandingComponent },
   { path: 'program', component: TrainingProgramComponent },
   { path: 'male', component: MaleComponent },
   { path: 'female', component: FemaleComponent },
+  { path: 'article/:articleId', component: ArticleComponent },
+  { path: 'story', component: StoryComponent },
   {
     path: 'coach/:coachId',
     component: CoachComponent,
