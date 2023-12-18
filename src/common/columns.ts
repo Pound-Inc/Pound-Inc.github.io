@@ -9,7 +9,7 @@ export const programTableColumns: Array<DataGridColumn> = [
     hidden: false,
     icon: '',
     iconFile: '',
-    width: '',
+    width: '200',
     type: 'text',
   },
   {
@@ -20,7 +20,7 @@ export const programTableColumns: Array<DataGridColumn> = [
     hidden: false,
     icon: '',
     iconFile: '',
-    width: '',
+    width: '200',
     type: 'text',
   },
   {
@@ -31,7 +31,7 @@ export const programTableColumns: Array<DataGridColumn> = [
     hidden: false,
     icon: '',
     iconFile: '',
-    width: '',
+    width: '300',
     type: 'text',
   },
   {
@@ -42,7 +42,7 @@ export const programTableColumns: Array<DataGridColumn> = [
     hidden: false,
     icon: '',
     iconFile: '',
-    width: '',
+    width: '100',
     type: 'object',
   },
   {
@@ -53,7 +53,7 @@ export const programTableColumns: Array<DataGridColumn> = [
     hidden: false,
     icon: '',
     iconFile: '',
-    width: '',
+    width: '200',
     type: 'lookup',
   },
   {
@@ -64,7 +64,7 @@ export const programTableColumns: Array<DataGridColumn> = [
     hidden: false,
     icon: '',
     iconFile: '',
-    width: '',
+    width: '150',
     type: 'link',
   },
 ];

@@ -111,9 +111,10 @@ body {
 
 .sticky-header {
   position: sticky;
-  top: 0;
+  top: 0px;
   background-color: #fff;
   z-index: 100;
+  margin-top: 20px !important;
 }
 
 td {
@@ -121,4 +122,20 @@ td {
   font-weight: 100;
   padding-right: 30px;
   min-width: max-content;
+}
+thead tr {
+  height: 50px;
+  box-shadow: 0px 5px 5px 0px rgba(219, 219, 219, 0.4);
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(219, 219, 219, 0.4);
+  -moz-box-shadow: 0px 5px 5px 0px rgba(219, 219, 219, 0.4);
+}
+.sticky-column {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

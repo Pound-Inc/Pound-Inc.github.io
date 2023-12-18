@@ -17,7 +17,7 @@ interface SearchResult {
   users: User[];
   total: number;
 }
-export const PROGRAMS: User[] = [
+export const USERS: User[] = [
   {
     id: '65801ee6146142ca59388218',
     img: 'http://placehold.it/32x32',
@@ -214,7 +214,7 @@ export class UserService {
       this._state;
 
     // 1. sort
-    let users = sort(PROGRAMS, sortColumn, sortDirection);
+    let users = sort(USERS, sortColumn, sortDirection);
 
     // 2. filter
     users = users.filter((user) => matches(user, searchTerm));

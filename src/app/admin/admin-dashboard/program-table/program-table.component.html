@@ -67,12 +67,12 @@
           >
             <td *ngFor="let key of columns">
               <ng-container *ngIf="key.type === 'text'">
-                <td>
+                <td [style.minWidth]="key.width + 'px'">
                   {{ formatValue(program[key.id]) }}
                 </td>
               </ng-container>
               <ng-container *ngIf="key.type === 'lookup'">
-                <td>
+                <td [style.minWidth]="key.width + 'px'">
                   {{ formatValue(program[key.id]) }}
                   <div>
                     <small class="text-muted">
@@ -83,7 +83,7 @@
               </ng-container>
 
               <ng-container *ngIf="key.id === 'phases'">
-                <td>
+                <td [style.minWidth]="key.width + 'px'">
                   <div ngbDropdown container="body">
                     <button
                       type="button"
@@ -112,7 +112,7 @@
                 </td>
               </ng-container>
               <ng-container *ngIf="key.type === 'link'">
-                <td>
+                <td [style.minWidth]="key.width + 'px'">
                   <button
                     class="btn btn-light btn-sm me-1"
                     (click)="open(content)"
@@ -128,8 +128,11 @@
                   <button class="btn btn-light btn-sm" (click)="open(content)">
                     <span class="mdi mdi-open-in-new"></span>
                   </button>
-                  <div class="mt-1">
-                    <small class="text-muted">
+                  <div
+                    class="mt-1 truncate-text"
+                    [ngStyle]="{ 'max-width.px': key.width }"
+                  >
+                    <small class="text-muted truncate-text">
                       {{ formatValue(program[key.id]) }}
                     </small>
                   </div>
