@@ -12,18 +12,48 @@ import {
 } from 'rxjs';
 import { SortColumn, SortDirection } from '../sortable.directive';
 import { ProgramPlan } from 'src/app/model/program-plan.model';
+import { TrainingProgram } from 'src/app/model/training-program.model';
+import { Table } from 'src/common/interfaces/table.interface';
 
 interface SearchResult {
   plans: ProgramPlan[];
   total: number;
 }
-export const PROGRAMS: ProgramPlan[] = [
+export const PLANS: ProgramPlan[] = [
   {
-    id: '11233',
-    program_id: '11233',
-    name: 'تدريب غذائي',
-    description: 'برنامج تدريب غذائي',
-    price: 24,
+    id: 'PP30001',
+    name: 'Basic Fitness Plan',
+    program_id: 'PR20004',
+    description: 'A starter plan for improving overall fitness.',
+    price: 29.99,
+  },
+  {
+    id: 'PP30002',
+    name: 'Premium Yoga Plan',
+    program_id: 'PR20004',
+    description: 'An exclusive yoga plan with advanced sessions.',
+    price: 39.99,
+  },
+  {
+    id: 'PP30003',
+    name: 'Coding Pro Plan',
+    program_id: 'PR20004',
+    description: 'Comprehensive coding plan with mentor support.',
+    price: 49.99,
+  },
+  {
+    id: 'PP30004',
+    name: 'Language Mastery Plan',
+    program_id: 'PR20004',
+    description: 'Intensive language learning plan with personalized lessons.',
+    price: 34.99,
+  },
+  {
+    id: 'PP30005',
+    name: 'Art Enthusiast Plan',
+    program_id: 'PR20004',
+    description: 'Unlock your artistic potential with this creative plan.',
+    price: 24.99,
   },
 ];
 
@@ -61,10 +91,13 @@ function matches(program: ProgramPlan, term: string) {
 export class PlanService {
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _search$ = new Subject<void>();
-  private _programs$ = new BehaviorSubject<ProgramPlan[]>([]);
+  private _plans$ = new BehaviorSubject<ProgramPlan[]>([]);
   private _total$ = new BehaviorSubject<number>(0);
 
-  private _state: State = {
+  // Related Program:
+  private programRowData = new BehaviorSubject<any>(null);
+
+  public _state: Table = {
     page: 1,
     pageSize: 100,
     searchTerm: '',
@@ -82,7 +115,7 @@ export class PlanService {
         tap(() => this._loading$.next(false))
       )
       .subscribe((result) => {
-        this._programs$.next(result.plans);
+        this._plans$.next(result.plans);
         this._total$.next(result.total);
       });
 
@@ -90,7 +123,7 @@ export class PlanService {
   }
 
   get plans() {
-    return this._programs$.asObservable();
+    return this._plans$.asObservable();
   }
   get total$() {
     return this._total$.asObservable();
@@ -134,7 +167,7 @@ export class PlanService {
       this._state;
 
     // 1. sort
-    let plans = sort(PROGRAMS, sortColumn, sortDirection);
+    let plans = sort(PLANS, sortColumn, sortDirection);
 
     // 2. filter
     plans = plans.filter((program) => matches(program, searchTerm));
@@ -146,5 +179,12 @@ export class PlanService {
       (page - 1) * pageSize + pageSize
     );
     return of({ plans: plans, total });
+  }
+
+  setSelectedProgramData(data: any) {
+    this.programRowData.next(data);
+  }
+  getSelectedProgramData(): Observable<TrainingProgram> {
+    return this.programRowData.asObservable();
   }
 }

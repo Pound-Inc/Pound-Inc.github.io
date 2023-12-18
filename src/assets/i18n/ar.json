@@ -67,24 +67,26 @@
         "plan": {
           "Program plans": "خطط البرنامج",
           "New Plan": "خطّة جديد"
+        },
+        "user": {
+          "users": "المستخدمين"
         }
       }
     },
     "landing": {
       "header": {
         "nav": {
-          "home": "Home",
-          "service": "Service",
-          "pricing": "Pricing",
+          "home": "الرئيسية",
+          "account": "الحساب",
+          "service": "البرامج",
+          "pricing": "المدربيين",
           "products": {
-            "products": "Products",
+            "products": "الأقسام",
             "children": {
-              "home": "Home"
+              "nutrition": "التغذية",
+              "cardio": "الكارديو",
+              "strength": "القّوة"
             }
-          },
-          "demos": {
-            "demos": "Demos",
-            "home": "Home"
           }
         }
       },

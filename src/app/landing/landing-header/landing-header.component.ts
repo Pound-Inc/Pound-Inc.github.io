@@ -15,7 +15,7 @@ import { Subscription, Subject, takeUntil } from 'rxjs';
   styleUrls: ['./landing-header.component.scss'],
 })
 export class LandingHeaderComponent implements OnInit, OnDestroy {
-  private translateBaseRoute = 'routing.landing.header.nav.';
+  public translateBaseRoute = 'routing.landing.header.nav.';
   public navbarItems: any[];
   public active: boolean = false;
   @ViewChild('navbar', { static: true }) navbar: ElementRef;
@@ -34,33 +34,24 @@ export class LandingHeaderComponent implements OnInit, OnDestroy {
         routerLink: '',
         children: [
           {
-            title: `${this.translateBaseRoute}products.children.home`,
+            title: `${this.translateBaseRoute}products.children.nutrition`,
             isActive: false,
             routerLink: '',
-            image: '',
+            image: 'https://pankind.org.au/media/1653/istock-854725402_900.jpg',
           },
           {
-            title: `${this.translateBaseRoute}products.children.home`,
+            title: `${this.translateBaseRoute}products.children.cardio`,
             isActive: false,
             routerLink: '',
-            image: '',
+            image:
+              'https://blog.myfitnesspal.com/wp-content/uploads/2019/01/Essential-Guide-to-Hydration-1200x900.jpg',
           },
           {
-            title: `${this.translateBaseRoute}products.children.home`,
+            title: `${this.translateBaseRoute}products.children.strength`,
             isActive: false,
             routerLink: '',
-            image: '',
-          },
-        ],
-      },
-      {
-        title: `${this.translateBaseRoute}demos.demos`,
-        children: [
-          {
-            title: `${this.translateBaseRoute}demos.home`,
-            isActive: false,
-            routerLink: '',
-            image: '',
+            image:
+              'https://www.eatthis.com/wp-content/uploads/sites/4/2022/04/strength-training.jpg?quality=82&strip=all',
           },
         ],
       },

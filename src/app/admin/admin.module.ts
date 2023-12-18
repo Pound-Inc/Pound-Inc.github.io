@@ -22,6 +22,7 @@ import { UserTableComponent } from './admin-dashboard/user-table/user-table.comp
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../app.module';
+import { UserCardComponent } from './admin-dashboard/user-card/user-card.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { HttpLoaderFactory } from '../app.module';
     ProgramTableComponent,
     PlanTableComponent,
     UserTableComponent,
+    UserCardComponent,
   ],
   imports: [
     CommonModule,

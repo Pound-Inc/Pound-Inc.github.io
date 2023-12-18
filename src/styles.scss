@@ -2,8 +2,7 @@
 // $primary: purple;
 
 @import "bootstrap/scss/bootstrap";
-
-@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;500&display=swap');
 
 .fi {
   border-radius: 3px !important;
@@ -101,6 +100,7 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
 .clicked-row {
   transition: background-color 0.3s ease; /* Add a smooth transition effect */
 }
@@ -118,16 +118,21 @@ body {
 }
 
 td {
-  color: rgb(52, 52, 52);
-  font-weight: 100;
+  color: rgb(98, 98, 98);
+  font-weight: 300;
   padding-right: 30px;
   min-width: max-content;
+  
 }
 thead tr {
   height: 50px;
   box-shadow: 0px 5px 5px 0px rgba(219, 219, 219, 0.4);
   -webkit-box-shadow: 0px 5px 5px 0px rgba(219, 219, 219, 0.4);
   -moz-box-shadow: 0px 5px 5px 0px rgba(219, 219, 219, 0.4);
+}
+.sticky-column td {
+  color: rgb(52, 52, 52);
+  font-weight: 500;
 }
 .sticky-column {
   position: sticky;

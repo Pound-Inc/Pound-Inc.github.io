@@ -12,7 +12,7 @@
           type="text"
           class="form-control"
           name="searchTerm"
-          [(ngModel)]="programService.searchTerm"
+          [(ngModel)]="tableConfig.searchTerm"
           placeholder="Search by Name..."
         />
       </div>
@@ -24,7 +24,7 @@
       <div class="col-2 px-0 mx-0">
         <button
           class="btn btn-secondary w-100 px-0 mx-0"
-          [disabled]="!selectedCountry"
+          [disabled]="!selectedRow"
           (click)="editRow()"
         >
           <span class="mdi mdi-pencil"></span>
@@ -33,7 +33,7 @@
       <div class="col-1 px-0 mx-0">
         <button
           class="btn btn-danger w-100 px-0 mx-0"
-          [disabled]="!selectedCountry"
+          [disabled]="!selectedRow"
           (click)="deleteRow()"
         >
           <span class="mdi mdi-delete"></span>
@@ -42,18 +42,21 @@
     </div>
   </div>
 
-  <div class="table-responsive shadow rounded-bottom" style="height: 545px">
+  <div
+    class="table-responsive border-bottom border-light border-top rounded-bottom"
+    style="height: 545px"
+  >
     <form class="mt-3">
       <table class="table">
         <thead>
           <tr class="sticky-header">
             <th
-              *ngFor="let key of columns"
+              *ngFor="let column of columns"
               scope="col"
               sortable="name"
               (sort)="onSort($event)"
             >
-              {{ key.name }}
+              {{ column.name }}
             </th>
           </tr>
         </thead>
@@ -61,19 +64,17 @@
           <tr
             *ngFor="let program of programs$ | async"
             (click)="onRowClick(program)"
-            [class.clicked-row]="
-              selectedCountry && selectedCountry.id === program.id
-            "
+            [class.clicked-row]="selectedRow && selectedRow.id === program.id"
           >
-            <td *ngFor="let key of columns">
-              <ng-container *ngIf="key.type === 'text'">
-                <td [style.minWidth]="key.width + 'px'">
-                  {{ formatValue(program[key.id]) }}
+            <td *ngFor="let column of columns">
+              <ng-container *ngIf="column.type === 'text'">
+                <td [style.width]="column.width + 'px'">
+                  {{ formatValue(program[column.id]) }}
                 </td>
               </ng-container>
-              <ng-container *ngIf="key.type === 'lookup'">
-                <td [style.minWidth]="key.width + 'px'">
-                  {{ formatValue(program[key.id]) }}
+              <ng-container *ngIf="column.type === 'lookup'">
+                <td [style.width]="column.width + 'px'">
+                  {{ formatValue(program[column.id]) }}
                   <div>
                     <small class="text-muted">
                       add reference to the lookup
@@ -82,27 +83,29 @@
                 </td>
               </ng-container>
 
-              <ng-container *ngIf="key.id === 'phases'">
-                <td [style.minWidth]="key.width + 'px'">
+              <ng-container *ngIf="column.id === 'phases'">
+                <td [style.width]="column.width + 'px'">
                   <div ngbDropdown container="body">
                     <button
                       type="button"
                       class="btn btn-light btn-sm"
                       ngbDropdownToggle
                     >
-                      Details ({{ formatValue(program[key.id]).length }})
+                      Details ({{ formatValue(program[column.id]).length }})
                     </button>
                     <div ngbDropdownMenu>
                       <div
                         ngbDropdownItem
                         disabled
-                        *ngFor="let phase of formatValue(program[key.id])"
+                        *ngFor="let phase of formatValue(program[column.id])"
                       >
-                        <h6>{{ phase }} {{ program[key.id][phase] + "%" }}</h6>
+                        <h6>
+                          {{ phase }} {{ program[column.id][phase] + "%" }}
+                        </h6>
                         <div class="progress mt-1">
                           <div
                             class="progress-bar position-relative bg-secondary"
-                            [style.width.%]="program[key.id][phase]"
+                            [style.width.%]="program[column.id][phase]"
                           ></div>
                         </div>
                         <div class="dropdown-divider"></div>
@@ -111,8 +114,8 @@
                   </div>
                 </td>
               </ng-container>
-              <ng-container *ngIf="key.type === 'link'">
-                <td [style.minWidth]="key.width + 'px'">
+              <ng-container *ngIf="column.type === 'link'">
+                <td [style.width]="column.width + 'px'">
                   <button
                     class="btn btn-light btn-sm me-1"
                     (click)="open(content)"
@@ -130,10 +133,10 @@
                   </button>
                   <div
                     class="mt-1 truncate-text"
-                    [ngStyle]="{ 'max-width.px': key.width }"
+                    [ngStyle]="{ 'max-width.px': column.width }"
                   >
                     <small class="text-muted truncate-text">
-                      {{ formatValue(program[key.id]) }}
+                      {{ formatValue(program[column.id]) }}
                     </small>
                   </div>
                 </td>
@@ -154,8 +157,8 @@
   <div class="d-flex justify-content-between p-2">
     <ngb-pagination
       [collectionSize]="(total$ | async)!"
-      [(page)]="programService.page"
-      [pageSize]="programService.pageSize"
+      [(page)]="tableConfig.page"
+      [pageSize]="tableConfig.pageSize"
     >
     </ngb-pagination>
 
@@ -163,7 +166,7 @@
       class="form-select"
       style="width: auto"
       name="pageSize"
-      [(ngModel)]="programService.pageSize"
+      [(ngModel)]="tableConfig.pageSize"
     >
       <option [ngValue]="10">10 items per page</option>
       <option [ngValue]="50">50 items per page</option>

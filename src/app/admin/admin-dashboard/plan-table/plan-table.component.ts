@@ -1,41 +1,67 @@
 import {
   Component,
+  OnDestroy,
+  OnInit,
   QueryList,
   TemplateRef,
   ViewChildren,
   inject,
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { planTableColumns } from 'src/common/columns';
 import { DataGridColumn } from 'src/common/interfaces/datagrid.interface';
 import { NgbdSortableHeader, SortEvent } from '../../sortable.directive';
 import { ProgramPlan } from 'src/app/model/program-plan.model';
 import { PlanService } from '../../services/plan.service';
+import { TrainingProgram } from 'src/app/model/training-program.model';
+import { Table } from 'src/common/interfaces/table.interface';
 
 @Component({
   selector: 'app-plan-table',
   templateUrl: './plan-table.component.html',
   styleUrls: ['./plan-table.component.scss'],
 })
-export class PlanTableComponent {
+export class PlanTableComponent implements OnInit, OnDestroy {
   public translateBaseRoute = 'routing.admin.dashboard.plan.';
   public columns: DataGridColumn[] = planTableColumns;
-  public plans$: Observable<ProgramPlan[]>;
+  public plans$: ProgramPlan[];
+  public filteredPlans$: ProgramPlan[];
   public total$: Observable<number>;
-  public selectedCountry: any;
-  public queriedData: ProgramPlan[] = [];
+  public selectedRow: ProgramPlan | null;
   private modalService = inject(NgbModal);
+  public tableConfig: Table;
+  private programSubscription: Subscription;
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  constructor(public planService: PlanService) {
-    this.plans$ = planService.plans;
-    this.total$ = planService.total$;
+  constructor(private planService: PlanService) {
+    this.tableConfig = this.planService._state;
+  }
+  ngOnInit(): void {
+    this.planService.plans.subscribe((plans: ProgramPlan[]) => {
+      if (plans) {
+        this.plans$ = plans;
+        this.filteredPlans$ = plans;
+        this.selectedRow = null;
+        this.total$ = this.planService.total$;
+      }
+    });
+    this.programSubscription = this.planService
+      .getSelectedProgramData()
+      .subscribe((program: TrainingProgram) => {
+        this.selectedRow = null;
+        if (program) {
+          this.filteredPlans$ = this.plans$.filter(
+            (plan) => plan.program_id === program.id
+          );
+        } else {
+          this.filteredPlans$ = this.plans$;
+        }
+      });
   }
 
   onSort({ column, direction }: SortEvent) {
-    // resetting other headers
     this.headers.forEach((header) => {
       if (header.sortable !== column) {
         header.direction = '';
@@ -55,47 +81,11 @@ export class PlanTableComponent {
       return value.toString();
     }
   }
-  // Track the expanded state of each row
-  expandedRows: Set<string> = new Set<string>();
 
-  // Function to check if the details for a row are expanded
-  isDetailsExpanded(programId: string): boolean {
-    return this.expandedRows.has(programId);
+  onRowClick(rowData: ProgramPlan) {
+    this.selectedRow = rowData;
   }
-
-  // Function to toggle the expanded state of a row
-  toggleDetails(programId: string): void {
-    if (this.expandedRows.has(programId)) {
-      this.expandedRows.delete(programId);
-    } else {
-      this.expandedRows.add(programId);
-    }
-  }
-
-  // Function to get the details content for a row
-  getDetailsContent(program: any): string {
-    // Customize this function to return the details content based on your data structure
-    return JSON.stringify(program.phases);
-  }
-
-  onRowClick(country: any) {
-    this.selectedCountry = country;
-    this.queriedData = [this.selectedCountry];
-    // Handle the row click event here
-    // You can log the data or perform any other action
-    console.log('Row clicked:', country);
-
-    // If you want to convert the data to JSON
-    const jsonData = JSON.stringify(country);
-    console.log('Row data as JSON:', jsonData);
-  }
-  editRow() {
-    // Handle the edit button click
-    if (this.selectedCountry) {
-      // Implement logic to open an edit form or perform other edit actions
-      console.log('Edit button clicked for:', this.selectedCountry);
-    }
-  }
+  editRow() {}
 
   open(content: TemplateRef<any>) {
     this.modalService
@@ -107,4 +97,10 @@ export class PlanTableComponent {
   }
 
   deleteRow() {}
+
+  ngOnDestroy() {
+    if (this.programSubscription) {
+      this.programSubscription.unsubscribe();
+    }
+  }
 }

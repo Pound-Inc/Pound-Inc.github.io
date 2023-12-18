@@ -12,6 +12,7 @@ import {
 } from 'rxjs';
 import { TrainingProgram } from 'src/app/model/training-program.model';
 import { SortColumn, SortDirection } from '../sortable.directive';
+import { Table } from 'src/common/interfaces/table.interface';
 
 interface SearchResult {
   programs: TrainingProgram[];
@@ -19,30 +20,51 @@ interface SearchResult {
 }
 export const PROGRAMS: TrainingProgram[] = [
   {
-    id: '11233',
-    coach_id: '11233',
-    name: 'تدريب غذائي',
-    img: 'https://picsum.photos/1920/1080?random=9',
-    description: 'برنامج تدريب غذائي',
-    phases: { muscle: 80, cut: 10, bulk: 40 },
+    id: 'PR20001',
+    name: 'Fitness Program',
+    description:
+      'A program focused on improving overall fitness and well-being.',
+    phases: { muscle: 80, cut: 10, bulk: 40, fat: 10 },
+    coach_id: '101',
+    img: 'https://example.com/fitness_image.jpg',
   },
   {
-    id: 'faf',
-    coach_id: 'a33a',
-    name: 'تدريب غذائي',
-    img: 'https://picsum.photos/1920/1080?random=9',
-    description: 'برنامج تدريب غذائي',
+    id: 'PR20002',
+    name: 'Yoga Retreat',
+    description:
+      'Experience relaxation and mindfulness through a yoga retreat.',
     phases: { muscle: 80, cut: 10, bulk: 40, fat: 10 },
+    coach_id: '102',
+    img: 'https://example.com/yoga_image.jpg',
+  },
+  {
+    id: 'PR20003',
+    name: 'Coding Bootcamp',
+    description:
+      'Intensive coding program for beginners to advanced developers.',
+    phases: { muscle: 80, cut: 10, bulk: 40, fat: 10 },
+    coach_id: '103',
+    img: 'https://example.com/coding_image.jpg',
+  },
+  {
+    id: 'PR20004',
+    name: 'Language Learning',
+    description:
+      'Master a new language with a structured language learning program.',
+    phases: { muscle: 80, cut: 10, bulk: 40, fat: 10 },
+    coach_id: '104',
+    img: 'https://example.com/language_image.jpg',
+  },
+  {
+    id: 'PR20005',
+    name: 'Art Workshop',
+    description:
+      'Explore your artistic side in a creative and collaborative workshop.',
+    phases: { muscle: 80, cut: 10, bulk: 40, fat: 10 },
+    coach_id: '105',
+    img: 'https://example.com/art_image.jpg',
   },
 ];
-
-interface State {
-  page: number;
-  pageSize: number;
-  searchTerm: string;
-  sortColumn: SortColumn;
-  sortDirection: SortDirection;
-}
 
 const compare = (v1: string | number, v2: string | number) =>
   v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
@@ -73,7 +95,7 @@ export class ProgramService {
   private _programs$ = new BehaviorSubject<TrainingProgram[]>([]);
   private _total$ = new BehaviorSubject<number>(0);
 
-  private _state: State = {
+  public _state: Table = {
     page: 1,
     pageSize: 100,
     searchTerm: '',
@@ -133,7 +155,7 @@ export class ProgramService {
     this._set({ sortDirection });
   }
 
-  private _set(patch: Partial<State>) {
+  private _set(patch: Partial<Table>) {
     Object.assign(this._state, patch);
     this._search$.next();
   }
