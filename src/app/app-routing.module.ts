@@ -8,22 +8,23 @@ import { MaleComponent } from './categories/male/male.component';
 import { FemaleComponent } from './categories/female/female.component';
 import { ArticleComponent } from './article/article.component';
 import { StoryComponent } from './story/story.component';
+import { ProgramsComponent } from './programs/programs.component';
+import { CoachesComponent } from './coaches/coaches.component';
 
 const routes: Routes = [
-  { path: '', component: LandingComponent },
-  { path: '*', component: LandingComponent },
   { path: 'program', component: TrainingProgramComponent },
   { path: 'male', component: MaleComponent },
   { path: 'female', component: FemaleComponent },
   { path: 'article/:articleId', component: ArticleComponent },
   { path: 'story', component: StoryComponent },
+  { path: 'programs', component: ProgramsComponent },
+  { path: 'coaches', component: CoachesComponent },
   {
     path: 'coach/:coachId',
     component: CoachComponent,
-    resolve: {
-      coach: coachResolver,
-    },
+    resolve: { coach: coachResolver },
   },
+  { path: '', component: LandingComponent },
 ];
 
 @NgModule({

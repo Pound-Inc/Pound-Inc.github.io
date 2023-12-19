@@ -44,6 +44,8 @@ import { FemaleComponent } from './categories/female/female.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoryComponent } from './story/story.component';
 import { ArticleComponent } from './article/article.component';
+import { CoachesComponent } from './coaches/coaches.component';
+import { ProgramsComponent } from './programs/programs.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -83,6 +85,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     FemaleComponent,
     StoryComponent,
     ArticleComponent,
+    CoachesComponent,
+    ProgramsComponent,
   ],
   imports: [
     BrowserModule,

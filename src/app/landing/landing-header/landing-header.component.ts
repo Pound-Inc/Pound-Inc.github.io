@@ -83,9 +83,7 @@ export class LandingHeaderComponent implements OnInit, OnDestroy {
   checkScroll() {
     const scrollPosition = window.pageYOffset;
 
-    console.log(window.innerHeight);
-
-    let itemIndex = Math.floor(scrollPosition / 1800);
+    let itemIndex = Math.floor(scrollPosition / 1000);
 
     if (scrollPosition >= window.innerHeight) {
     }

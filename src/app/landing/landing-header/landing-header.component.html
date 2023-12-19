@@ -1,7 +1,7 @@
 <header id="topnav" class="defaultscroll sticky">
   <div class="container">
     <!-- Logo container-->
-    <a class="logo" href="index.html">
+    <a class="logo" routerLink="./">
       <span class="logo-light-mode mt-1">
         <!-- dark -->
         <img src="assets/imgs/common/pound.png" width="50" alt="logo" />
@@ -69,17 +69,12 @@
             </li>
           </ng-container>
         </ng-container>
-        <ng-container
-          class="align-self-end"
-          *ngIf="!user || user.username == ''; else logged"
-        >
-          <li class="list-inline-item mb-0"></li>
+        <ng-container class="align-self-end">
           <li class="list-inline-item mb-0">
             <a
-              href="javascript:void(0)"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasRight"
-              aria-controls="offcanvasRight"
+              [routerLink]="['/auth/login']"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
             >
               <span class="mdi mdi-lock text-success"></span>
               <span class="sub-menu-item">
@@ -88,20 +83,6 @@
             </a>
           </li>
         </ng-container>
-        <ng-template class="align-self-end" #logged>
-          <li class="list-inline-item mb-0"></li>
-          <li class="list-inline-item mb-0">
-            <a
-              href="javascript:void(0)"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasRight"
-              aria-controls="offcanvasRight"
-            >
-              <span class="mdi mdi-lock text-success"></span>
-              <span class="sub-menu-item"> {{ user.username }}</span>
-            </a>
-          </li>
-        </ng-template>
       </ul>
     </div>
 

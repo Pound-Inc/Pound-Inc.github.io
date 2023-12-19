@@ -21,48 +21,44 @@ interface SearchResult {
 export const PROGRAMS: TrainingProgram[] = [
   {
     id: 'PR20001',
-    name: 'Fitness Program',
-    description:
-      'A program focused on improving overall fitness and well-being.',
-    phases: { muscle: 80, cut: 10, bulk: 40, fat: 10 },
-    coach_id: '101',
-    img: 'https://example.com/fitness_image.jpg',
+    name: 'برنامج اللياقة البدنية',
+    description: 'برنامج مركز على تحسين اللياقة العامة والرفاهية.',
+    phases: { muscle: 80, cut: 10, bulk: 40 },
+    coach_id: 'U10001c',
+    img: 'https://picsum.photos/1920/1080?random=21',
   },
   {
     id: 'PR20002',
-    name: 'Yoga Retreat',
-    description:
-      'Experience relaxation and mindfulness through a yoga retreat.',
-    phases: { muscle: 80, cut: 10, bulk: 40, fat: 10 },
-    coach_id: '102',
-    img: 'https://example.com/yoga_image.jpg',
+    name: 'معسكر اليوغا',
+    description: 'استمتع بالاسترخاء والتأمل من خلال معسكر اليوغا.',
+    phases: { muscle: 10, cut: 50, bulk: 70 },
+    coach_id: 'U1000bc',
+    img: 'https://picsum.photos/1920/1080?random=2',
   },
   {
     id: 'PR20003',
-    name: 'Coding Bootcamp',
+    name: 'دورة تعلم البرمجة',
     description:
-      'Intensive coding program for beginners to advanced developers.',
-    phases: { muscle: 80, cut: 10, bulk: 40, fat: 10 },
-    coach_id: '103',
-    img: 'https://example.com/coding_image.jpg',
+      'برنامج برمجة مكثف للمبتدئين والمطورين المتقدمين. برنامج برمجة مكثف للمبتدئين والمطورين المتقدمين. برنامج برمجة مكثف للمبتدئين والمطورين المتقدمين.',
+    phases: { muscle: 80, cut: 80, bulk: 40 },
+    coach_id: 'U1000bc',
+    img: 'https://picsum.photos/1920/1080?random=5',
   },
   {
     id: 'PR20004',
-    name: 'Language Learning',
-    description:
-      'Master a new language with a structured language learning program.',
-    phases: { muscle: 80, cut: 10, bulk: 40, fat: 10 },
-    coach_id: '104',
-    img: 'https://example.com/language_image.jpg',
+    name: 'تعلم اللغات',
+    description: 'احترف لغة جديدة من خلال برنامج هيكلي لتعلم اللغات.',
+    phases: { muscle: 80, cut: 10, bulk: 40 },
+    coach_id: 'U100085',
+    img: 'https://picsum.photos/1920/1080?random=4',
   },
   {
     id: 'PR20005',
-    name: 'Art Workshop',
-    description:
-      'Explore your artistic side in a creative and collaborative workshop.',
-    phases: { muscle: 80, cut: 10, bulk: 40, fat: 10 },
-    coach_id: '105',
-    img: 'https://example.com/art_image.jpg',
+    name: 'ورشة الفن',
+    description: 'استكشف جانبك الفني في ورشة عمل إبداعية وتعاونية.',
+    phases: { muscle: 80, cut: 10, bulk: 10 },
+    coach_id: 'U100085',
+    img: 'https://picsum.photos/1920/1080?random=6',
   },
 ];
 
