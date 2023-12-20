@@ -1,7 +1,13 @@
 <header id="topnav" class="defaultscroll sticky">
   <div class="container">
     <!-- Logo container-->
-    <a class="logo" routerLink="./">
+    <a
+      class="logo"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      ariaCurrentWhenActive="page"
+      [routerLink]="['/']"
+    >
       <span class="logo-light-mode mt-1">
         <!-- dark -->
         <img src="assets/imgs/common/pound.png" width="50" alt="logo" />
@@ -31,6 +37,9 @@
           <ng-container *ngFor="let item of navbarItems">
             <li *ngIf="item.children === undefined" id="{{ item.title }}">
               <a
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                ariaCurrentWhenActive="page"
                 [routerLink]="[item.routerLink]"
                 class="sub-menu-item"
                 *ngIf="item.position"

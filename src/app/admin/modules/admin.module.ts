@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { AsyncPipe, CommonModule, DecimalPipe } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { AdminComponent } from '../admin/admin.component';
-import { ManageCrisesComponent } from '../manage-crises/manage-crises.component';
-import { ManageHeroesComponent } from '../manage-heroes/manage-heroes.component';
 import { AdminDashboardComponent } from '../pages/admin-dashboard/admin-dashboard.component';
 import { FormsModule } from '@angular/forms';
 import {
@@ -24,9 +21,6 @@ import { UserCardComponent } from '../components/user-card/user-card.component';
 
 @NgModule({
   declarations: [
-    AdminComponent,
-    ManageCrisesComponent,
-    ManageHeroesComponent,
     AdminDashboardComponent,
     ProgramTableComponent,
     PlanTableComponent,
