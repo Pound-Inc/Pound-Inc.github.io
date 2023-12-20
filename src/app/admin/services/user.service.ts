@@ -11,19 +11,26 @@ import {
   of,
 } from 'rxjs';
 import { SortColumn, SortDirection } from '../sortable.directive';
-import { User, UserRole } from 'src/app/model/user.model';
+import { Gender, User, UserRole } from 'src/app/model/user.model';
+import { Coach } from 'src/app/model/coach.model';
 
 interface SearchResult {
   users: User[];
   total: number;
 }
-export const USERS: User[] = [
+export const USERS: User[] | Coach[] = [
   {
     id: 'U100018',
     img: 'https://picsum.photos/200?random=1',
     name: 'Ochoa Hancock',
     email: 'ochoahancock@zentix.com',
-    location: '774 Sullivan Street, Murillo, Oklahoma, 158',
+    gender: Gender.Female,
+    location: {
+      country: 'USA',
+      city: 'Murillo',
+      postal_code: '158 44',
+      street: '774 Sullivan Street',
+    },
     dob: '2020-05-07T02:04:55',
     role: UserRole.Admin,
   },
@@ -32,25 +39,57 @@ export const USERS: User[] = [
     img: 'https://picsum.photos/200?random=2',
     name: 'Stevenson Erickson',
     email: 'stevensonerickson@zentix.com',
-    location: '826 Jerome Avenue, Curtice, South Carolina, 7377',
+    gender: Gender.Female,
+    location: {
+      country: 'USA',
+      city: 'Murillo',
+      postal_code: '158 44',
+      street: '774 Sullivan Street',
+    },
     dob: '2023-01-04T04:56:31',
     role: UserRole.User,
   },
   {
     id: 'U10001c',
     img: 'https://picsum.photos/200?random=3',
-    name: 'Yolanda Spears',
+    name: 'أحمد محسن',
     email: 'yolandaspears@zentix.com',
-    location: '703 Vandervoort Avenue, Denio, Connecticut, 9030',
+    gender: Gender.Male,
+    location: {
+      country: 'us',
+      city: 'Murillo',
+      postal_code: '158 44',
+      street: '774 Sullivan Street',
+    },
     dob: '2014-01-20T09:08:34',
     role: UserRole.Worker,
+    availability: 'busy',
+    certification_id: '4433EER',
+    certified_by_id: 'U100018',
+    description:
+      'مدرب لياقة بدنية معتمد وبطل دولي في الكيوكوشن كاراتيه. أقدم خدمات التدريب الشخصي والتطوير الذاتي بأعلى جودة!',
+    is_verified: true,
+    languages: ['se', 'gb','sa'],
+    ratings: ['', '', ''],
+    tags: [
+      { name: 'سريع', color: 'danger', icon: 'email-fast' },
+      { name: 'محترف', color: 'primary', icon: 'star' },
+      { name: '', color: 'dark', icon: 'human-male' },
+    ],
+    stars: 4,
   },
   {
     id: 'U1000bc',
     img: 'https://picsum.photos/200?random=4',
     name: 'Tonya Shaffer',
     email: 'tonyashaffer@zentix.com',
-    location: '784 Fillmore Avenue, Orick, North Dakota, 5416',
+    gender: Gender.Female,
+    location: {
+      country: 'USA',
+      city: 'Murillo',
+      postal_code: '158 44',
+      street: '774 Sullivan Street',
+    },
     dob: '2021-02-09T06:02:33',
     role: UserRole.Worker,
   },
@@ -59,8 +98,13 @@ export const USERS: User[] = [
     img: 'https://picsum.photos/200?random=5',
     name: 'Nadine Fisher',
     email: 'nadinefisher@zentix.com',
-    location:
-      '658 Cheever Place, Chilton, Federated States Of Micronesia, 7421',
+    gender: Gender.Female,
+    location: {
+      country: 'USA',
+      city: 'Murillo',
+      postal_code: '158 44',
+      street: '774 Sullivan Street',
+    },
     dob: '2016-07-18T04:22:30',
     role: UserRole.Worker,
   },
@@ -69,7 +113,13 @@ export const USERS: User[] = [
     img: 'https://picsum.photos/200?random=6',
     name: 'Eula Vargas',
     email: 'eulavargas@zentix.com',
-    location: '572 Boerum Place, Sanborn, Ohio, 6834',
+    gender: Gender.Female,
+    location: {
+      country: 'USA',
+      city: 'Murillo',
+      postal_code: '158 44',
+      street: '774 Sullivan Street',
+    },
     dob: '2017-10-26T01:49:01',
     role: UserRole.Worker,
   },
@@ -78,7 +128,13 @@ export const USERS: User[] = [
     img: 'https://picsum.photos/200?random=7',
     name: 'Garner Taylor',
     email: 'garnertaylor@zentix.com',
-    location: '198 Micieli Place, Klondike, California, 7496',
+    gender: Gender.Female,
+    location: {
+      country: 'USA',
+      city: 'Murillo',
+      postal_code: '158 44',
+      street: '774 Sullivan Street',
+    },
     dob: '2022-09-03T08:43:42',
     role: UserRole.Worker,
   },
@@ -87,7 +143,13 @@ export const USERS: User[] = [
     img: 'https://picsum.photos/200?random=8',
     name: 'Daniel Mcneil',
     email: 'danielmcneil@zentix.com',
-    location: '687 Doscher Street, Townsend, Arizona, 5668',
+    gender: Gender.Female,
+    location: {
+      country: 'USA',
+      city: 'Murillo',
+      postal_code: '158 44',
+      street: '774 Sullivan Street',
+    },
     dob: '2014-02-06T02:54:32',
     role: UserRole.Worker,
   },
@@ -96,7 +158,13 @@ export const USERS: User[] = [
     img: 'https://picsum.photos/200?random=9',
     name: 'Hoover Alvarez',
     email: 'hooveralvarez@zentix.com',
-    location: '727 Jamaica Avenue, Duryea, Oregon, 7745',
+    gender: Gender.Female,
+    location: {
+      country: 'USA',
+      city: 'Murillo',
+      postal_code: '158 44',
+      street: '774 Sullivan Street',
+    },
     dob: '2019-06-20T02:57:08',
     role: UserRole.Worker,
   },
@@ -105,8 +173,13 @@ export const USERS: User[] = [
     img: 'https://picsum.photos/200?random=14',
     name: 'Delgado Peck',
     email: 'delgadopeck@zentix.com',
-    location:
-      '658 Cheever Place, Chilton, Federated States Of Micronesia, 7421',
+    gender: Gender.Female,
+    location: {
+      country: 'USA',
+      city: 'Murillo',
+      postal_code: '158 44',
+      street: '774 Sullivan Street',
+    },
     dob: '2020-08-28T10:28:55',
     role: UserRole.Worker,
   },

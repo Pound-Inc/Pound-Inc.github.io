@@ -13,6 +13,7 @@
         "email": "البريد الإلكتروني",
         "password": "كلمة المرور",
         "register": "تسجيل",
+        "required": "مطلوب",
         "don't have an account?": "ليس لديك حساب؟"
       },
       "register": {
@@ -78,10 +79,10 @@
         "nav": {
           "home": "الرئيسية",
           "account": "الحساب",
-          "service": "البرامج",
-          "pricing": "المدربيين",
-          "products": {
-            "products": "الأقسام",
+          "programs": "البرامج",
+          "coaches": "المدربيين",
+          "categories": {
+            "categories": "الأقسام",
             "children": {
               "nutrition": "التغذية",
               "cardio": "الكارديو",

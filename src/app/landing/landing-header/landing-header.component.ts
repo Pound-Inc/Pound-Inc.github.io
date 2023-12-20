@@ -27,27 +27,27 @@ export class LandingHeaderComponent implements OnInit, OnDestroy {
   constructor(private cdref: ChangeDetectorRef) {
     this.navbarItems = [
       { title: `${this.translateBaseRoute}home`, routerLink: '' },
-      { title: `${this.translateBaseRoute}service`, routerLink: '' },
-      { title: `${this.translateBaseRoute}pricing`, routerLink: '' },
+      { title: `${this.translateBaseRoute}programs`, routerLink: '/programs' },
+      { title: `${this.translateBaseRoute}coaches`, routerLink: '/coaches' },
       {
-        title: `${this.translateBaseRoute}products.products`,
+        title: `${this.translateBaseRoute}categories.categories`,
         routerLink: '',
         children: [
           {
-            title: `${this.translateBaseRoute}products.children.nutrition`,
+            title: `${this.translateBaseRoute}categories.children.nutrition`,
             isActive: false,
             routerLink: '',
             image: 'https://pankind.org.au/media/1653/istock-854725402_900.jpg',
           },
           {
-            title: `${this.translateBaseRoute}products.children.cardio`,
+            title: `${this.translateBaseRoute}categories.children.cardio`,
             isActive: false,
             routerLink: '',
             image:
               'https://blog.myfitnesspal.com/wp-content/uploads/2019/01/Essential-Guide-to-Hydration-1200x900.jpg',
           },
           {
-            title: `${this.translateBaseRoute}products.children.strength`,
+            title: `${this.translateBaseRoute}categories.children.strength`,
             isActive: false,
             routerLink: '',
             image:

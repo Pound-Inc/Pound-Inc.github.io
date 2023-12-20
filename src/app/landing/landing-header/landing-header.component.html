@@ -31,7 +31,7 @@
           <ng-container *ngFor="let item of navbarItems">
             <li *ngIf="item.children === undefined" id="{{ item.title }}">
               <a
-                [routerLink]="item.routerLink"
+                [routerLink]="[item.routerLink]"
                 class="sub-menu-item"
                 *ngIf="item.position"
                 (click)="scrollToElement(item.position)"
