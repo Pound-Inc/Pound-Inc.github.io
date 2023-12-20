@@ -85,7 +85,7 @@
                 <li class="h6">
                   <span class="mdi mdi-account-group text-warning me-2"></span>
                   <span class="me-2 text-muted">عدد العملاء:</span>
-                  <span> {{ getRelatedPrograms(coach.id)?.length }} </span>
+                  <span> {{ getRelatedReceipts(coach.id).length }} </span>
                 </li>
                 <li class="h6">
                   <span class="mdi mdi-translate me-2"></span>
@@ -104,7 +104,10 @@
                   <span class="mdi mdi-account-check text-danger me-2"></span>
                   <span class="me-2 text-muted">مُوثّق مِن قِبل:</span>
                   <span>
-                    <a class="text-dark" [routerLink]="['/coach/' + coach.certified_by_id]">
+                    <a
+                      class="text-dark"
+                      [routerLink]="['/coach/' + coach.certified_by_id]"
+                    >
                       {{ getRelatedUsers(coach.certified_by_id)?.name }}
                     </a>
                   </span>

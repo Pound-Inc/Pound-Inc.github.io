@@ -32,7 +32,7 @@ export const PROGRAMS: TrainingProgram[] = [
     name: 'معسكر اليوغا',
     description: 'استمتع بالاسترخاء والتأمل من خلال معسكر اليوغا.',
     phases: { muscle: 10, cut: 50, bulk: 70 },
-    coach_id: 'U1000bc',
+    coach_id: 'U10001c',
     img: 'https://picsum.photos/1920/1080?random=2',
   },
   {
@@ -41,7 +41,7 @@ export const PROGRAMS: TrainingProgram[] = [
     description:
       'برنامج برمجة مكثف للمبتدئين والمطورين المتقدمين. برنامج برمجة مكثف للمبتدئين والمطورين المتقدمين. برنامج برمجة مكثف للمبتدئين والمطورين المتقدمين.',
     phases: { muscle: 80, cut: 80, bulk: 40 },
-    coach_id: 'U1000bc',
+    coach_id: 'U10001c',
     img: 'https://picsum.photos/1920/1080?random=5',
   },
   {
