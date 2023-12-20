@@ -4,7 +4,7 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from '../pages/register/register.component';
 
 export const onBoardingDeactivateGuard: CanDeactivateFn<RegisterComponent> = (
   component: RegisterComponent,

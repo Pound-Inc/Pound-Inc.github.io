@@ -4,7 +4,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Coach } from '../model/coach.model';
+import { Coach } from '../../model/coach.model';
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({

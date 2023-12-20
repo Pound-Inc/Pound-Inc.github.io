@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
-import { Coach } from '../model/coach.model';
+import { Coach } from '../../model/coach.model';
 
 @Component({
   selector: 'app-coach',

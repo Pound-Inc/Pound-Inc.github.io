@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LandingComponent } from './landing/landing.component';
-import { coachResolver } from './resolvers/coach.resolver';
-import { TrainingProgramComponent } from './training-program/training-program.component';
-import { CoachComponent } from './coach/coach.component';
-import { MaleComponent } from './categories/male/male.component';
-import { FemaleComponent } from './categories/female/female.component';
-import { ArticleComponent } from './article/article.component';
-import { StoryComponent } from './story/story.component';
-import { ProgramsComponent } from './programs/programs.component';
-import { CoachesComponent } from './coaches/coaches.component';
+import { LandingComponent } from '../pages/landing/landing.component';
+import { coachResolver } from '../resolvers/coach.resolver';
+import { TrainingProgramComponent } from '../pages/training-program/training-program.component';
+import { CoachComponent } from '../pages/coach/coach.component';
+import { MaleComponent } from '../pages/male/male.component';
+import { FemaleComponent } from '../pages/female/female.component';
+import { ArticleComponent } from '../pages/article/article.component';
+import { StoryComponent } from '../pages/story/story.component';
+import { ProgramsComponent } from '../pages/programs/programs.component';
+import { CoachesComponent } from '../pages/coaches/coaches.component';
 
 const routes: Routes = [
   { path: 'program', component: TrainingProgramComponent },

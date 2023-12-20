@@ -2,27 +2,25 @@ import { NgModule } from '@angular/core';
 import { AsyncPipe, CommonModule, DecimalPipe } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { AdminComponent } from './admin/admin.component';
-import { ManageCrisesComponent } from './manage-crises/manage-crises.component';
-import { ManageHeroesComponent } from './manage-heroes/manage-heroes.component';
-import { MatTableModule } from '@angular/material/table';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminComponent } from '../admin/admin.component';
+import { ManageCrisesComponent } from '../manage-crises/manage-crises.component';
+import { ManageHeroesComponent } from '../manage-heroes/manage-heroes.component';
+import { AdminDashboardComponent } from '../pages/admin-dashboard/admin-dashboard.component';
 import { FormsModule } from '@angular/forms';
 import {
   NgbDropdownModule,
   NgbHighlight,
   NgbPaginationModule,
 } from '@ng-bootstrap/ng-bootstrap';
-import { CountryService } from './country.service';
-import { NgbdSortableHeader } from './sortable.directive';
-import { ProgramTableComponent } from './admin-dashboard/program-table/program-table.component';
-import { ProgramService } from './services/program.service';
-import { PlanTableComponent } from './admin-dashboard/plan-table/plan-table.component';
-import { UserTableComponent } from './admin-dashboard/user-table/user-table.component';
+import { NgbdSortableHeader } from '../sortable.directive';
+import { ProgramTableComponent } from '../components/program-table/program-table.component';
+import { ProgramService } from '../services/program.service';
+import { PlanTableComponent } from '../components/plan-table/plan-table.component';
+import { UserTableComponent } from '../components/user-table/user-table.component';
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { HttpLoaderFactory } from '../app.module';
-import { UserCardComponent } from './admin-dashboard/user-card/user-card.component';
+import { HttpLoaderFactory } from '../../modules/app.module';
+import { UserCardComponent } from '../components/user-card/user-card.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +51,6 @@ import { UserCardComponent } from './admin-dashboard/user-card/user-card.compone
       },
     }),
   ],
-  providers: [CountryService, ProgramService, DecimalPipe],
+  providers: [ProgramService, DecimalPipe],
 })
 export class AdminModule {}

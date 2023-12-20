@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ProgramService } from '../admin/services/program.service';
-import { UserService } from '../admin/services/user.service';
-import { Coach } from '../model/coach.model';
-import { TrainingProgram } from '../model/training-program.model';
-import { UserRole } from '../model/user.model';
-import { PlanService } from '../admin/services/plan.service';
-import { ProgramPlan } from '../model/program-plan.model';
+import { ProgramService } from '../../admin/services/program.service';
+import { UserService } from '../../admin/services/user.service';
+import { Coach } from '../../model/coach.model';
+import { TrainingProgram } from '../../model/training-program.model';
+import { UserRole } from '../../model/user.model';
+import { PlanService } from '../../admin/services/plan.service';
+import { ProgramPlan } from '../../model/program-plan.model';
 
 @Component({
   selector: 'app-programs',

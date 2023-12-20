@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProgramService } from '../admin/services/program.service';
-import { TrainingProgram } from '../model/training-program.model';
-import { UserService } from '../admin/services/user.service';
-import { User, UserRole } from '../model/user.model';
-import { Coach } from '../model/coach.model';
+import { ProgramService } from '../../admin/services/program.service';
+import { TrainingProgram } from '../../model/training-program.model';
+import { UserService } from '../../admin/services/user.service';
+import { UserRole } from '../../model/user.model';
+import { Coach } from '../../model/coach.model';
 import { Subscription } from 'rxjs';
 
 @Component({
