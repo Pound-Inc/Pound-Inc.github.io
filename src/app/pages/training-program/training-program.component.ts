@@ -115,7 +115,12 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
       .getComments()
       .subscribe((comments: ProgramComment[]) => {
         if (comments) {
-          this.comments = comments;
+          const relatedComments = comments.filter(
+            (comment) => comment.program_id === this.program.id
+          );
+          if (relatedComments.length > 0) {
+            this.comments = comments;
+          }
         }
       });
   }
