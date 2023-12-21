@@ -68,12 +68,12 @@
           >
             <td *ngFor="let column of columns">
               <ng-container *ngIf="column.type === 'text'">
-                <td [style.width]="column.width + 'px'">
+                <td [style.minWidth]="column.width + 'px'">
                   {{ formatValue(program[column.id]) }}
                 </td>
               </ng-container>
               <ng-container *ngIf="column.type === 'lookup'">
-                <td [style.width]="column.width + 'px'">
+                <td [style.minWidth]="column.width + 'px'">
                   {{ formatValue(program[column.id]) }}
                   <div>
                     <small class="text-muted">
@@ -84,7 +84,7 @@
               </ng-container>
 
               <ng-container *ngIf="column.id === 'phases'">
-                <td [style.width]="column.width + 'px'">
+                <td [style.minWidth]="column.width + 'px'">
                   <div ngbDropdown container="body">
                     <button
                       type="button"
@@ -105,7 +105,7 @@
                         <div class="progress mt-1">
                           <div
                             class="progress-bar position-relative bg-secondary"
-                            [style.width.%]="program[column.id][phase]"
+                            [style.minWidth.%]="program[column.id][phase]"
                           ></div>
                         </div>
                         <div class="dropdown-divider"></div>
@@ -115,7 +115,7 @@
                 </td>
               </ng-container>
               <ng-container *ngIf="column.type === 'link'">
-                <td [style.width]="column.width + 'px'">
+                <td [style.minWidth]="column.width + 'px'">
                   <button
                     class="btn btn-light btn-sm me-1"
                     (click)="open(content)"

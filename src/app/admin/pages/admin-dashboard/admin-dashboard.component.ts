@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AdminDashboardComponent {
   public translateBaseRoute = 'routing.admin.dashboard.';
+  constructor() {
+    document.dir = 'ltr';
+  }
 }

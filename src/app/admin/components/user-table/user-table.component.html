@@ -16,16 +16,17 @@
           placeholder="Search by Name..."
         />
       </div>
+
       <div class="col-2 px-0 mx-0">
-        <button class="btn btn-light w-100 px-0 mx-0" (click)="editRow()">
+        <button class="btn btn-light w-100 px-0 mx-0" (click)="newRow()">
           <span class="mdi mdi-plus"></span>
         </button>
       </div>
       <div class="col-2 px-0 mx-0">
         <button
           class="btn btn-secondary w-100 px-0 mx-0"
-          [disabled]="!selectedCountry"
-          (click)="editRow()"
+          [disabled]="!selectedRow"
+          (click)="openEditModal(selectedRow)"
         >
           <span class="mdi mdi-pencil"></span>
         </button>
@@ -33,7 +34,7 @@
       <div class="col-1 px-0 mx-0">
         <button
           class="btn btn-danger w-100 px-0 mx-0"
-          [disabled]="!selectedCountry"
+          [disabled]="!selectedRow"
           (click)="deleteRow()"
         >
           <span class="mdi mdi-delete"></span>
@@ -63,11 +64,9 @@
         </thead>
         <tbody>
           <tr
-            *ngFor="let user of users$ | async"
+            *ngFor="let user of users"
             (click)="onRowClick(user)"
-            [class.clicked-row]="
-              selectedCountry && selectedCountry.id === user.id
-            "
+            [class.clicked-row]="selectedRow && selectedRow.id === user.id"
           >
             <td
               [ngClass]="{ 'sticky-column': column === columns[0] }"
@@ -77,11 +76,22 @@
                 *ngIf="
                   column.type === 'text' &&
                   column.id !== 'name' &&
+                  column.id !== 'location' &&
                   column.id !== 'email'
                 "
               >
-                <td [style.width]="column.width + 'px'">
+                <td [style.minWidth]="column.width + 'px'">
                   {{ formatValue(user[column.id]) }}
+                </td>
+              </ng-container>
+              <ng-container *ngIf="column.id === 'location'">
+                <td [style.minWidth]="column.width + 'px'">
+                  {{ user.location.country }}
+                  <br />
+                  {{ user.location.postal_code }} {{ user.location.city }}
+                  <br />
+                  {{ user.location.street }}
+                  {{ user.location.street_2 ? user.location.street_2 : "" }}
                 </td>
               </ng-container>
 
@@ -112,7 +122,7 @@
               </ng-container>
               <ng-container *ngIf="column.id === 'name'">
                 <td
-                  [style.width]="column.width + 'px'"
+                  [style.minWidth]="column.width + 'px'"
                   class="row d-flex gap-2 align-items-center"
                 >
                   <div class="col-3">
@@ -131,7 +141,10 @@
                         {{ user.dob | date }}
                       </small>
                     </h6>
-                    <div class="rounded bg-light" style="width: fit-content; font-weight: 500;">
+                    <div
+                      class="rounded bg-light"
+                      style="width: fit-content; font-weight: 500"
+                    >
                       <p class="p-0 m-0">
                         <span
                           style="color: #dc3545"
@@ -156,7 +169,7 @@
               </ng-container>
             </td>
           </tr>
-          <tr *ngIf="!(users$ | async)" colspan="4" style="text-align: center">
+          <tr *ngIf="!users" colspan="4" style="text-align: center">
             No users found
           </tr>
         </tbody>

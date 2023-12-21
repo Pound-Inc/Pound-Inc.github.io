@@ -8,7 +8,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import Validation from 'src/app/utils/register.validation';
 
 @Component({
   selector: 'app-login',

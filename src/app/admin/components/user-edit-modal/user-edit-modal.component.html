@@ -1,0 +1,129 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Edit User</h4>
+</div>
+
+<div class="modal-body">
+  <div class="row">
+    <!-- First Column -->
+    <div class="col-md-6">
+      <!-- Personal Information -->
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          [(ngModel)]="user.name"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="text"
+          id="email"
+          [(ngModel)]="user.email"
+          class="form-control"
+        />
+      </div>
+
+      <!-- Date of Birth -->
+      <div class="form-group">
+        <label for="dob">Date of Birth:</label>
+        <div class="input-group">
+          <input
+            class="form-control"
+            [placeholder]="
+              user.dob['year'] + '-' + user.dob['month'] + '-' + user.dob['day']
+            "
+            name="dp"
+            [(ngModel)]="user.dob"
+            ngbDatepicker
+            #d="ngbDatepicker"
+          />
+          <button
+            class="btn btn-outline-secondary bi bi-calendar3"
+            (click)="d.toggle()"
+            type="button"
+          >
+            <span class="mdi mdi-calendar"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Column -->
+    <div class="col-md-6">
+      <!-- Image and Location -->
+      <div class="form-group">
+        <label for="img">Image URL:</label>
+        <input
+          type="text"
+          id="img"
+          [(ngModel)]="user.img"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <h6>Location:</h6>
+        <label for="country">Country</label>
+        <input
+          type="text"
+          id="country"
+          [(ngModel)]="user.location.country"
+          class="form-control"
+        />
+        <label for="city">City</label>
+        <input
+          type="text"
+          id="city"
+          [(ngModel)]="user.location.city"
+          class="form-control"
+        />
+        <label for="postal code">postal code</label>
+        <input
+          type="text"
+          id="postal code"
+          [(ngModel)]="user.location.postal_code"
+          class="form-control"
+        />
+        <label for="street">street</label>
+        <input
+          type="text"
+          id="street"
+          [(ngModel)]="user.location.street"
+          class="form-control"
+        />
+      </div>
+
+      <!-- Role and Gender -->
+      <div class="form-group">
+        <label for="role">Role:</label>
+        <input
+          type="text"
+          id="role"
+          [(ngModel)]="user.role"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select id="gender" [(ngModel)]="user.gender" class="form-control">
+          <option value="{{ gender.male }}">{{ gender.male }}</option>
+          <option value="{{ gender.female }}">{{ gender.female }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="onSaveChanges()">
+    Save Changes
+  </button>
+  <button type="button" class="btn btn-danger" (click)="onSaveChanges()">
+    Cancel
+  </button>
+</div>

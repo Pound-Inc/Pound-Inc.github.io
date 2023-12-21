@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import {
   NgbDropdownModule,
   NgbHighlight,
+  NgbModule,
   NgbPaginationModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { NgbdSortableHeader } from '../sortable.directive';
@@ -18,6 +19,7 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../modules/app.module';
 import { UserCardComponent } from '../components/user-card/user-card.component';
+import { UserEditModalComponent } from '../components/user-edit-modal/user-edit-modal.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { UserCardComponent } from '../components/user-card/user-card.component';
     PlanTableComponent,
     UserTableComponent,
     UserCardComponent,
+    UserEditModalComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +47,7 @@ import { UserCardComponent } from '../components/user-card/user-card.component';
         deps: [HttpClient],
       },
     }),
+    NgbModule,
   ],
   providers: [ProgramService, DecimalPipe],
 })

@@ -111,7 +111,7 @@ export const planTableColumns: Array<DataGridColumn> = [
     hidden: false,
     icon: '',
     iconFile: '',
-    width: '',
+    width: '300',
     type: 'text',
   },
   {

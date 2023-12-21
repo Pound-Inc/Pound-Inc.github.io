@@ -1,38 +1,53 @@
 import {
   Component,
+  OnDestroy,
+  OnInit,
   QueryList,
   TemplateRef,
   ViewChildren,
   inject,
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { userTableColumns } from 'src/common/columns';
 import { DataGridColumn } from 'src/common/interfaces/datagrid.interface';
 import { NgbdSortableHeader, SortEvent } from '../../sortable.directive';
 import { User, UserRoles } from 'src/app/model/user.model';
 import { UserService } from '../../services/user.service';
+import { Coach } from 'src/app/model/coach.model';
+import { UserEditModalComponent } from '../user-edit-modal/user-edit-modal.component';
 
 @Component({
   selector: 'app-user-table',
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.scss'],
 })
-export class UserTableComponent {
+export class UserTableComponent implements OnInit, OnDestroy {
   public translateBaseRoute = 'routing.admin.dashboard.user.';
   public columns: DataGridColumn[] = userTableColumns;
-  public users$: Observable<User[]>;
+  public users: User[];
   public total$: Observable<number>;
-  public selectedCountry: any;
-  public queriedData: User[] = [];
+  public selectedRow: User;
   public UserRoles = UserRoles;
   private modalService = inject(NgbModal);
+  private userSubscription: Subscription;
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
   constructor(public userService: UserService) {
-    this.users$ = userService.users;
     this.total$ = userService.total$;
+  }
+  ngOnInit(): void {
+    this.userSubscription = this.userService.users.subscribe(
+      (users: User[] | Coach[]) => {
+        this.users = users;
+      }
+    );
+  }
+  ngOnDestroy(): void {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
 
   onSort({ column, direction }: SortEvent) {
@@ -56,45 +71,13 @@ export class UserTableComponent {
       return value.toString();
     }
   }
-  // Track the expanded state of each row
-  expandedRows: Set<string> = new Set<string>();
 
-  // Function to check if the details for a row are expanded
-  isDetailsExpanded(programId: string): boolean {
-    return this.expandedRows.has(programId);
-  }
-
-  // Function to toggle the expanded state of a row
-  toggleDetails(programId: string): void {
-    if (this.expandedRows.has(programId)) {
-      this.expandedRows.delete(programId);
-    } else {
-      this.expandedRows.add(programId);
-    }
-  }
-
-  // Function to get the details content for a row
-  getDetailsContent(program: any): string {
-    // Customize this function to return the details content based on your data structure
-    return JSON.stringify(program.phases);
-  }
-
-  onRowClick(country: any) {
-    this.selectedCountry = country;
-    this.queriedData = [this.selectedCountry];
-    // Handle the row click event here
-    // You can log the data or perform any other action
-    console.log('Row clicked:', country);
-
-    // If you want to convert the data to JSON
-    const jsonData = JSON.stringify(country);
-    console.log('Row data as JSON:', jsonData);
+  onRowClick(user: User) {
+    this.selectedRow = user;
   }
   editRow() {
-    // Handle the edit button click
-    if (this.selectedCountry) {
-      // Implement logic to open an edit form or perform other edit actions
-      console.log('Edit button clicked for:', this.selectedCountry);
+    if (this.selectedRow) {
+      console.log('Edit button clicked for:', this.selectedRow);
     }
   }
 
@@ -107,5 +90,28 @@ export class UserTableComponent {
       );
   }
 
+  openEditModal(user: User) {
+    this.selectedRow = { ...user };
+    const modalRef = this.modalService.open(UserEditModalComponent);
+    const correctData = {
+      ...user,
+      dob: {
+        year: user.dob.substring(0, user.dob.indexOf('-')),
+        month: user.dob.substring(
+          user.dob.indexOf('-') + 1,
+          user.dob.lastIndexOf('-')
+        ),
+        day: user.dob.substring(user.dob.lastIndexOf('-') + 1, user.dob.length),
+      },
+    };
+    modalRef.componentInstance.user = correctData;
+
+    modalRef.componentInstance.saveChanges.subscribe((updatedUser: User) => {
+      console.log(updatedUser);
+    });
+  }
+  onSaveChanges(asd: any) {}
+
   deleteRow() {}
+  newRow() {}
 }

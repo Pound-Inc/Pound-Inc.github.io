@@ -31,7 +31,7 @@ export const USERS: User[] | Coach[] = [
       postal_code: '158 44',
       street: '774 Sullivan Street',
     },
-    dob: '2020-05-07T02:04:55',
+    dob: '2020-05-07',
     role: UserRole.Admin,
   },
   {
@@ -46,7 +46,7 @@ export const USERS: User[] | Coach[] = [
       postal_code: '158 44',
       street: '774 Sullivan Street',
     },
-    dob: '2023-01-04T04:56:31',
+    dob: '2023-01-04',
     role: UserRole.User,
   },
   {
@@ -61,7 +61,7 @@ export const USERS: User[] | Coach[] = [
       postal_code: '158 44',
       street: '774 Sullivan Street',
     },
-    dob: '2014-01-20T09:08:34',
+    dob: '2014-01-20',
     role: UserRole.Worker,
     availability: 'busy',
     certification_id: '4433EER',
@@ -69,7 +69,7 @@ export const USERS: User[] | Coach[] = [
     description:
       'مدرب لياقة بدنية معتمد وبطل دولي في الكيوكوشن كاراتيه. أقدم خدمات التدريب الشخصي والتطوير الذاتي بأعلى جودة!',
     is_verified: true,
-    languages: ['se', 'gb','sa'],
+    languages: ['se', 'gb', 'sa'],
     ratings: ['', '', ''],
     tags: [
       { name: 'سريع', color: 'danger', icon: 'email-fast' },
@@ -90,7 +90,7 @@ export const USERS: User[] | Coach[] = [
       postal_code: '158 44',
       street: '774 Sullivan Street',
     },
-    dob: '2021-02-09T06:02:33',
+    dob: '2021-02-09',
     role: UserRole.Worker,
   },
   {
@@ -105,7 +105,7 @@ export const USERS: User[] | Coach[] = [
       postal_code: '158 44',
       street: '774 Sullivan Street',
     },
-    dob: '2016-07-18T04:22:30',
+    dob: '2016-07-18',
     role: UserRole.Worker,
   },
   {
@@ -120,7 +120,7 @@ export const USERS: User[] | Coach[] = [
       postal_code: '158 44',
       street: '774 Sullivan Street',
     },
-    dob: '2017-10-26T01:49:01',
+    dob: '2017-10-26',
     role: UserRole.Worker,
   },
   {
@@ -135,7 +135,7 @@ export const USERS: User[] | Coach[] = [
       postal_code: '158 44',
       street: '774 Sullivan Street',
     },
-    dob: '2022-09-03T08:43:42',
+    dob: '2022-09-03',
     role: UserRole.Worker,
   },
   {
@@ -150,7 +150,7 @@ export const USERS: User[] | Coach[] = [
       postal_code: '158 44',
       street: '774 Sullivan Street',
     },
-    dob: '2014-02-06T02:54:32',
+    dob: '2014-02-06',
     role: UserRole.Worker,
   },
   {
@@ -165,7 +165,7 @@ export const USERS: User[] | Coach[] = [
       postal_code: '158 44',
       street: '774 Sullivan Street',
     },
-    dob: '2019-06-20T02:57:08',
+    dob: '2019-06-20',
     role: UserRole.Worker,
   },
   {
@@ -180,7 +180,7 @@ export const USERS: User[] | Coach[] = [
       postal_code: '158 44',
       street: '774 Sullivan Street',
     },
-    dob: '2020-08-28T10:28:55',
+    dob: '2020-08-28',
     role: UserRole.Worker,
   },
 ];
