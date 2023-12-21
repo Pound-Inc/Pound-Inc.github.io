@@ -12,7 +12,10 @@ import { ProgramsComponent } from '../pages/programs/programs.component';
 import { CoachesComponent } from '../pages/coaches/coaches.component';
 
 const routes: Routes = [
-  { path: 'program', component: TrainingProgramComponent },
+  {
+    path: 'program/:programId',
+    component: TrainingProgramComponent,
+  },
   { path: 'male', component: MaleComponent },
   { path: 'female', component: FemaleComponent },
   { path: 'article/:articleId', component: ArticleComponent },

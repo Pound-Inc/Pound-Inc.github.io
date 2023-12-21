@@ -26,6 +26,7 @@ export const PLANS: ProgramPlan[] = [
     program_id: 'PR20003',
     description: 'A starter plan for improving overall fitness.',
     price: 29.99,
+    delivery_days: 1,
   },
   {
     id: 'PP30002',
@@ -33,6 +34,7 @@ export const PLANS: ProgramPlan[] = [
     program_id: 'PR20003',
     description: 'An exclusive yoga plan with advanced sessions.',
     price: 39.99,
+    delivery_days: 3,
   },
   {
     id: 'PP30003',
@@ -40,6 +42,7 @@ export const PLANS: ProgramPlan[] = [
     program_id: 'PR20003',
     description: 'Comprehensive coding plan with mentor support.',
     price: 49.99,
+    delivery_days: 1,
   },
   {
     id: 'PP30004',
@@ -47,6 +50,7 @@ export const PLANS: ProgramPlan[] = [
     program_id: 'PR20002',
     description: 'Intensive language learning plan with personalized lessons.',
     price: 34.99,
+    delivery_days: 1,
   },
   {
     id: 'PP30005',
@@ -54,6 +58,7 @@ export const PLANS: ProgramPlan[] = [
     program_id: 'PR20002',
     description: 'Unlock your artistic potential with this creative plan.',
     price: 24.99,
+    delivery_days: 1,
   },
   {
     id: 'PP30006',
@@ -61,6 +66,7 @@ export const PLANS: ProgramPlan[] = [
     program_id: 'PR20002',
     description: 'Unlock your artistic potential with this creative plan.',
     price: 24.99,
+    delivery_days: 1,
   },
   {
     id: 'PP30007',
@@ -68,6 +74,7 @@ export const PLANS: ProgramPlan[] = [
     program_id: 'PR20004',
     description: 'Intensive language learning plan with personalized lessons.',
     price: 34.99,
+    delivery_days: 1,
   },
   {
     id: 'PP30008',
@@ -75,6 +82,7 @@ export const PLANS: ProgramPlan[] = [
     program_id: 'PR20004',
     description: 'Unlock your artistic potential with this creative plan.',
     price: 24.99,
+    delivery_days: 1,
   },
   {
     id: 'PP30009',
@@ -82,6 +90,7 @@ export const PLANS: ProgramPlan[] = [
     program_id: 'PR20004',
     description: 'Unlock your artistic potential with this creative plan.',
     price: 24.99,
+    delivery_days: 1,
   },
 ];
 

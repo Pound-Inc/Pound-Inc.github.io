@@ -155,6 +155,15 @@
       },
       "footer": {}
     },
+    "program": {
+      "phases": {
+        "muscle": "عضلات",
+        "weight loss": "خسارة الوزن",
+        "muscle gain": "زيادة الكتلة العضلية",
+        "bulk": "تضخيم",
+        "cut": "تنشيف"
+      }
+    },
     "coach": {
       "phases": {
         "muscle": "عضلات",

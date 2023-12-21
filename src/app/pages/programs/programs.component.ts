@@ -84,14 +84,4 @@ export class ProgramsComponent implements OnInit, OnDestroy {
       return '#e57373';
     }
   }
-
-  expandedPrograms: Set<string> = new Set<string>();
-
-  toggleExpand(programId: string) {
-    if (this.expandedPrograms.has(programId)) {
-      this.expandedPrograms.delete(programId);
-    } else {
-      this.expandedPrograms.add(programId);
-    }
-  }
 }

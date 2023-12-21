@@ -9,6 +9,7 @@ import {
   delay,
   Observable,
   of,
+  EMPTY,
 } from 'rxjs';
 import { TrainingProgram } from 'src/app/model/training-program.model';
 import { SortColumn, SortDirection } from '../sortable.directive';
@@ -103,9 +104,7 @@ export class ProgramService {
     this._search$
       .pipe(
         tap(() => this._loading$.next(true)),
-        debounceTime(200),
         switchMap(() => this._search()),
-        delay(200),
         tap(() => this._loading$.next(false))
       )
       .subscribe((result) => {
@@ -118,6 +117,16 @@ export class ProgramService {
 
   get programs() {
     return this._programs$.asObservable();
+  }
+
+  getProgramById(programId: string): Observable<TrainingProgram> {
+    const program = this._programs$
+      .getValue()
+      .find((program) => program.id === programId);
+    if (program) {
+      return of(program);
+    }
+    return EMPTY;
   }
   get total$() {
     return this._total$.asObservable();

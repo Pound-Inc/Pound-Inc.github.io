@@ -125,6 +125,17 @@ export const planTableColumns: Array<DataGridColumn> = [
     width: '',
     type: 'number',
   },
+  {
+    id: 'delivery_days',
+    name: 'Delivery Days',
+    sortable: true,
+    headerTooltip: 'Delivery Days',
+    hidden: false,
+    icon: '',
+    iconFile: '',
+    width: '',
+    type: 'number',
+  },
 ];
 
 export const userTableColumns: Array<DataGridColumn> = [

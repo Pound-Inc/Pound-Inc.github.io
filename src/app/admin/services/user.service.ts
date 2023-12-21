@@ -151,7 +151,7 @@ export const USERS: User[] | Coach[] = [
       street: '774 Sullivan Street',
     },
     dob: '2014-02-06',
-    role: UserRole.Worker,
+    role: UserRole.User,
   },
   {
     id: 'U100055',
@@ -230,9 +230,7 @@ export class UserService {
     this._search$
       .pipe(
         tap(() => this._loading$.next(true)),
-        debounceTime(200),
         switchMap(() => this._search()),
-        delay(200),
         tap(() => this._loading$.next(false))
       )
       .subscribe((result) => {

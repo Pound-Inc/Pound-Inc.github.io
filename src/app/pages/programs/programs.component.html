@@ -3,34 +3,22 @@
 <section
   class="bg-half-170 d-table w-100"
   style="
-    background: url('https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg')
+    background: url('https://fit4blast.com/wp-content/uploads/2021/11/Fit4Blast-Fitness-Nutrition-1.jpg')
       center center;
   "
 >
+  <div class="bg-overlay"></div>
+
   <div class="container">
     <div class="row mt-5 justify-content-center">
       <div class="col-lg-12 text-center">
         <div class="pages-heading">
-          <h1 class="text-white mb-0">أفضل برامج التدريب للشباب</h1>
+          <h1 class="text-white mb-0">أفضل برامج التدريب والتغذية</h1>
         </div>
       </div>
-      <!--end col-->
     </div>
-    <!--end row-->
   </div>
-  <!--end container-->
 </section>
-<!--end section-->
-<div class="position-relative">
-  <div class="shape overflow-hidden text-color-white">
-    <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z"
-        fill="currentColor"
-      ></path>
-    </svg>
-  </div>
-</div>
 
 <section class="section">
   <div class="container">
@@ -62,18 +50,21 @@
                 <div class="col row d-flex align-items-center pt-1">
                   <h6 class="p-0 m-0 text-secondary">
                     {{ getRelatedCoach(program.coach_id)?.name }}
+                    <span
+                      class="fi fi-{{
+                        getRelatedCoach(program.coach_id)?.location?.country
+                      }} me-1"
+                    >
+                    </span>
                     <br />
                     <small style="font-weight: 300">
                       <div class="badge bg-white text-secondary px-2 py-1">
                         <span
+                          *ngIf="getRelatedCoach(program.coach_id)?.is_verified"
                           class="mdi mdi-check-decagram text-primary"
-                        ></span>
-
-                        {{
-                          getRelatedCoach(program.coach_id)?.is_verified
-                            ? "موثّق"
-                            : "موثّق"
-                        }}
+                        >
+                          موثّق
+                        </span>
                       </div>
                     </small>
                   </h6>

@@ -45,6 +45,7 @@ import { StoryComponent } from '../pages/story/story.component';
 import { ArticleComponent } from '../pages/article/article.component';
 import { CoachesComponent } from '../pages/coaches/coaches.component';
 import { ProgramsComponent } from '../pages/programs/programs.component';
+import { PlanCompareModalComponent } from '../pages/training-program/plan-compare-modal/plan-compare-modal.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -85,6 +86,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ArticleComponent,
     CoachesComponent,
     ProgramsComponent,
+    PlanCompareModalComponent,
   ],
   imports: [
     BrowserModule,
