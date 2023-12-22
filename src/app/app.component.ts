@@ -3,6 +3,7 @@ import { Meta } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs';
+import { AuthService } from './auth/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private meta: Meta,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private authService: AuthService
   ) {
     if (!localStorage.getItem('selectedLanguage')) {
       localStorage.setItem('selectedLanguage', 'ar');

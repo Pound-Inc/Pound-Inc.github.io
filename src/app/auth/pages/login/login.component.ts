@@ -55,17 +55,20 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.message = 'Trying to log in ...';
+    const loginObject: { email: string; password: string } =
+      this.form.getRawValue();
 
-    this.authService.login().subscribe(() => {
-      this.message = this.getMessage();
-      if (this.authService.isLoggedIn) {
-        // Usually you would use the redirect URL from the auth service.
-        // However to keep the example simple, we will always redirect to `/admin`.
-        const redirectUrl = '/admin';
-
-        // Redirect the user
-        this.router.navigate([redirectUrl]);
-      }
+    this.authService.login(loginObject).subscribe({
+      next: () => {
+        this.message = this.getMessage();
+        if (this.authService.isLoggedIn) {
+          const redirectUrl = '/admin';
+          this.router.navigate([redirectUrl]);
+        }
+      },
+      error: (error) => {
+        console.error('Login component error:', error);
+      },
     });
   }
   onSubmit(): void {

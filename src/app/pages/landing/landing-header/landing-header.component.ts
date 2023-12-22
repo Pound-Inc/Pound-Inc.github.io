@@ -2,7 +2,6 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  HostListener,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -77,36 +76,5 @@ export class LandingHeaderComponent implements OnInit, OnDestroy {
       item.position = element;
     });
     this.cdref.detectChanges();
-  }
-
-  @HostListener('window:scroll', ['$event'])
-  checkScroll() {
-    const scrollPosition = window.pageYOffset;
-
-    let itemIndex = Math.floor(scrollPosition / 1000);
-
-    if (scrollPosition >= window.innerHeight) {
-    }
-
-    if (itemIndex < this.navbarItems.length) {
-      const item = this.navbarItems[itemIndex];
-
-      if (item.position !== undefined) {
-        for (const item of this.navbarItems) {
-          if (item.position !== undefined) {
-            item.position.classList.remove('active');
-          }
-        }
-
-        item.position.classList.add('active');
-        this.active = true;
-      }
-    } else {
-      this.active = false;
-    }
-  }
-
-  scrollToElement(element: HTMLElement) {
-    element.scrollTo({ top: 100 });
   }
 }

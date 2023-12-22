@@ -65,7 +65,11 @@
               </div>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-dark col-12 py-3 mt-4">
+              <button
+                type="submit"
+                class="btn btn-dark col-12 py-3 mt-4"
+                (click)="login()"
+              >
                 {{ translateBaseRoute + "login" | translate }}
               </button>
             </div>

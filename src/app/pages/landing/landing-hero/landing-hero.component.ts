@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-landing-hero',
@@ -21,20 +21,5 @@ export class LandingHeroComponent {
         subTitle: `${this.translateBaseRoute}cat.left.sub-title`,
       },
     ];
-  }
-
-  @HostListener('window:scroll', ['$event'])
-  checkScroll() {
-    const scrollPosition =
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop ||
-      0;
-
-    if (scrollPosition >= 60) {
-      this.isScrolled = true;
-    } else {
-      this.isScrolled = false;
-    }
   }
 }

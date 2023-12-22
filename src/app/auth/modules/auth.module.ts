@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule],
   //services
-  providers: [],
+  providers: [CookieService],
 })
 export class AuthModule {}

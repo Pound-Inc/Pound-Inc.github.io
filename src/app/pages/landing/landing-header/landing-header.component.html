@@ -43,7 +43,6 @@
                 [routerLink]="[item.routerLink]"
                 class="sub-menu-item"
                 *ngIf="item.position"
-                (click)="scrollToElement(item.position)"
               >
                 {{ item.title | translate }}
               </a>

@@ -73,8 +73,6 @@ export class LandingTopCoachesComponent implements OnInit, OnDestroy {
   }
 
   public getRelatedPrograms(coachId: string): TrainingProgram[] | undefined {
-    console.log(this.programs.filter((program) => program.coach_id === coachId));
-    
     return this.programs
       ? this.programs.filter((program) => program.coach_id === coachId)
       : undefined;
