@@ -1,7 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable, of, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  firstValueFrom,
+  of,
+  throwError,
+} from 'rxjs';
 import { tap, delay, catchError } from 'rxjs/operators';
 import { AUTH_API } from 'src/common/constants/endpoints';
 import { jwtDecode } from 'jwt-decode';
@@ -12,8 +18,9 @@ import { User } from 'src/app/model/user.model';
   providedIn: 'root',
 })
 export class AuthService {
-  isLoggedIn = false;
-  user: User;
+  private isAuthenticated = new BehaviorSubject<boolean>(false);
+  private currentUser = new BehaviorSubject<any>(null);
+
   redirectUrl: string | null = null;
 
   constructor(private http: HttpClient, private cookieService: CookieService) {
@@ -28,10 +35,8 @@ export class AuthService {
       .pipe(
         tap((response: any) => {
           if (response) {
-            console.log(response);
             this.cookieService.set('AUTH', response.Authentication);
-
-            this.isLoggedIn = true;
+            this.isAuthenticated.next(true);
           }
         }),
         catchError((error) => {
@@ -42,33 +47,44 @@ export class AuthService {
   }
 
   logout(): void {
-    this.isLoggedIn = false;
+    this.isAuthenticated.next(false);
+    this.currentUser.next(null);
     this.cookieService.delete('AUTH');
   }
 
-  checkTokenValidity(): void {
+  async checkTokenValidity(): Promise<boolean> {
     const token = this.cookieService.get('AUTH');
+
     if (token) {
       const headers = new HttpHeaders({
         Authorization: `Bearer ${token}`,
       });
 
-      this.http
-        .get<any>(`${AUTH_API}/users/me`, {
-          headers: headers,
-          withCredentials: true,
-        })
-        .subscribe({
-          next: (response) => {
-            this.isLoggedIn = true;
-            this.user = response;
-          },
-          error: (error) => {
-            this.logout();
-          },
-        });
-    } else {
-      this.logout();
+      try {
+        const response = await firstValueFrom(
+          this.http.get<any>(`${AUTH_API}/users/me`, {
+            headers: headers,
+            withCredentials: true,
+          })
+        );
+
+        this.currentUser.next(response);
+        this.isAuthenticated.next(true);
+
+        return true;
+      } catch (error) {
+        this.logout();
+      }
     }
+
+    return false;
+  }
+
+  get getIsAuthenticated(): Observable<boolean> {
+    return this.isAuthenticated.asObservable();
+  }
+
+  get getCurrentUser(): Observable<any> {
+    return this.currentUser.asObservable();
   }
 }

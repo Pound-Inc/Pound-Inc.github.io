@@ -2,11 +2,14 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  Input,
   OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { Subscription, Subject, takeUntil } from 'rxjs';
+import { Subscription, Subject, takeUntil, Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-landing-header',
@@ -19,7 +22,8 @@ export class LandingHeaderComponent implements OnInit, OnDestroy {
   public active: boolean = false;
   @ViewChild('navbar', { static: true }) navbar: ElementRef;
 
-  user: any;
+  @Input() user: User;
+  @Input() navActive: number;
   userSubscription: Subscription;
   destroy$ = new Subject();
 

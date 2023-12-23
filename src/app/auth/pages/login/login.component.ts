@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   getMessage() {
-    return 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
+    return 'Logged ';
   }
 
   login() {
@@ -60,11 +60,12 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(loginObject).subscribe({
       next: () => {
-        this.message = this.getMessage();
-        if (this.authService.isLoggedIn) {
-          const redirectUrl = '/admin';
-          this.router.navigate([redirectUrl]);
-        }
+
+        // this.message = this.getMessage();
+        // if (this.authService.isLoggedIn) {
+        //   const redirectUrl = '/admin';
+        //   this.router.navigate([redirectUrl]);
+        // }
       },
       error: (error) => {
         console.error('Login component error:', error);
