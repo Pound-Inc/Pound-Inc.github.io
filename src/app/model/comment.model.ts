@@ -1,6 +1,6 @@
 export class ArticleComment {
   constructor(
-    public id: string,
+    public _id: string,
     public comment_by_id: string,
     public date: Date,
     public replays: ArticleComment[]
@@ -10,7 +10,7 @@ export class ArticleComment {
 
 export class ProgramComment {
   constructor(
-    public id: string,
+    public _id: string,
     public program_id: string,
     public comment_by_id: string,
     public comment: string,

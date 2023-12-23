@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title text-muted">
-    مقارنة الحزم لبرنامج التدريب: {{ program.id }}
+    مقارنة الحزم لبرنامج التدريب: {{ program._id }}
   </h4>
 </div>
 <div class="modal-body">
@@ -9,7 +9,7 @@
       <tr>
         <th *ngFor="let column of columns" scope="col">
           <ng-container
-            *ngIf="column.id !== 'id' && column.id !== 'program_id'"
+            *ngIf="column._id !== 'id' && column._id !== 'program_id'"
           >
             {{ column.name }}
           </ng-container>
@@ -20,9 +20,9 @@
       <tr *ngFor="let plan of plans">
         <td *ngFor="let column of columns">
           <ng-container
-            *ngIf="column.id !== 'id' && column.id !== 'program_id'"
+            *ngIf="column._id !== 'id' && column._id !== 'program_id'"
           >
-            {{ plan[column.id] }}
+            {{ plan[column._id] }}
           </ng-container>
         </td>
       </tr>

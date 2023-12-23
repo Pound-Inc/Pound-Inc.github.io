@@ -14,13 +14,13 @@ export enum Gender {
 
 export class User {
   constructor(
-    public id: string,
+    public _id: string,
     public name: string,
     public email: string,
     public dob: string,
     public img: string,
-    public location: UserLocation,
-    public role: UserRole,
+    public address: UserLocation,
+    public roles: UserRole,
     public gender: Gender
   ) {}
   [key: string]: any; //  allow indexing with strings

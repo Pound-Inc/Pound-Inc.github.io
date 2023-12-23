@@ -66,7 +66,7 @@
           <tr
             *ngFor="let user of users"
             (click)="onRowClick(user)"
-            [class.clicked-row]="selectedRow && selectedRow.id === user.id"
+            [class.clicked-row]="selectedRow && selectedRow._id === user._id"
           >
             <td
               [ngClass]="{ 'sticky-column': column === columns[0] }"
@@ -75,52 +75,54 @@
               <ng-container
                 *ngIf="
                   column.type === 'text' &&
-                  column.id !== 'name' &&
-                  column.id !== 'location' &&
-                  column.id !== 'email'
+                  column._id !== 'name' &&
+                  column._id !== 'address' &&
+                  column._id !== 'email'
                 "
               >
                 <td [style.minWidth]="column.width + 'px'">
-                  {{ formatValue(user[column.id]) }}
+                  {{ formatValue(user[column._id]) }}
                 </td>
               </ng-container>
-              <ng-container *ngIf="column.id === 'location'">
+              <ng-container *ngIf="column._id === 'address'">
                 <td [style.minWidth]="column.width + 'px'">
-                  {{ user.location.country }}
+                  {{ user.address.country }}
                   <br />
-                  {{ user.location.postal_code }} {{ user.location.city }}
+                  {{ user.address.postal_code }} {{ user.address.city }}
                   <br />
-                  {{ user.location.street }}
-                  {{ user.location.street_2 ? user.location.street_2 : "" }}
+                  {{ user.address.street }}
+                  {{ user.address.street_2 ? user.address.street_2 : "" }}
                 </td>
               </ng-container>
 
-              <ng-container *ngIf="column.id === 'email'">
-                <button
-                  class="btn btn-light btn-sm me-1"
-                  (click)="open(content)"
-                >
-                  <span class="mdi mdi-content-copy"></span>
-                </button>
-                <button
-                  class="btn btn-light btn-sm me-1"
-                  (click)="open(content)"
-                >
-                  <span class="mdi mdi-pencil"></span>
-                </button>
-                <button class="btn btn-light btn-sm" (click)="open(content)">
-                  <span class="mdi mdi-open-in-new"></span>
-                </button>
-                <div
-                  class="mt-1 truncate-text"
-                  [ngStyle]="{ 'max-width.px': column.width }"
-                >
-                  <small class="text-muted truncate-text">
-                    {{ formatValue(user[column.id]) }}
-                  </small>
-                </div>
+              <ng-container *ngIf="column._id === 'email'">
+                <td [style.minWidth]="column.width + 'px'">
+                  <button
+                    class="btn btn-light btn-sm me-1"
+                    (click)="open(content)"
+                  >
+                    <span class="mdi mdi-content-copy"></span>
+                  </button>
+                  <button
+                    class="btn btn-light btn-sm me-1"
+                    (click)="open(content)"
+                  >
+                    <span class="mdi mdi-pencil"></span>
+                  </button>
+                  <button class="btn btn-light btn-sm" (click)="open(content)">
+                    <span class="mdi mdi-open-in-new"></span>
+                  </button>
+                  <div
+                    class="mt-1 truncate-text"
+                    [ngStyle]="{ 'max-width.px': column.width }"
+                  >
+                    <small class="text-muted truncate-text">
+                      {{ formatValue(user[column._id]) }}
+                    </small>
+                  </div>
+                </td>
               </ng-container>
-              <ng-container *ngIf="column.id === 'name'">
+              <ng-container *ngIf="column._id === 'name'">
                 <td
                   [style.minWidth]="column.width + 'px'"
                   class="row d-flex gap-2 align-items-center"
@@ -135,7 +137,7 @@
                   </div>
                   <div class="col row d-flex align-items-center pt-1">
                     <h6 class="p-0 m-0">
-                      {{ formatValue(user[column.id]) }}
+                      {{ formatValue(user[column._id]) }}
                       <br />
                       <small style="font-weight: 300">
                         {{ user.dob | date }}
@@ -149,19 +151,19 @@
                         <span
                           style="color: #dc3545"
                           class="mdi mdi-shield-crown-outline"
-                          *ngIf="user.role === 'admin'"
+                          *ngIf="user.roles === 'admin'"
                         ></span>
                         <span
                           style="color: #35c9dc"
                           class="mdi mdi-card-account-details-outline"
-                          *ngIf="user.role === 'worker'"
+                          *ngIf="user.roles === 'worker'"
                         ></span>
                         <span
                           style="color: #6c757d"
                           class="mdi mdi-account-outline"
-                          *ngIf="user.role === 'user'"
+                          *ngIf="user.roles === 'user'"
                         ></span>
-                        <span class="ms-2">{{ user.role }}</span>
+                        <span class="ms-2">{{ user.roles }}</span>
                       </p>
                     </div>
                   </div>

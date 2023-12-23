@@ -24,7 +24,7 @@
   <div class="container">
     <div id="grid" class="row">
       <div class="col-md-4 mt-4 pt-2" *ngFor="let program of programs">
-        <a [routerLink]="['/program/' + program.id]">
+        <a [routerLink]="['/program/' + program._id]">
           <div
             class="card bg-light text-light blog blog-primary shadow rounded border-0"
           >
@@ -52,7 +52,7 @@
                     {{ getRelatedCoach(program.coach_id)?.name }}
                     <span
                       class="fi fi-{{
-                        getRelatedCoach(program.coach_id)?.location?.country
+                        getRelatedCoach(program.coach_id)?.address?.country
                       }} me-1"
                     >
                     </span>
@@ -74,7 +74,7 @@
               <div class="d-flex justify-content-between pt-4">
                 <h5 class="mb-0 text-dark">{{ program.name }}</h5>
                 <h2 class="text-success mb-0 align-items-start">
-                  ${{ getRelatedPlan(program.id)?.price }}
+                  ${{ getRelatedPlan(program._id)?.price }}
                 </h2>
               </div>
               <p

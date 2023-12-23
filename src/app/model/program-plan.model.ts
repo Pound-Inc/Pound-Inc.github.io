@@ -1,6 +1,6 @@
 export class ProgramPlan {
   constructor(
-    public id: string,
+    public _id: string,
     public program_id: string,
     public name: string,
     public description: string,

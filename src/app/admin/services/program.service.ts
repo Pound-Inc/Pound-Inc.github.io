@@ -10,58 +10,22 @@ import {
   Observable,
   of,
   EMPTY,
+  firstValueFrom,
+  map,
 } from 'rxjs';
 import { TrainingProgram } from 'src/app/model/training-program.model';
 import { SortColumn, SortDirection } from '../sortable.directive';
 import { Table } from 'src/common/interfaces/table.interface';
+import { AUTH_API, PROGRAMS_API } from 'src/common/constants/endpoints';
+import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { HeadersService } from 'src/common/services/headers.service';
+import { API_Response } from 'src/common/interfaces/response.interface';
 
 interface SearchResult {
   programs: TrainingProgram[];
   total: number;
 }
-export const PROGRAMS: TrainingProgram[] = [
-  {
-    id: 'PR20001',
-    name: 'برنامج اللياقة البدنية',
-    description: 'برنامج مركز على تحسين اللياقة العامة والرفاهية.',
-    phases: { muscle: 80, cut: 10, bulk: 40 },
-    coach_id: 'U10001c',
-    img: 'https://picsum.photos/1920/1080?random=21',
-  },
-  {
-    id: 'PR20002',
-    name: 'معسكر اليوغا',
-    description: 'استمتع بالاسترخاء والتأمل من خلال معسكر اليوغا.',
-    phases: { muscle: 10, cut: 50, bulk: 70 },
-    coach_id: 'U10001c',
-    img: 'https://picsum.photos/1920/1080?random=2',
-  },
-  {
-    id: 'PR20003',
-    name: 'دورة تعلم البرمجة',
-    description:
-      'برنامج برمجة مكثف للمبتدئين والمطورين المتقدمين. برنامج برمجة مكثف للمبتدئين والمطورين المتقدمين. برنامج برمجة مكثف للمبتدئين والمطورين المتقدمين.',
-    phases: { muscle: 80, cut: 80, bulk: 40 },
-    coach_id: 'U10001c',
-    img: 'https://picsum.photos/1920/1080?random=5',
-  },
-  {
-    id: 'PR20004',
-    name: 'تعلم اللغات',
-    description: 'احترف لغة جديدة من خلال برنامج هيكلي لتعلم اللغات.',
-    phases: { muscle: 80, cut: 10, bulk: 40 },
-    coach_id: 'U100085',
-    img: 'https://picsum.photos/1920/1080?random=4',
-  },
-  {
-    id: 'PR20005',
-    name: 'ورشة الفن',
-    description: 'استكشف جانبك الفني في ورشة عمل إبداعية وتعاونية.',
-    phases: { muscle: 80, cut: 10, bulk: 10 },
-    coach_id: 'U100085',
-    img: 'https://picsum.photos/1920/1080?random=6',
-  },
-];
 
 const compare = (v1: string | number, v2: string | number) =>
   v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
@@ -100,7 +64,14 @@ export class ProgramService {
     sortDirection: '',
   };
 
-  constructor(private pipe: DecimalPipe) {
+  constructor(
+    private http: HttpClient,
+    private cookieService: CookieService,
+    private headersService: HeadersService
+  ) {
+    this.getPrograms().then((response: any) => {
+      this._programs$.next(response.data);
+    });
     this._search$
       .pipe(
         tap(() => this._loading$.next(true)),
@@ -115,6 +86,33 @@ export class ProgramService {
     this._search$.next();
   }
 
+  async getPrograms() {
+    try {
+      const response = await firstValueFrom(
+        this.http
+          .get<API_Response>(`${PROGRAMS_API}`, {
+            headers: this.headersService.getHeaders,
+            withCredentials: true,
+          })
+          .pipe(
+            map((response: API_Response) => {
+              console.log(response);
+
+              return {
+                status: response.status,
+                message: response.message,
+                data: response.data,
+              };
+            })
+          )
+      );
+
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+
   get programs() {
     return this._programs$.asObservable();
   }
@@ -122,7 +120,7 @@ export class ProgramService {
   getProgramById(programId: string): Observable<TrainingProgram> {
     const program = this._programs$
       .getValue()
-      .find((program) => program.id === programId);
+      .find((program) => program._id === programId);
     if (program) {
       return of(program);
     }
@@ -170,7 +168,7 @@ export class ProgramService {
       this._state;
 
     // 1. sort
-    let programs = sort(PROGRAMS, sortColumn, sortDirection);
+    let programs = sort(this._programs$.getValue(), sortColumn, sortDirection);
 
     // 2. filter
     programs = programs.filter((program) => matches(program, searchTerm));

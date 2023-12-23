@@ -3,8 +3,8 @@ import { BehaviorSubject } from 'rxjs';
 import { Receipt } from 'src/app/model/receipt.model';
 
 const RECEIPT: Receipt[] = [
-  { id: 'R10002', plan_id: 'PP30001', purchased_by_id: 'U1000a9' },
-  { id: 'R10004', plan_id: 'PP30005', purchased_by_id: 'U1000a9' },
+  { _id: 'R10002', plan_id: 'PP30001', purchased_by_id: 'U1000a9' },
+  { _id: 'R10004', plan_id: 'PP30005', purchased_by_id: 'U1000a9' },
 ];
 
 @Injectable({ providedIn: 'root' })

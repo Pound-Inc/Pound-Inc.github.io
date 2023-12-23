@@ -48,7 +48,7 @@ export class CoachesComponent implements OnInit, OnDestroy {
 
   public getRelatedCoach(coachId: string): Coach | undefined {
     return this.coaches
-      ? this.coaches.find((coach) => coach.id === coachId)
+      ? this.coaches.find((coach) => coach._id === coachId)
       : undefined;
   }
 

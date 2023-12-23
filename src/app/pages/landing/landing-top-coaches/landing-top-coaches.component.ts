@@ -87,11 +87,11 @@ export class LandingTopCoachesComponent implements OnInit, OnDestroy {
     const relatedPrograms = this.getRelatedPrograms(coachId);
     if (relatedPrograms) {
       for (const program of relatedPrograms) {
-        const relatedPlans = this.getRelatedPlans(program.id);
+        const relatedPlans = this.getRelatedPlans(program._id);
         if (relatedPlans)
           for (const plan of relatedPlans) {
             const receipt = this.receipts.find(
-              (receipt) => receipt.plan_id === plan.id
+              (receipt) => receipt.plan_id === plan._id
             );
             if (receipt) {
               receipts.push(receipt);
@@ -104,7 +104,7 @@ export class LandingTopCoachesComponent implements OnInit, OnDestroy {
 
   public getRelatedUsers(userId: string): User | undefined {
     return this.users
-      ? this.users.find((user) => user.id === userId)
+      ? this.users.find((user) => user._id === userId)
       : undefined;
   }
 

@@ -8,11 +8,13 @@ import {
   of,
   throwError,
 } from 'rxjs';
-import { tap, delay, catchError } from 'rxjs/operators';
+import { tap, delay, catchError, map } from 'rxjs/operators';
 import { AUTH_API } from 'src/common/constants/endpoints';
 import { jwtDecode } from 'jwt-decode';
 import { CookieService } from 'ngx-cookie-service';
 import { User } from 'src/app/model/user.model';
+import { HeadersService } from 'src/common/services/headers.service';
+import { API_Response } from 'src/common/interfaces/response.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +25,11 @@ export class AuthService {
 
   redirectUrl: string | null = null;
 
-  constructor(private http: HttpClient, private cookieService: CookieService) {
+  constructor(
+    private http: HttpClient,
+    private cookieService: CookieService,
+    private headersService: HeadersService
+  ) {
     this.checkTokenValidity();
   }
 
@@ -36,12 +42,11 @@ export class AuthService {
         tap((response: any) => {
           if (response) {
             this.cookieService.set('AUTH', response.Authentication);
-            this.isAuthenticated.next(true);
+            this.checkTokenValidity();
           }
         }),
         catchError((error) => {
-          console.error('Login failed:', error);
-          throw new Error(error);
+          return error;
         })
       );
   }
@@ -53,30 +58,28 @@ export class AuthService {
   }
 
   async checkTokenValidity(): Promise<boolean> {
-    const token = this.cookieService.get('AUTH');
-
-    if (token) {
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-      });
-
+    if (this.headersService.getHeaders) {
       try {
         const response = await firstValueFrom(
-          this.http.get<any>(`${AUTH_API}/users/me`, {
-            headers: headers,
-            withCredentials: true,
-          })
+          this.http
+            .get<any>(`${AUTH_API}/users/me`, {
+              headers: this.headersService.getHeaders,
+              withCredentials: true,
+            })
+            .pipe(
+              map((user) => {
+                this.currentUser.next(user);
+                this.isAuthenticated.next(true);
+                return true;
+              })
+            )
         );
-
-        this.currentUser.next(response);
-        this.isAuthenticated.next(true);
-
-        return true;
       } catch (error) {
+        console.log('here???', error);
+
         this.logout();
       }
     }
-
     return false;
   }
 

@@ -11,6 +11,22 @@
       </h4>
 
       <div class="register-form">
+        <div
+          class="py-3 bg-danger rounded align-items-center px-4"
+          *ngIf="invalidMessage"
+        >
+          <h5 class="text-center">
+            {{ translateBaseRoute + "invalid credentials" | translate }}...
+          </h5>
+        </div>
+        <div
+          class="py-3 bg-success rounded align-items-center px-4"
+          *ngIf="valid"
+        >
+          <h5 class="text-center">
+            {{ translateBaseRoute + "signing in" | translate }}
+          </h5>
+        </div>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label>{{ translateBaseRoute + "email" | translate }}*</label>

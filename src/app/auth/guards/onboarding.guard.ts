@@ -11,13 +11,16 @@ export const onBoardingGuard = () => {
   return authService.getIsAuthenticated.pipe(
     switchMap((isAuthenticated: boolean) => {
       if (isAuthenticated) {
-        console.log(isAuthenticated);
-        
+        router.navigate(['/']);
         return of(false);
       } else {
         return from(authService.checkTokenValidity()).pipe(
           map((isValid: boolean) => {
-            return isValid ? false : true;
+            if (isValid) {
+              router.navigate(['/']);
+              return of(false);
+            }
+            return of(true);
           }),
           catchError((error) => {
             return of(true);

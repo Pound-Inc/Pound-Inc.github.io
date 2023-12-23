@@ -89,11 +89,11 @@
                 <a
                   class="nav-link rounded"
                   [class.active]="first"
-                  [id]="plan.id + 'pill'"
+                  [id]="plan._id + 'pill'"
                   data-bs-toggle="pill"
-                  [href]="'#' + plan.id"
+                  [href]="'#' + plan._id"
                   role="tab"
-                  [attr.aria-controls]="plan.id"
+                  [attr.aria-controls]="plan._id"
                   [attr.aria-selected]="false"
                 >
                   <div class="text-center text-dark">
@@ -111,9 +111,9 @@
               <div
                 *ngFor="let plan of plans"
                 class="tab-pane fade p-2"
-                [id]="plan.id"
+                [id]="plan._id"
                 role="tabpanel"
-                [attr.aria-labelledby]="plan.id + 'pill'"
+                [attr.aria-labelledby]="plan._id + 'pill'"
                 [class.show]="plan === plans[0]"
                 [class.active]="plan === plans[0]"
               >
@@ -125,7 +125,7 @@
                     <h4 class="col text-start px-4 m-0">{{ plan.price }}$</h4>
                   </div>
                   <h6 class="text-dark px-3 mt-0 pt-0">
-                    {{ getRelatedPlanReceipts(plan.id).length }} طلب
+                    {{ getRelatedPlanReceipts(plan._id).length }} طلب
                   </h6>
                   <p class="px-3 text-muted mb-3">
                     {{ plan.description }}

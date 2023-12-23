@@ -14,6 +14,8 @@
         "password": "كلمة المرور",
         "register": "تسجيل",
         "required": "مطلوب",
+        "invalid credentials": "بيانات التسجيل غير صالحة",
+        "signing in": "جاري تسحيل الدخول",
         "don't have an account?": "ليس لديك حساب؟"
       },
       "register": {

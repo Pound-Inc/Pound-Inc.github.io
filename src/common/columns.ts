@@ -2,7 +2,7 @@ import { DataGridColumn } from './interfaces/datagrid.interface';
 
 export const programTableColumns: Array<DataGridColumn> = [
   {
-    id: 'id',
+    _id: '_id',
     name: 'Program ID',
     sortable: true,
     headerTooltip: '#ID',
@@ -13,7 +13,7 @@ export const programTableColumns: Array<DataGridColumn> = [
     type: 'text',
   },
   {
-    id: 'name',
+    _id: 'name',
     name: 'Program Name',
     sortable: true,
     headerTooltip: 'Program Name',
@@ -24,7 +24,7 @@ export const programTableColumns: Array<DataGridColumn> = [
     type: 'text',
   },
   {
-    id: 'description',
+    _id: 'description',
     name: 'Description',
     sortable: true,
     headerTooltip: 'Program Description',
@@ -35,7 +35,7 @@ export const programTableColumns: Array<DataGridColumn> = [
     type: 'text',
   },
   {
-    id: 'phases',
+    _id: 'phases',
     name: 'Phases',
     sortable: true,
     headerTooltip: 'Program Phases',
@@ -46,7 +46,7 @@ export const programTableColumns: Array<DataGridColumn> = [
     type: 'object',
   },
   {
-    id: 'coach_id',
+    _id: 'coach_id',
     name: 'Coach ID',
     sortable: true,
     headerTooltip: 'Coach ID',
@@ -57,7 +57,7 @@ export const programTableColumns: Array<DataGridColumn> = [
     type: 'lookup',
   },
   {
-    id: 'img',
+    _id: 'img',
     name: 'Image URL',
     sortable: true,
     headerTooltip: 'Image Reference Link',
@@ -71,7 +71,7 @@ export const programTableColumns: Array<DataGridColumn> = [
 
 export const planTableColumns: Array<DataGridColumn> = [
   {
-    id: 'id',
+    _id: '_id',
     name: 'Plan ID',
     sortable: true,
     headerTooltip: '#ID',
@@ -82,7 +82,7 @@ export const planTableColumns: Array<DataGridColumn> = [
     type: 'text',
   },
   {
-    id: 'name',
+    _id: 'name',
     name: 'Plan Name',
     sortable: true,
     headerTooltip: 'Plan Name',
@@ -93,7 +93,7 @@ export const planTableColumns: Array<DataGridColumn> = [
     type: 'text',
   },
   {
-    id: 'program_id',
+    _id: 'program_id',
     name: 'Program ID',
     sortable: true,
     headerTooltip: 'Program ID',
@@ -104,7 +104,7 @@ export const planTableColumns: Array<DataGridColumn> = [
     type: 'text',
   },
   {
-    id: 'description',
+    _id: 'description',
     name: 'Description',
     sortable: true,
     headerTooltip: 'Plan Description',
@@ -115,7 +115,7 @@ export const planTableColumns: Array<DataGridColumn> = [
     type: 'text',
   },
   {
-    id: 'price',
+    _id: 'price',
     name: 'Price',
     sortable: true,
     headerTooltip: 'Plan Price',
@@ -126,7 +126,7 @@ export const planTableColumns: Array<DataGridColumn> = [
     type: 'number',
   },
   {
-    id: 'delivery_days',
+    _id: 'delivery_days',
     name: 'Delivery Days',
     sortable: true,
     headerTooltip: 'Delivery Days',
@@ -140,7 +140,7 @@ export const planTableColumns: Array<DataGridColumn> = [
 
 export const userTableColumns: Array<DataGridColumn> = [
   {
-    id: 'id',
+    _id: '_id',
     name: 'User ID',
     sortable: true,
     headerTooltip: '#ID',
@@ -151,7 +151,7 @@ export const userTableColumns: Array<DataGridColumn> = [
     type: 'text',
   },
   {
-    id: 'name',
+    _id: 'name',
     name: 'Full Name',
     sortable: true,
     headerTooltip: 'User Name',
@@ -162,22 +162,22 @@ export const userTableColumns: Array<DataGridColumn> = [
     type: 'text',
   },
   {
-    id: 'email',
+    _id: 'email',
     name: 'Email',
     sortable: true,
     headerTooltip: 'Email',
     hidden: false,
     icon: '',
     iconFile: '',
-    width: '',
+    width: '200',
     type: 'text',
   },
 
   {
-    id: 'location',
-    name: 'Location',
+    _id: 'address',
+    name: 'Address',
     sortable: true,
-    headerTooltip: 'Location',
+    headerTooltip: 'Address',
     hidden: false,
     icon: '',
     iconFile: '',

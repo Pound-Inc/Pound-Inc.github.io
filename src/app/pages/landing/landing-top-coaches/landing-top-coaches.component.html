@@ -80,12 +80,12 @@
                 <li class="h6">
                   <span class="mdi mdi-package text-success me-2"></span>
                   <span class="me-2 text-muted">عدد البرامج:</span>
-                  <span> {{ getRelatedPrograms(coach.id)?.length }} </span>
+                  <span> {{ getRelatedPrograms(coach._id)?.length }} </span>
                 </li>
                 <li class="h6">
                   <span class="mdi mdi-account-group text-warning me-2"></span>
                   <span class="me-2 text-muted">عدد العملاء:</span>
-                  <span> {{ getRelatedReceipts(coach.id).length }} </span>
+                  <span> {{ getRelatedReceipts(coach._id).length }} </span>
                 </li>
                 <li class="h6">
                   <span class="mdi mdi-translate me-2"></span>
@@ -98,7 +98,7 @@
                 <li class="h6">
                   <span class="mdi mdi-home-city me-2"></span>
                   <span class="me-2 text-muted">الموقع:</span>
-                  <span class="fi fi-{{ coach.location.country }} me-1"> </span>
+                  <span class="fi fi-{{ coach.address.country }} me-1"> </span>
                 </li>
                 <li class="h6">
                   <span class="mdi mdi-account-check text-danger me-2"></span>

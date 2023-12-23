@@ -4,6 +4,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs';
 import { AuthService } from './auth/services/auth.service';
+import { HeadersService } from 'src/common/services/headers.service';
 
 @Component({
   selector: 'app-root',
@@ -48,6 +49,8 @@ export class AppComponent implements OnInit {
 
     // Set the text direction based on the selected language
     this.setDirection(savedLanguage);
+    console.log("here");
+    
   }
 
   private setCanonicalUrl() {

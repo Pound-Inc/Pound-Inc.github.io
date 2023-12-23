@@ -2,7 +2,7 @@ import { UserRole } from 'src/app/model/user.model';
 
 export interface DataGridColumn {
   /** Identifier for the grid columns. */
-  id: string;
+  _id: string;
 
   /** Displayed column name. */
   name: string;

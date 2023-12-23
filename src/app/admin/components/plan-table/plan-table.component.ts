@@ -53,7 +53,7 @@ export class PlanTableComponent implements OnInit, OnDestroy {
         this.selectedRow = null;
         if (program) {
           this.filteredPlans$ = this.plans$.filter(
-            (plan) => plan.program_id === program.id
+            (plan) => plan.program_id === program._id
           );
         } else {
           this.filteredPlans$ = this.plans$;

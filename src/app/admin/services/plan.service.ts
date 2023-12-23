@@ -21,7 +21,7 @@ interface SearchResult {
 }
 export const PLANS: ProgramPlan[] = [
   {
-    id: 'PP30001',
+    _id: 'PP30001',
     name: 'Basic Fitness Plan',
     program_id: 'PR20003',
     description: 'A starter plan for improving overall fitness.',
@@ -29,7 +29,7 @@ export const PLANS: ProgramPlan[] = [
     delivery_days: 1,
   },
   {
-    id: 'PP30002',
+    _id: 'PP30002',
     name: 'Premium Yoga Plan',
     program_id: 'PR20003',
     description: 'An exclusive yoga plan with advanced sessions.',
@@ -37,7 +37,7 @@ export const PLANS: ProgramPlan[] = [
     delivery_days: 3,
   },
   {
-    id: 'PP30003',
+    _id: 'PP30003',
     name: 'Coding Pro Plan',
     program_id: 'PR20003',
     description: 'Comprehensive coding plan with mentor support.',
@@ -45,7 +45,7 @@ export const PLANS: ProgramPlan[] = [
     delivery_days: 1,
   },
   {
-    id: 'PP30004',
+    _id: 'PP30004',
     name: 'Language Mastery Plan',
     program_id: 'PR20002',
     description: 'Intensive language learning plan with personalized lessons.',
@@ -53,7 +53,7 @@ export const PLANS: ProgramPlan[] = [
     delivery_days: 1,
   },
   {
-    id: 'PP30005',
+    _id: 'PP30005',
     name: 'Art Enthusiast Plan',
     program_id: 'PR20002',
     description: 'Unlock your artistic potential with this creative plan.',
@@ -61,7 +61,7 @@ export const PLANS: ProgramPlan[] = [
     delivery_days: 1,
   },
   {
-    id: 'PP30006',
+    _id: 'PP30006',
     name: 'Art Enthusiast Plan',
     program_id: 'PR20002',
     description: 'Unlock your artistic potential with this creative plan.',
@@ -69,7 +69,7 @@ export const PLANS: ProgramPlan[] = [
     delivery_days: 1,
   },
   {
-    id: 'PP30007',
+    _id: 'PP30007',
     name: 'Language Mastery Plan',
     program_id: 'PR20004',
     description: 'Intensive language learning plan with personalized lessons.',
@@ -77,7 +77,7 @@ export const PLANS: ProgramPlan[] = [
     delivery_days: 1,
   },
   {
-    id: 'PP30008',
+    _id: 'PP30008',
     name: 'Art Enthusiast Plan',
     program_id: 'PR20004',
     description: 'Unlock your artistic potential with this creative plan.',
@@ -85,7 +85,7 @@ export const PLANS: ProgramPlan[] = [
     delivery_days: 1,
   },
   {
-    id: 'PP30009',
+    _id: 'PP30009',
     name: 'Art Enthusiast Plan',
     program_id: 'PR20004',
     description: 'Unlock your artistic potential with this creative plan.',

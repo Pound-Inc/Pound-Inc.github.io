@@ -64,17 +64,17 @@
           <tr
             *ngFor="let program of programs$ | async"
             (click)="onRowClick(program)"
-            [class.clicked-row]="selectedRow && selectedRow.id === program.id"
+            [class.clicked-row]="selectedRow && selectedRow._id === program._id"
           >
             <td *ngFor="let column of columns">
               <ng-container *ngIf="column.type === 'text'">
                 <td [style.minWidth]="column.width + 'px'">
-                  {{ formatValue(program[column.id]) }}
+                  {{ formatValue(program[column._id]) }}
                 </td>
               </ng-container>
               <ng-container *ngIf="column.type === 'lookup'">
                 <td [style.minWidth]="column.width + 'px'">
-                  {{ formatValue(program[column.id]) }}
+                  {{ formatValue(program[column._id]) }}
                   <div>
                     <small class="text-muted">
                       add reference to the lookup
@@ -83,7 +83,7 @@
                 </td>
               </ng-container>
 
-              <ng-container *ngIf="column.id === 'phases'">
+              <ng-container *ngIf="column._id === 'phases'">
                 <td [style.minWidth]="column.width + 'px'">
                   <div ngbDropdown container="body">
                     <button
@@ -91,21 +91,21 @@
                       class="btn btn-light btn-sm"
                       ngbDropdownToggle
                     >
-                      Details ({{ formatValue(program[column.id]).length }})
+                      Details ({{ formatValue(program[column._id]).length }})
                     </button>
                     <div ngbDropdownMenu>
                       <div
                         ngbDropdownItem
                         disabled
-                        *ngFor="let phase of formatValue(program[column.id])"
+                        *ngFor="let phase of formatValue(program[column._id])"
                       >
                         <h6>
-                          {{ phase }} {{ program[column.id][phase] + "%" }}
+                          {{ phase }} {{ program[column._id][phase] + "%" }}
                         </h6>
                         <div class="progress mt-1">
                           <div
                             class="progress-bar position-relative bg-secondary"
-                            [style.minWidth.%]="program[column.id][phase]"
+                            [style.minWidth.%]="program[column._id][phase]"
                           ></div>
                         </div>
                         <div class="dropdown-divider"></div>
@@ -136,7 +136,7 @@
                     [ngStyle]="{ 'max-width.px': column.width }"
                   >
                     <small class="text-muted truncate-text">
-                      {{ formatValue(program[column.id]) }}
+                      {{ formatValue(program[column._id]) }}
                     </small>
                   </div>
                 </td>

@@ -64,17 +64,17 @@
           <tr
             *ngFor="let plan of filteredPlans$"
             (click)="onRowClick(plan)"
-            [class.clicked-row]="selectedRow && selectedRow.id === plan.id"
+            [class.clicked-row]="selectedRow && selectedRow._id === plan._id"
           >
             <td *ngFor="let key of columns">
               <ng-container *ngIf="key.type === 'text'">
                 <td>
-                  {{ formatValue(plan[key.id]) }}
+                  {{ formatValue(plan[key._id]) }}
                 </td>
               </ng-container>
               <ng-container *ngIf="key.type === 'number'">
                 <td>
-                  {{ formatValue(plan[key.id]) }}
+                  {{ formatValue(plan[key._id]) }}
                 </td>
               </ng-container>
             </td>

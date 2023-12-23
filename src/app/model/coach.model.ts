@@ -3,13 +3,13 @@ import { Gender, User, UserRole } from './user.model';
 
 export class Coach extends User {
   constructor(
-    id: string,
+    _id: string,
     name: string,
     email: string,
     dob: string,
     img: string,
-    role: UserRole,
-    location: UserLocation,
+    roles: UserRole,
+    address: UserLocation,
     gender: Gender,
     public description: string,
     public availability: string,
@@ -21,7 +21,7 @@ export class Coach extends User {
     public ratings: [],
     public tags: { name: string; color: string; icon?: string }[]
   ) {
-    super(id, name, email, dob, img, location, role, gender);
+    super(_id, name, email, dob, img, address, roles, gender);
   }
   [key: string]: any; //  allow indexing with strings
 }

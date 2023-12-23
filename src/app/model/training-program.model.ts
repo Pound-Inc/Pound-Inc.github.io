@@ -1,6 +1,6 @@
 export class TrainingProgram {
   constructor(
-    public id: string,
+    public _id: string,
     public coach_id: string,
     public name: string,
     public img: string,

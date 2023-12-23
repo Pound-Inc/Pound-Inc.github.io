@@ -59,7 +59,7 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
     this.programSubscription = this.programService.programs.subscribe(
       (programs: TrainingProgram[]) => {
         if (programs) {
-          const program = programs.find((p) => p.id === programId);
+          const program = programs.find((p) => p._id === programId);
           if (program) {
             this.program = program;
           } else {
@@ -71,7 +71,7 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
     this.planSubscription = this.planService.plans.subscribe(
       (plans: ProgramPlan[]) => {
         if (plans) {
-          const plan = plans.filter((p) => p.program_id === this.program.id);
+          const plan = plans.filter((p) => p.program_id === this.program._id);
           if (plan) {
             this.plans = plan;
           }
@@ -84,7 +84,7 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
         if (users) {
           this.users = users;
           const coach = users.find(
-            (u) => u.id === this.program.coach_id
+            (u) => u._id === this.program.coach_id
           ) as Coach;
 
           if (coach) {
@@ -103,7 +103,7 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
     this.planSubscription = this.planService.plans.subscribe(
       (plans: ProgramPlan[]) => {
         const relatedPlans = plans.filter(
-          (p) => p.program_id === this.program.id
+          (p) => p.program_id === this.program._id
         );
         if (relatedPlans) {
           this.plans = relatedPlans;
@@ -116,7 +116,7 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
       .subscribe((comments: ProgramComment[]) => {
         if (comments) {
           const relatedComments = comments.filter(
-            (comment) => comment.program_id === this.program.id
+            (comment) => comment.program_id === this.program._id
           );
           if (relatedComments.length > 0) {
             this.comments = comments;
@@ -149,17 +149,17 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
   }
   public getRelatedUser(userId: string): User | undefined {
     return this.users
-      ? this.users.find((user) => user.id === userId)
+      ? this.users.find((user) => user._id === userId)
       : undefined;
   }
 
   public getRelatedReceipts(): Receipt[] {
     let receipts: Receipt[] = [];
-    const relatedPlans = this.getRelatedPlans(this.program.id);
+    const relatedPlans = this.getRelatedPlans(this.program._id);
     if (relatedPlans)
       for (const plan of relatedPlans) {
         const receipt = this.receipts.find(
-          (receipt) => receipt.plan_id === plan.id
+          (receipt) => receipt.plan_id === plan._id
         );
         if (receipt) {
           receipts.push(receipt);

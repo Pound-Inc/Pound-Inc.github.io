@@ -4,14 +4,14 @@ import { ProgramComment } from 'src/app/model/comment.model';
 
 const COMMENTS: ProgramComment[] = [
   {
-    id: 'PC40000',
+    _id: 'PC40000',
     program_id: 'PR20003',
     comment_by_id: 'U1000a9',
     comment: 'hello! i really like this program',
     date: new Date(),
     replays: [
       {
-        id: 'PC40100',
+        _id: 'PC40100',
         comment_by_id: 'U1000da',
         comment: 'hello! i really like this program',
         program_id: 'PR20003',

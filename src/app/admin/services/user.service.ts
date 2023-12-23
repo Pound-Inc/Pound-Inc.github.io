@@ -9,181 +9,21 @@ import {
   delay,
   Observable,
   of,
+  firstValueFrom,
+  map,
 } from 'rxjs';
 import { SortColumn, SortDirection } from '../sortable.directive';
 import { Gender, User, UserRole } from 'src/app/model/user.model';
 import { Coach } from 'src/app/model/coach.model';
+import { AUTH_API } from 'src/common/constants/endpoints';
+import { API_Response } from 'src/common/interfaces/response.interface';
+import { HeadersService } from 'src/common/services/headers.service';
+import { HttpClient } from '@angular/common/http';
 
 interface SearchResult {
   users: User[];
   total: number;
 }
-export const USERS: User[] | Coach[] = [
-  {
-    id: 'U100018',
-    img: 'https://picsum.photos/200?random=1',
-    name: 'Ochoa Hancock',
-    email: 'ochoahancock@zentix.com',
-    gender: Gender.Female,
-    location: {
-      country: 'USA',
-      city: 'Murillo',
-      postal_code: '158 44',
-      street: '774 Sullivan Street',
-    },
-    dob: '2020-05-07',
-    role: UserRole.Admin,
-  },
-  {
-    id: 'U1000a9',
-    img: 'https://picsum.photos/200?random=2',
-    name: 'Stevenson Erickson',
-    email: 'stevensonerickson@zentix.com',
-    gender: Gender.Female,
-    location: {
-      country: 'USA',
-      city: 'Murillo',
-      postal_code: '158 44',
-      street: '774 Sullivan Street',
-    },
-    dob: '2023-01-04',
-    role: UserRole.User,
-  },
-  {
-    id: 'U10001c',
-    img: 'https://picsum.photos/200?random=3',
-    name: 'أحمد محسن',
-    email: 'yolandaspears@zentix.com',
-    gender: Gender.Male,
-    location: {
-      country: 'us',
-      city: 'Murillo',
-      postal_code: '158 44',
-      street: '774 Sullivan Street',
-    },
-    dob: '2014-01-20',
-    role: UserRole.Worker,
-    availability: 'busy',
-    certification_id: '4433EER',
-    certified_by_id: 'U100018',
-    description:
-      'مدرب لياقة بدنية معتمد وبطل دولي في الكيوكوشن كاراتيه. أقدم خدمات التدريب الشخصي والتطوير الذاتي بأعلى جودة!',
-    is_verified: true,
-    languages: ['se', 'gb', 'sa'],
-    ratings: ['', '', ''],
-    tags: [
-      { name: 'سريع', color: 'danger', icon: 'email-fast' },
-      { name: 'محترف', color: 'primary', icon: 'star' },
-      { name: '', color: 'dark', icon: 'human-male' },
-    ],
-    stars: 4,
-  },
-  {
-    id: 'U1000bc',
-    img: 'https://picsum.photos/200?random=4',
-    name: 'Tonya Shaffer',
-    email: 'tonyashaffer@zentix.com',
-    gender: Gender.Female,
-    location: {
-      country: 'USA',
-      city: 'Murillo',
-      postal_code: '158 44',
-      street: '774 Sullivan Street',
-    },
-    dob: '2021-02-09',
-    role: UserRole.Worker,
-  },
-  {
-    id: 'U100060',
-    img: 'https://picsum.photos/200?random=5',
-    name: 'Nadine Fisher',
-    email: 'nadinefisher@zentix.com',
-    gender: Gender.Female,
-    location: {
-      country: 'USA',
-      city: 'Murillo',
-      postal_code: '158 44',
-      street: '774 Sullivan Street',
-    },
-    dob: '2016-07-18',
-    role: UserRole.Worker,
-  },
-  {
-    id: 'U1000e7',
-    img: 'https://picsum.photos/200?random=6',
-    name: 'Eula Vargas',
-    email: 'eulavargas@zentix.com',
-    gender: Gender.Female,
-    location: {
-      country: 'USA',
-      city: 'Murillo',
-      postal_code: '158 44',
-      street: '774 Sullivan Street',
-    },
-    dob: '2017-10-26',
-    role: UserRole.Worker,
-  },
-  {
-    id: 'U100085',
-    img: 'https://picsum.photos/200?random=7',
-    name: 'Garner Taylor',
-    email: 'garnertaylor@zentix.com',
-    gender: Gender.Female,
-    location: {
-      country: 'USA',
-      city: 'Murillo',
-      postal_code: '158 44',
-      street: '774 Sullivan Street',
-    },
-    dob: '2022-09-03',
-    role: UserRole.Worker,
-  },
-  {
-    id: 'U1000da',
-    img: 'https://picsum.photos/200?random=8',
-    name: 'Daniel Mcneil',
-    email: 'danielmcneil@zentix.com',
-    gender: Gender.Female,
-    location: {
-      country: 'USA',
-      city: 'Murillo',
-      postal_code: '158 44',
-      street: '774 Sullivan Street',
-    },
-    dob: '2014-02-06',
-    role: UserRole.User,
-  },
-  {
-    id: 'U100055',
-    img: 'https://picsum.photos/200?random=9',
-    name: 'Hoover Alvarez',
-    email: 'hooveralvarez@zentix.com',
-    gender: Gender.Female,
-    location: {
-      country: 'USA',
-      city: 'Murillo',
-      postal_code: '158 44',
-      street: '774 Sullivan Street',
-    },
-    dob: '2019-06-20',
-    role: UserRole.Worker,
-  },
-  {
-    id: 'U10005f',
-    img: 'https://picsum.photos/200?random=14',
-    name: 'Delgado Peck',
-    email: 'delgadopeck@zentix.com',
-    gender: Gender.Female,
-    location: {
-      country: 'USA',
-      city: 'Murillo',
-      postal_code: '158 44',
-      street: '774 Sullivan Street',
-    },
-    dob: '2020-08-28',
-    role: UserRole.Worker,
-  },
-];
 
 interface State {
   page: number;
@@ -226,7 +66,13 @@ export class UserService {
     sortDirection: '',
   };
 
-  constructor(private pipe: DecimalPipe) {
+  constructor(
+    private headersService: HeadersService,
+    private http: HttpClient
+  ) {
+    this.getUsers().then((response: any) => {
+      this._users$.next(response.data);
+    });
     this._search$
       .pipe(
         tap(() => this._loading$.next(true)),
@@ -286,7 +132,7 @@ export class UserService {
       this._state;
 
     // 1. sort
-    let users = sort(USERS, sortColumn, sortDirection);
+    let users = sort(this._users$.getValue(), sortColumn, sortDirection);
 
     // 2. filter
     users = users.filter((user) => matches(user, searchTerm));
@@ -298,5 +144,32 @@ export class UserService {
       (page - 1) * pageSize + pageSize
     );
     return of({ users: users, total });
+  }
+
+  async getUsers() {
+    try {
+      const response = await firstValueFrom(
+        this.http
+          .get<API_Response>(`${AUTH_API}/users`, {
+            headers: this.headersService.getHeaders,
+            withCredentials: true,
+          })
+          .pipe(
+            map((response: API_Response) => {
+              console.log(response);
+
+              return {
+                status: response.status,
+                message: response.message,
+                data: response.data,
+              };
+            })
+          )
+      );
+
+      return response;
+    } catch (error) {
+      return error;
+    }
   }
 }

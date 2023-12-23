@@ -8,7 +8,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-
+import { ToastComponent } from 'src/common/components/toast/toast.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,7 +17,8 @@ import {
 })
 export class LoginComponent implements OnInit {
   translateBaseRoute = 'routing.auth.login.';
-  message: string;
+  invalidMessage = false;
+  valid = false;
 
   form: FormGroup = new FormGroup({
     email: new FormControl(''),
@@ -28,9 +30,7 @@ export class LoginComponent implements OnInit {
     public authService: AuthService,
     public router: Router,
     private formBuilder: FormBuilder
-  ) {
-    this.message = this.getMessage();
-  }
+  ) {}
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -49,26 +49,24 @@ export class LoginComponent implements OnInit {
     return this.form.controls;
   }
 
-  getMessage() {
-    return 'Logged ';
-  }
-
   login() {
-    this.message = 'Trying to log in ...';
     const loginObject: { email: string; password: string } =
       this.form.getRawValue();
 
     this.authService.login(loginObject).subscribe({
       next: () => {
-
-        // this.message = this.getMessage();
-        // if (this.authService.isLoggedIn) {
-        //   const redirectUrl = '/admin';
-        //   this.router.navigate([redirectUrl]);
-        // }
+        this.valid = true;
+        setTimeout(() => {
+          this.valid = false;
+          const redirectUrl = '/';
+          this.router.navigate([redirectUrl]);
+        }, 2000);
       },
       error: (error) => {
-        console.error('Login component error:', error);
+        this.invalidMessage = true;
+        setTimeout(() => {
+          this.invalidMessage = false;
+        }, 5000);
       },
     });
   }
@@ -84,6 +82,5 @@ export class LoginComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    this.message = this.getMessage();
   }
 }

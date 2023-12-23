@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from '../app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -46,6 +46,10 @@ import { ArticleComponent } from '../pages/article/article.component';
 import { CoachesComponent } from '../pages/coaches/coaches.component';
 import { ProgramsComponent } from '../pages/programs/programs.component';
 import { PlanCompareModalComponent } from '../pages/training-program/plan-compare-modal/plan-compare-modal.component';
+import { ToastComponent } from '../../common/components/toast/toast.component';
+import { ToastsComponent } from 'src/common/components/toasts/toasts.component';
+import { NgTemplateOutlet } from '@angular/common';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -87,6 +91,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CoachesComponent,
     ProgramsComponent,
     PlanCompareModalComponent,
+    ToastComponent,
+    ToastsComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,6 +102,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdminModule,
     AuthRoutingModule,
     HttpClientModule,
+    MatSnackBarModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

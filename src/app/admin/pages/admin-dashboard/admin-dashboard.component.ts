@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { ProgramService } from '../../services/program.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -7,7 +10,15 @@ import { Component } from '@angular/core';
 })
 export class AdminDashboardComponent {
   public translateBaseRoute = 'routing.admin.dashboard.';
-  constructor() {
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+    private programService: ProgramService
+  ) {
     document.dir = 'ltr';
+  }
+  apicheck() {
+    this.userService.getUsers();
+    this.programService.getPrograms();
   }
 }

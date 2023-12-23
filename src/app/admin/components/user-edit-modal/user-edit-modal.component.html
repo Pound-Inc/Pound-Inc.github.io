@@ -54,7 +54,7 @@
 
     <!-- Second Column -->
     <div class="col-md-6">
-      <!-- Image and Location -->
+      <!-- Image and address -->
       <div class="form-group">
         <label for="img">Image URL:</label>
         <input
@@ -66,33 +66,33 @@
       </div>
 
       <div class="form-group">
-        <h6>Location:</h6>
+        <h6>address:</h6>
         <label for="country">Country</label>
         <input
           type="text"
           id="country"
-          [(ngModel)]="user.location.country"
+          [(ngModel)]="user.address.country"
           class="form-control"
         />
         <label for="city">City</label>
         <input
           type="text"
           id="city"
-          [(ngModel)]="user.location.city"
+          [(ngModel)]="user.address.city"
           class="form-control"
         />
         <label for="postal code">postal code</label>
         <input
           type="text"
           id="postal code"
-          [(ngModel)]="user.location.postal_code"
+          [(ngModel)]="user.address.postal_code"
           class="form-control"
         />
         <label for="street">street</label>
         <input
           type="text"
           id="street"
-          [(ngModel)]="user.location.street"
+          [(ngModel)]="user.address.street"
           class="form-control"
         />
       </div>
@@ -103,7 +103,7 @@
         <input
           type="text"
           id="role"
-          [(ngModel)]="user.role"
+          [(ngModel)]="user.roles"
           class="form-control"
         />
       </div>
