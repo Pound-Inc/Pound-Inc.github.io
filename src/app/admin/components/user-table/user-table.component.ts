@@ -12,7 +12,7 @@ import { Observable, Subscription } from 'rxjs';
 import { userTableColumns } from 'src/common/columns';
 import { DataGridColumn } from 'src/common/interfaces/datagrid.interface';
 import { NgbdSortableHeader, SortEvent } from '../../sortable.directive';
-import { User, UserRoles } from 'src/app/model/user.model';
+import { RoleEnum, RoleType, User } from 'src/app/model/user.model';
 import { UserService } from '../../services/user.service';
 import { Coach } from 'src/app/model/coach.model';
 import { UserEditModalComponent } from '../user-edit-modal/user-edit-modal.component';
@@ -28,15 +28,13 @@ export class UserTableComponent implements OnInit, OnDestroy {
   public users: User[];
   public total$: Observable<number>;
   public selectedRow: User;
-  public UserRoles = UserRoles;
+  public UserRoles = RoleEnum;
   private modalService = inject(NgbModal);
   private userSubscription: Subscription;
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  constructor(public userService: UserService) {
-    this.total$ = userService.total$;
-  }
+  constructor(public userService: UserService) {}
   ngOnInit(): void {
     this.userSubscription = this.userService.users.subscribe(
       (users: User[] | Coach[]) => {
@@ -48,18 +46,6 @@ export class UserTableComponent implements OnInit, OnDestroy {
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
-  }
-
-  onSort({ column, direction }: SortEvent) {
-    // resetting other headers
-    this.headers.forEach((header) => {
-      if (header.sortable !== column) {
-        header.direction = '';
-      }
-    });
-
-    this.userService.sortColumn = column;
-    this.userService.sortDirection = direction;
   }
 
   formatValue(value: any) {
@@ -114,4 +100,15 @@ export class UserTableComponent implements OnInit, OnDestroy {
 
   deleteRow() {}
   newRow() {}
+
+  getHighestRole(roles: any) {
+    let highestRole = null;
+    for (const role in roles) {
+      if (roles[role] === true) {
+        highestRole = role;
+        break;
+      }
+    }
+    return highestRole;
+  }
 }

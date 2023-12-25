@@ -1,4 +1,3 @@
-import { UserRole } from 'src/app/model/user.model';
 
 export interface DataGridColumn {
   /** Identifier for the grid columns. */

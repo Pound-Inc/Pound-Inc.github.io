@@ -1,13 +1,16 @@
 import { inject } from '@angular/core';
-import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
+
 import { UserService } from '../admin/services/user.service';
 
-export const coachResolver: ResolveFn<any> = async (
-  route: ActivatedRouteSnapshot
-) => {
+export const profileGuard = async (route: ActivatedRouteSnapshot) => {
   const userService = inject(UserService);
+  const router = inject(Router);
   const coachId = route.params['coachId'];
 
   const user = await userService.getUserById(coachId);
-  return user;
+  if (user) {
+    return true;
+  }
+  return false;
 };

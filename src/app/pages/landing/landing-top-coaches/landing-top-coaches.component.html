@@ -60,7 +60,10 @@
                 class="avatar avatar-small mx-auto rounded-circle d-block mb-3"
                 alt=""
               />
-              <a href="job-company.html" class="text-dark h5 name">
+              <a
+                [routerLink]="['/coach/' + coach._id]"
+                class="text-dark h5 name"
+              >
                 {{ coach.name }}
                 <span
                   *ngIf="coach.is_verified"
@@ -98,10 +101,12 @@
                 <li class="h6">
                   <span class="mdi mdi-home-city me-2"></span>
                   <span class="me-2 text-muted">الموقع:</span>
-                  <span class="fi fi-{{ coach.address.country }} me-1"> </span>
+                  <span>
+                    {{ coach.address.country }} - {{ coach.address.city }}
+                  </span>
                 </li>
                 <li class="h6">
-                  <span class="mdi mdi-account-check text-danger me-2"></span>
+                  <span class="mdi mdi-account-check text-dark me-2"></span>
                   <span class="me-2 text-muted">مُوثّق مِن قِبل:</span>
                   <span>
                     <a
@@ -113,15 +118,15 @@
                   </span>
                 </li>
                 <li class="h6">
-                  <span class="mdi mdi-certificate text-danger me-2"></span>
+                  <span class="mdi mdi-certificate text-dark me-2"></span>
                   <span class="me-2 text-muted">رَقم الشّهادة:</span>
                   <span> {{ coach.certification_id }}## </span>
                 </li>
               </ul>
               <div class="d-grid">
-                <a href="job-company.html" class="btn btn-light">
+                <a [routerLink]="['/coach/' + coach._id]" class="btn btn-light">
                   عرض التفاصيل
-                  <span class="mdi mdi-marker me-2"></span>
+                  <span class="mdi mdi-arrow-left me-2"></span>
                 </a>
               </div>
             </div>

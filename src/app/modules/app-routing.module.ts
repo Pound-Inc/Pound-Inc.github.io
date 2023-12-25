@@ -15,6 +15,7 @@ import { ArticleComponent } from '../pages/article/article.component';
 import { StoryComponent } from '../pages/story/story.component';
 import { ProgramsComponent } from '../pages/programs/programs.component';
 import { CoachesComponent } from '../pages/coaches/coaches.component';
+import { profileGuard } from '../guards/profile.guard';
 
 const routes: Routes = [
   {
@@ -30,9 +31,11 @@ const routes: Routes = [
   {
     path: 'coach/:coachId',
     component: CoachComponent,
+    canActivate: [profileGuard],
     resolve: { coach: coachResolver },
   },
-  { path: '', component: LandingComponent },
+  { path: '', component: LandingComponent, title: 'Pound Inc.' },
+  // { path: '**', redirectTo: '',  },
 ];
 
 @NgModule({

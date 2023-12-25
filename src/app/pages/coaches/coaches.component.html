@@ -1,1 +1,165 @@
 <app-landing-header [navActive]="3"></app-landing-header>
+
+<section
+  class="bg-half-170 d-table w-100"
+  style="
+    background: url('https://www.bhmpics.com/downloads/women-gym-body-building-Wallpapers/22.strengthlogs-4-day-bodybuilding-split.jpg')
+      center center;
+  "
+>
+  <div class="bg-overlay"></div>
+
+  <div class="container">
+    <div class="row mt-5 justify-content-center">
+      <div class="col-lg-12 text-center">
+        <div class="pages-heading">
+          <h1 class="text-white mb-0">مدرّبيين منصة باوند</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section pt-4">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-10">
+        <div class="col-lg-3 col-md-4 mt-4 mt-sm-0 pt-2 pt-sm-0">
+          <div class="form custom-form">
+            <!-- filter -->
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-11 row">
+        <div
+          class="col-lg-4 col-md-6 col-12 mt-4 pt-2"
+          *ngFor="let coach of coaches"
+        >
+          <div
+            class="job-box job-primary company-list card border-0 rounded shadow"
+          >
+            <div
+              class="card-top row align-items-center justify-content-between pt-2"
+            >
+              <div class="col">
+                <div class="d-flex gap-1 px-2">
+                  <div
+                    *ngFor="let tag of coach.tags"
+                    class="col badge py-2 bg-{{ tag.color }} d-inline-block"
+                  >
+                    <span
+                      *ngIf="tag.icon"
+                      class="mdi mdi-{{ tag.icon }}"
+                    ></span>
+
+                    <span>
+                      {{ tag.name }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col ps-4 d-flex justify-content-end align-items-center"
+              >
+                <span
+                  *ngFor="let starIndex of getStarRange(); let i = index"
+                  [class]="
+                    i < coach.stars
+                      ? 'mdi mdi-star text-warning'
+                      : 'mdi mdi-star text-dark'
+                  "
+                ></span>
+              </div>
+            </div>
+            <div class="text-center py-4 border-bottom">
+              <img
+                src="{{ coach.img }}"
+                class="avatar avatar-small mx-auto rounded-circle d-block mb-3"
+                alt=""
+              />
+              <a
+                [routerLink]="['/coach/' + coach._id]"
+                class="text-dark h5 name"
+              >
+                {{ coach.name }}
+                <span
+                  *ngIf="coach.is_verified"
+                  class="mdi mdi-check-decagram text-primary"
+                ></span>
+              </a>
+              <p class="text-muted mt-1 mb-0 col-7 m-auto">
+                <small>
+                  {{ coach.description }}
+                </small>
+              </p>
+            </div>
+
+            <div class="p-4 card-body">
+              <h5>تفاصيل المدرب:</h5>
+              <ul class="list-unstyled mb-4 px-1">
+                <li class="h6">
+                  <span class="mdi mdi-package text-success me-2"></span>
+                  <span class="me-2 text-muted">عدد البرامج:</span>
+                  <span> {{ getRelatedPrograms(coach._id)?.length }} </span>
+                </li>
+                <li class="h6">
+                  <span class="mdi mdi-account-group text-warning me-2"></span>
+                  <span class="me-2 text-muted">عدد العملاء:</span>
+                  <span> {{ getRelatedReceipts(coach._id).length }} </span>
+                </li>
+                <li class="h6">
+                  <span class="mdi mdi-translate me-2"></span>
+                  <span class="me-2 text-muted"> اللّغات:</span>
+                  <span
+                    *ngFor="let lang of coach.languages"
+                    class="fi fi-{{ lang }} me-1"
+                  ></span>
+                </li>
+                <li class="h6">
+                  <span class="mdi mdi-home-city me-2"></span>
+                  <span class="me-2 text-muted">الموقع:</span>
+                  <span>
+                    {{ coach.address.country }} - {{ coach.address.city }}
+                  </span>
+                </li>
+                <li class="h6">
+                  <span class="mdi mdi-account-check text-dark me-2"></span>
+                  <span class="me-2 text-muted">مُوثّق مِن قِبل:</span>
+                  <span>
+                    <a
+                      class="text-dark"
+                      [routerLink]="['/coach/' + coach.certified_by_id]"
+                    >
+                      {{ getRelatedUsers(coach.certified_by_id)?.name }}
+                    </a>
+                  </span>
+                </li>
+                <li class="h6">
+                  <span class="mdi mdi-certificate text-dark me-2"></span>
+                  <span class="me-2 text-muted">رَقم الشّهادة:</span>
+                  <span> {{ coach.certification_id }}## </span>
+                </li>
+              </ul>
+              <div class="d-grid">
+                <a [routerLink]="['/coach/' + coach._id]" class="btn btn-light">
+                  عرض التفاصيل
+                  <span class="mdi mdi-arrow-left me-2"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end col-->
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->

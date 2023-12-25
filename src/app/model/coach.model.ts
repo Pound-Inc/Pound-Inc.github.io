@@ -1,5 +1,5 @@
 import { UserLocation } from './location.model';
-import { Gender, User, UserRole } from './user.model';
+import { Gender, RoleType, User } from './user.model';
 
 export class Coach extends User {
   constructor(
@@ -8,7 +8,7 @@ export class Coach extends User {
     email: string,
     dob: string,
     img: string,
-    roles: UserRole,
+    roles: RoleType,
     address: UserLocation,
     gender: Gender,
     public description: string,

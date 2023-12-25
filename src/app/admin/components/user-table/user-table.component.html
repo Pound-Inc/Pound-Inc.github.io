@@ -12,7 +12,6 @@
           type="text"
           class="form-control"
           name="searchTerm"
-          [(ngModel)]="userService.searchTerm"
           placeholder="Search by Name..."
         />
       </div>
@@ -56,7 +55,6 @@
               scope="col"
               [ngClass]="{ 'sticky-column': firstColumn }"
               sortable="name"
-              (sort)="onSort($event)"
             >
               {{ column.name }}
             </th>
@@ -151,19 +149,33 @@
                         <span
                           style="color: #dc3545"
                           class="mdi mdi-shield-crown-outline"
-                          *ngIf="user.roles === 'admin'"
+                          *ngIf="user.roles.Super"
                         ></span>
                         <span
                           style="color: #35c9dc"
                           class="mdi mdi-card-account-details-outline"
-                          *ngIf="user.roles === 'worker'"
+                          *ngIf="user.roles.Admin"
                         ></span>
                         <span
+                          style="color: #35c9dc"
+                          class="mdi mdi-card-account-details-outline"
+                          *ngIf="user.roles.Mod"
+                        ></span>
+                        <span
+                          style="color: #35c9dc"
+                          class="mdi mdi-card-account-details-outline"
+                          *ngIf="user.roles.Worker"
+                        ></span>
+
+                        <span
+                        *ngIf="getHighestRole(user.roles) === 'User'"
                           style="color: #6c757d"
                           class="mdi mdi-account-outline"
-                          *ngIf="user.roles === 'user'"
                         ></span>
-                        <span class="ms-2">{{ user.roles }}</span>
+
+                        <span class="ms-2">{{
+                          getHighestRole(user.roles)
+                        }}</span>
                       </p>
                     </div>
                   </div>
@@ -179,19 +191,9 @@
     </form>
   </div>
   <div class="d-flex justify-content-between p-2">
-    <ngb-pagination
-      [collectionSize]="(total$ | async)!"
-      [(page)]="userService.page"
-      [pageSize]="userService.pageSize"
-    >
-    </ngb-pagination>
+    <ngb-pagination [collectionSize]="(total$ | async)!"> </ngb-pagination>
 
-    <select
-      class="form-select"
-      style="width: auto"
-      name="pageSize"
-      [(ngModel)]="userService.pageSize"
-    >
+    <select class="form-select" style="width: auto" name="pageSize">
       <option [ngValue]="10">10 items per page</option>
       <option [ngValue]="50">50 items per page</option>
       <option [ngValue]="100">100 items per page</option>

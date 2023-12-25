@@ -1,11 +1,12 @@
-import { UserLocation } from "./location.model";
+import { UserLocation } from './location.model';
 
-export enum UserRole {
-  Worker = 'worker',
-  Admin = 'admin',
-  Super = 'super',
-  mod = 'mod',
-  User = 'user',
+export enum RoleEnum {
+  Super = 'Super',
+  Admin = 'Admin',
+  Mod = 'Mod',
+  Worker = 'Worker',
+  User = 'User',
+  Guest = 'Guest',
 }
 export enum Gender {
   Male = 'male',
@@ -20,14 +21,12 @@ export class User {
     public dob: string,
     public img: string,
     public address: UserLocation,
-    public roles: UserRole,
+    public roles: RoleType,
     public gender: Gender
   ) {}
   [key: string]: any; //  allow indexing with strings
 }
 
-export const UserRoles: UserRole[] = [
-  UserRole.Admin,
-  UserRole.Worker,
-  UserRole.User,
-];
+export type RoleType = {
+  [key in RoleEnum]: boolean;
+};

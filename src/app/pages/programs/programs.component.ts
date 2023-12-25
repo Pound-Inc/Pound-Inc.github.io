@@ -4,9 +4,9 @@ import { ProgramService } from '../../admin/services/program.service';
 import { UserService } from '../../admin/services/user.service';
 import { Coach } from '../../model/coach.model';
 import { TrainingProgram } from '../../model/training-program.model';
-import { UserRole } from '../../model/user.model';
 import { PlanService } from '../../admin/services/plan.service';
 import { ProgramPlan } from '../../model/program-plan.model';
+import { RoleEnum } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-programs',
@@ -44,7 +44,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     );
     this.coachesSubscription = this.userService.users.subscribe(
       (users: any[]) => {
-        this.coaches = users.filter((user) => user.role === UserRole.Worker);
+        this.coaches = users.filter((user) => user.roles === RoleEnum.Worker);
       }
     );
   }

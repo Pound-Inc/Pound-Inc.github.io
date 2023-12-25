@@ -8,7 +8,7 @@ import { Coach } from 'src/app/model/coach.model';
 import { ProgramPlan } from 'src/app/model/program-plan.model';
 import { Receipt } from 'src/app/model/receipt.model';
 import { TrainingProgram } from 'src/app/model/training-program.model';
-import { User, UserRole } from 'src/app/model/user.model';
+import { RoleEnum, User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-landing-top-coaches',
@@ -42,7 +42,7 @@ export class LandingTopCoachesComponent implements OnInit, OnDestroy {
     this.coachesSubscription = this.userService.users.subscribe(
       (users: any[]) => {
         this.users = users;
-        this.coaches = users.filter((user) => user.role === UserRole.Worker);
+        this.coaches = users.filter((user: User) => user.roles.Worker);
       }
     );
 

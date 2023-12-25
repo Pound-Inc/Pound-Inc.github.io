@@ -17,6 +17,7 @@ export const onBoardingDeactivateGuard: CanDeactivateFn<RegisterComponent> = (
 
   // Get the current URL
   console.log(state.url);
+
   return true;
 
   // return component.canDeactivate();

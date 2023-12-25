@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
   }
 
   private setCanonicalUrl() {
-    const canonicalUrl = `https://www.yourcompany.com${this.router.url}`;
+    const canonicalUrl = `https://www.poundinc.com${this.router.url}`;
     this.meta.removeTag('name="canonical"');
     this.meta.addTag({ name: 'canonical', content: canonicalUrl });
   }
@@ -73,9 +73,9 @@ export class AppComponent implements OnInit {
     const structuredData = {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      name: 'Your Company',
-      url: 'https://www.yourcompany.com',
-      logo: 'https://www.yourcompany.com/logo.png',
+      name: 'Pound Inc.',
+      url: 'https://www.poundinc.com',
+      logo: 'https://www.poundinc.com/logo.png',
       // Add more details as needed
     };
 

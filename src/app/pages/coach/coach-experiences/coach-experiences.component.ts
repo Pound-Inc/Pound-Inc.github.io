@@ -9,4 +9,18 @@ import { Coach } from 'src/app/model/coach.model';
 export class CoachExperiencesComponent {
   @Input() translateBaseRoute: string;
   @Input() coach: Coach;
+  certs = [
+    {
+      title: 'شهادة تدريب لاكوست ١٤ب',
+      desc: '٣ سنوات خبرة',
+      location: 'الرياض',
+      imgUrl: 'https://picsum.photos/200?random=4',
+    },
+    {
+      title: 'شهادة تدريب لاكوست ١٤ب',
+      desc: '٣ سنوات خبرة',
+      location: 'الرياض',
+      imgUrl: 'https://picsum.photos/200?random=4',
+    },
+  ];
 }

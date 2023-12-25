@@ -21,6 +21,9 @@
         <app-coach-card
           [translateBaseRoute]="translateBaseRoute"
           [coach]="coach"
+          [relatedCertifier]="getRelatedUsers(coach.certified_by_id)"
+          [relatedReceipts]="getRelatedReceipts(coach._id)"
+          [relatedPrograms]="getRelatedPrograms(coach._id)"
         ></app-coach-card>
       </div>
 
@@ -33,6 +36,9 @@
         <app-coach-programs
           [translateBaseRoute]="translateBaseRoute"
           [coach]="coach"
+          [relatedCertifier]="getRelatedUsers(coach.certified_by_id)"
+          [relatedReceipts]="getRelatedReceipts(coach._id)"
+          [relatedPrograms]="getRelatedPrograms(coach._id)"
         ></app-coach-programs>
 
         <app-coach-experiences
