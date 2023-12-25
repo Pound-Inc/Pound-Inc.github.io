@@ -33,6 +33,8 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     this.programSubscription = this.programService.programs.subscribe(
       (programs: TrainingProgram[]) => {
         this.programs = programs;
+        console.log(this.programs);
+        
       }
     );
     this.plansSubscription = this.planService.plans.subscribe(
@@ -44,7 +46,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     );
     this.coachesSubscription = this.userService.users.subscribe(
       (users: any[]) => {
-        this.coaches = users.filter((user) => user.roles === RoleEnum.Worker);
+        this.coaches = users.filter((user) => user.roles.Worker);
       }
     );
   }

@@ -8,7 +8,7 @@ import { Coach } from 'src/app/model/coach.model';
 import { ProgramPlan } from 'src/app/model/program-plan.model';
 import { Receipt } from 'src/app/model/receipt.model';
 import { TrainingProgram } from 'src/app/model/training-program.model';
-import { RoleEnum, User } from 'src/app/model/user.model';
+import { User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-landing-top-coaches',
@@ -110,5 +110,23 @@ export class LandingTopCoachesComponent implements OnInit, OnDestroy {
 
   public getStarRange(): number[] {
     return Array.from({ length: 5 }, (_, index) => index);
+  }
+
+  public cutDescription(coachDesc: string) {
+    const maxLength = 80;
+
+    if (coachDesc.length > maxLength) {
+      const truncatedDesc = coachDesc.substring(0, maxLength);
+      const lastSpaceIndex = truncatedDesc.lastIndexOf(' ');
+
+      if (lastSpaceIndex !== -1) {
+        return {
+          isLong: true,
+          desc: truncatedDesc.substring(0, lastSpaceIndex),
+        };
+      }
+    }
+
+    return { isLong: false, desc: coachDesc };
   }
 }

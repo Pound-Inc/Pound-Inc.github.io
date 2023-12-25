@@ -6,18 +6,18 @@ import {
   firstValueFrom,
   map,
 } from 'rxjs';
-import { ProgramPlan } from 'src/app/model/program-plan.model';
 import { TrainingProgram } from 'src/app/model/training-program.model';
 import { HttpClient } from '@angular/common/http';
 import { PLANS_API } from 'src/common/constants/endpoints';
 import { API_Response } from 'src/common/interfaces/response.interface';
 import { HeadersService } from 'src/common/services/headers.service';
+import { ProgramComment } from 'src/app/model/comment.model';
 
 @Injectable({ providedIn: 'root' })
-export class PlanService {
+export class CommentService {
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _search$ = new Subject<void>();
-  private _plans$ = new BehaviorSubject<ProgramPlan[]>([]);
+  private _comments$ = new BehaviorSubject<ProgramComment[]>([]);
   // Related Program:
   private programRowData = new BehaviorSubject<any>(null);
 
@@ -26,20 +26,20 @@ export class PlanService {
     private http: HttpClient
   ) {}
 
-  get plans() {
-    return this._plans$.asObservable();
+  get comments() {
+    return this._comments$.asObservable();
   }
 
-  async getRelatedPlans(programId: string) {
+  async getRelatedComments(programId: string) {
     return await firstValueFrom(
       this.http
-        .get<API_Response>(`${PLANS_API}/plans/${programId}`, {
+        .get<API_Response>(`${PLANS_API}/comments/${programId}`, {
           headers: this.headersService.getHeaders,
           withCredentials: true,
         })
         .pipe(
           map((response: API_Response) => {
-            this._plans$ = response.data;
+            this._comments$ = response.data;
             return {
               status: response.status,
               message: response.message,

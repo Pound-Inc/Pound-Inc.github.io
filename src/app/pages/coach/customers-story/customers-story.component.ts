@@ -13,10 +13,11 @@ export class CustomersStoryComponent {
   constructor() {
     this.clientStories = [
       {
-        storyId: '00912939',
-        clientId: '4441444',
+        story_id: '00912939',
+        program_id: '',
+        user_id: '4441444',
         title: 'قصة سارة',
-        desc: 'من الصفر للقمة',
+        description: 'من الصفر للقمة',
         imgs: [
           'https://picsum.photos/1920/1080?random=4',
           'https://picsum.photos/1920/1080?random=5',
@@ -25,10 +26,11 @@ export class CustomersStoryComponent {
       },
 
       {
-        storyId: '00912939',
-        clientId: '4441444',
+        story_id: '00912939',
+        program_id: '',
+        user_id: '4441444',
         title: 'قصة احمد',
-        desc: 'من الصفر للقمة',
+        description: 'من الصفر للقمة',
         imgs: [
           'https://picsum.photos/1920/1080?random=6',
           'https://picsum.photos/1920/1080?random=7',

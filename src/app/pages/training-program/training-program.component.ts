@@ -38,140 +38,36 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
   public comments: ProgramComment[];
   public columns: DataGridColumn[] = planTableColumns;
 
-  private programSubscription: Subscription;
-  private receiptSubscription: Subscription;
-  private planSubscription: Subscription;
-  private userSubscription: Subscription;
-  private programCommentSubscription: Subscription;
+  private routeSubscription: Subscription;
 
-  constructor(
-    private programService: ProgramService,
-    private planService: PlanService,
-    private receiptService: ReceiptService,
-    private userService: UserService,
-    private programCommentService: ProgramCommentService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private modalService: NgbModal
-  ) {}
+  constructor(private route: ActivatedRoute, private modalService: NgbModal) {}
   ngOnInit(): void {
-    const programId = this.route.snapshot.paramMap.get('programId');
-    this.programSubscription = this.programService.programs.subscribe(
-      (programs: TrainingProgram[]) => {
-        if (programs) {
-          const program = programs.find((p) => p._id === programId);
-          if (program) {
-            this.program = program;
-          } else {
-            this.router.navigate(['/programs']);
-          }
-        }
-      }
-    );
-    this.planSubscription = this.planService.plans.subscribe(
-      (plans: ProgramPlan[]) => {
-        if (plans) {
-          const plan = plans.filter((p) => p.program_id === this.program._id);
-          if (plan) {
-            this.plans = plan;
-          }
-        }
-      }
-    );
+    this.routeSubscription = this.route.data.subscribe((data) => {
+      const programData: {
+        coach: Coach;
+        program: TrainingProgram;
+        plans: ProgramPlan[];
+        receipts: Receipt[];
+        comments: ProgramComment[];
+      } = data['program'];
 
-    this.userSubscription = this.userService.users.subscribe(
-      (users: User[] | Coach[]) => {
-        if (users) {
-          this.users = users;
-          const coach = users.find(
-            (u) => u._id === this.program.coach_id
-          ) as Coach;
+      this.program = programData.program;
+      this.coach = programData.coach;
+      this.plans = programData.plans;
+      this.receipts = programData.receipts;
+      this.comments = programData.comments;
 
-          if (coach) {
-            this.coach = coach;
-          }
-        }
-      }
-    );
-
-    this.receiptSubscription = this.receiptService
-      .getReceipts()
-      .subscribe((receipts: Receipt[]) => {
-        this.receipts = receipts;
-      });
-
-    this.planSubscription = this.planService.plans.subscribe(
-      (plans: ProgramPlan[]) => {
-        const relatedPlans = plans.filter(
-          (p) => p.program_id === this.program._id
-        );
-        if (relatedPlans) {
-          this.plans = relatedPlans;
-        }
-      }
-    );
-
-    this.programCommentSubscription = this.programCommentService
-      .getComments()
-      .subscribe((comments: ProgramComment[]) => {
-        if (comments) {
-          const relatedComments = comments.filter(
-            (comment) => comment.program_id === this.program._id
-          );
-          if (relatedComments.length > 0) {
-            this.comments = comments;
-          }
-        }
-      });
+      // this.receipts = data['receipts'];
+    });
   }
   ngOnDestroy(): void {
-    if (this.programSubscription) {
-      this.programSubscription.unsubscribe();
-    }
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-    }
-    if (this.planSubscription) {
-      this.planSubscription.unsubscribe();
-    }
-    if (this.receiptSubscription) {
-      this.receiptSubscription.unsubscribe();
-    }
-    if (this.programCommentSubscription) {
-      this.programCommentSubscription.unsubscribe();
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
     }
   }
 
-  public getRelatedPlans(programId: string): ProgramPlan[] | undefined {
-    return this.plans
-      ? this.plans.filter((plan) => plan.program_id === programId)
-      : undefined;
-  }
-  public getRelatedUser(userId: string): User | undefined {
-    return this.users
-      ? this.users.find((user) => user._id === userId)
-      : undefined;
-  }
-
-  public getRelatedReceipts(): Receipt[] {
-    let receipts: Receipt[] = [];
-    const relatedPlans = this.getRelatedPlans(this.program._id);
-    if (relatedPlans)
-      for (const plan of relatedPlans) {
-        const receipt = this.receipts.find(
-          (receipt) => receipt.plan_id === plan._id
-        );
-        if (receipt) {
-          receipts.push(receipt);
-        }
-      }
-    return receipts;
-  }
-  public getRelatedPlanReceipts(planId: string): Receipt[] {
-    const receipts = this.receipts.filter(
-      (receipt) => receipt.plan_id === planId
-    );
-    return receipts;
+  getRelatedReceipts(planId: string) {
+    return this.receipts.filter((r) => r.plan_id === planId);
   }
 
   openXl() {

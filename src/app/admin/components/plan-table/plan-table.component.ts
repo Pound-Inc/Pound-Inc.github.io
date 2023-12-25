@@ -35,16 +35,13 @@ export class PlanTableComponent implements OnInit, OnDestroy {
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  constructor(private planService: PlanService) {
-    this.tableConfig = this.planService._state;
-  }
+  constructor(private planService: PlanService) {}
   ngOnInit(): void {
     this.planService.plans.subscribe((plans: ProgramPlan[]) => {
       if (plans) {
         this.plans$ = plans;
         this.filteredPlans$ = plans;
         this.selectedRow = null;
-        this.total$ = this.planService.total$;
       }
     });
     this.programSubscription = this.planService
@@ -67,9 +64,6 @@ export class PlanTableComponent implements OnInit, OnDestroy {
         header.direction = '';
       }
     });
-
-    this.planService.sortColumn = column;
-    this.planService.sortDirection = direction;
   }
 
   formatValue(value: any) {

@@ -37,8 +37,6 @@ export class ProgramTableComponent {
     private planService: PlanService
   ) {
     this.programs$ = this.programService.programs;
-    this.total$ = this.programService.total$;
-    this.tableConfig = this.programService._state;
   }
 
   onSort({ column, direction }: SortEvent) {

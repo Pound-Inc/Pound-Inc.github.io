@@ -71,8 +71,12 @@
                 ></span>
               </a>
               <p class="text-muted mt-1 mb-0 col-7 m-auto">
-                <small>
-                  {{ coach.description }}
+                <small *ngIf="cutDescription(coach.description).isLong">
+                  {{ cutDescription(coach.description).desc }}
+                  ...
+                </small>
+                <small *ngIf="!cutDescription(coach.description).isLong">
+                  {{ cutDescription(coach.description).desc }}
                 </small>
               </p>
             </div>
