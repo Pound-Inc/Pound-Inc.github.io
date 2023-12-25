@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -6,17 +6,24 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { UserService } from 'src/app/admin/services/user.service';
 import Validation from 'src/app/utils/register.validation';
+import { AuthService } from '../../services/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   translateBaseRoute = 'routing.auth.register.';
+  invalidMessage: boolean = false;
   public step = 1;
+  public firstInputs: any;
+  public clientIpAddress: string;
+  private httpSubscription: Subscription;
 
   form: FormGroup = new FormGroup({
     name: new FormControl(''),
@@ -26,7 +33,17 @@ export class RegisterComponent implements OnInit {
   });
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private http: HttpClient
+  ) {}
+
+  ngOnDestroy(): void {
+    if (this.httpSubscription) {
+      this.httpSubscription.unsubscribe();
+    }
+  }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(
@@ -60,9 +77,18 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.step = 2;
-
-    console.log(JSON.stringify(this.form.value, null, 2));
+    this.userService
+      .validateCreateUserFirstStep(this.form.getRawValue().email)
+      .then(() => {
+        this.step = 2;
+        this.firstInputs = this.form.value;
+      })
+      .catch(() => {
+        this.invalidMessage = true;
+        setTimeout(() => {
+          this.invalidMessage = false;
+        }, 5000);
+      });
   }
 
   onReset(): void {

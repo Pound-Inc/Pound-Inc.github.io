@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { filter } from 'rxjs';
+import { Subscription, filter } from 'rxjs';
 import { AuthService } from './auth/services/auth.service';
 import { HeadersService } from 'src/common/services/headers.service';
+import { UserService } from './admin/services/user.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +14,15 @@ import { HeadersService } from 'src/common/services/headers.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  private httpSubscription: Subscription;
+
   constructor(
     private router: Router,
     private meta: Meta,
     private translate: TranslateService,
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService,
+    private http: HttpClient
   ) {
     if (!localStorage.getItem('selectedLanguage')) {
       localStorage.setItem('selectedLanguage', 'ar');
@@ -49,8 +55,12 @@ export class AppComponent implements OnInit {
 
     // Set the text direction based on the selected language
     this.setDirection(savedLanguage);
-    console.log("here");
-    
+
+    this.httpSubscription = this.http
+      .get('http://api.ipify.org/?format=json')
+      .subscribe((res: any) => {
+        this.userService.setUserInfo(res.ip);
+      });
   }
 
   private setCanonicalUrl() {

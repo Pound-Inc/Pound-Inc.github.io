@@ -11,6 +11,7 @@ import {
   of,
   firstValueFrom,
   map,
+  catchError,
 } from 'rxjs';
 import { SortColumn, SortDirection } from '../sortable.directive';
 import { Gender, User, UserRole } from 'src/app/model/user.model';
@@ -156,8 +157,6 @@ export class UserService {
           })
           .pipe(
             map((response: API_Response) => {
-              console.log(response);
-
               return {
                 status: response.status,
                 message: response.message,
@@ -171,5 +170,89 @@ export class UserService {
     } catch (error) {
       return error;
     }
+  }
+
+  async validateCreateUserFirstStep(userEmail: string) {
+    return await firstValueFrom(
+      this.http
+        .post<any>(
+          `${AUTH_API}/users/validateEmail`,
+          { email: userEmail },
+          {
+            withCredentials: true,
+          }
+        )
+        .pipe(
+          map((response: any) => {
+            if (response) {
+              return;
+            }
+          }),
+          catchError((error) => of(error))
+        )
+    );
+  }
+
+  async createNewUser(user: any) {
+    return await firstValueFrom(
+      this.http
+        .post<API_Response>(`${AUTH_API}/users`, user, {
+          withCredentials: true,
+        })
+        .pipe(
+          map((response: API_Response) => {
+            if (response) {
+              localStorage.setItem('isUser', 'true');
+              return response.data;
+            }
+          }),
+          catchError((error) => of(error))
+        )
+    );
+  }
+
+  async setUserInfo(clientIpAddress: string) {
+    //check if exists already
+    if (!localStorage.getItem('userInfo')) {
+      return await firstValueFrom(
+        this.http.get<any>(`https://ipwho.is/${clientIpAddress}`).pipe(
+          map(async (response) => {
+            if (response) {
+              const userLocaleStorage = {
+                ip: response.ip,
+                continent: response.continent,
+                continent_code: response.continent_code,
+                country: response.country,
+                country_code: response.country_code,
+                region: response.region,
+                city: response.city,
+                postal: response.postal,
+                flag: response.flag,
+                timezone: response.timezone,
+              };
+              localStorage.setItem(
+                'userInfo',
+                JSON.stringify(userLocaleStorage)
+              );
+
+              // insert to guests
+              await firstValueFrom(
+                this.http
+                  .post<API_Response>(
+                    `${AUTH_API}/users/guest`,
+                    userLocaleStorage,
+                    {
+                      withCredentials: true,
+                    }
+                  )
+                  .pipe(catchError((error) => of(`Bad Promise: ${error}`)))
+              );
+              return;
+            }
+          })
+        )
+      );
+    }
+    return;
   }
 }

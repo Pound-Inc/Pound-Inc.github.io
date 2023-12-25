@@ -1,188 +1,252 @@
-<div class="background-container" *ngIf="step === 2">
+<div
+  style="background-color: black; overflow-y: hidden"
+  *ngIf="step === 2"
+  class="h-100"
+>
+  <div class="bg-video-wrapper">
+    <iframe
+      src="https://player.vimeo.com/video/302450585?end=24s&background=1&autoplay=1&loop=1&byline=0&title=0#t=20s"
+    ></iframe>
+  </div>
   <div
     class="container d-flex align-items-center justify-content-center"
-    style="min-height: 100vh"
+    style="margin-top: 15vh"
   >
     <div class="row col-12 col-md-9 col-lg-5 m-4">
       <div class="register-form">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label>{{ translateBaseRoute + "height" | translate }}</label>
-            <div class="input-group">
-              <input
-                type="text"
-                formControlName="height"
-                class="form-control"
-                placeholder="{{ translateBaseRoute + 'eg' | translate }} : 180"
-                [ngClass]="{ 'is-invalid': submitted && f['height'].errors }"
-              />
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  {{ translateBaseRoute + "cm" | translate }}
+          <div class="row gap-2 d-flex justify-content-center">
+            <div class="col form-group">
+              <label>{{ translateBaseRoute + "height" | translate }}</label>
+              <div class="input-group">
+                <input
+                  type="number"
+                  formControlName="height"
+                  class="form-control"
+                  placeholder="{{
+                    translateBaseRoute + 'eg' | translate
+                  }} : 180"
+                  [ngClass]="{ 'is-invalid': submitted && f['height'].errors }"
+                />
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    {{ translateBaseRoute + "cm" | translate }}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div
-              *ngIf="submitted && f['height'].errors"
-              class="invalid-feedback"
-            >
-              <div *ngIf="f['height'].errors['required']">
-                {{ translateBaseRoute + "height" | translate }}
-                {{ translateBaseRoute + "required" | translate }}
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>{{ translateBaseRoute + "weight" | translate }}</label>
-            <div class="input-group">
-              <input
-                type="text"
-                formControlName="weight"
-                class="form-control"
-                placeholder="{{ translateBaseRoute + 'eg' | translate }} : 70"
-                [ngClass]="{ 'is-invalid': submitted && f['weight'].errors }"
-              />
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  {{ translateBaseRoute + "kg" | translate }}
-                </div>
-              </div>
-            </div>
-            <div
-              *ngIf="submitted && f['weight'].errors"
-              class="invalid-feedback"
-            >
-              <div *ngIf="f['weight'].errors['required']">
-                {{ translateBaseRoute + "weight" | translate }}
-                {{ translateBaseRoute + "required" | translate }}
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>{{ translateBaseRoute + "age" | translate }}</label>
-            <div class="input-group">
-              <input
-                type="text"
-                placeholder="{{ translateBaseRoute + 'eg' | translate }} : 22"
-                formControlName="age"
-                class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f['age'].errors }"
-              />
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  {{ translateBaseRoute + "year" | translate }}
-                </div>
-              </div>
-            </div>
-            <div *ngIf="submitted && f['age'].errors" class="invalid-feedback">
-              <div *ngIf="f['age'].errors['required']">
-                {{ translateBaseRoute + "age" | translate }}
-                {{ translateBaseRoute + "required" | translate }}
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>{{ translateBaseRoute + "gender" | translate }}</label>
-            <select
-              formControlName="gender"
-              class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && f['gender'].errors }"
-            >
-              <option *ngFor="let gender of genders" [ngValue]="gender">
-                {{ translateBaseRoute + gender | translate }}
-              </option>
-            </select>
-            <div
-              *ngIf="submitted && f['gender'].errors"
-              class="invalid-feedback"
-            >
-              <div *ngIf="f['gender'].errors['required']">
-                {{ translateBaseRoute + "gender" | translate }}
-                {{ translateBaseRoute + "required" | translate }}
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>{{
-              translateBaseRoute + "fitness level" | translate
-            }}</label>
-            <select
-              formControlName="fitnessLevel"
-              class="form-control"
-              [ngClass]="{
-                'is-invalid': submitted && f['fitnessLevel'].errors
-              }"
-            >
-              <option
-                *ngFor="let fintessLevel of fitnessLevels"
-                [ngValue]="fintessLevel"
+              <div
+                *ngIf="submitted && f['height'].errors"
+                class="invalid-feedback"
               >
-                {{ translateBaseRoute + fintessLevel | translate }}
-              </option>
-            </select>
-            <div
-              *ngIf="submitted && f['fitnessLevel'].errors"
-              class="invalid-feedback"
-            >
-              <div *ngIf="f['fitnessLevel'].errors['required']">
-                {{ translateBaseRoute + "fitness level" | translate }}
-                {{ translateBaseRoute + "required" | translate }}
+                <div *ngIf="f['height'].errors['required']">
+                  {{ translateBaseRoute + "height" | translate }}
+                  {{ translateBaseRoute + "required" | translate }}
+                </div>
+              </div>
+            </div>
+            <div class="col form-group">
+              <label>{{ translateBaseRoute + "weight" | translate }}</label>
+              <div class="input-group">
+                <input
+                  type="number"
+                  formControlName="weight"
+                  class="form-control"
+                  placeholder="{{ translateBaseRoute + 'eg' | translate }} : 70"
+                  [ngClass]="{ 'is-invalid': submitted && f['weight'].errors }"
+                />
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    {{ translateBaseRoute + "kg" | translate }}
+                  </div>
+                </div>
+              </div>
+              <div
+                *ngIf="submitted && f['weight'].errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f['weight'].errors['required']">
+                  {{ translateBaseRoute + "weight" | translate }}
+                  {{ translateBaseRoute + "required" | translate }}
+                </div>
               </div>
             </div>
           </div>
 
-          
-          <div class="form-group">
-            <label>{{ translateBaseRoute + "goals" | translate }}:</label>
-            <div>
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  formControlName="weightLoss"
-                  class="form-check-input"
-                />
-                <label class="form-check-label">
-                  {{ translateBaseRoute + "weight loss" | translate }}
-                </label>
+          <div class="row gap-2 d-flex justify-content-center">
+            <div class="col form-group">
+              <label>{{ translateBaseRoute + "country" | translate }}</label>
+              <div class="input-group">
+                <select
+                  #country
+                  name="country"
+                  id="country"
+                  class="form-control"
+                  (change)="onCountryChange()"
+                  disabled
+                >
+                  <option
+                    *ngFor="let country of countriesAR"
+                    [value]="country | json"
+                    [selected]="country.isoCode === preSelectedCountry.isoCode"
+                  >
+                    {{ country.flag }}&nbsp;&nbsp;{{ country.name }}
+                  </option>
+                </select>
               </div>
+            </div>
+            <div class="col form-group">
+              <label>{{ translateBaseRoute + "city" | translate }}</label>
+              <div class="input-group">
+                <select
+                  *ngIf="cities"
+                  #city
+                  name="city"
+                  class="form-control"
+                  id="city"
+                  (change)="onCityChange()"
+                >
+                  <option *ngFor="let city of cities" [value]="city | json" [selected]="city === cities[0]">
+                    {{ city.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
 
-              <div class="form-check">
+          <div class="row gap-2 d-flex justify-content-center">
+            <div class="form-group col">
+              <label>{{ translateBaseRoute + "dob" | translate }}</label>
+              <div class="input-group" style="overflow: visible">
                 <input
-                  type="checkbox"
-                  formControlName="muscleGain"
-                  class="form-check-input"
+                  class="form-control"
+                  placeholder="yyyy-mm-dd"
+                  name="dp"
+                  formControlName="dob"
+                  [(ngModel)]="model"
+                  ngbDatepicker
+                  #d="ngbDatepicker"
+                  [minDate]="{ year: 1950, month: 1, day: 1 }"
+                  [maxDate]="{ year: 2010, month: 12, day: 31 }"
                 />
-                <label class="form-check-label">
-                  {{ translateBaseRoute + "bulk" | translate }}
-                </label>
+                <div class="input-group-prepend">
+                  <button
+                    class="btn btn-danger mdi mdi-calendar"
+                    (click)="d.toggle()"
+                    type="button"
+                  ></button>
+                </div>
               </div>
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  formControlName="muscleGain"
-                  class="form-check-input"
-                />
-                <label class="form-check-label">
-                  {{ translateBaseRoute + "cut" | translate }}
-                </label>
+              <div
+                *ngIf="submitted && f['dob'].errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f['dob'].errors['required']">
+                  {{ translateBaseRoute + "dob" | translate }}
+                  {{ translateBaseRoute + "required" | translate }}
+                </div>
               </div>
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  formControlName="muscleGain"
-                  class="form-check-input"
-                />
-                <label class="form-check-label">
-                  {{ translateBaseRoute + "muscle gain" | translate }}
-                </label>
+            </div>
+            <div class="form-group col">
+              <label>{{ translateBaseRoute + "gender" | translate }}</label>
+              <select
+                formControlName="gender"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['gender'].errors }"
+              >
+                <option *ngFor="let gender of genders" [ngValue]="gender">
+                  {{ translateBaseRoute + gender | translate }}
+                </option>
+              </select>
+              <div
+                *ngIf="submitted && f['gender'].errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f['gender'].errors['required']">
+                  {{ translateBaseRoute + "gender" | translate }}
+                  {{ translateBaseRoute + "required" | translate }}
+                </div>
               </div>
+            </div>
+          </div>
 
-              <!-- Add more checkboxes for other goals -->
+          <div class="row gap-2 d-flex justify-content-center">
+            <div class="form-group col">
+              <label>{{
+                translateBaseRoute + "fitness level" | translate
+              }}</label>
+              <select
+                formControlName="fitnessLevel"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': submitted && f['fitnessLevel'].errors
+                }"
+              >
+                <option
+                  *ngFor="let fintessLevel of fitnessLevels"
+                  [ngValue]="fintessLevel"
+                >
+                  {{ translateBaseRoute + fintessLevel | translate }}
+                </option>
+              </select>
+              <div
+                *ngIf="submitted && f['fitnessLevel'].errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f['fitnessLevel'].errors['required']">
+                  {{ translateBaseRoute + "fitness level" | translate }}
+                  {{ translateBaseRoute + "required" | translate }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col">
+              <label>{{ translateBaseRoute + "goals" | translate }}:</label>
+              <div>
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    formControlName="weightLoss"
+                    class="form-check-input"
+                  />
+                  <label class="form-check-label">
+                    {{ translateBaseRoute + "weight loss" | translate }}
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    formControlName="bulk"
+                    class="form-check-input"
+                  />
+                  <label class="form-check-label">
+                    {{ translateBaseRoute + "bulk" | translate }}
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    formControlName="cut"
+                    class="form-check-input"
+                  />
+                  <label class="form-check-label">
+                    {{ translateBaseRoute + "cut" | translate }}
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    formControlName="muscleGain"
+                    class="form-check-input"
+                  />
+                  <label class="form-check-label">
+                    {{ translateBaseRoute + "muscle gain" | translate }}
+                  </label>
+                </div>
+
+                <!-- Add more checkboxes for other goals -->
+              </div>
             </div>
           </div>
 
@@ -194,7 +258,7 @@
             <p style="font-size: 10px" class="mt-2 px-1">
               {{
                 translateBaseRoute +
-                  "submitting means that you provide accurate information."
+                  "Join us today to experience the best service tailored just for you."
                   | translate
               }}
             </p>

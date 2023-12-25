@@ -2,7 +2,7 @@
 // $primary: purple;
 
 @import "bootstrap/scss/bootstrap";
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;500&display=swap");
 
 .fi {
   border-radius: 3px !important;
@@ -122,7 +122,6 @@ td {
   font-weight: 300;
   padding-right: 30px;
   min-width: max-content;
-  
 }
 thead tr {
   height: 50px;
@@ -145,5 +144,18 @@ thead tr {
   text-overflow: ellipsis;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+input,
+select {
+  text-align: right !important;
+  float: right;
+  margin-bottom: 15px;
+}

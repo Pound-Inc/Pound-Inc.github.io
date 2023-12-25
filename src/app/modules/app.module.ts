@@ -3,7 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from '../app.component';
-import { NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbAlertModule,
+  NgbDatepickerModule,
+  NgbModule,
+  NgbToastModule,
+} from '@ng-bootstrap/ng-bootstrap';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -35,7 +40,7 @@ import { CoachInfoComponent } from '../pages/coach/coach-info/coach-info.compone
 import { CoachProgramsComponent } from '../pages/coach/coach-programs/coach-programs.component';
 import { CoachExperiencesComponent } from '../pages/coach/coach-experiences/coach-experiences.component';
 import { CustomersStoryComponent } from '../pages/coach/customers-story/customers-story.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from '../auth/pages/register/register.component';
 import { RegisterFinalComponent } from '../auth/pages/register-final/register-final.component';
 import { MaleComponent } from '../pages/male/male.component';
@@ -49,7 +54,9 @@ import { PlanCompareModalComponent } from '../pages/training-program/plan-compar
 import { ToastComponent } from '../../common/components/toast/toast.component';
 import { ToastsComponent } from 'src/common/components/toasts/toasts.component';
 import { NgTemplateOutlet } from '@angular/common';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RegisterOkComponent } from '../auth/pages/register-ok/register-ok.component';
+import { RegisterErrorComponent } from '../auth/pages/register-error/register-error.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -93,6 +100,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     PlanCompareModalComponent,
     ToastComponent,
     ToastsComponent,
+    RegisterOkComponent,
+    RegisterErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,6 +112,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthRoutingModule,
     HttpClientModule,
     MatSnackBarModule,
+    NgbDatepickerModule,
+    NgbAlertModule,
+    FormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

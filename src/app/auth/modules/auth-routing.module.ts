@@ -4,6 +4,8 @@ import { LoginComponent } from '../pages/login/login.component';
 import { RegisterComponent } from '../pages/register/register.component';
 import { onBoardingGuard } from '../guards/onboarding.guard';
 import { onBoardingDeactivateGuard } from '../guards/onboarding.da.guard';
+import { RegisterOkComponent } from '../pages/register-ok/register-ok.component';
+import { RegisterErrorComponent } from '../pages/register-error/register-error.component';
 
 const routes: Routes = [
   {
@@ -18,6 +20,18 @@ const routes: Routes = [
       {
         path: 'register',
         component: RegisterComponent,
+        canActivate: [onBoardingGuard],
+        canDeactivate: [onBoardingDeactivateGuard],
+      },
+      {
+        path: 'register-ok',
+        component: RegisterOkComponent,
+        canActivate: [onBoardingGuard],
+        canDeactivate: [onBoardingDeactivateGuard],
+      },
+      {
+        path: 'register-error',
+        component: RegisterErrorComponent,
         canActivate: [onBoardingGuard],
         canDeactivate: [onBoardingDeactivateGuard],
       },
