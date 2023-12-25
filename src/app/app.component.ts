@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
     this.setDirection(savedLanguage);
 
     this.httpSubscription = this.http
-      .get('http://api.ipify.org/?format=json')
+      .get('https://api.ipify.org/?format=json')
       .subscribe((res: any) => {
         this.userService.setUserInfo(res.ip);
       });
