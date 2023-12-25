@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {
+  RouterModule,
+  Routes,
+  provideRouter,
+  withHashLocation,
+} from '@angular/router';
 import { LandingComponent } from '../pages/landing/landing.component';
 import { coachResolver } from '../resolvers/coach.resolver';
 import { TrainingProgramComponent } from '../pages/training-program/training-program.component';
@@ -33,5 +38,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers: [provideRouter(routes, withHashLocation())],
 })
 export class AppRoutingModule {}
