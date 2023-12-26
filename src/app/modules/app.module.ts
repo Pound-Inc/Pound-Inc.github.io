@@ -58,6 +58,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RegisterOkComponent } from '../auth/pages/register-ok/register-ok.component';
 import { RegisterErrorComponent } from '../auth/pages/register-error/register-error.component';
 import { ProgramCommentsComponent } from '../pages/training-program/program-comments/program-comments.component';
+import { ProgramStoriesComponent } from '../pages/training-program/program-stories/program-stories.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -104,6 +105,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RegisterOkComponent,
     RegisterErrorComponent,
     ProgramCommentsComponent,
+    ProgramStoriesComponent,
   ],
   imports: [
     BrowserModule,

@@ -167,7 +167,7 @@
           <h4 class="mt-lg-5 mt-4">التركيز الأساسى :</h4>
 
           <div
-            class="progress-box mt-4"
+            class="progress-box mt-4 mb-4"
             *ngFor="let item of program.phases | keyvalue"
           >
             <h6 class="title text-muted">
@@ -186,20 +186,12 @@
           </div>
 
           <!-- Experience Start -->
-          <h4 class="mt-lg-5 mt-4">آراء العملاء :</h4>
+          <!-- !STORIES -->
+          <app-program-stories [stories]="stories"></app-program-stories>
           <!-- !COMMENTS -->
           <app-program-comments [comments]="comments"></app-program-comments>
-
-          <!--end row-->
-          <!-- Experience End -->
-
-          <!-- Add more project cards as needed -->
         </div>
       </div>
     </div>
-    <!--end col-->
   </div>
-  <!--enn row-->
-  <!--end container-->
 </section>
-<!--end section-->

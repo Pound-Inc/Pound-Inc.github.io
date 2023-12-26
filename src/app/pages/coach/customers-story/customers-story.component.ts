@@ -1,42 +1,29 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Coach } from 'src/app/model/coach.model';
+import { ProgramStory } from 'src/app/model/story.model';
+import { TrainingProgram } from 'src/app/model/training-program.model';
+import { User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-customers-story',
   templateUrl: './customers-story.component.html',
   styleUrls: ['./customers-story.component.scss'],
 })
-export class CustomersStoryComponent {
+export class CustomersStoryComponent implements OnInit {
   @Input() translateBaseRoute: string;
   @Input() coach: Coach;
-  clientStories: any;
-  constructor() {
-    this.clientStories = [
-      {
-        story_id: '00912939',
-        program_id: '',
-        user_id: '4441444',
-        title: 'قصة سارة',
-        description: 'من الصفر للقمة',
-        imgs: [
-          'https://picsum.photos/1920/1080?random=4',
-          'https://picsum.photos/1920/1080?random=5',
-        ],
-        date: new Date().toLocaleDateString(),
-      },
+  @Input() relatedStories: ProgramStory[];
+  @Input() relatedPrograms: TrainingProgram[];
+  @Input() relatedUsers: User[];
+  constructor() {}
 
-      {
-        story_id: '00912939',
-        program_id: '',
-        user_id: '4441444',
-        title: 'قصة احمد',
-        description: 'من الصفر للقمة',
-        imgs: [
-          'https://picsum.photos/1920/1080?random=6',
-          'https://picsum.photos/1920/1080?random=7',
-        ],
-        date: new Date().toLocaleDateString(),
-      },
-    ];
+  ngOnInit(): void {
+    console.log(this.relatedStories);
+  }
+
+  public getRelatedUsers(userId: string): User | undefined {
+    return this.relatedUsers
+      ? this.relatedUsers.find((user) => user._id === userId)
+      : undefined;
   }
 }

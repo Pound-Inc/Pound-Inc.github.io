@@ -26,28 +26,22 @@ export class UserService {
   }
 
   async getUsers() {
-    try {
-      const response = await firstValueFrom(
-        this.http
-          .get<API_Response>(`${AUTH_API}/users`, {
-            headers: this.headersService.getHeaders,
-            withCredentials: true,
+    return await firstValueFrom(
+      this.http
+        .get<API_Response>(`${AUTH_API}/users`, {
+          headers: this.headersService.getHeaders,
+          withCredentials: true,
+        })
+        .pipe(
+          map((response: API_Response) => {
+            return {
+              status: response.status,
+              message: response.message,
+              data: response.data,
+            };
           })
-          .pipe(
-            map((response: API_Response) => {
-              return {
-                status: response.status,
-                message: response.message,
-                data: response.data,
-              };
-            })
-          )
-      );
-
-      return response;
-    } catch (error) {
-      return error;
-    }
+        )
+    );
   }
 
   async validateCreateUserFirstStep(userEmail: string) {
@@ -137,7 +131,7 @@ export class UserService {
 
   async getUserById(userId: string) {
     console.log(userId);
-    
+
     return await firstValueFrom(
       this.http.get<any>(`${AUTH_API}/users/${userId}`).pipe(
         map((response: any) => {

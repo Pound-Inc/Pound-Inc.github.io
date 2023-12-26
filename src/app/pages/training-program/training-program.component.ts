@@ -22,6 +22,7 @@ import { DataGridColumn } from 'src/common/interfaces/datagrid.interface';
 import { PlanCompareModalComponent } from './plan-compare-modal/plan-compare-modal.component';
 import { ProgramComment } from 'src/app/model/comment.model';
 import { ProgramCommentService } from 'src/app/admin/services/program.comment.service';
+import { ProgramStory } from 'src/app/model/story.model';
 
 @Component({
   selector: 'app-training-program',
@@ -36,6 +37,7 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
   public plans: ProgramPlan[];
   public receipts: Receipt[];
   public comments: ProgramComment[];
+  public stories: ProgramStory[];
   public columns: DataGridColumn[] = planTableColumns;
 
   private routeSubscription: Subscription;
@@ -49,6 +51,7 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
         plans: ProgramPlan[];
         receipts: Receipt[];
         comments: ProgramComment[];
+        stories: ProgramStory[];
       } = data['program'];
 
       this.program = programData.program;
@@ -56,6 +59,7 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
       this.plans = programData.plans;
       this.receipts = programData.receipts;
       this.comments = programData.comments;
+      this.stories = programData.stories;
 
       // this.receipts = data['receipts'];
     });

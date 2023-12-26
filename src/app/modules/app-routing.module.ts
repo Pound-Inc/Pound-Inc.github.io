@@ -27,7 +27,6 @@ const routes: Routes = [
     canActivate: [programGuard],
     resolve: {
       program: programResolver,
-      receipts: receiptResolver,
     },
   },
   { path: 'male', component: MaleComponent },

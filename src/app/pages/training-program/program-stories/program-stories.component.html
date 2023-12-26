@@ -1,8 +1,6 @@
-<h5 class="mt-4 mb-0">
-  {{ translateBaseRoute + "customer-stories" | translate }}:
-</h5>
 <div class="row">
-  <div class="col-md-6 mt-4 pt-2" *ngFor="let story of relatedStories">
+  <h4 class="mt-lg-5 mt-4 mb-0 pb-4">قصص العملاء :</h4>
+  <div class="col-md-6 mt-4 pt-2" *ngFor="let story of stories">
     <div class="card blog blog-primary rounded border-0 shadow">
       <div class="position-relative">
         <ngb-carousel>
@@ -21,7 +19,7 @@
           </a>
         </h5>
         <div class="d-flex justify-content-between pt-2 border-top">
-          <h5 class="mb-0">{{ getRelatedUsers(story.user_id)?.name }}</h5>
+          <h5 class="mb-0">{{ getRelatedUser(story.user_id)?.name }}</h5>
           <h6 class="text-dark mb-0">{{ story.duration }}</h6>
         </div>
         <p class="text-secondary mb-0">
@@ -30,7 +28,7 @@
       </div>
       <div class="author">
         <small class="user d-block">
-          {{ getRelatedUsers(story.user_id)?.name }} <i class="uil uil-user"></i>
+          {{ getRelatedUser(story.user_id)?.name }} <i class="uil uil-user"></i>
         </small>
       </div>
     </div>

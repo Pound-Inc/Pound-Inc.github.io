@@ -30,11 +30,11 @@
             {{ translateBaseRoute + "secondary.text" | translate }}
           </p>
           <div class="mt-4">
-            <a href="" class="btn btn-lg btn-dark rounded-pill mt-1 ms-3">
+            <a [routerLink]="['/programs']" class="btn btn-lg btn-dark rounded-pill mt-1 ms-3">
               {{ translateBaseRoute + "primary.button" | translate }}
             </a>
 
-            <a href="" class="btn btn-lg btn-outline-danger rounded-pill mt-1">
+            <a [routerLink]="['/coaches']" class="btn btn-lg btn-outline-danger rounded-pill mt-1">
               {{ translateBaseRoute + "secondary.button" | translate }}
             </a>
           </div>

@@ -19,30 +19,24 @@ export class ProgramService {
   }
 
   async getPrograms() {
-    try {
-      const response = await firstValueFrom(
-        this.http
-          .get<API_Response>(`${PROGRAMS_API}`, {
-            headers: this.headersService.getHeaders,
-            withCredentials: true,
+    return await firstValueFrom(
+      this.http
+        .get<API_Response>(`${PROGRAMS_API}`, {
+          headers: this.headersService.getHeaders,
+          withCredentials: true,
+        })
+        .pipe(
+          map((response: API_Response) => {
+            this._programs$.next(response.data);
+
+            return {
+              status: response.status,
+              message: response.message,
+              data: response.data,
+            };
           })
-          .pipe(
-            map((response: API_Response) => {
-              this._programs$.next(response.data);
-
-              return {
-                status: response.status,
-                message: response.message,
-                data: response.data,
-              };
-            })
-          )
-      );
-
-      return response;
-    } catch (error) {
-      return error;
-    }
+        )
+    );
   }
 
   async getProgramById(programId: string) {
