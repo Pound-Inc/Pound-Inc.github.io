@@ -16,12 +16,11 @@ export class CoachProgramsComponent {
   @Input() relatedPrograms: TrainingProgram[] | undefined;
   @Input() relatedCertifier: User | undefined;
   @Input() relatedReceipts: Receipt[];
-  public plans: ProgramPlan[];
+  @Input() relatedPlans: ProgramPlan[];
 
-  public getRelatedPlan(programId: string): ProgramPlan | undefined {
-    return this.plans
-      ? this.plans.find((plan) => plan.program_id === programId)
-      : undefined;
+  public startingPrice(programId: string) {
+    const plan = this.relatedPlans.find((p) => p.program_id === programId);
+    return plan ? plan.price : 0;
   }
 
   public getColor(value: number): string {

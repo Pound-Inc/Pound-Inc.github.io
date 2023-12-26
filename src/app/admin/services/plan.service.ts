@@ -30,6 +30,26 @@ export class PlanService {
     return this._plans$.asObservable();
   }
 
+  async getPlans() {
+    return await firstValueFrom(
+      this.http
+        .get<API_Response>(`${PLANS_API}/plans`, {
+          headers: this.headersService.getHeaders,
+          withCredentials: true,
+        })
+        .pipe(
+          map((response: API_Response) => {
+            this._plans$ = response.data;
+            return {
+              status: response.status,
+              message: response.message,
+              data: response.data,
+            };
+          })
+        )
+    );
+  }
+
   async getRelatedPlans(programId: string) {
     return await firstValueFrom(
       this.http

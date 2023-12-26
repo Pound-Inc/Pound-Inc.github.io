@@ -23,17 +23,23 @@ export const coachResolver: ResolveFn<any> = async (
 
   const relatedPrograms = programs.filter((p) => p.coach_id === coachId);
   let relatedStories: any[] = [];
+  let relatedReceipts: any[] = [];
   const receipts = receiptService.getReceiptsTemp();
-  let getRelatedPlans: any[] = [];
+  let relatedPlans: any[] = [];
   if (relatedPrograms) {
     for (const program of relatedPrograms) {
       const plans = (await planService.getRelatedPlans(program._id))
         .data as any[];
-      getRelatedPlans = [...getRelatedPlans, ...plans];
-      // for (const plan of plans) {
-      // }
+      relatedPlans = [...relatedPlans, ...plans];
       const story = (await storyService.getRelatedStories(program._id)).data;
       relatedStories = [...relatedStories, ...story];
+    }
+  }
+
+  if (relatedPlans) {
+    for (const plan of relatedPlans) {
+      const planReceipts = receipts.filter((r) => r.plan_id === plan._id);
+      relatedReceipts = [...relatedReceipts, ...planReceipts];
     }
   }
   const users = (await userService.getUsers()).data;
@@ -45,7 +51,7 @@ export const coachResolver: ResolveFn<any> = async (
     users: users,
     programs: relatedPrograms,
     stories: relatedStories,
-    plans: getRelatedPlans,
-    receipts: receipts,
+    plans: relatedPlans,
+    receipts: relatedReceipts,
   };
 };

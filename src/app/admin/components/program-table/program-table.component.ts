@@ -28,7 +28,6 @@ export class ProgramTableComponent {
   public total$: Observable<number>;
   public selectedRow: any;
   private modalService = inject(NgbModal);
-  public tableConfig: Table;
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
@@ -37,18 +36,6 @@ export class ProgramTableComponent {
     private planService: PlanService
   ) {
     this.programs$ = this.programService.programs;
-  }
-
-  onSort({ column, direction }: SortEvent) {
-    // resetting other headers
-    this.headers.forEach((header) => {
-      if (header.sortable !== column) {
-        header.direction = '';
-      }
-    });
-
-    this.tableConfig.sortColumn = column;
-    this.tableConfig.sortDirection = direction;
   }
 
   formatValue(value: any) {

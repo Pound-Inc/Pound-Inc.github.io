@@ -12,7 +12,6 @@
           type="text"
           class="form-control"
           name="searchTerm"
-          [(ngModel)]="tableConfig.searchTerm"
           placeholder="Search by Name..."
         />
       </div>
@@ -50,12 +49,7 @@
       <table class="table">
         <thead>
           <tr class="sticky-header">
-            <th
-              *ngFor="let key of columns"
-              scope="col"
-              sortable="name"
-              (sort)="onSort($event)"
-            >
+            <th *ngFor="let key of columns" scope="col" sortable="name">
               {{ key.name }}
             </th>
           </tr>
@@ -87,19 +81,9 @@
     </form>
   </div>
   <div class="d-flex justify-content-between p-2">
-    <ngb-pagination
-      [collectionSize]="(total$ | async)!"
-      [(page)]="tableConfig.page"
-      [pageSize]="tableConfig.pageSize"
-    >
-    </ngb-pagination>
+    <ngb-pagination [collectionSize]="(total$ | async)!"> </ngb-pagination>
 
-    <select
-      class="form-select"
-      style="width: auto"
-      name="pageSize"
-      [(ngModel)]="tableConfig.pageSize"
-    >
+    <select class="form-select" style="width: auto" name="pageSize">
       <option [ngValue]="10">10 items per page</option>
       <option [ngValue]="50">50 items per page</option>
       <option [ngValue]="100">100 items per page</option>

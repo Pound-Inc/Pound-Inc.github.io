@@ -18,6 +18,7 @@ import { CoachesComponent } from '../pages/coaches/coaches.component';
 import { profileGuard } from '../guards/profile.guard';
 import { programGuard } from '../guards/program.guard';
 import { programResolver } from '../resolvers/program.resolver';
+import { programsResolver } from '../resolvers/programs.resolver';
 
 const routes: Routes = [
   {
@@ -32,7 +33,13 @@ const routes: Routes = [
   { path: 'female', component: FemaleComponent },
   { path: 'article/:articleId', component: ArticleComponent },
   { path: 'story', component: StoryComponent },
-  { path: 'programs', component: ProgramsComponent },
+  {
+    path: 'programs',
+    component: ProgramsComponent,
+    resolve: {
+      programs: programsResolver,
+    },
+  },
   { path: 'coaches', component: CoachesComponent },
   {
     path: 'coach/:coachId',

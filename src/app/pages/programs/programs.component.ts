@@ -6,7 +6,8 @@ import { Coach } from '../../model/coach.model';
 import { TrainingProgram } from '../../model/training-program.model';
 import { PlanService } from '../../admin/services/plan.service';
 import { ProgramPlan } from '../../model/program-plan.model';
-import { RoleEnum } from 'src/app/model/user.model';
+import { RoleEnum, User } from 'src/app/model/user.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-programs',
@@ -17,55 +18,35 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   public translateBaseRoute = 'routing.coach.';
   public programs: TrainingProgram[] = [];
   public plans: ProgramPlan[] = [];
-  private coaches: Coach[] = [];
+  public users: User[];
 
-  private programSubscription: Subscription;
-  private coachesSubscription: Subscription;
-  private plansSubscription: Subscription;
+  private routeSubscription: Subscription;
 
-  constructor(
-    private programService: ProgramService,
-    private userService: UserService,
-    private planService: PlanService
-  ) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.programSubscription = this.programService.programs.subscribe(
-      (programs: TrainingProgram[]) => {
-        this.programs = programs;
-        console.log(this.programs);
-        
-      }
-    );
-    this.plansSubscription = this.planService.plans.subscribe(
-      (plans: ProgramPlan[]) => {
-        console.log(plans);
+    this.routeSubscription = this.route.data.subscribe((data) => {
+      const programData: {
+        users: User[];
+        programs: TrainingProgram[];
+        plans: ProgramPlan[];
+      } = data['programs'];
 
-        this.plans = plans;
-      }
-    );
-    this.coachesSubscription = this.userService.users.subscribe(
-      (users: any[]) => {
-        this.coaches = users.filter((user) => user.roles.Worker);
-      }
-    );
+      this.programs = programData.programs;
+      this.users = programData.users;
+      this.plans = programData.plans;
+    });
   }
 
   ngOnDestroy(): void {
-    if (this.programSubscription) {
-      this.programSubscription.unsubscribe();
-    }
-    if (this.coachesSubscription) {
-      this.coachesSubscription.unsubscribe();
-    }
-    if (this.plansSubscription) {
-      this.plansSubscription.unsubscribe();
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
     }
   }
 
-  public getRelatedCoach(coachId: string): Coach | undefined {
-    return this.coaches
-      ? this.coaches.find((coach) => coach._id === coachId)
+  public getRelatedCoach(coachId: string): User | undefined {
+    return this.users
+      ? this.users.find((coach) => coach._id === coachId)
       : undefined;
   }
   public getRelatedPlan(programId: string): ProgramPlan | undefined {

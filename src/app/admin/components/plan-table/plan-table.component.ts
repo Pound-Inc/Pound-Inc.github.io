@@ -30,7 +30,6 @@ export class PlanTableComponent implements OnInit, OnDestroy {
   public total$: Observable<number>;
   public selectedRow: ProgramPlan | null;
   private modalService = inject(NgbModal);
-  public tableConfig: Table;
   private programSubscription: Subscription;
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
@@ -56,14 +55,6 @@ export class PlanTableComponent implements OnInit, OnDestroy {
           this.filteredPlans$ = this.plans$;
         }
       });
-  }
-
-  onSort({ column, direction }: SortEvent) {
-    this.headers.forEach((header) => {
-      if (header.sortable !== column) {
-        header.direction = '';
-      }
-    });
   }
 
   formatValue(value: any) {

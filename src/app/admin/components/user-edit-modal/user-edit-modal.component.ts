@@ -5,7 +5,7 @@ import {
   NgbDateAdapter,
   NgbCalendar,
 } from '@ng-bootstrap/ng-bootstrap';
-import { Gender, User } from 'src/app/model/user.model';
+import { Gender, RoleType, User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-user-edit-modal',
@@ -25,5 +25,9 @@ export class UserEditModalComponent {
   onSaveChanges() {
     this.saveChanges.emit(this.user);
     this.modalService.dismissAll();
+  }
+
+  roleNames(roles: RoleType) {
+    return Object.keys(roles);
   }
 }

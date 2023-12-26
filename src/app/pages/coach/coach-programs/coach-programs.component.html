@@ -49,7 +49,7 @@
           <div class="d-flex justify-content-between pt-4">
             <h5 class="mb-0 text-dark">{{ program.name }}</h5>
             <h2 class="text-success mb-0 align-items-start">
-              ${{ getRelatedPlan(program._id)?.price }}
+              ${{ startingPrice(program._id) }}
             </h2>
           </div>
           <p
