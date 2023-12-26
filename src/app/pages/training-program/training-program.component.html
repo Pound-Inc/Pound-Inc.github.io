@@ -35,10 +35,10 @@
                             </h4>
                             <p class="text-muted mb-0 text-end">
                               <span>({{ receipts.length || 14 }})</span>
-                              <span class="me-1 text-success">{{
+                              <span class="me-1 text-dark">{{
                                 coach.stars
                               }}</span>
-                              <span class="mdi mdi-star text-success"></span>
+                              <span class="mdi mdi-star text-warning"></span>
                             </p>
                             <p class="text-dark mb-0">
                               <span>٢</span>
@@ -156,38 +156,42 @@
         </div>
       </div>
 
-      <div class="col-lg-7 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+      <div class="col-lg-7 col-md-6 col-12 mt-sm-0 pt-2 pt-sm-0">
         <div class="ms-lg-4">
-          <h4>نبذة عن البرنامج :</h4>
-          <p class="text-muted">
-            {{ program.description }}
-          </p>
-
+          <div class="card p-3 bg-light shadow border-0 mb-2">
+            <h4>نبذة عن البرنامج :</h4>
+            <p class="text-muted">
+              {{ program.description }}
+            </p>
+          </div>
           <!-- Skills Start -->
-          <h4 class="mt-lg-5 mt-4">التركيز الأساسى :</h4>
+          <div class="card p-3 bg-light shadow border-0">
+            <h4 class="mt-lg-5 mt-4">التركيز الأساسى :</h4>
 
-          <div
-            class="progress-box mt-4 mb-4"
-            *ngFor="let item of program.phases | keyvalue"
-          >
-            <h6 class="title text-muted">
-              <span class="ms-2">{{ item.value }}%</span>
-              <span>{{
-                translateBaseRoute + "phases." + item.key | translate
-              }}</span>
-            </h6>
-            <div class="progress">
-              <div
-                class="progress-bar position-relative"
-                [ngStyle]="{ backgroundColor: getColor(item.value) }"
-                [style.width.%]="item.value"
-              ></div>
+            <div
+              class="progress-box mt-4"
+              *ngFor="let item of program.phases | keyvalue"
+            >
+              <h6 class="title text-muted">
+                <span class="ms-2">{{ item.value }}%</span>
+                <span>{{
+                  translateBaseRoute + "phases." + item.key | translate
+                }}</span>
+              </h6>
+              <div class="progress">
+                <div
+                  class="progress-bar position-relative"
+                  [ngStyle]="{ backgroundColor: getColor(item.value) }"
+                  [style.width.%]="item.value"
+                ></div>
+              </div>
             </div>
           </div>
-
           <!-- Experience Start -->
           <!-- !STORIES -->
-          <app-program-stories [stories]="stories"></app-program-stories>
+          <div class="card p-3 bg-light shadow border-0 mt-2">
+            <app-program-stories [stories]="stories"></app-program-stories>
+          </div>
           <!-- !COMMENTS -->
           <app-program-comments [comments]="comments"></app-program-comments>
         </div>

@@ -18,7 +18,6 @@ import { CoachesComponent } from '../pages/coaches/coaches.component';
 import { profileGuard } from '../guards/profile.guard';
 import { programGuard } from '../guards/program.guard';
 import { programResolver } from '../resolvers/program.resolver';
-import { receiptResolver } from '../resolvers/receipt.resolver';
 
 const routes: Routes = [
   {

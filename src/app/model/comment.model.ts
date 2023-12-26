@@ -16,7 +16,7 @@ export class ProgramComment {
     public comment: string,
     public date: Date,
     public replays: ProgramComment[],
-    public rating?: number
+    public rating: number
   ) {}
   [key: string]: any; //  allow indexing with strings
 }

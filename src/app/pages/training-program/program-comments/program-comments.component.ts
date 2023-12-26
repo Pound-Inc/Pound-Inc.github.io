@@ -13,6 +13,8 @@ export class ProgramCommentsComponent implements OnInit {
   users: User[] = [];
   constructor(private userService: UserService) {}
   ngOnInit(): void {
+    console.log('here');
+
     this.userService.getUsers().then((response: any) => {
       this.users = response['data'];
     });
@@ -20,5 +22,8 @@ export class ProgramCommentsComponent implements OnInit {
 
   getRelatedUser(userId: any) {
     return this.users.find((u) => u._id === userId);
+  }
+  public getStarRange(): number[] {
+    return Array.from({ length: 5 }, (_, index) => index);
   }
 }
