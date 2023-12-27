@@ -1,0 +1,4 @@
+<app-admin-dashboard *ngIf="user.roles.Super"></app-admin-dashboard>
+<app-worker-dashboard *ngIf="user.roles.Worker"></app-worker-dashboard>
+<!--  -->
+<app-user-dashboard *ngIf="isBasicUser()"></app-user-dashboard>

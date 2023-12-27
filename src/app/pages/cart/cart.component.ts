@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { OrderService } from 'src/app/admin/services/order.service';
 import { PlanService } from 'src/app/admin/services/plan.service';
 import { ProgramService } from 'src/app/admin/services/program.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Addon } from 'src/app/model/addon.model';
 import { Cart } from 'src/app/model/cart.model';
+import { Order, OrderStatusEnum } from 'src/app/model/order.model';
 import { ProgramPlan } from 'src/app/model/program-plan.model';
 import { TrainingProgram } from 'src/app/model/training-program.model';
+import { User } from 'src/app/model/user.model';
 import { addons } from 'src/common/constants/addons';
 
 @Component({
@@ -20,14 +24,21 @@ export class CartComponent implements OnInit {
   public userAddons: Addon[];
   public valid: boolean = false;
   public program: TrainingProgram;
+  public user: User;
   public total: { addons: number; main: number } = { main: 0, addons: 0 };
 
   constructor(
     private planService: PlanService,
     private programService: ProgramService,
+    private orderService: OrderService,
+    private authService: AuthService,
     private router: Router
   ) {}
   async ngOnInit(): Promise<void> {
+    this.authService.getCurrentUser.subscribe((user) => {
+      this.user = user;
+    });
+
     const userCart = localStorage.getItem('cart') as string;
     const cart: Cart = JSON.parse(userCart);
     if (cart) {
@@ -73,5 +84,19 @@ export class CartComponent implements OnInit {
     });
 
     return totalAmount;
+  }
+
+  onPurchase() {
+    const total = this.total.addons + this.total.main;
+    const newOrder = {
+      user_id: this.user._id,
+      items: [this.main],
+      addons: this.userAddons,
+      price: total,
+      status: OrderStatusEnum.New,
+    };
+
+    //todo: confirmation page.
+    this.orderService.createNewOrder(newOrder);
   }
 }

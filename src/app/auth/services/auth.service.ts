@@ -21,7 +21,7 @@ import { API_Response } from 'src/common/interfaces/response.interface';
 })
 export class AuthService {
   private isAuthenticated = new BehaviorSubject<boolean>(false);
-  private currentUser = new BehaviorSubject<any>(null);
+  public currentUser = new BehaviorSubject<any>(null);
 
   redirectUrl: string | null = null;
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ProgramService } from '../../services/program.service';
 import { UserService } from '../../services/user.service';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -13,12 +14,12 @@ export class AdminDashboardComponent {
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    private programService: ProgramService
+    private programService: ProgramService,
+    private orderService: OrderService
   ) {
     document.dir = 'ltr';
   }
   apicheck() {
-    this.userService.getUsers();
-    this.programService.getPrograms();
+    this.orderService.getOrders();
   }
 }

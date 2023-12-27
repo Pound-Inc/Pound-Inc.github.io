@@ -71,13 +71,28 @@
     "admin": {
       "dashboard": {
         "Visitor": "الزوار",
+        "back": "العودة",
+        "logout": "تسجيل الخروج",
+        "order": {
+          "Order ID": "معرف الطلب",
+          "User ID": "معرف المستخدم",
+          "Items": "العناصر",
+          "Addons": "الإضافات",
+          "Price": "السعر",
+          "Status": "الحالة"
+        },
+
         "program": {
           "Training Programs": "برامج التدريب",
           "New Program": "برنامج جديد"
         },
         "plan": {
           "Program plans": "خطط البرنامج",
-          "New Plan": "خطّة جديد"
+          "New Plan": "خطّة جديد",
+          "Plan Name": "اسم الحزمة",
+          "Description": "الوصف",
+          "Price": "السّعر",
+          "Delivery Days": "مدّة التوصيل"
         },
         "user": {
           "users": "المستخدمين"

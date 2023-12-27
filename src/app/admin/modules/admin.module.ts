@@ -20,6 +20,11 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../modules/app.module';
 import { UserCardComponent } from '../components/user-card/user-card.component';
 import { UserEditModalComponent } from '../components/user-edit-modal/user-edit-modal.component';
+import { AdminLandingComponent } from '../pages/admin-landing/admin-landing.component';
+import { UserDashboardComponent } from '../pages/user-dashboard/user-dashboard.component';
+import { WorkerDashboardComponent } from '../pages/worker-dashboard/worker-dashboard.component';
+import { UserOrdersComponent } from '../pages/user-dashboard/user-orders/user-orders.component';
+import { UserProfileModalComponent } from '../pages/user-dashboard/user-profile-modal/user-profile-modal.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +34,11 @@ import { UserEditModalComponent } from '../components/user-edit-modal/user-edit-
     UserTableComponent,
     UserCardComponent,
     UserEditModalComponent,
+    UserDashboardComponent,
+    AdminLandingComponent,
+    WorkerDashboardComponent,
+    UserOrdersComponent,
+    UserProfileModalComponent,
   ],
   imports: [
     CommonModule,

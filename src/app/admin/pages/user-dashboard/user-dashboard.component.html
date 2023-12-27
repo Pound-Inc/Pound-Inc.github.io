@@ -1,0 +1,111 @@
+<section class="section">
+  <div class="container mt-5 mt-sm-0">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="fixed-top m-4">
+            <div class="col-6 mt-2 pt-2">
+              <a class="btn btn-light px-4 shadow" [routerLink]="['/']">
+                <span class="mdi mdi-arrow-right"></span>
+                {{ translateBaseRoute + "back" | translate }}
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-12 mt-4 pt-2">
+            <a
+              (click)="openUserOrders()"
+              style="cursor: pointer"
+              class="job-box job-primary d-flex align-items-center border rounded p-4 position-relative"
+            >
+              <img
+                src="https://cdn.icon-icons.com/icons2/943/PNG/512/shoppaymentorderbuy-10_icon-icons.com_73874.png"
+                alt=""
+                class="avatar"
+                width="70px"
+              />
+
+              <div class="mt-4">
+                <h5 class="px-4 text-dark">الطلبات</h5>
+                <p class="px-4 text-muted" style="font-size: 13px">
+                  تتبّع, أو شراء مرّة اخرى.
+                </p>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-lg-4 col-12 mt-4 pt-2">
+            <div
+              class="d-flex align-items-center border rounded p-4 position-relative bg-light"
+            >
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/5962/5962463.png"
+                alt=""
+                class="avatar"
+                width="70px"
+              />
+
+              <div class="mt-4">
+                <h5 class="px-4 text-dark">الشات مع المدرّب</h5>
+                <p class="px-4 text-muted" style="font-size: 13px">قريبا...</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-12 mt-4 pt-2">
+            <div
+              class="bg-light d-flex align-items-center border rounded p-4 position-relative"
+            >
+              <img
+                src="assets/imgs/common/pound.png"
+                alt=""
+                class="avatar"
+                width="70px"
+              />
+
+              <div class="mt-4">
+                <h5 class="px-4 text-dark">باوند +</h5>
+                <p class="px-4 text-muted" style="font-size: 13px">
+                  يمنحك الاشتراك الشهري إمكانية الوصول إلى جميع خدماتنا.
+                  <br />
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-12 mt-4 pt-2">
+            <a
+              (click)="openUserProfile()"
+              style="cursor: pointer"
+              class="job-box job-primary d-flex align-items-center border rounded p-4 position-relative"
+            >
+              <img
+                src="https://cdn.iconscout.com/icon/free/png-256/free-profile-3352424-2791060.png"
+                alt=""
+                class="avatar"
+                width="70px"
+              />
+
+              <div class="mt-4">
+                <h5 class="px-4 text-dark">البيانات الشّخصية</h5>
+                <p class="px-4 text-muted" style="font-size: 13px">
+                  تعديل أو عرض المعلومات الشخّصية
+                </p>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-8 mt-2 pt-2">
+            <a class="btn btn-danger px-4 shadow" (click)="logout()">
+              <span class="mdi mdi-logout ms-2"></span>
+              {{ translateBaseRoute + "logout" | translate }}
+            </a>
+          </div>
+
+          <!--end col-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end row-->
+</section>

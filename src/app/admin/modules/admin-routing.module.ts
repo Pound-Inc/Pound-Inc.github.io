@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminDashboardComponent } from '../pages/admin-dashboard/admin-dashboard.component';
 import { authGuard } from '../../auth/guards/auth.guard';
+import { AdminLandingComponent } from '../pages/admin-landing/admin-landing.component';
+import { userResolver } from '../resolvers/user.resolver';
 
 const adminRoutes: Routes = [
   {
-    path: 'admin',
+    path: 'dashboard',
     canActivate: [authGuard],
+    resolve: { user: userResolver },
     children: [
       {
         path: '',
-        component: AdminDashboardComponent,
+        component: AdminLandingComponent,
         canActivate: [authGuard],
       },
     ],

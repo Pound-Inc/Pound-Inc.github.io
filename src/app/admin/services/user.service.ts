@@ -45,24 +45,27 @@ export class UserService {
   }
 
   async validateCreateUserFirstStep(userEmail: string) {
-    return await firstValueFrom(
-      this.http
-        .post<any>(
-          `${AUTH_API}/users/validateEmail`,
-          { email: userEmail },
-          {
-            withCredentials: true,
-          }
-        )
-        .pipe(
-          map((response: any) => {
-            if (response) {
-              return;
+    try {
+      return await firstValueFrom(
+        this.http
+          .post<any>(
+            `${AUTH_API}/users/validateEmail`,
+            { email: userEmail },
+            {
+              withCredentials: true,
             }
-          }),
-          catchError((error) => of(error))
-        )
-    );
+          )
+          .pipe(
+            map((response: any) => {
+              if (response) {
+                return;
+              }
+            })
+          )
+      );
+    } catch (error) {
+      throw new Error('error');
+    }
   }
 
   async createNewUser(user: any) {

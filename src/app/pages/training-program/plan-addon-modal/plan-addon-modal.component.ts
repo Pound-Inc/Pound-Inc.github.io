@@ -26,7 +26,7 @@ export class PlanAddonModalComponent {
     return this.addons.filter((addon) => addon.selected);
   }
 
-  getTotalAmount(): string {
+  getTotalAmount(): number {
     // Calculate total amount based on selected addons and main product
     let totalAmount = this.plan.price;
 
@@ -36,7 +36,7 @@ export class PlanAddonModalComponent {
       }
     });
 
-    return `$${totalAmount.toFixed(2)}`;
+    return totalAmount;
   }
 
   sendDataAndCloseModal() {

@@ -61,6 +61,7 @@ import { ProgramCommentsComponent } from '../pages/training-program/program-comm
 import { ProgramStoriesComponent } from '../pages/training-program/program-stories/program-stories.component';
 import { PlanAddonModalComponent } from '../pages/training-program/plan-addon-modal/plan-addon-modal.component';
 import { CartComponent } from '../pages/cart/cart.component';
+import { LandingTopProgramsComponent } from '../pages/landing/landing-top-programs/landing-top-programs.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -110,6 +111,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProgramStoriesComponent,
     PlanAddonModalComponent,
     CartComponent,
+    LandingTopProgramsComponent,
   ],
   imports: [
     BrowserModule,

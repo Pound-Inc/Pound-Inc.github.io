@@ -7,6 +7,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { Subscription, Subject, takeUntil, Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/model/user.model';
@@ -29,7 +30,8 @@ export class LandingHeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private cdref: ChangeDetectorRef,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.navbarItems = [
       { title: `${this.translateBaseRoute}home`, routerLink: '' },
@@ -65,6 +67,13 @@ export class LandingHeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // You can perform actions after each successful navigation here
+        // For example, trigger a page refresh
+        window.location.reload();
+      }
+    });
     this.authSubscription = this.authService.getCurrentUser.subscribe(
       (user: User) => {
         if (user) {
