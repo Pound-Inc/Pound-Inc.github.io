@@ -1,0 +1,111 @@
+<!-- modal.component.html -->
+<!-- Close Button -->
+<button
+  (click)="sendDataAndCloseModal()"
+  type="button"
+  class="fixed-top d-inline-block btn btn-secondary m-4 float-left"
+  style="width: 40px"
+  data-dismiss="modal"
+  aria-label="Close"
+>
+  <span aria-hidden="true">&times;</span>
+</button>
+
+<div class="col-12">
+  <div class="card rounded shadow p-4 border-0">
+    <!-- Main Product -->
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <span class="h5 mb-0">الحزمة:</span>
+    </div>
+    <ul
+      class="list-group mb-3 border px-0 text-dark border-0"
+      style="background-color: #e9e9e9; border: none !important"
+    >
+      <li
+        class="d-flex justify-content-between lh-sm px-3 py-4 text-dark border-0"
+        style="border: none !important"
+      >
+        <div>
+          <h6 class="my-0 text-dark">
+            <i class="uil uil-clipboard-notes"></i> {{ plan.name }}
+          </h6>
+          <small class="text-dark">{{ plan.description }}</small>
+        </div>
+        <span class="text-dark">${{ plan.price }}</span>
+      </li>
+    </ul>
+
+    <!-- Addons Section -->
+    <div class="mb-3">
+      <h5 class="mb-2 mt-4">
+        {{ translateBaseRoute + "addons" | translate }} ({{
+          selectedAddons().length
+        }})
+      </h5>
+      <div
+        *ngFor="let addon of addons"
+        class="list-group mb-2 px-0 clickable-addon border btn"
+        [ngClass]="{
+          'bg-light shadow text-dark border-light': !addon.selected,
+          'bg-primary text-light border-white': addon.selected
+        }"
+        (click)="toggleAddon(addon)"
+      >
+        <li
+          class="d-flex justify-content-between lh-sm px-3 py-2"
+          [ngClass]="{
+            'text-muted': !addon.selected,
+            'text-light': addon.selected
+          }"
+        >
+          <div>
+            <h6 class="my-0 text-end">
+              {{ translateBaseRoute + addon.name | translate }}
+              <span *ngIf="addon.icon" class="uil uil-{{ addon.icon }}"></span>
+            </h6>
+            <p
+              class="text-muted text-end w-75 mt-2 mb-0"
+              style="font-size: 12px"
+              [ngClass]="{
+                'text-muted': !addon.selected,
+                'text-light': addon.selected
+              }"
+            >
+              {{ translateBaseRoute + addon.description | translate }}
+            </p>
+          </div>
+          <span
+            class="text-muted"
+            [ngClass]="{
+              'text-muted': !addon.selected,
+              'text-light': addon.selected
+            }"
+            >${{ addon.price }}</span
+          >
+        </li>
+      </div>
+    </div>
+
+    <!-- Total Section -->
+    <div
+      class="d-flex justify-content-between align-items-center mb-3 border-top border-bottom py-2 px-3"
+    >
+      <div class="mb-0">{{ translateBaseRoute + "total" | translate }}:</div>
+      <strong class="text-dark">{{ getTotalAmount() }}</strong>
+    </div>
+
+    <!-- Redeem Button -->
+    <form>
+      <div class="input-group">
+        <button
+          type="submit"
+          class="btn btn-dark px-4"
+          (click)="setCart()"
+        >
+          {{ translateBaseRoute + "continue" | translate }}
+          <span class="mdi mdi-arrow-left"></span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

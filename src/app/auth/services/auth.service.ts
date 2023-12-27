@@ -31,6 +31,7 @@ export class AuthService {
     private headersService: HeadersService
   ) {
     this.checkTokenValidity();
+    
   }
 
   login(loginPayload: { email: string; password: string }): Observable<any> {

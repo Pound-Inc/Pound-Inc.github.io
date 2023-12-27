@@ -22,12 +22,15 @@ export class LandingHeaderComponent implements OnInit, OnDestroy {
   public active: boolean = false;
   @ViewChild('navbar', { static: true }) navbar: ElementRef;
 
-  @Input() user: User;
+  user: User;
   @Input() navActive: number;
-  userSubscription: Subscription;
+  private authSubscription: Subscription;
   destroy$ = new Subject();
 
-  constructor(private cdref: ChangeDetectorRef) {
+  constructor(
+    private cdref: ChangeDetectorRef,
+    private authService: AuthService
+  ) {
     this.navbarItems = [
       { title: `${this.translateBaseRoute}home`, routerLink: '' },
       { title: `${this.translateBaseRoute}programs`, routerLink: '/programs' },
@@ -61,14 +64,22 @@ export class LandingHeaderComponent implements OnInit, OnDestroy {
     ];
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.authSubscription = this.authService.getCurrentUser.subscribe(
+      (user: User) => {
+        if (user) {
+          this.user = user;
+        }
+      }
+    );
+  }
 
   ngOnDestroy(): void {
     this.destroy$.next(null);
     this.destroy$.complete();
 
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
     }
   }
 

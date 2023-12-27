@@ -167,6 +167,20 @@
       "footer": {}
     },
     "program": {
+      "addons": "إضافات",
+      "continue": "متابعة",
+      "total": "الإجمالي",
+      "user cart": "سلّة الشراء",
+      "purchase": "دفع",
+      "back": "العودة",
+      "weekly check": "مراجعة إسبوعية",
+      "money-back guarantee": "ضمان استعادة الأموال",
+      "whatsapp copy": "نسخة واتس آب",
+      "supplements": "مكملات غذائية",
+      "supplements list specially for your training program": "قائمة مكملات غذائية خاصّة لبرنامجك التدريبي",
+      "weekly check by your personal trainer to assess progress and provide guidance if necessary.": "مراجعة أسبوعية من قِبل مدربك الشخصي للتقييم والتوجيه.",
+      "If you complete the program with no results, we offer a money back guarantee.": "إذا أكملت البرنامج بدون نتائج، فإننا نقدم ضمان استعادة الأموال.",
+      "get a whatsapp copy of your program": "احصل على نسخة من برنامج التدريب على الواتس آب.",
       "phases": {
         "muscle": "عضلات",
         "weight loss": "خسارة الوزن",

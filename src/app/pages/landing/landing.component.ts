@@ -1,13 +1,12 @@
 import {
   Component,
-  Input,
   OnChanges,
   OnDestroy,
   OnInit,
   SimpleChanges,
 } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-import { BehaviorSubject, Observable, Subscription, of } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/model/user.model';
 
@@ -32,12 +31,13 @@ export class LandingComponent implements OnInit, OnChanges, OnDestroy {
 
     this.meta.updateTag({
       name: 'description',
-      content: 'Your landing page description',
+      content:
+        'لأول مرة في الوطن العربي, إختر مدربك الخاص بك, لمدّة أنت تحددها.',
     });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("changes");
+    console.log('changes');
   }
 
   ngOnDestroy(): void {

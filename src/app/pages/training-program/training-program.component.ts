@@ -23,6 +23,7 @@ import { PlanCompareModalComponent } from './plan-compare-modal/plan-compare-mod
 import { ProgramComment } from 'src/app/model/comment.model';
 import { ProgramCommentService } from 'src/app/admin/services/program.comment.service';
 import { ProgramStory } from 'src/app/model/story.model';
+import { PlanAddonModalComponent } from './plan-addon-modal/plan-addon-modal.component';
 
 @Component({
   selector: 'app-training-program',
@@ -74,13 +75,25 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
     return this.receipts.filter((r) => r.plan_id === planId);
   }
 
-  openXl() {
+  compareBtn() {
     const modalRef = this.modalService.open(PlanCompareModalComponent, {
       size: 'xl',
     });
     modalRef.componentInstance.plans = this.plans;
     modalRef.componentInstance.program = this.program;
     modalRef.componentInstance.columns = this.columns;
+
+    modalRef.componentInstance.closeModal.subscribe(() => {
+      modalRef.close();
+    });
+  }
+
+  addOnBtn(plan: ProgramPlan) {
+    const modalRef = this.modalService.open(PlanAddonModalComponent, {
+      size: 'md',
+    });
+    modalRef.componentInstance.plan = plan;
+    modalRef.componentInstance.program = this.program;
 
     modalRef.componentInstance.closeModal.subscribe(() => {
       modalRef.close();

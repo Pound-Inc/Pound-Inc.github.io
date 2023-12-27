@@ -141,10 +141,13 @@
                       }}
                     </span>
                   </h6>
-                  <button class="btn btn-dark w-100">
+                  <button class="btn btn-dark w-100" (click)="addOnBtn(plan)">
                     طلب <span class="mdi mdi-check-bold"></span>
                   </button>
-                  <button class="btn btn-light mt-2 w-100" (click)="openXl()">
+                  <button
+                    class="btn btn-light mt-2 w-100"
+                    (click)="compareBtn()"
+                  >
                     مقارنة الحزم
                     <span class="mdi mdi-package-variant-closed"></span>
                   </button>

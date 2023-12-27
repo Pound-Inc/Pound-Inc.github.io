@@ -11,7 +11,12 @@ const RECEIPT: Receipt[] = [
   {
     _id: 'R10004',
     plan_id: '6589c7ed067f800f032cb38d',
-    purchased_by_id: 'U1000a9',
+    purchased_by_id: 'U1000a9Ddd',
+  },
+  {
+    _id: 'R10004',
+    plan_id: '6589c7ed067f800f032cb38d',
+    purchased_by_id: 'U1000a9Ddd',
   },
 ];
 

@@ -59,6 +59,8 @@ import { RegisterOkComponent } from '../auth/pages/register-ok/register-ok.compo
 import { RegisterErrorComponent } from '../auth/pages/register-error/register-error.component';
 import { ProgramCommentsComponent } from '../pages/training-program/program-comments/program-comments.component';
 import { ProgramStoriesComponent } from '../pages/training-program/program-stories/program-stories.component';
+import { PlanAddonModalComponent } from '../pages/training-program/plan-addon-modal/plan-addon-modal.component';
+import { CartComponent } from '../pages/cart/cart.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -106,6 +108,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     RegisterErrorComponent,
     ProgramCommentsComponent,
     ProgramStoriesComponent,
+    PlanAddonModalComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

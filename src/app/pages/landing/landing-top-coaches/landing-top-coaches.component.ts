@@ -33,7 +33,10 @@ export class LandingTopCoachesComponent implements OnInit, OnDestroy {
     private receiptService: ReceiptService,
     private plansService: PlanService
   ) {}
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.plans = (await this.plansService.getPlans()).data;
+    console.log(this.plans);
+
     this.programsSubscription = this.programService.programs.subscribe(
       (programs: TrainingProgram[]) => {
         this.programs = programs;
@@ -50,12 +53,8 @@ export class LandingTopCoachesComponent implements OnInit, OnDestroy {
       .getReceipts()
       .subscribe((receipts: Receipt[]) => {
         this.receipts = receipts;
+        console.log(this.receipts);
       });
-    this.plansSubscription = this.plansService.plans.subscribe(
-      (plans: ProgramPlan[]) => {
-        this.plans = plans;
-      }
-    );
   }
   ngOnDestroy(): void {
     if (this.programsSubscription) {
@@ -83,22 +82,20 @@ export class LandingTopCoachesComponent implements OnInit, OnDestroy {
       : undefined;
   }
   public getRelatedReceipts(coachId: string): Receipt[] {
-    let receipts: Receipt[] = [];
-    const relatedPrograms = this.getRelatedPrograms(coachId);
-    if (relatedPrograms) {
-      for (const program of relatedPrograms) {
-        const relatedPlans = this.getRelatedPlans(program._id);
-        if (relatedPlans)
-          for (const plan of relatedPlans) {
-            const receipt = this.receipts.find(
-              (receipt) => receipt.plan_id === plan._id
-            );
-            if (receipt) {
-              receipts.push(receipt);
-            }
-          }
+    let receipts: any[] = [];
+    const relatedPrograms = this.programs.filter((p) => p.coach_id === coachId);
+    for (const program of relatedPrograms) {
+      const relatedPlans = this.plans.filter(
+        (p) => p.program_id === program._id
+      );
+      for (const plan of relatedPlans) {
+        const relatedReceipts = this.receipts.filter(
+          (r) => r.plan_id === plan._id
+        );
+        receipts = [...receipts, ...relatedReceipts];
       }
     }
+
     return receipts;
   }
 

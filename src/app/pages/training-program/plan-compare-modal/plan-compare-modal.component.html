@@ -9,7 +9,7 @@
       <tr>
         <th *ngFor="let column of columns" scope="col">
           <ng-container
-            *ngIf="column._id !== 'id' && column._id !== 'program_id'"
+            *ngIf="column._id !== '_id' && column._id !== 'program_id'"
           >
             {{ column.name }}
           </ng-container>
@@ -20,7 +20,7 @@
       <tr *ngFor="let plan of plans">
         <td *ngFor="let column of columns">
           <ng-container
-            *ngIf="column._id !== 'id' && column._id !== 'program_id'"
+            *ngIf="column._id !== '_id' && column._id !== 'program_id'"
           >
             {{ plan[column._id] }}
           </ng-container>

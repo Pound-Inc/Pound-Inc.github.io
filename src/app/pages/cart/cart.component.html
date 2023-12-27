@@ -1,0 +1,144 @@
+<!-- Start -->
+<app-landing-header></app-landing-header>
+<div style="margin-top: 100px"></div>
+
+<section *ngIf="valid">
+  <div class="container">
+    <div class="row">
+      <h5>{{ translateBaseRoute + "user cart" | translate }}</h5>
+
+      <div class="card rounded p-4">
+        <div class="accordion" id="accordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header text-muted" id="headingOne">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                <div class="d-flex align-items-center gap-2 text-end">
+                  <span class="me-2 h6 text-muted">{{ program.name }}</span>
+
+                  <img
+                    src="{{ program.img }}"
+                    alt="Program Image"
+                    class="rounded me-2"
+                    width="30"
+                    height="30"
+                  />
+                </div>
+              </button>
+            </h2>
+            <div
+              id="collapseOne"
+              class="accordion-collapse collapse show"
+              aria-labelledby="headingOne"
+            >
+              <div class="accordion-body">
+                <ul
+                  class="list-group mb-3 border px-0 text-muted border-success"
+                >
+                  <li
+                    class="d-flex justify-content-between lh-sm px-3 pt-3 text-muted border-0"
+                    style="border: none !important"
+                  >
+                    <div>
+                      <h6 class="my-0 text-success">
+                        {{ main.name }}
+                      </h6>
+                      <small class="text-muted">{{ main.description }}</small>
+                    </div>
+                    <span class="text-success">${{ main.price }}</span>
+                  </li>
+                  <div class="text-start ms-2">
+                    <i class="uil uil-check text-success"></i>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <br />
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo"
+                aria-expanded="true"
+                aria-controls="collapseTwo"
+              >
+                <div class="d-flex align-items-between gap-2 text-end">
+                  <span class="me-2 h6 text-muted">
+                    {{ translateBaseRoute + "addons" | translate }}
+                  </span>
+                  <span class="me-2 h6 text-muted"> </span>
+                </div>
+              </button>
+            </h2>
+            <div
+              id="collapseTwo"
+              class="accordion-collapse collapse show"
+              aria-labelledby="headingTwo"
+            >
+              <div class="accordion-body">
+                <ul
+                  class="list-group mb-3 border px-0 text-muted border-success"
+                  *ngFor="let addon of userAddons"
+                >
+                  <li
+                    class="d-flex justify-content-between lh-sm px-3 pt-3 text-muted border-0"
+                    style="border: none !important"
+                  >
+                    <div>
+                      <h6 class="my-0 text-success">
+                        {{ translateBaseRoute + addon.name | translate }}
+                      </h6>
+                      <p
+                        class="text-muted mb-0"
+                        style="font-size: 12px; max-width: 80%"
+                      >
+                        {{ translateBaseRoute + addon.description | translate }}
+                      </p>
+                    </div>
+                    <span class="text-success">{{
+                      addon.price | currency
+                    }}</span>
+                  </li>
+                  <div class="text-start ms-2">
+                    <i class="uil uil-check text-success"></i>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fixed-bottom">
+        <div class="col-12 mb-4 pt-2">
+          <a class="btn btn-success px-2">
+            <span> ({{ total.addons + total.main | currency }}) </span>
+            <span>
+              {{ translateBaseRoute + "purchase" | translate }}
+            </span>
+            <span class="mdi mdi-arrow-left"></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="fixed-top">
+        <div class="col-6 mt-2 pt-2">
+          <a class="btn btn-light px-4" [routerLink]="['/']">
+            <span class="mdi mdi-arrow-right"></span>
+            {{ translateBaseRoute + "back" | translate }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

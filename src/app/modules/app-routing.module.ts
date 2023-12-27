@@ -19,6 +19,7 @@ import { profileGuard } from '../guards/profile.guard';
 import { programGuard } from '../guards/program.guard';
 import { programResolver } from '../resolvers/program.resolver';
 import { programsResolver } from '../resolvers/programs.resolver';
+import { CartComponent } from '../pages/cart/cart.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'female', component: FemaleComponent },
   { path: 'article/:articleId', component: ArticleComponent },
   { path: 'story', component: StoryComponent },
+  { path: 'cart', component: CartComponent },
   {
     path: 'programs',
     component: ProgramsComponent,

@@ -81,7 +81,7 @@
             </li>
           </ng-container>
         </ng-container>
-        <ng-container class="align-self-end" *ngIf="!user; else asd">
+        <ng-container class="align-self-end" *ngIf="!user; else account">
           <li class="list-inline-item mb-0">
             <a
               [routerLink]="['/auth/login']"
@@ -95,7 +95,7 @@
             </a>
           </li>
         </ng-container>
-        <ng-template #asd>
+        <ng-template #account>
           <li class="list-inline-item mb-0">
             <a
               [routerLink]="['/admin']"
