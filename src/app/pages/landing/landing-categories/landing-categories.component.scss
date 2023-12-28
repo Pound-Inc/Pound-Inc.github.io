@@ -5,7 +5,8 @@
   overflow: hidden;
   max-height: 250px;
 }
-p {
+p,
+button {
   opacity: 0;
 }
 .card-body {
@@ -30,6 +31,11 @@ p {
 .card:hover p {
   opacity: 1;
 }
+
+.card:hover button {
+  opacity: 1;
+}
+
 .card:hover h5 {
   top: 0;
 }
@@ -53,9 +59,9 @@ h5 {
   transition: scale 0.3s ease, filter 0.3s ease, top 0.3s ease; /* Add a smooth transition effect for both scale and filter */
   font-size: 44px;
   position: relative;
-  top: 45px;
+  top: 75px;
 }
 
 p {
-  transition: opacity 0.3s ease, filter 0.3s ease, top 0.3s ease; /* Add a smooth transition effect for both scale and filter */
+  transition: opacity 0.5s ease, filter 0.3s ease, top 0.3s ease; /* Add a smooth transition effect for both scale and filter */
 }

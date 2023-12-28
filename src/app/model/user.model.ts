@@ -9,8 +9,8 @@ export enum RoleEnum {
   Guest = 'Guest',
 }
 export enum Gender {
-  Male = 'male',
-  Female = 'female',
+  Male = 'Male',
+  Female = 'Female',
 }
 
 export class User {

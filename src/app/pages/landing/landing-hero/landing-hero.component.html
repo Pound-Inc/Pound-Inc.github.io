@@ -30,11 +30,17 @@
             {{ translateBaseRoute + "secondary.text" | translate }}
           </p>
           <div class="mt-4">
-            <a [routerLink]="['/programs']" class="btn btn-lg btn-dark rounded-pill mt-1 ms-3">
+            <a
+              [routerLink]="['/programs']"
+              class="btn btn-lg btn-dark rounded-pill mt-1 ms-3"
+            >
               {{ translateBaseRoute + "primary.button" | translate }}
             </a>
 
-            <a [routerLink]="['/coaches']" class="btn btn-lg btn-outline-danger rounded-pill mt-1">
+            <a
+              [routerLink]="['/coaches']"
+              class="btn btn-lg btn-outline-danger rounded-pill mt-1"
+            >
               {{ translateBaseRoute + "secondary.button" | translate }}
             </a>
           </div>
@@ -66,7 +72,7 @@
                 </div>
                 <div class="position-absolute top-0 end-0">
                   <span
-                    class="mdi mdi-human-female display-1 opacity-05"
+                    class="mdi mdi-human-{{ card.icon }} display-1 opacity-05"
                   ></span>
                 </div>
               </div>

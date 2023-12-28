@@ -1,353 +1,164 @@
-<app-landing-header></app-landing-header>
+<app-landing-header [navActive]="2"></app-landing-header>
 
 <section
   class="bg-half-170 d-table w-100"
   style="
-    background: url('https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg')
+    background: url('https://www.bhmpics.com/downloads/women-gym-body-building-Wallpapers/22.strengthlogs-4-day-bodybuilding-split.jpg')
       center center;
   "
 >
   <div class="bg-overlay"></div>
+
   <div class="container">
     <div class="row mt-5 justify-content-center">
       <div class="col-lg-12 text-center">
         <div class="pages-heading">
-          <h1 class="text-white mb-0">أفضل برامج التدريب للشباب</h1>
+          <h1 class="text-white mb-0">مدرّبيين منصة باوند | ذكور</h1>
         </div>
       </div>
-      <!--end col-->
     </div>
-    <!--end row-->
   </div>
-  <!--end container-->
 </section>
-<!--end section-->
-<div class="position-relative">
-  <div class="shape overflow-hidden text-color-white">
-    <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z"
-        fill="currentColor"
-      ></path>
-    </svg>
-  </div>
-</div>
 
-<section class="section">
+<section class="section pt-4">
   <div class="container">
-    <div id="grid" class="row">
-      <div
-        class="col-lg-4 col-md-6 col-12 mt-4 pt-2 picture-item"
-        data-groups='["business"]'
-      >
-        <div
-          class="card blog border-0 work-container work-primary work-classic shadow rounded-md overflow-hidden"
-        >
-          <img
-            src="https://picsum.photos/1920/1080?random=2"
-            class="img-fluid work-image"
-            alt=""
-          />
-          <div class="card-body">
-            <div class="content">
-              <a href="javascript:void(0)" class="badge badge-link bg"
-                >Business</a
-              >
-              <h5 class="mt-3">
-                <a href="page-case-detail.html" class="text-dark title"
-                  >200% Extended Facebook Reach</a
-                >
-              </h5>
-              <p class="text-muted">
-                This is required when, for example, the final text is not yet
-                available.
-              </p>
-              <a href="javascript:void(0)" class="link h6"
-                >Read More <i class="uil uil-angle-right-b align-middle"></i
-              ></a>
-            </div>
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-10">
+        <div class="col-lg-3 col-md-4 mt-4 mt-sm-0 pt-2 pt-sm-0">
+          <div class="form custom-form">
+            <!-- filter -->
           </div>
         </div>
       </div>
       <!--end col-->
+    </div>
+    <!--end row-->
 
-      <div
-        class="col-lg-4 col-md-6 col-12 mt-4 pt-2 picture-item"
-        data-groups='["marketing"]'
-      >
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-11 row">
         <div
-          class="card blog border-0 work-container work-primary work-classic shadow rounded-md overflow-hidden"
+          class="col-lg-4 col-md-6 col-12 mt-4 pt-2"
+          *ngFor="let coach of coaches"
         >
-          <img
-            src="https://picsum.photos/1920/1080?random=1"
-            class="img-fluid work-image"
-            alt=""
-          />
-          <div class="card-body">
-            <div class="content">
-              <a href="javascript:void(0)" class="badge badge-link bg-warning"
-                >Marketing</a
+          <div
+            class="job-box job-primary company-list card border-0 rounded shadow"
+          >
+            <div
+              class="card-top row align-items-center justify-content-between pt-2"
+            >
+              <div class="col">
+                <div class="d-flex gap-1 px-2">
+                  <div
+                    *ngFor="let tag of coach.tags"
+                    class="col badge py-2 bg-{{ tag.color }} d-inline-block"
+                  >
+                    <span
+                      *ngIf="tag.icon"
+                      class="mdi mdi-{{ tag.icon }}"
+                    ></span>
+
+                    <span>
+                      {{ tag.name }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col ps-4 d-flex justify-content-end align-items-center"
               >
-              <h5 class="mt-3">
-                <a href="page-case-detail.html" class="text-dark title"
-                  >SEO Success For Insulation</a
-                >
-              </h5>
-              <p class="text-muted">
-                This is required when, for example, the final text is not yet
-                available.
+                <span
+                  *ngFor="let starIndex of getStarRange(); let i = index"
+                  [class]="
+                    i < coach.stars
+                      ? 'mdi mdi-star text-warning'
+                      : 'mdi mdi-star text-dark'
+                  "
+                ></span>
+              </div>
+            </div>
+            <div class="text-center py-4 border-bottom">
+              <img
+                src="{{ coach.img }}"
+                class="avatar avatar-small mx-auto rounded-circle d-block mb-3"
+                alt=""
+              />
+              <a
+                [routerLink]="['/coach/' + coach._id]"
+                class="text-dark h5 name"
+              >
+                {{ coach.name }}
+                <span
+                  *ngIf="coach.is_verified"
+                  class="mdi mdi-check-decagram text-primary"
+                ></span>
+              </a>
+              <p class="text-muted mt-1 mb-0 col-7 m-auto">
+                <small *ngIf="cutDescription(coach.description).isLong">
+                  {{ cutDescription(coach.description).desc }}
+                  ...
+                </small>
+                <small *ngIf="!cutDescription(coach.description).isLong">
+                  {{ cutDescription(coach.description).desc }}
+                </small>
               </p>
-              <a href="javascript:void(0)" class="link h6"
-                >Read More <i class="uil uil-angle-right-b align-middle"></i
-              ></a>
+            </div>
+
+            <div class="p-4 card-body">
+              <h5>تفاصيل المدرب:</h5>
+              <ul class="list-unstyled mb-4 px-1">
+                <li class="h6">
+                  <span class="mdi mdi-package text-success me-2"></span>
+                  <span class="me-2 text-muted">عدد البرامج:</span>
+                  <span> {{ getRelatedPrograms(coach._id)?.length }} </span>
+                </li>
+                <li class="h6">
+                  <span class="mdi mdi-account-group text-warning me-2"></span>
+                  <span class="me-2 text-muted">عدد العملاء:</span>
+                  <span> {{ getRelatedReceipts(coach._id).length }} </span>
+                </li>
+                <li class="h6">
+                  <span class="mdi mdi-translate me-2"></span>
+                  <span class="me-2 text-muted"> اللّغات:</span>
+                  <span
+                    *ngFor="let lang of coach.languages"
+                    class="fi fi-{{ lang }} me-1"
+                  ></span>
+                </li>
+                <li class="h6">
+                  <span class="mdi mdi-home-city me-2"></span>
+                  <span class="me-2 text-muted">الموقع:</span>
+                  <span>
+                    {{ coach.address.country }} - {{ coach.address.city }}
+                  </span>
+                </li>
+                <li class="h6">
+                  <span class="mdi mdi-account-check text-dark me-2"></span>
+                  <span class="me-2 text-muted">مُوثّق مِن قِبل:</span>
+                  <span>
+                    <a
+                      class="text-dark"
+                      [routerLink]="['/coach/' + coach.certified_by_id]"
+                    >
+                      {{ getRelatedUsers(coach.certified_by_id)?.name }}
+                    </a>
+                  </span>
+                </li>
+                <li class="h6">
+                  <span class="mdi mdi-certificate text-dark me-2"></span>
+                  <span class="me-2 text-muted">رَقم الشّهادة:</span>
+                  <span> {{ coach.certification_id }}## </span>
+                </li>
+              </ul>
+              <div class="d-grid">
+                <a [routerLink]="['/coach/' + coach._id]" class="btn btn-light">
+                  عرض التفاصيل
+                  <span class="mdi mdi-arrow-left me-2"></span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <!--end col-->
-
-      <div
-        class="col-lg-4 col-md-6 col-12 mt-4 pt-2 picture-item"
-        data-groups='["finance"]'
-      >
-        <div
-          class="card blog border-0 work-container work-primary work-classic shadow rounded-md overflow-hidden"
-        >
-          <img
-            src="https://picsum.photos/1920/1080?random=4"
-            class="img-fluid work-image"
-            alt=""
-          />
-          <div class="card-body">
-            <div class="content">
-              <a href="javascript:void(0)" class="badge badge-link bg-success"
-                >Finance</a
-              >
-              <h5 class="mt-3">
-                <a href="page-case-detail.html" class="text-dark title"
-                  >Mobile-Friendly Campaigns</a
-                >
-              </h5>
-              <p class="text-muted">
-                This is required when, for example, the final text is not yet
-                available.
-              </p>
-              <a href="javascript:void(0)" class="link h6"
-                >Read More <i class="uil uil-angle-right-b align-middle"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div
-        class="col-lg-4 col-md-6 col-12 mt-4 pt-2 picture-item"
-        data-groups='["human"]'
-      >
-        <div
-          class="card blog border-0 work-container work-primary work-classic shadow rounded-md overflow-hidden"
-        >
-          <img
-            src="assets/images/work/4.jpg"
-            class="img-fluid work-image"
-            alt=""
-          />
-          <div class="card-body">
-            <div class="content">
-              <a href="javascript:void(0)" class="badge badge-link bg-info"
-                >HR</a
-              >
-              <h5 class="mt-3">
-                <a href="page-case-detail.html" class="text-dark title"
-                  >HVAC SEO Campaign</a
-                >
-              </h5>
-              <p class="text-muted">
-                This is required when, for example, the final text is not yet
-                available.
-              </p>
-              <a href="javascript:void(0)" class="link h6"
-                >Read More <i class="uil uil-angle-right-b align-middle"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div
-        class="col-lg-4 col-md-6 col-12 mt-4 pt-2 picture-item"
-        data-groups='["business"]'
-      >
-        <div
-          class="card blog border-0 work-container work-primary work-classic shadow rounded-md overflow-hidden"
-        >
-          <img
-            src="assets/images/work/5.jpg"
-            class="img-fluid work-image"
-            alt=""
-          />
-          <div class="card-body">
-            <div class="content">
-              <a href="javascript:void(0)" class="badge badge-link bg"
-                >Business</a
-              >
-              <h5 class="mt-3">
-                <a href="page-case-detail.html" class="text-dark title"
-                  >Social Media & Small Business</a
-                >
-              </h5>
-              <p class="text-muted">
-                This is required when, for example, the final text is not yet
-                available.
-              </p>
-              <a href="javascript:void(0)" class="link h6"
-                >Read More <i class="uil uil-angle-right-b align-middle"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div
-        class="col-lg-4 col-md-6 col-12 mt-4 pt-2 picture-item"
-        data-groups='["marketing"]'
-      >
-        <div
-          class="card blog border-0 work-container work-primary work-classic shadow rounded-md overflow-hidden"
-        >
-          <img
-            src="assets/images/work/6.jpg"
-            class="img-fluid work-image"
-            alt=""
-          />
-          <div class="card-body">
-            <div class="content">
-              <a href="javascript:void(0)" class="badge badge-link bg-warning"
-                >Marketing</a
-              >
-              <h5 class="mt-3">
-                <a href="page-case-detail.html" class="text-dark title"
-                  >PPC Success For HVAC Company</a
-                >
-              </h5>
-              <p class="text-muted">
-                This is required when, for example, the final text is not yet
-                available.
-              </p>
-              <a href="javascript:void(0)" class="link h6"
-                >Read More <i class="uil uil-angle-right-b align-middle"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div
-        class="col-lg-4 col-md-6 col-12 mt-4 pt-2 picture-item"
-        data-groups='["finance"]'
-      >
-        <div
-          class="card blog border-0 work-container work-primary work-classic shadow rounded-md overflow-hidden"
-        >
-          <img
-            src="assets/images/work/7.jpg"
-            class="img-fluid work-image"
-            alt=""
-          />
-          <div class="card-body">
-            <div class="content">
-              <a href="javascript:void(0)" class="badge badge-link bg-success"
-                >Finance</a
-              >
-              <h5 class="mt-3">
-                <a href="page-case-detail.html" class="text-dark title"
-                  >Ecommerce PPC Case Studys</a
-                >
-              </h5>
-              <p class="text-muted">
-                This is required when, for example, the final text is not yet
-                available.
-              </p>
-              <a href="javascript:void(0)" class="link h6"
-                >Read More <i class="uil uil-angle-right-b align-middle"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div
-        class="col-lg-4 col-md-6 col-12 mt-4 pt-2 picture-item"
-        data-groups='["human"]'
-      >
-        <div
-          class="card blog border-0 work-container work-primary work-classic shadow rounded-md overflow-hidden"
-        >
-          <img
-            src="assets/images/work/8.jpg"
-            class="img-fluid work-image"
-            alt=""
-          />
-          <div class="card-body">
-            <div class="content">
-              <a href="javascript:void(0)" class="badge badge-link bg-info"
-                >HR</a
-              >
-              <h5 class="mt-3">
-                <a href="page-case-detail.html" class="text-dark title"
-                  >Iphone mockup</a
-                >
-              </h5>
-              <p class="text-muted">
-                This is required when, for example, the final text is not yet
-                available.
-              </p>
-              <a href="javascript:void(0)" class="link h6"
-                >Read More <i class="uil uil-angle-right-b align-middle"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--end col-->
-
-      <div
-        class="col-lg-4 col-md-6 col-12 mt-4 pt-2 picture-item"
-        data-groups='["human"]'
-      >
-        <div
-          class="card blog border-0 work-container work-primary work-classic shadow rounded-md overflow-hidden"
-        >
-          <img
-            src="assets/images/work/9.jpg"
-            class="img-fluid work-image"
-            alt=""
-          />
-          <div class="card-body">
-            <div class="content">
-              <a href="javascript:void(0)" class="badge badge-link bg-info"
-                >HR</a
-              >
-              <h5 class="mt-3">
-                <a href="page-case-detail.html" class="text-dark title"
-                  >Iphone mockup</a
-                >
-              </h5>
-              <p class="text-muted">
-                This is required when, for example, the final text is not yet
-                available.
-              </p>
-              <a href="javascript:void(0)" class="link h6"
-                >Read More <i class="uil uil-angle-right-b align-middle"></i
-              ></a>
-            </div>
-          </div>
-        </div>
+        <!--end col-->
       </div>
       <!--end col-->
     </div>
@@ -356,4 +167,3 @@
   <!--end container-->
 </section>
 <!--end section-->
-<app-landing-footer></app-landing-footer>

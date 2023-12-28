@@ -111,4 +111,22 @@ export class CoachesComponent implements OnInit, OnDestroy {
   public getStarRange(): number[] {
     return Array.from({ length: 5 }, (_, index) => index);
   }
+
+  public cutDescription(coachDesc: string) {
+    const maxLength = 80;
+
+    if (coachDesc.length > maxLength) {
+      const truncatedDesc = coachDesc.substring(0, maxLength);
+      const lastSpaceIndex = truncatedDesc.lastIndexOf(' ');
+
+      if (lastSpaceIndex !== -1) {
+        return {
+          isLong: true,
+          desc: truncatedDesc.substring(0, lastSpaceIndex),
+        };
+      }
+    }
+
+    return { isLong: false, desc: coachDesc };
+  }
 }

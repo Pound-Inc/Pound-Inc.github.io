@@ -20,6 +20,12 @@ import { programGuard } from '../guards/program.guard';
 import { programResolver } from '../resolvers/program.resolver';
 import { programsResolver } from '../resolvers/programs.resolver';
 import { CartComponent } from '../pages/cart/cart.component';
+import { NutritionComponent } from '../auth/pages/nutrition/nutrition.component';
+import { CardioComponent } from '../auth/pages/cardio/cardio.component';
+import { PowerComponent } from '../auth/pages/power/power.component';
+import { nutritionResolver } from '../resolvers/nutrition.resolver';
+import { powerResolver } from '../resolvers/power.resolver';
+import { cardioResolver } from '../resolvers/cardio.resolver';
 
 const routes: Routes = [
   {
@@ -35,6 +41,27 @@ const routes: Routes = [
   { path: 'article/:articleId', component: ArticleComponent },
   { path: 'story', component: StoryComponent },
   { path: 'cart', component: CartComponent },
+  {
+    path: 'power',
+    component: PowerComponent,
+    resolve: {
+      programs: powerResolver,
+    },
+  },
+  {
+    path: 'cardio',
+    component: CardioComponent,
+    resolve: {
+      programs: cardioResolver,
+    },
+  },
+  {
+    path: 'nutrition',
+    component: NutritionComponent,
+    resolve: {
+      programs: nutritionResolver,
+    },
+  },
   {
     path: 'programs',
     component: ProgramsComponent,

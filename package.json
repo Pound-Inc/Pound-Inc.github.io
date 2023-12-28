@@ -50,6 +50,8 @@
     "rxjs": "~7.5.0",
     "simplebar": "^6.2.5",
     "socket.io": "^4.6.1",
+    "swiper": "^11.0.5",
+    "tiny-slider": "^2.9.4",
     "tobii": "^2.0.0-alpha",
     "tslib": "^2.3.0",
     "util": "^0.12.5",

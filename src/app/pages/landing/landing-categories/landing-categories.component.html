@@ -33,6 +33,12 @@
               </h5>
               <p class="text-light">
                 {{ card.subTitle | translate }}
+                <br />
+                <br />
+                <button class="btn btn-light" [routerLink]="[card.link]">
+                  <span class="me-2">المزيد</span>
+                  <span class="mdi mdi-arrow-left me-4"></span>
+                </button>
               </p>
             </div>
           </div>
