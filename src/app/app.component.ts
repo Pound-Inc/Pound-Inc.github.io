@@ -74,9 +74,9 @@ export class AppComponent implements OnInit {
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: 'Pound Inc.',
-      url: 'https://www.poundinc.com',
-      logo: 'https://www.poundinc.com/logo.png',
-      // Add more details as needed
+      url: 'https://poundinc.com',
+      logo: 'https://poundinc.com/logo.png',
+      
     };
 
     // Convert the JSON object to a string

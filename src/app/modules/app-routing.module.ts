@@ -1,10 +1,5 @@
 import { NgModule } from '@angular/core';
-import {
-  RouterModule,
-  Routes,
-  provideRouter,
-  withHashLocation,
-} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from '../pages/landing/landing.component';
 import { coachResolver } from '../resolvers/coach.resolver';
 import { TrainingProgramComponent } from '../pages/training-program/training-program.component';
@@ -76,13 +71,12 @@ const routes: Routes = [
     canActivate: [profileGuard],
     resolve: { coach: coachResolver },
   },
-  { path: '', component: LandingComponent, title: 'Pound Inc.' },
+  { path: '', component: LandingComponent, data: { title: 'Pound Inc.' } },
   // { path: '**', redirectTo: '',  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [provideRouter(routes, withHashLocation())],
 })
 export class AppRoutingModule {}

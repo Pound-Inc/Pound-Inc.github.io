@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "deploy": "ng build --base-href=/Pound-Inc/Pound-Inc.github.io/ && ngh --dir=dist/Pound-Inc.github.io",
     "test": "ng test"
   },
   "private": true,
@@ -31,6 +32,7 @@
     "@ngx-translate/http-loader": "^8.0.0",
     "@popperjs/core": "^2.11.7",
     "@types/jwt-decode": "^3.1.0",
+    "angular-cli-ghpages": "^1.0.7",
     "apexcharts": "^3.45.0",
     "autobind-decorator": "^2.4.0",
     "bootstrap": "^5.2.3",
@@ -49,6 +51,7 @@
     "primeng": "^14.2.8-lts",
     "rxjs": "~7.5.0",
     "simplebar": "^6.2.5",
+    "sitemap-generator": "^8.5.1",
     "socket.io": "^4.6.1",
     "swiper": "^11.0.5",
     "tiny-slider": "^2.9.4",

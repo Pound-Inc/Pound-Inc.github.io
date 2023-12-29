@@ -1,10 +1,5 @@
 import { NgModule } from '@angular/core';
-import {
-  RouterModule,
-  Routes,
-  provideRouter,
-  withHashLocation,
-} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../pages/login/login.component';
 import { RegisterComponent } from '../pages/register/register.component';
 import { onBoardingGuard } from '../guards/onboarding.guard';
@@ -47,6 +42,5 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [provideRouter(routes, withHashLocation())],
 })
 export class AuthRoutingModule {}
