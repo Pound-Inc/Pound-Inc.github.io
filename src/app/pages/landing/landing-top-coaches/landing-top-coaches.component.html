@@ -15,15 +15,21 @@
     <div class="row justify-content-center">
       <div class="col-lg-10 col-11 row">
         <div
-          class="col-lg-4 col-md-6 col-12 mt-4 pt-2"
+          class="col-lg-4 col-md-6 col-12 mt-4 pt-2 box-outer"
           *ngFor="let coach of coaches"
         >
           <div
-            class="job-box job-primary company-list card border-0 rounded shadow"
+            class="job-box job-primary company-list card border-0 main_box rounded shadow"
           >
             <div
               class="card-top row align-items-center justify-content-between pt-2"
             >
+              <div
+                *ngIf="coaches[0] === coach"
+                class="ribbon ribbon-left ribbon-danger overflow-hidden"
+              >
+                <span class="text-center d-block shadow small h6 p-1">أفضل إختيار</span>
+              </div>
               <div class="col">
                 <div class="d-flex gap-1 px-2">
                   <div
@@ -57,7 +63,7 @@
             <div class="text-center py-4 border-bottom">
               <img
                 src="{{ coach.img }}"
-                class="avatar avatar-small mx-auto rounded-circle d-block mb-3"
+                class="avatar avatar-large mx-auto rounded-circle d-block mb-3"
                 alt=""
               />
               <a
@@ -113,12 +119,7 @@
                   <span class="mdi mdi-account-check text-dark me-2"></span>
                   <span class="me-2 text-muted">مُوثّق مِن قِبل:</span>
                   <span>
-                    <a
-                      class="text-dark"
-                      [routerLink]="['/coach/' + coach.certified_by_id]"
-                    >
-                      {{ getRelatedUsers(coach.certified_by_id)?.name }}
-                    </a>
+                    {{ getRelatedUsers(coach.certified_by_id)?.name }}
                   </span>
                 </li>
                 <li class="h6">

@@ -1,4 +1,5 @@
 import { Addon } from './addon.model';
+import { ProgramPlan } from './program-plan.model';
 
 export class Order {
   constructor(

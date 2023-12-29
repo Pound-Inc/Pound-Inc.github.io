@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, firstValueFrom, map, of } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  firstValueFrom,
+  map,
+  of,
+  throwError,
+} from 'rxjs';
 import { TrainingProgram } from 'src/app/model/training-program.model';
 import { PROGRAMS_API } from 'src/common/constants/endpoints';
 import { HttpClient } from '@angular/common/http';
@@ -53,6 +60,26 @@ export class ProgramService {
           catchError((error) => of(error))
         )
     );
+  }
+
+  async createNewProgram(program: any) {
+    try {
+      return await firstValueFrom(
+        this.http
+          .post<any>(`${PROGRAMS_API}`, program, {
+            withCredentials: true,
+          })
+          .pipe(
+            map((response: any) => {
+              return response;
+            }),
+            catchError(() => {
+              // Throw a specific error inside the catchError block
+              throw new Error('test');
+            })
+          )
+      );
+    } catch (error) {}
   }
 
   get programs() {

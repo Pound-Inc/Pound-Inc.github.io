@@ -59,7 +59,8 @@
         <div class="features-absolute">
           <div class="row g-2">
             <div class="col-md-6 col-6" *ngFor="let card of cat">
-              <div
+              <a
+                [routerLink]="['/' + card.icon]"
                 class="card features feature-primary feature-full-bg rounded shadow p-4 position-relative overflow-hidden border-0"
               >
                 <div class="card-body p-0 content">
@@ -75,7 +76,7 @@
                     class="mdi mdi-human-{{ card.icon }} display-1 opacity-05"
                   ></span>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>

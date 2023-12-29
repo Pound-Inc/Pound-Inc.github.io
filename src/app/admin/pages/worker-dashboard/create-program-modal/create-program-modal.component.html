@@ -1,0 +1,105 @@
+<!-- create-program-modal.component.html -->
+<div class="modal-header">
+  <h4 class="modal-title">Create Program</h4>
+  <button
+    type="button"
+    class="close btn-danger btn"
+    aria-label="Close"
+    (click)="sendDataAndCloseModal()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="programForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="coach_id">Coach ID:</label>
+      <input
+        type="text"
+        id="coach_id"
+        formControlName="coach_id"
+        class="form-control"
+        [attr.disabled]="true"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="img">Image URL:</label>
+      <input
+        type="text"
+        id="img"
+        formControlName="img"
+        class="form-control"
+        [value]="this.imgbbLink"
+      />
+      <input
+        type="file"
+        id="file"
+        formControlName="fileimg"
+        class="form-control"
+        (input)="onInput($event)"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="form-control"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="bulk">Bulk Phase Duration (%):</label>
+      <input
+        type="number"
+        id="bulk"
+        formControlName="bulk"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="cut">Cut Phase Duration (%):</label>
+      <input
+        type="number"
+        id="cut"
+        formControlName="cut"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="muscle">Muscle Phase Duration (%):</label>
+      <input
+        type="number"
+        id="muscle"
+        formControlName="muscle"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="rating">Rating:</label>
+      <input
+        type="text"
+        id="rating"
+        formControlName="rating"
+        class="form-control"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Program</button>
+  </form>
+</div>

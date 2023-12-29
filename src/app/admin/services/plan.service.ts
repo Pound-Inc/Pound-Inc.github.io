@@ -5,6 +5,8 @@ import {
   Observable,
   firstValueFrom,
   map,
+  of,
+  catchError,
 } from 'rxjs';
 import { ProgramPlan } from 'src/app/model/program-plan.model';
 import { TrainingProgram } from 'src/app/model/training-program.model';
@@ -75,5 +77,34 @@ export class PlanService {
   }
   getSelectedProgramData(): Observable<TrainingProgram> {
     return this.programRowData.asObservable();
+  }
+
+  async createNewPlan(plan: any) {
+    return await firstValueFrom(
+      this.http
+        .post<any>(`${PLANS_API}/plans`, plan, {
+          withCredentials: true,
+        })
+        .pipe(
+          map((response: any) => {
+            return response;
+          }),
+          catchError((error) => of(error))
+        )
+    );
+  }
+  async modifyPlan(plan: any) {
+    return await firstValueFrom(
+      this.http
+        .put<any>(`${PLANS_API}/plans/${plan._id}`, plan, {
+          withCredentials: true,
+        })
+        .pipe(
+          map((response: any) => {
+            return response;
+          }),
+          catchError((error) => of(error))
+        )
+    );
   }
 }

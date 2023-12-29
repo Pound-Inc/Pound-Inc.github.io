@@ -69,8 +69,6 @@ export class LandingHeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // You can perform actions after each successful navigation here
-        // For example, trigger a page refresh
         window.location.reload();
       }
     });

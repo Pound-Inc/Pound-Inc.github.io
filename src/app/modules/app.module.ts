@@ -65,6 +65,8 @@ import { LandingTopProgramsComponent } from '../pages/landing/landing-top-progra
 import { CardioComponent } from '../auth/pages/cardio/cardio.component';
 import { NutritionComponent } from '../auth/pages/nutrition/nutrition.component';
 import { PowerComponent } from '../auth/pages/power/power.component';
+import { CreatePlanModalComponent } from '../admin/pages/worker-dashboard/create-plan-modal/create-plan-modal.component';
+import { CreateProgramModalComponent } from '../admin/pages/worker-dashboard/create-program-modal/create-program-modal.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -118,6 +120,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NutritionComponent,
     CardioComponent,
     PowerComponent,
+    CreateProgramModalComponent,
+    CreatePlanModalComponent,
   ],
   imports: [
     BrowserModule,
