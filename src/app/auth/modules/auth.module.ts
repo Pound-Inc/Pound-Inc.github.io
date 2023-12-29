@@ -8,7 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [],
   imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule],
-  //services
+  //servicess
   providers: [CookieService],
 })
 export class AuthModule {}
