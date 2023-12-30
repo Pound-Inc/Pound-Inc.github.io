@@ -41,7 +41,8 @@
               "node_modules/jarallax/dist/jarallax.min.js",
               "node_modules/tobii/dist/js/tobii.min.js",
               "src/assets/js/plugins.init.js",
-              "src/assets/js/app.js"
+              "src/assets/js/app.js",
+              "src/assets/js/checkout.js"
             ]
           },
           "configurations": {
@@ -113,7 +114,8 @@
               "node_modules/jarallax/dist/jarallax.min.js",
               "node_modules/tobii/dist/js/tobii.min.js",
               "src/assets/js/plugins.init.js",
-              "src/assets/js/app.js"
+              "src/assets/js/app.js",
+              "src/assets/js/checkout.js"
             ]
           }
         },
