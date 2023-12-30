@@ -75,7 +75,7 @@ export class AppComponent implements OnInit {
       '@type': 'Organization',
       name: 'Pound Inc.',
       url: 'https://poundinc.com',
-      logo: 'https://poundinc.com/logo.png',
+      logo: 'https://poundinc.com/assets/imgs/common/pound.png',
       
     };
 

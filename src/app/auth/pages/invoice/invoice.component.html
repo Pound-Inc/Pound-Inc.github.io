@@ -1,0 +1,158 @@
+<main class="flex-shrink-0" *ngIf="user" #invoice>
+  <div class="container border mt-3">
+    <div class="row overflow-auto">
+      <div class="col-5">
+        <div
+          class="d-flex flex-column justify-content-between align-items-start h-75 p-2"
+        >
+          <div>
+            <h5 class="mt-4">
+              {{ translateBaseRoute + "invoice" | translate }}
+            </h5>
+          </div>
+          <h5 class="mt-4">
+            {{ translateBaseRoute + "client number" | translate }}:
+          </h5>
+          <h6>{{ user._id }}</h6>
+        </div>
+      </div>
+      <div class="col-7 text-start">
+        <div class="p-2 pt-4">
+          <img
+            class="img-fluid"
+            alt="Idea Foundry, Irc LOGO"
+            src="assets/imgs/common/pound.png"
+            width="100px"
+          />
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex flex-column flex-md-row justify-content-between p-2">
+          <span>
+            <b>{{ translateBaseRoute + "invoice number" | translate }}: </b>
+            {{ orderData.response._id }}
+          </span>
+          <span>
+            <b>{{ translateBaseRoute + "date" | translate }}: </b>
+            {{ orderData.response.createdAt | date : "dd-MM-yyyy" : "" : "ar" }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex justify-content-between p-2">
+          <span>
+            <b>{{ translateBaseRoute + "invoice to" | translate }}: </b><br />
+            <address>
+              {{ user.name }}<br />
+              {{ user.address.postal_code }} {{ user.address.country }}<br />
+              {{ user.address.city }},
+              {{ user.address.street ? user.address.street : "" }}
+            </address>
+          </span>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="overflow-auto">
+          <table class="table table-bordered table-responsive">
+            <thead>
+              <tr>
+                <th *ngFor="let column of columns">{{ column.name }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class="table-secondary"
+                *ngFor="let item of orderData.response.items"
+              >
+                <td *ngFor="let column of columns">
+                  <ng-container *ngIf="column._id === 'amount'">
+                    {{ item["price"] | currency }}
+                  </ng-container>
+                  <ng-container *ngIf="column._id === 'quantity'">
+                    1
+                  </ng-container>
+                  <ng-container
+                    *ngIf="
+                      column._id !== 'price' &&
+                        column._id !== 'quantity' &&
+                        column._id !== 'amount';
+                      else currencyTd
+                    "
+                  >
+                    {{ item[column._id] }}
+                  </ng-container>
+                  <ng-template #currencyTd>
+                    {{ item[column._id] | currency }}
+                  </ng-template>
+                </td>
+              </tr>
+              <tr
+                class="table-light"
+                *ngFor="let item of orderData.response.addons"
+              >
+                <td *ngFor="let column of columns">
+                  <ng-container *ngIf="column._id === 'amount'">
+                    {{ item["price"] | currency }}
+                  </ng-container>
+                  <ng-container *ngIf="column._id === 'quantity'">
+                    1
+                  </ng-container>
+                  <ng-container
+                    *ngIf="
+                      column._id !== 'price' &&
+                        column._id !== 'quantity' &&
+                        column._id !== 'amount';
+                      else currencyTd
+                    "
+                  >
+                    {{ item[column._id] }}
+                  </ng-container>
+                  <ng-template #currencyTd>
+                    {{ item[column._id] | currency }}
+                  </ng-template>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="4">
+                  {{ translateBaseRoute + "sub total" | translate }}:
+                </td>
+                <td>{{ orderData.response.price | currency }}</td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  {{ translateBaseRoute + "VAT" | translate }}:
+                </td>
+                <td>{{ 0.25 | percent : "2.2" }}</td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  {{ translateBaseRoute + "total" | translate }}:
+                </td>
+                <td>{{ orderData.response.price * 1.25 | currency }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="mb-3 p-2">
+          <b>{{ translateBaseRoute + "note" | translate }}: </b>
+          {{
+            translateBaseRoute +
+              "This is computer generated receipt and does not require physical signature."
+              | translate
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -66,7 +66,7 @@ export class OrderService {
         })
         .pipe(
           map((response: any) => {
-            console.log(response);
+            return response;
           })
         )
     );

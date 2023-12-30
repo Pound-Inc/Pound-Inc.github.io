@@ -73,9 +73,8 @@ export class ProgramService {
             map((response: any) => {
               return response;
             }),
-            catchError(() => {
-              // Throw a specific error inside the catchError block
-              throw new Error('test');
+            catchError((error) => {
+              throw new Error(error);
             })
           )
       );

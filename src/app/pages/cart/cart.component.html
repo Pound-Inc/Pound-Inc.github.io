@@ -18,6 +18,7 @@
                 data-bs-target="#collapseOne"
                 aria-expanded="true"
                 aria-controls="collapseOne"
+                [disabled]="payBtn"
               >
                 <div class="d-flex align-items-center gap-2 text-end">
                   <span class="me-2 h6 text-muted">{{ program.name }}</span>
@@ -116,13 +117,64 @@
               </div>
             </div>
           </div>
+          <br />
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseThree"
+                aria-expanded="true"
+                aria-controls="collapseThree"
+              >
+                <div class="d-flex align-items-between gap-2 text-end">
+                  <span class="me-2 h6 text-muted">
+                    {{ translateBaseRoute + "VAT" | translate }}
+                  </span>
+                  <span class="me-2 h6 text-muted"> </span>
+                </div>
+              </button>
+            </h2>
+            <div
+              id="collapseThree"
+              class="accordion-collapse collapse show"
+              aria-labelledby="headingThree"
+            >
+              <div class="accordion-body">
+                <ul
+                  class="list-group mb-3 border px-0 text-muted border-success"
+                >
+                  <li
+                    class="d-flex justify-content-between lh-sm px-3 pt-3 text-muted border-0"
+                    style="border: none !important"
+                  >
+                    <div>
+                      <h6 class="my-0 text-success">x1</h6>
+                      <p
+                        class="text-muted mb-0"
+                        style="font-size: 12px; max-width: 80%"
+                      >
+                        ضريبة غير مباشرة تُفرض على جميع السلع والخدمات التي يتم
+                        شراؤها وبيعها من قبل المنشآت
+                      </p>
+                    </div>
+                    <span class="text-success">%25.00</span>
+                  </li>
+                  <div class="text-start ms-2">
+                    <i class="uil uil-check text-success"></i>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="fixed-bottom">
         <div class="col-12 mb-4 pt-2">
           <a class="btn btn-success px-2 shadow" (click)="onPurchase()">
-            <span> ({{ total.addons + total.main | currency }}) </span>
+            <span> ({{ getTotalAmountIncVat() | currency }}) </span>
             <span>
               {{ translateBaseRoute + "purchase" | translate }}
             </span>

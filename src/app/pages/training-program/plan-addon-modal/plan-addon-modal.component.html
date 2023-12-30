@@ -2,7 +2,11 @@
 <!-- Close Button -->
 
 <div class="m-2 rounded fixed-top" style="text-align: end">
-  <button (click)="sendDataAndCloseModal()" type="button" class="btn btn-light shadow">
+  <button
+    (click)="sendDataAndCloseModal()"
+    type="button"
+    class="btn btn-light shadow"
+  >
     {{ translateBaseRoute + "back" | translate }}
     <span class="mdi mdi-arrow-left"></span>
   </button>
@@ -91,8 +95,25 @@
     <div
       class="d-flex justify-content-between align-items-center mb-3 border-top border-bottom py-2 px-3"
     >
-      <div class="mb-0">{{ translateBaseRoute + "total" | translate }}:</div>
-      <strong class="text-dark">{{ getTotalAmount() | currency }}</strong>
+      <div class="mb-0">
+        <span class="mb-2"
+          >{{ translateBaseRoute + "price" | translate }}:</span
+        >
+        <br />
+        <span class="mb-2 text-muted">{{ translateBaseRoute + "VAT" | translate }}:</span>
+        <br />
+        {{ translateBaseRoute + "total" | translate }}:
+      </div>
+
+      <strong class="text-dark text-end">
+        {{ getTotalAmountExtVAT() | currency }}
+        <br />
+        <span class="text-muted">%25.00</span>
+        <br />
+        <span class="text-success">
+          {{ getTotalAmountIncVAT() | currency }}
+        </span>
+      </strong>
     </div>
 
     <!-- Redeem Button -->

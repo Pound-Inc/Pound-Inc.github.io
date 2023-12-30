@@ -185,6 +185,8 @@
       "addons": "إضافات",
       "continue": "متابعة",
       "total": "الإجمالي",
+      "price": "السعر",
+      "VAT": "ضريبة القيمة المضافة",
       "user cart": "سلّة الشراء",
       "purchase": "دفع",
       "back": "العودة",
@@ -231,6 +233,18 @@
       "languages": "اللغات",
       "verified-coach": "مدرب معتمد",
       "rating": "التقييم"
+    },
+    "invoice": {
+      "invoice": "فاتورة",
+      "client number": "رقم العميل",
+      "This is computer generated receipt and does not require physical signature.": "هذه إيصالات مُنشأة آليًا ولا تتطلب توقيعًا من العميل.",
+      "note": "ملاحظة",
+      "total": "المجموع",
+      "VAT": "ضريبة القيمة المضافة",
+      "sub total": "السعر",
+      "invoice to": "فاتورة إلى",
+      "invoice number": "رقم الفاتورة",
+      "date": "التاريخ"
     }
   }
 }

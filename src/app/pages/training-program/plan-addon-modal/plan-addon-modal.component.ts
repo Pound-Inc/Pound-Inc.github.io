@@ -15,6 +15,7 @@ export class PlanAddonModalComponent {
   @Input() program: TrainingProgram;
   @Input() plan: ProgramPlan;
   @Output() closeModal: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public VAT: number = 1.25;
 
   constructor(private router: Router) {}
   addons: Addon[] = addons;
@@ -26,7 +27,19 @@ export class PlanAddonModalComponent {
     return this.addons.filter((addon) => addon.selected);
   }
 
-  getTotalAmount(): number {
+  getTotalAmountIncVAT(): number {
+    // Calculate total amount based on selected addons and main product
+    let totalAmount = this.plan.price;
+
+    this.addons.forEach((addon) => {
+      if (addon.selected) {
+        totalAmount += addon.price;
+      }
+    });
+
+    return totalAmount * this.VAT;
+  }
+  getTotalAmountExtVAT(): number {
     // Calculate total amount based on selected addons and main product
     let totalAmount = this.plan.price;
 

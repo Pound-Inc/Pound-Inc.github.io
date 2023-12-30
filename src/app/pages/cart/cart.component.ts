@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { OrderService } from 'src/app/admin/services/order.service';
 import { PlanService } from 'src/app/admin/services/plan.service';
 import { ProgramService } from 'src/app/admin/services/program.service';
@@ -25,6 +25,8 @@ export class CartComponent implements OnInit {
   public valid: boolean = false;
   public program: TrainingProgram;
   public user: User;
+  public VAT: number = 1.25;
+  public payBtn: boolean = true;
   public total: { addons: number; main: number } = { main: 0, addons: 0 };
 
   constructor(
@@ -86,7 +88,14 @@ export class CartComponent implements OnInit {
     return totalAmount;
   }
 
-  onPurchase() {
+  getTotalAmountIncVat() {
+    const totalExtVAT = this.total.addons + this.total.main;
+    const totalIncVAT = totalExtVAT * this.VAT;
+    return totalIncVAT;
+  }
+
+  async onPurchase() {
+    this.payBtn = false;
     const total = this.total.addons + this.total.main;
     const newOrder = {
       user_id: this.user._id,
@@ -97,6 +106,16 @@ export class CartComponent implements OnInit {
     };
 
     //todo: confirmation page.
-    this.orderService.createNewOrder(newOrder);
+    await this.orderService.createNewOrder(newOrder).then((response: any) => {
+      if (response) {
+        const navigationExtras: NavigationExtras = {
+          state: {
+            orderData: response,
+          },
+        };
+
+        this.router.navigate(['/invoice'], navigationExtras);
+      }
+    });
   }
 }

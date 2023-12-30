@@ -67,6 +67,10 @@ import { NutritionComponent } from '../auth/pages/nutrition/nutrition.component'
 import { PowerComponent } from '../auth/pages/power/power.component';
 import { CreatePlanModalComponent } from '../admin/pages/worker-dashboard/create-plan-modal/create-plan-modal.component';
 import { CreateProgramModalComponent } from '../admin/pages/worker-dashboard/create-program-modal/create-program-modal.component';
+import { InvoiceComponent } from '../auth/pages/invoice/invoice.component';
+
+import { LOCALE_ID } from '@angular/core';
+import '@angular/common/locales/ar';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -122,6 +126,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PowerComponent,
     CreateProgramModalComponent,
     CreatePlanModalComponent,
+    InvoiceComponent,
   ],
   imports: [
     BrowserModule,
@@ -144,7 +149,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     BrowserAnimationsModule,
   ],
-  providers: [LoadingService],
+  providers: [LoadingService, { provide: LOCALE_ID, useValue: 'ar' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

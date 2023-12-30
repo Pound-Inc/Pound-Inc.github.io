@@ -31,7 +31,6 @@ export class AuthService {
     private headersService: HeadersService
   ) {
     this.checkTokenValidity();
-    
   }
 
   login(loginPayload: { email: string; password: string }): Observable<any> {
@@ -72,16 +71,35 @@ export class AuthService {
                 this.currentUser.next(user);
                 this.isAuthenticated.next(true);
                 return true;
+              }),
+              catchError((error) => {
+                console.error('HTTP Error:', error);
+                this.handleHttpError(error);
+                return of(false);
               })
             )
         );
       } catch (error) {
-        console.log('here???', error);
-
-        this.logout();
+        console.error('Network Error:', error);
+        this.handleNetworkError(error);
+        return false;
       }
     }
     return false;
+  }
+
+  private handleHttpError(error: any): void {
+    // Handle HTTP errors here, e.g., check for unauthorized status (401) and logout
+    if (error.status === 401) {
+      this.logout();
+    }
+    // Add more handling logic for other HTTP errors as needed
+  }
+
+  private handleNetworkError(error: any): void {
+    // Handle network errors here, e.g., show a notification to the user
+    console.error('Network error occurred:', error);
+    // Add more handling logic for other network errors as needed
   }
 
   get getIsAuthenticated(): Observable<boolean> {

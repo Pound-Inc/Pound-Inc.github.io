@@ -21,6 +21,8 @@ import { PowerComponent } from '../auth/pages/power/power.component';
 import { nutritionResolver } from '../resolvers/nutrition.resolver';
 import { powerResolver } from '../resolvers/power.resolver';
 import { cardioResolver } from '../resolvers/cardio.resolver';
+import { InvoiceComponent } from '../auth/pages/invoice/invoice.component';
+import { authGuard } from '../auth/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -35,7 +37,7 @@ const routes: Routes = [
   { path: 'female', component: FemaleComponent },
   { path: 'article/:articleId', component: ArticleComponent },
   { path: 'story', component: StoryComponent },
-  { path: 'cart', component: CartComponent },
+  { path: 'cart', component: CartComponent, canActivate: [authGuard] },
   {
     path: 'power',
     component: PowerComponent,
@@ -65,6 +67,7 @@ const routes: Routes = [
     },
   },
   { path: 'coaches', component: CoachesComponent },
+  { path: 'invoice', component: InvoiceComponent },
   {
     path: 'coach/:coachId',
     component: CoachComponent,
@@ -72,7 +75,7 @@ const routes: Routes = [
     resolve: { coach: coachResolver },
   },
   { path: '', component: LandingComponent, data: { title: 'Pound Inc.' } },
-  // { path: '**', redirectTo: '',  }, 
+  // { path: '**', redirectTo: '',  },
 ];
 
 @NgModule({
