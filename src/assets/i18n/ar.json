@@ -245,6 +245,10 @@
       "invoice to": "فاتورة إلى",
       "invoice number": "رقم الفاتورة",
       "date": "التاريخ"
+    },
+    "payment": {
+      "pay now": "شراء",
+      "back": "العودة"
     }
   }
 }

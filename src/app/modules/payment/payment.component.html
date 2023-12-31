@@ -2,9 +2,12 @@
   <div id="payment-element" #paymentElement>
     <!-- Stripe.js injects the Payment Element -->
   </div>
-  <button id="submit" type="submit">
+  <button id="submit" type="submit" class="shadow" [disabled]="disabledBtn">
     <div class="spinner hidden" id="spinner"></div>
-    <span id="button-text">Pay now</span>
+    <span class="mdi mdi-check ms-2"></span>
+    <span id="button-text">{{
+      translateBaseRoute + "pay now" | translate
+    }}</span>
   </button>
   <div id="payment-message" class="hidden"></div>
 </form>

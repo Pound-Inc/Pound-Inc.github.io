@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BillingService } from 'src/app/admin/services/billing.service';
 import { OrderService } from 'src/app/admin/services/order.service';
 import { PlanService } from 'src/app/admin/services/plan.service';
 import { ProgramService } from 'src/app/admin/services/program.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Addon } from 'src/app/model/addon.model';
+import { Billing } from 'src/app/model/billing.model';
 import { Cart } from 'src/app/model/cart.model';
 import { Order, OrderStatusEnum } from 'src/app/model/order.model';
 import { ProgramPlan } from 'src/app/model/program-plan.model';
 import { TrainingProgram } from 'src/app/model/training-program.model';
 import { User } from 'src/app/model/user.model';
+import { PaymentComponent } from 'src/app/modules/payment/payment.component';
 import { addons } from 'src/common/constants/addons';
 
 @Component({
@@ -28,13 +32,16 @@ export class CartComponent implements OnInit {
   public VAT: number = 1.25;
   public payBtn: boolean = true;
   public total: { addons: number; main: number } = { main: 0, addons: 0 };
+  private billing: Billing[];
 
   constructor(
     private planService: PlanService,
     private programService: ProgramService,
     private orderService: OrderService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal,
+    private billingService: BillingService
   ) {}
   async ngOnInit(): Promise<void> {
     this.authService.getCurrentUser.subscribe((user) => {
@@ -71,6 +78,7 @@ export class CartComponent implements OnInit {
           this.program = program;
 
           this.valid = true;
+          this.payBtn = false;
         }
       }
     } else {
@@ -88,10 +96,49 @@ export class CartComponent implements OnInit {
     return totalAmount;
   }
 
+  private setBillingArray() {
+    const BILLING_ADDONS: Billing[] = [];
+    const BILLING_ITEM: Billing = {
+      name: this.main.name,
+      description: this.main.description,
+      price: this.main.price,
+    };
+    for (const addon of this.userAddons) {
+      const billingAddon: Billing = {
+        name: addon.name,
+        description: addon.description,
+        price: addon.price,
+      };
+
+      BILLING_ADDONS.push(billingAddon);
+    }
+
+    this.billing = [BILLING_ITEM, ...BILLING_ADDONS];
+  }
+
   getTotalAmountIncVat() {
     const totalExtVAT = this.total.addons + this.total.main;
     const totalIncVAT = totalExtVAT * this.VAT;
     return totalIncVAT;
+  }
+
+  setBilling() {
+    this.payBtn = true;
+    this.setBillingArray();
+
+    this.orderService.setBilling(this.billing).then((response: any) => {
+      const clientSecret: string = response.response;
+      const modalRef = this.modalService.open(PaymentComponent, {
+        size: 'md',
+        backdrop: 'static',
+        keyboard: false,
+      });
+
+      modalRef.componentInstance.billing = this.billing;
+      modalRef.componentInstance.amount = this.getTotalAmountIncVat();
+      modalRef.componentInstance.clientSecret = clientSecret;
+      this.payBtn = false;
+    });
   }
 
   async onPurchase() {
@@ -105,7 +152,6 @@ export class CartComponent implements OnInit {
       status: OrderStatusEnum.New,
     };
 
-    //todo: confirmation page.
     await this.orderService.createNewOrder(newOrder).then((response: any) => {
       if (response) {
         const navigationExtras: NavigationExtras = {

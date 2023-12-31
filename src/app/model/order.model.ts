@@ -8,7 +8,8 @@ export class Order {
     public items: any[],
     public addons: Addon[],
     public price: number,
-    public status: OrderStatus
+    public status: OrderStatus,
+    public clientSecret: string
   ) {}
   [key: string]: any; //  allow indexing with strings
 }

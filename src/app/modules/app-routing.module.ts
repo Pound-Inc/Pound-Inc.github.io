@@ -24,6 +24,7 @@ import { cardioResolver } from '../resolvers/cardio.resolver';
 import { InvoiceComponent } from '../auth/pages/invoice/invoice.component';
 import { authGuard } from '../auth/guards/auth.guard';
 import { PaymentComponent } from './payment/payment.component';
+import { PaymentManagementComponent } from './payment-management/payment-management.component';
 
 const routes: Routes = [
   {
@@ -70,6 +71,7 @@ const routes: Routes = [
   { path: 'coaches', component: CoachesComponent },
   { path: 'invoice', component: InvoiceComponent },
   { path: 'payment', component: PaymentComponent },
+  { path: 'payment-management', component: PaymentManagementComponent },
   {
     path: 'coach/:coachId',
     component: CoachComponent,

@@ -72,6 +72,7 @@ import { InvoiceComponent } from '../auth/pages/invoice/invoice.component';
 import { LOCALE_ID } from '@angular/core';
 import '@angular/common/locales/ar';
 import { PaymentComponent } from './payment/payment.component';
+import { PaymentManagementComponent } from './payment-management/payment-management.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -129,6 +130,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CreatePlanModalComponent,
     InvoiceComponent,
     PaymentComponent,
+    PaymentManagementComponent,
   ],
   imports: [
     BrowserModule,

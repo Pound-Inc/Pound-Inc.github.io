@@ -1,13 +1,20 @@
 import {
   Component,
   ElementRef,
+  Input,
   OnInit,
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { Stripe, loadStripe } from '@stripe/stripe-js';
-import { OrderService } from 'src/app/admin/services/order.service';
-import { OrderStatusEnum } from 'src/app/model/order.model';
+import { Router } from '@angular/router';
+import {
+  Stripe,
+  StripeElements,
+  StripePaymentElementOptions,
+  loadStripe,
+} from '@stripe/stripe-js';
+import { BillingService } from 'src/app/admin/services/billing.service';
+import { Billing } from 'src/app/model/billing.model';
 
 @Component({
   selector: 'app-payment',
@@ -15,45 +22,48 @@ import { OrderStatusEnum } from 'src/app/model/order.model';
   styleUrls: ['./payment.component.scss'],
 })
 export class PaymentComponent implements OnInit {
+  public translateBaseRoute = 'routing.payment.';
   @ViewChild('paymentElement') paymentElement: ElementRef;
+  @Input() clientSecret: string;
+  @Input() billing: Billing[];
+  @Input() amount: number;
   private stripe: Stripe;
-  private elements: any;
-
-  constructor(
-    private renderer: Renderer2,
-    private orderService: OrderService
-  ) {}
+  public disabledBtn: boolean = true;
+  private elements: StripeElements;
+  constructor(private renderer: Renderer2, private router: Router) {}
 
   async ngOnInit(): Promise<void> {
     this.loadStripeScript();
+    await new Promise((f) => setTimeout(f, 1000));
 
-    const items = [{ id: 'xl-tshirt' }];
-
-    const newOrder = {
-      user_id: '6588917e47eaab5536308ad3',
-      items,
-      addons: [],
-      price: 1400,
-      status: OrderStatusEnum.New,
-    };
-    const response = await this.orderService.createNewOrder(newOrder);
-    console.log('here');
-
+    this.disabledBtn = false;
     this.elements = this.stripe.elements({
-      appearance: { theme: 'stripe' },
-      clientSecret: response.response.clientSecret,
+      locale: 'ar',
+      fonts: [
+        {
+          family: 'Tajawal',
+          src: 'https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;500&display=swap',
+        },
+      ],
+      appearance: { theme: 'flat' },
+      clientSecret: this.clientSecret,
     });
 
-    const paymentElementOptions = {
-      layout: 'tabs',
+    const paymentElementOptions: StripePaymentElementOptions = {
+      layout: { type: 'auto' },
+      wallets: { applePay: 'auto', googlePay: 'auto' },
+      business: { name: 'Pound Inc.' },
+      terms: { card: 'always' },
     };
 
-    const paymentElement = this.elements.create('payment', {});
+    const paymentElement = this.elements.create(
+      'payment',
+      paymentElementOptions
+    );
     paymentElement.mount('#payment-element');
-
   }
 
-  private loadStripeScript() {
+  private async loadStripeScript() {
     const script = this.renderer.createElement('script');
     script.src = 'https://js.stripe.com/v3/';
     script.async = true;
@@ -63,9 +73,9 @@ export class PaymentComponent implements OnInit {
         'pk_test_51OJQt3DgRKOECkRdFTqG5zYGtuGeHzaEJGjRA0k7XuPREWz7g8F27KnpBqFrtvssk8BfUUsXCXz0FbAeZbhvfiPD004lnnconj'
       )) as Stripe;
     };
+    this.renderer.appendChild(document.body, script);
 
     // Append the script to the document body
-    this.renderer.appendChild(document.body, script);
   }
 
   async onSubmit() {
@@ -74,16 +84,10 @@ export class PaymentComponent implements OnInit {
     const { error } = await this.stripe.confirmPayment({
       elements: this.elements,
       confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: 'http://localhost:4200/checkout.html',
+        return_url: 'http://localhost:4200/payment-management',
       },
     });
 
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
     if (error.type === 'card_error' || error.type === 'validation_error') {
       this.showMessage(error.message ? error.message : 'Unknown Error');
     } else {
@@ -91,55 +95,7 @@ export class PaymentComponent implements OnInit {
     }
 
     this.setLoading(false);
-    this.checkStatus();
-  }
-
-  async checkStatus() {
-    const clientSecret = new URLSearchParams(window.location.search).get(
-      'payment_intent_client_secret'
-    );
-
-    console.log(clientSecret);
-
-    if (!clientSecret) {
-      return;
-    }
-
-    const { paymentIntent } = await this.stripe.retrievePaymentIntent(
-      clientSecret
-    );
-    if (paymentIntent) {
-      switch (paymentIntent.status) {
-        case 'succeeded':
-          this.showMessage('Payment succeeded!');
-          break;
-        case 'processing':
-          this.showMessage('Your payment is processing.');
-          break;
-        case 'requires_payment_method':
-          this.showMessage(
-            'Your payment was not successful, please try again.'
-          );
-          break;
-        default:
-          this.showMessage('Something went wrong.');
-          break;
-      }
-    }
-  }
-
-  private handlePaymentMethod(paymentMethod: any) {
-    // Send payment method to your server for further processing
-    // You can use Angular's HttpClient here
-    // Example: this.http.post('/your-server-endpoint', { paymentMethod: paymentMethod.id })
-  }
-
-  private showError(message: string) {
-    const paymentMessage = document.getElementById(
-      'payment-message'
-    ) as HTMLElement;
-    paymentMessage.textContent = message;
-    paymentMessage.classList.remove('hidden');
+    this.disabledBtn = false;
   }
 
   showMessage(messageText: string) {

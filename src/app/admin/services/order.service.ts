@@ -57,6 +57,20 @@ export class OrderService {
         )
     );
   }
+  async setBilling(request: any) {
+    return await firstValueFrom(
+      this.http
+        .post<any>(`${ORDERS_API}/set_billing`, request, {
+          headers: this.headersService.getHeaders,
+          withCredentials: true,
+        })
+        .pipe(
+          map((response: any) => {
+            return response;
+          })
+        )
+    );
+  }
   async createNewOrder(request: any) {
     return await firstValueFrom(
       this.http
@@ -84,6 +98,20 @@ export class OrderService {
             return response;
           }),
           catchError((error) => of(error))
+        )
+    );
+  }
+  async getOrderByClientSecret(clientSecret: string) {
+    return await firstValueFrom(
+      this.http
+        .get<API_Response>(`${ORDERS_API}/clientSecret/${clientSecret}`, {
+          headers: this.headersService.getHeaders,
+          withCredentials: true,
+        })
+        .pipe(
+          map((response: any) => {
+            if (response) return response;
+          })
         )
     );
   }
