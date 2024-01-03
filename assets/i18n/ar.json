@@ -1,0 +1,254 @@
+{
+  "common": {
+    "company": {
+      "name": "باوند",
+      "version": "1.0",
+      "allRightsReserved": "جميع الحقوق محفوظة"
+    }
+  },
+  "routing": {
+    "auth": {
+      "login": {
+        "login": "تسجيل الدخول",
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور",
+        "register": "تسجيل",
+        "required": "مطلوب",
+        "invalid credentials": "بيانات التسجيل غير صالحة",
+        "signing in": "جاري تسحيل الدخول",
+        "don't have an account?": "ليس لديك حساب؟"
+      },
+      "register": {
+        "Email already exists": "البريد الإلكتروني موجود بالفعل",
+        "name": "الاسم",
+        "height": "الطول",
+        "weight": "الوزن",
+        "country": "الدولة",
+        "city": "المدينة",
+        "age": "العمر",
+        "Thank You for Signing Up!": "شكرًا للانضمام إلينا!",
+        "Explore our website to find the perfect coach who will guide you on your training journey": "استكشف موقعنا للعثور على المدرب المثالي الذي سيرشدك في رحلتك التدريبية.",
+        "Start your training journey": "ابدأ رحلتك التدريبية",
+        "Join us today to experience the best service tailored just for you.": "انضم إلينا اليوم لتجربة أفضل خدمة مصممة خصيصًا لك.",
+        "dob": "تاريخ الميلاد",
+        "gender": "الجنس",
+        "Female": "أنثى",
+        "Male": "ذكر",
+        "fitness level": "مستوى اللياقة البدنية",
+        "Beginner": "مبتدئ",
+        "Intermediate": "متوسط",
+        "Advanced": "متقدم",
+        "cm": "سم",
+        "kg": "كج",
+        "year": "سنة",
+        "eg": "مثال",
+        "goals": "الأهداف",
+        "weight loss": "خسارة الوزن",
+        "muscle gain": "زيادة الكتلة العضلية",
+        "bulk": "تضخيم",
+        "cut": "تنشيف",
+        "new user": "مستخدم جديد",
+        "continue": "متابعة",
+        "required": "مطلوب",
+        "must be": "يجب أن يكون",
+        "characters": "أحرف",
+        "at least": "على الأقل",
+        "less than": "أقل من",
+        "username": "اسم المستخدم",
+        "does not match": "غير متطابقة",
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور",
+        "confirm password": "تأكيد كلمة المرور",
+        "I have read and agree to the Terms": "لقد قرأت وأوافق على الشروط",
+        "Accept Terms is required": "قبول الشروط مطلوب",
+        "register": "تسجيل",
+        "login": "تسجيل الدخول",
+        "already have an account?": "لديك حساب؟",
+        "registering means that you accept and agree to our terms.": "التسجيل يعني أنك تقبل وتوافق على شروطنا.",
+        "submitting means that you provide accurate information.": "التسجيل يعني أنك تقدم معلومات دقيقة."
+      }
+    },
+    "admin": {
+      "dashboard": {
+        "Visitor": "الزوار",
+        "back": "العودة",
+        "logout": "تسجيل الخروج",
+        "order": {
+          "Order ID": "معرف الطلب",
+          "User ID": "معرف المستخدم",
+          "Items": "العناصر",
+          "Addons": "الإضافات",
+          "Price": "السعر",
+          "Status": "الحالة"
+        },
+
+        "program": {
+          "Training Programs": "برامج التدريب",
+          "New Program": "برنامج جديد"
+        },
+        "plan": {
+          "Program plans": "خطط البرنامج",
+          "New Plan": "خطّة جديد",
+          "Plan Name": "اسم الحزمة",
+          "Description": "الوصف",
+          "Price": "السّعر",
+          "Delivery Days": "مدّة التوصيل"
+        },
+        "user": {
+          "users": "المستخدمين"
+        }
+      }
+    },
+    "landing": {
+      "header": {
+        "nav": {
+          "home": "الرئيسية",
+          "account": "الحساب",
+          "login": "تسجيل الدخول",
+          "programs": "البرامج",
+          "coaches": "المدربيين",
+          "categories": {
+            "categories": "الأقسام",
+            "children": {
+              "nutrition": "التغذية",
+              "cardio": "الكارديو",
+              "strength": "القّوة"
+            }
+          }
+        }
+      },
+      "hero": {
+        "primary": {
+          "text": {
+            "main": "منصّة باوند",
+            "red": "شروطك.",
+            "dark": "تدريبك على"
+          },
+          "button": "برامجنا"
+        },
+        "secondary": {
+          "text": "لأول مرة في الوطن العربي, إختر مدربك الخاص بك, لمدّة أنت تحددها.",
+          "button": "اختر مدرّبك"
+        },
+        "cat": {
+          "left": {
+            "title": "ذكور",
+            "sub-title": "برامج تدريبية احترافية مخصصة للذكور تصلك إلى أهدافك"
+          },
+          "right": {
+            "title": "إناث",
+            "sub-title": "برامج تدريبية احترافية مخصصة للإناث تصلك إلى أهدافك"
+          }
+        }
+      },
+      "categories": {
+        "title": "الأقسام",
+        "cards": {
+          "right": {
+            "title": "التغذية",
+            "sub-title": "زيّن صحتك القلبية بتمارين القلب الديناميّة."
+          },
+          "middle": {
+            "title": "كارديو",
+            "sub-title": "زيّن صحتك القلبية بكارديو الديناميّة."
+          },
+          "left": {
+            "title": "القوّة",
+            "sub-title": "زيّن صحتك القلبية ب القلب الديناميّة."
+          }
+        }
+      },
+      "top-coaches": {},
+      "partners": {},
+      "story": {},
+      "cards": {},
+      "how-it-works": {
+        "title": "طريقة عمل الموقع",
+        "cards": {
+          "right": {
+            "title": "عملية الموافقة على المدرب:",
+            "info": "يخضع كل مدرب على منصتنا لعملية موافقة صارمة، مما يضمن أنهم ليسوا مجرد عشاق للياقة، بل محترفون. يتم توثيق كل مدرب والموافقة عليه من قبل طبيب مؤهل لضمان أعلى مستوى من الخبرة."
+          },
+          "middle": {
+            "title": "برامج تدريب مخصصة:",
+            "info": "يحظى المستخدمون بالقدرة على تشكيل رحلتهم الرياضية. اختر مدربك واطلب برنامج تدريب شخصي مصمم حسب احتياجاتك، سواء كانت تحدياً لمدة 4 أسابيع أو التزامًا طويل الأمد."
+          },
+          "left": {
+            "title": "التحقق من قبل الأطباء:",
+            "info": "لضمان شرعية وسلامة كل برنامج تدريب، يخضع كل برنامج لفحص شامل من قبل فريقنا من الأطباء المعتمدين. يضمن هذا الخطوة أن كل برنامج للياقة يتوافق مع المعايير الصحية، مما يمنحك الطمأنينة التي تستحقها."
+          }
+        }
+      },
+      "footer": {}
+    },
+    "program": {
+      "addons": "إضافات",
+      "continue": "متابعة",
+      "total": "الإجمالي",
+      "price": "السعر",
+      "VAT": "ضريبة القيمة المضافة",
+      "user cart": "سلّة الشراء",
+      "purchase": "دفع",
+      "back": "العودة",
+      "weekly check": "مراجعة إسبوعية",
+      "money-back guarantee": "ضمان استعادة الأموال",
+      "whatsapp copy": "نسخة واتس آب",
+      "supplements": "مكملات غذائية",
+      "supplements list specially for your training program": "قائمة مكملات غذائية خاصّة لبرنامجك التدريبي",
+      "weekly check by your personal trainer to assess progress and provide guidance if necessary.": "مراجعة أسبوعية من قِبل مدربك الشخصي للتقييم والتوجيه.",
+      "If you complete the program with no results, we offer a money back guarantee.": "إذا أكملت البرنامج بدون نتائج، فإننا نقدم ضمان استعادة الأموال.",
+      "get a whatsapp copy of your program": "احصل على نسخة من برنامج التدريب على الواتس آب.",
+      "phases": {
+        "muscle": "عضلات",
+        "weight loss": "خسارة الوزن",
+        "muscle gain": "زيادة الكتلة العضلية",
+        "bulk": "تضخيم",
+        "fat": "خسارة الوزن",
+        "cut": "تنشيف"
+      }
+    },
+    "coach": {
+      "phases": {
+        "muscle": "عضلات",
+        "weight loss": "خسارة الوزن",
+        "muscle gain": "زيادة الكتلة العضلية",
+        "bulk": "تضخيم",
+        "fat": "زيادة الوزن",
+        "cut": "تنشيف"
+      },
+      "profile-card": {
+        "customers": "عملاء",
+        "programs": "برامج",
+        "buttons": {
+          "message": "رسالة",
+          "testimonials": "المراجعات",
+          "products": "المنتجات"
+        }
+      },
+      "pound-selection": "اختيار باوند",
+      "training-programs": "برامج التدريب",
+      "certifications": "الخبرات",
+      "certification-number": "الشهادة",
+      "customer-stories": "قصص العملاء",
+      "languages": "اللغات",
+      "verified-coach": "مدرب معتمد",
+      "rating": "التقييم"
+    },
+    "invoice": {
+      "invoice": "فاتورة",
+      "client number": "رقم العميل",
+      "This is computer generated receipt and does not require physical signature.": "هذه إيصالات مُنشأة آليًا ولا تتطلب توقيعًا من العميل.",
+      "note": "ملاحظة",
+      "total": "المجموع",
+      "VAT": "ضريبة القيمة المضافة",
+      "sub total": "السعر",
+      "invoice to": "فاتورة إلى",
+      "invoice number": "رقم الفاتورة",
+      "date": "التاريخ"
+    },
+    "payment": {
+      "pay now": "شراء",
+      "back": "العودة"
+    }
+  }
+}
