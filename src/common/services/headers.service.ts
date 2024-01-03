@@ -10,7 +10,7 @@ export class HeadersService {
   }
 
   private setHeaders() {
-    const token = this.cookieService.get('AUTH');
+    const token = this.cookieService.get('authorization');
     if (token) {
       this.headers = new HttpHeaders({
         Authorization: `Bearer ${token}`,

@@ -29,9 +29,7 @@ export class AuthService {
     private http: HttpClient,
     private cookieService: CookieService,
     private headersService: HeadersService
-  ) {
-    this.checkTokenValidity();
-  }
+  ) {}
 
   login(loginPayload: { email: string; password: string }): Observable<any> {
     return this.http
@@ -41,7 +39,20 @@ export class AuthService {
       .pipe(
         tap((response: any) => {
           if (response) {
-            this.cookieService.set('AUTH', response.Authentication);
+            // Calculate the expiration date (2 days from now)
+            const expirationDate = new Date();
+            expirationDate.setDate(expirationDate.getDate() + 2);
+
+            // Set the cookie with the expiration date
+            this.cookieService.set(
+              'authorization',
+              response.Authentication,
+              expirationDate,
+              undefined,
+              undefined,
+              true,
+              'None'
+            );
             this.checkTokenValidity();
           }
         }),
@@ -54,36 +65,30 @@ export class AuthService {
   logout(): void {
     this.isAuthenticated.next(false);
     this.currentUser.next(null);
-    this.cookieService.delete('AUTH');
+    this.cookieService.delete('authorization');
   }
 
   async checkTokenValidity(): Promise<boolean> {
     if (this.headersService.getHeaders) {
-      try {
-        const response = await firstValueFrom(
-          this.http
-            .get<any>(`${AUTH_API}/users/me`, {
-              headers: this.headersService.getHeaders,
-              withCredentials: true,
+      return await firstValueFrom(
+        this.http
+          .get<any>(`${AUTH_API}/users/me`, {
+            headers: this.headersService.getHeaders,
+            withCredentials: true,
+          })
+          .pipe(
+            map((user) => {
+              this.currentUser.next(user);
+              this.isAuthenticated.next(true);
+              return true;
+            }),
+            catchError((error) => {
+              console.error('HTTP Error:', error);
+              this.handleHttpError(error);
+              return of(false);
             })
-            .pipe(
-              map((user) => {
-                this.currentUser.next(user);
-                this.isAuthenticated.next(true);
-                return true;
-              }),
-              catchError((error) => {
-                console.error('HTTP Error:', error);
-                this.handleHttpError(error);
-                return of(false);
-              })
-            )
-        );
-      } catch (error) {
-        console.error('Network Error:', error);
-        this.handleNetworkError(error);
-        return false;
-      }
+          )
+      );
     }
     return false;
   }

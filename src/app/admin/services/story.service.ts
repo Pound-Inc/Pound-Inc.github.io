@@ -33,7 +33,7 @@ export class StoryService {
   async getRelatedStories(programId: string) {
     return await firstValueFrom(
       this.http
-        .get<API_Response>(`${PLANS_API}/stories/${programId}`, {
+        .get<API_Response>(`${PLANS_API}/stories/${programId}/`, {
           headers: this.headersService.getHeaders,
           withCredentials: true,
         })

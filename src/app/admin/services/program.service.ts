@@ -28,7 +28,7 @@ export class ProgramService {
   async getPrograms() {
     return await firstValueFrom(
       this.http
-        .get<API_Response>(`${PROGRAMS_API}`, {
+        .get<API_Response>(`${PROGRAMS_API}/`, {
           headers: this.headersService.getHeaders,
           withCredentials: true,
         })
@@ -49,7 +49,7 @@ export class ProgramService {
   async getProgramById(programId: string) {
     return await firstValueFrom(
       this.http
-        .get<API_Response>(`${PROGRAMS_API}/${programId}`, {
+        .get<API_Response>(`${PROGRAMS_API}/program/${programId}/`, {
           headers: this.headersService.getHeaders,
           withCredentials: true,
         })

@@ -28,7 +28,7 @@ export class UserService {
   async getUsers() {
     return await firstValueFrom(
       this.http
-        .get<API_Response>(`${AUTH_API}/users`, {
+        .get<API_Response>(`${AUTH_API}/users/`, {
           headers: this.headersService.getHeaders,
           withCredentials: true,
         })
@@ -71,7 +71,7 @@ export class UserService {
   async createNewUser(user: any) {
     return await firstValueFrom(
       this.http
-        .post<API_Response>(`${AUTH_API}/users`, user, {
+        .post<API_Response>(`${AUTH_API}/users/`, user, {
           withCredentials: true,
         })
         .pipe(
@@ -125,7 +125,7 @@ export class UserService {
   private async insertGuest(userLocaleStorage: object) {
     await firstValueFrom(
       this.http
-        .post<API_Response>(`${AUTH_API}/users/guest`, userLocaleStorage, {
+        .post<API_Response>(`${AUTH_API}/users/guest/`, userLocaleStorage, {
           withCredentials: true,
         })
         .pipe(catchError((error) => of(error)))

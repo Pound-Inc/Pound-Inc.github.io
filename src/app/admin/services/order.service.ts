@@ -19,7 +19,7 @@ export class OrderService {
   async getRelatedOrders(userId: string) {
     return await firstValueFrom(
       this.http
-        .get<API_Response>(`${ORDERS_API}/user/${userId}`, {
+        .get<API_Response>(`${ORDERS_API}/user/${userId}/`, {
           headers: this.headersService.getHeaders,
           withCredentials: true,
         })
@@ -40,7 +40,7 @@ export class OrderService {
   async getOrders() {
     return await firstValueFrom(
       this.http
-        .get<API_Response>(`${ORDERS_API}`, {
+        .get<API_Response>(`${ORDERS_API}/`, {
           headers: this.headersService.getHeaders,
           withCredentials: true,
         })
@@ -89,7 +89,7 @@ export class OrderService {
   async getOrderById(orderId: string) {
     return await firstValueFrom(
       this.http
-        .get<API_Response>(`${ORDERS_API}/${orderId}`, {
+        .get<API_Response>(`${ORDERS_API}/${orderId}/`, {
           headers: this.headersService.getHeaders,
           withCredentials: true,
         })
@@ -104,7 +104,7 @@ export class OrderService {
   async getOrderByClientSecret(clientSecret: string) {
     return await firstValueFrom(
       this.http
-        .get<API_Response>(`${ORDERS_API}/clientSecret/${clientSecret}`, {
+        .get<API_Response>(`${ORDERS_API}/clientSecret/${clientSecret}/`, {
           headers: this.headersService.getHeaders,
           withCredentials: true,
         })

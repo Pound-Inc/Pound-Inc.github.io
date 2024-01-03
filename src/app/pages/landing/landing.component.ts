@@ -20,7 +20,8 @@ export class LandingComponent implements OnInit, OnChanges, OnDestroy {
   private authSubscription: Subscription;
   constructor(private meta: Meta, private authService: AuthService) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.authService.checkTokenValidity();
     this.authSubscription = this.authService.getCurrentUser.subscribe(
       (user: User) => {
         if (user) {

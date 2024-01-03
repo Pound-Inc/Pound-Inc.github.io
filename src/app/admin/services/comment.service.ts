@@ -33,7 +33,7 @@ export class CommentService {
   async getRelatedComments(programId: string) {
     return await firstValueFrom(
       this.http
-        .get<API_Response>(`${PLANS_API}/comments/${programId}`, {
+        .get<API_Response>(`${PLANS_API}/comments/${programId}/`, {
           headers: this.headersService.getHeaders,
           withCredentials: true,
         })

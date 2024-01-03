@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
     private router: Router,
     private meta: Meta,
     private translate: TranslateService,
-    private authService: AuthService,
     private userService: UserService,
     private http: HttpClient
   ) {
@@ -48,7 +47,7 @@ export class AppComponent implements OnInit {
     translate.use(browserLang?.match(/en|ar/) ? browserLang : 'en');
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
     this.translate.use(savedLanguage);
     this.translate.setDefaultLang('en');
@@ -76,7 +75,6 @@ export class AppComponent implements OnInit {
       name: 'Pound Inc.',
       url: 'https://poundinc.com',
       logo: 'https://poundinc.com/assets/imgs/common/pound.png',
-      
     };
 
     // Convert the JSON object to a string

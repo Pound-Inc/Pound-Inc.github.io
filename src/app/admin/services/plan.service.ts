@@ -55,7 +55,7 @@ export class PlanService {
   async getRelatedPlans(programId: string) {
     return await firstValueFrom(
       this.http
-        .get<API_Response>(`${PLANS_API}/plans/${programId}`, {
+        .get<API_Response>(`${PLANS_API}/plans/${programId}/`, {
           headers: this.headersService.getHeaders,
           withCredentials: true,
         })
