@@ -20,6 +20,5 @@ export class CoachCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.coach);
   }
 }

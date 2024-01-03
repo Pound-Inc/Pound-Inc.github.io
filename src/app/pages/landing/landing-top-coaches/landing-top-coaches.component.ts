@@ -35,7 +35,6 @@ export class LandingTopCoachesComponent implements OnInit, OnDestroy {
   ) {}
   async ngOnInit(): Promise<void> {
     this.plans = (await this.plansService.getPlans()).data;
-    console.log(this.plans);
 
     this.programsSubscription = this.programService.programs.subscribe(
       (programs: TrainingProgram[]) => {
@@ -53,7 +52,6 @@ export class LandingTopCoachesComponent implements OnInit, OnDestroy {
       .getReceipts()
       .subscribe((receipts: Receipt[]) => {
         this.receipts = receipts;
-        console.log(this.receipts);
       });
   }
   ngOnDestroy(): void {

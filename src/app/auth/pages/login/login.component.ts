@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    console.log(JSON.stringify(this.form.value, null, 2));
+    (JSON.stringify(this.form.value, null, 2));
   }
 
   logout() {

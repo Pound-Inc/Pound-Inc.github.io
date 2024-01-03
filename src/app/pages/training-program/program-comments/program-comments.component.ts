@@ -13,7 +13,6 @@ export class ProgramCommentsComponent implements OnInit {
   users: User[] = [];
   constructor(private userService: UserService) {}
   ngOnInit(): void {
-    console.log('here');
 
     this.userService.getUsers().then((response: any) => {
       this.users = response['data'];

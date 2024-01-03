@@ -133,7 +133,6 @@ export class UserService {
   }
 
   async getUserById(userId: string) {
-    console.log(userId);
 
     return await firstValueFrom(
       this.http.get<any>(`${AUTH_API}/users/${userId}`).pipe(

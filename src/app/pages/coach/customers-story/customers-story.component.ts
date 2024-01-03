@@ -18,7 +18,6 @@ export class CustomersStoryComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.relatedStories);
   }
 
   public getRelatedUsers(userId: string): User | undefined {

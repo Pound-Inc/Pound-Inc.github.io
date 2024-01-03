@@ -29,7 +29,6 @@ export class PaymentManagementComponent implements OnInit {
         const paymentIntentClientSecret =
           params['payment_intent_client_secret'];
         const paymentStatus = params['redirect_status'];
-        console.log('Payment Intent Client Secret:', paymentIntentClientSecret);
 
         await this.orderService
           .getOrderByClientSecret(paymentIntentClientSecret)
