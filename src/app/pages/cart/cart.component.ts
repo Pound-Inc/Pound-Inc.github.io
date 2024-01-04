@@ -126,18 +126,23 @@ export class CartComponent implements OnInit {
     this.payBtn = true;
     this.setBillingArray();
 
-    this.orderService.setBilling(this.billing).then((response: any) => {
-      const clientSecret: string = response.response;
-      const modalRef = this.modalService.open(PaymentComponent, {
-        size: 'md',
-        backdrop: 'static',
-        keyboard: false,
-      });
+    this.orderService.setBilling(this.billing).subscribe({
+      next: (response) => {
+        const clientSecret: string = response.response;
+        const modalRef = this.modalService.open(PaymentComponent, {
+          size: 'md',
+          backdrop: 'static',
+          keyboard: false,
+        });
 
-      modalRef.componentInstance.billing = this.billing;
-      modalRef.componentInstance.amount = this.getTotalAmountIncVat();
-      modalRef.componentInstance.clientSecret = clientSecret;
-      this.payBtn = false;
+        modalRef.componentInstance.billing = this.billing;
+        modalRef.componentInstance.amount = this.getTotalAmountIncVat();
+        modalRef.componentInstance.clientSecret = clientSecret;
+        this.payBtn = false;
+      },
+      error: (error) => {
+        console.log(error);
+      },
     });
   }
 

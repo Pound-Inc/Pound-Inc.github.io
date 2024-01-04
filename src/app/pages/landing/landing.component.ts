@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/model/user.model';
 
 @Component({
@@ -18,18 +17,9 @@ import { User } from 'src/app/model/user.model';
 export class LandingComponent implements OnInit, OnChanges, OnDestroy {
   public user: User;
   private authSubscription: Subscription;
-  constructor(private meta: Meta, private authService: AuthService) {}
+  constructor(private meta: Meta) {}
 
   async ngOnInit() {
-    await this.authService.checkTokenValidity();
-    this.authSubscription = this.authService.getCurrentUser.subscribe(
-      (user: User) => {
-        if (user) {
-          this.user = user;
-        }
-      }
-    );
-
     this.meta.updateTag({
       name: 'description',
       content:
@@ -37,8 +27,7 @@ export class LandingComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
 
   ngOnDestroy(): void {
     if (this.authSubscription) {

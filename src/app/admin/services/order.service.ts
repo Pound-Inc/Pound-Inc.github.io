@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, firstValueFrom, map, of } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  catchError,
+  firstValueFrom,
+  map,
+  of,
+} from 'rxjs';
 import { ORDERS_API } from 'src/common/constants/endpoints';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HeadersService } from 'src/common/services/headers.service';
 import { API_Response } from 'src/common/interfaces/response.interface';
 import { Order } from 'src/app/model/order.model';
@@ -57,19 +64,19 @@ export class OrderService {
         )
     );
   }
-  async setBilling(request: any) {
-    return await firstValueFrom(
-      this.http
-        .post<any>(`${ORDERS_API}/set_billing`, request, {
-          headers: this.headersService.getHeaders,
-          withCredentials: true,
-        })
-        .pipe(
-          map((response: any) => {
-            return response;
-          })
-        )
-    );
+
+  setBilling(request: any): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('authorization')}`,
+    });
+    if (headers) {
+      console.log(headers.get('Authorization'));
+
+      return this.http.post<any>(`${ORDERS_API}/set_billing`, request, {
+        headers,
+      });
+    }
+    return of(null);
   }
   async createNewOrder(request: any) {
     return await firstValueFrom(

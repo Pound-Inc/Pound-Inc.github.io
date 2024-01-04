@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Coach } from 'src/app/model/coach.model';
 import { User } from 'src/app/model/user.model';
 
@@ -13,15 +14,13 @@ export class AdminLandingComponent implements OnInit, OnDestroy {
   user: User | Coach;
 
   private routeSubscription: Subscription;
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private authService: AuthService
+  ) {}
   ngOnInit(): void {
-    this.routeSubscription = this.route.data.subscribe((data) => {
-      const user: User | Coach = data['user'];
-      if (user.roles.Worker) {
-        this.user = user as Coach;
-      } else {
-        this.user = user as User;
-      }
+    this.authService.getProfile().subscribe((user) => {
+      this.user = user;
     });
   }
   ngOnDestroy(): void {

@@ -67,9 +67,11 @@ export class CreateProgramModalComponent implements OnInit {
       },
     };
 
-    await this.programService
+    this.programService
       .createNewProgram(newProgram)
-      .then(async (createdProgram) => {
+      .subscribe(async (createdProgram) => {
+        console.log(createdProgram);
+        
         await this.createThreeRelatedPlans(createdProgram);
       });
   }

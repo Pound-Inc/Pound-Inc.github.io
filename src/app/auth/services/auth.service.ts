@@ -21,6 +21,8 @@ import { API_Response } from 'src/common/interfaces/response.interface';
 })
 export class AuthService {
   private isAuthenticated = new BehaviorSubject<boolean>(false);
+  private headers: HttpHeaders;
+
   public currentUser = new BehaviorSubject<any>(null);
 
   redirectUrl: string | null = null;
@@ -29,7 +31,21 @@ export class AuthService {
     private http: HttpClient,
     private cookieService: CookieService,
     private headersService: HeadersService
-  ) {}
+  ) {
+    if (this.headersService.getHeaders) {
+      this.getProfile();
+    }
+  }
+
+  getProfile(): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('authorization')}`,
+    });
+    if (headers) {
+      return this.http.get<any>(`${AUTH_API}/users/user/me`, { headers });
+    }
+    return of(null);
+  }
 
   login(loginPayload: { email: string; password: string }): Observable<any> {
     return this.http
@@ -37,13 +53,14 @@ export class AuthService {
         withCredentials: true,
       })
       .pipe(
-        tap((response: any) => {
+        tap(async (response: any) => {
           if (response) {
             // Calculate the expiration date (2 days from now)
             const expirationDate = new Date();
             expirationDate.setDate(expirationDate.getDate() + 2);
 
             // Set the cookie with the expiration date
+            localStorage.setItem('authorization', response.Authentication);
             this.cookieService.set(
               'authorization',
               response.Authentication,
@@ -53,7 +70,9 @@ export class AuthService {
               true,
               'None'
             );
-            this.checkTokenValidity();
+
+            // this.setHeaders();
+            // this.getProfile();
           }
         }),
         catchError((error) => {
@@ -66,31 +85,7 @@ export class AuthService {
     this.isAuthenticated.next(false);
     this.currentUser.next(null);
     this.cookieService.delete('authorization');
-  }
-
-  async checkTokenValidity(): Promise<boolean> {
-    if (this.headersService.getHeaders) {
-      return await firstValueFrom(
-        this.http
-          .get<any>(`${AUTH_API}/users/me`, {
-            headers: this.headersService.getHeaders,
-            withCredentials: true,
-          })
-          .pipe(
-            map((user) => {
-              this.currentUser.next(user);
-              this.isAuthenticated.next(true);
-              return true;
-            }),
-            catchError((error) => {
-              console.error('HTTP Error:', error);
-              this.handleHttpError(error);
-              return of(false);
-            })
-          )
-      );
-    }
-    return false;
+    localStorage.removeItem('authorization');
   }
 
   private handleHttpError(error: any): void {
@@ -113,5 +108,15 @@ export class AuthService {
 
   get getCurrentUser(): Observable<any> {
     return this.currentUser.asObservable();
+  }
+
+  private setHeaders() {
+    const token = this.cookieService.get('authorization');
+    const tokenLocalStorage = localStorage.getItem('authorization');
+    if (token || tokenLocalStorage) {
+      this.headers = new HttpHeaders({
+        Authorization: `Bearer ${tokenLocalStorage}`,
+      });
+    }
   }
 }

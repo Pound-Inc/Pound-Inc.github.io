@@ -8,25 +8,15 @@ export const onBoardingGuard = () => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  return authService.getIsAuthenticated.pipe(
-    switchMap((isAuthenticated: boolean) => {
-      if (isAuthenticated) {
-        router.navigate(['/']);
-        return of(false);
-      } else {
-        return from(authService.checkTokenValidity()).pipe(
-          map((isValid: boolean) => {
-            if (isValid) {
-              router.navigate(['/']);
-              return of(false);
-            }
-            return of(true);
-          }),
-          catchError((error) => {
-            return of(true);
-          })
-        );
-      }
+  return authService.getProfile().pipe(
+    map((user) => {
+      console.log(user);
+      if (user) return false;
+      return true;
+    }),
+    catchError((error) => {
+      console.log(error);
+      return of(true);
     })
   );
 };

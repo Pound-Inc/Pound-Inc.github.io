@@ -21,7 +21,8 @@ export class AppComponent implements OnInit {
     private meta: Meta,
     private translate: TranslateService,
     private userService: UserService,
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) {
     if (!localStorage.getItem('selectedLanguage')) {
       localStorage.setItem('selectedLanguage', 'ar');
@@ -40,17 +41,17 @@ export class AppComponent implements OnInit {
       });
 
     // Set the default language
-    translate.setDefaultLang('en');
+    translate.setDefaultLang('ar');
 
     // Use the browser language by default
     const browserLang = translate.getBrowserLang();
-    translate.use(browserLang?.match(/en|ar/) ? browserLang : 'en');
+    translate.use(browserLang?.match(/en|ar/) ? browserLang : 'ar');
   }
 
   async ngOnInit() {
-    const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+    const savedLanguage = localStorage.getItem('selectedLanguage') || 'ar';
     this.translate.use(savedLanguage);
-    this.translate.setDefaultLang('en');
+    this.translate.setDefaultLang('ar');
 
     // Set the text direction based on the selected language
     this.setDirection(savedLanguage);

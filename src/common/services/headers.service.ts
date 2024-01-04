@@ -9,11 +9,12 @@ export class HeadersService {
     this.setHeaders();
   }
 
-  private setHeaders() {
+  setHeaders() {
     const token = this.cookieService.get('authorization');
-    if (token) {
+    const tokenLocalStorage = localStorage.getItem('authorization');
+    if (token || tokenLocalStorage) {
       this.headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${tokenLocalStorage}`,
       });
     }
   }

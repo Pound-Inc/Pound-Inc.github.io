@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   BehaviorSubject,
+  Observable,
   catchError,
   firstValueFrom,
   map,
@@ -9,7 +10,7 @@ import {
 } from 'rxjs';
 import { TrainingProgram } from 'src/app/model/training-program.model';
 import { PROGRAMS_API } from 'src/common/constants/endpoints';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HeadersService } from 'src/common/services/headers.service';
 import { API_Response } from 'src/common/interfaces/response.interface';
 
@@ -62,23 +63,16 @@ export class ProgramService {
     );
   }
 
-  async createNewProgram(program: any) {
-    try {
-      return await firstValueFrom(
-        this.http
-          .post<any>(`${PROGRAMS_API}`, program, {
-            withCredentials: true,
-          })
-          .pipe(
-            map((response: any) => {
-              return response;
-            }),
-            catchError((error) => {
-              throw new Error(error);
-            })
-          )
-      );
-    } catch (error) {}
+  createNewProgram(request: any): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('authorization')}`,
+    });
+    if (headers) {
+      return this.http.post<any>(`${PROGRAMS_API}`, request, {
+        headers,
+      });
+    }
+    return of(null);
   }
 
   get programs() {

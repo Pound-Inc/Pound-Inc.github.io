@@ -11,12 +11,7 @@ import { OrderService } from '../../services/order.service';
 })
 export class AdminDashboardComponent {
   public translateBaseRoute = 'routing.admin.dashboard.';
-  constructor(
-    private authService: AuthService,
-    private userService: UserService,
-    private programService: ProgramService,
-    private orderService: OrderService
-  ) {
+  constructor(private orderService: OrderService) {
     document.dir = 'ltr';
   }
   apicheck() {

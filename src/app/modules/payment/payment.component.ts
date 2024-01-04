@@ -13,7 +13,9 @@ import {
   StripePaymentElementOptions,
   loadStripe,
 } from '@stripe/stripe-js';
+import { map } from 'rxjs';
 import { BillingService } from 'src/app/admin/services/billing.service';
+import { OrderService } from 'src/app/admin/services/order.service';
 import { Billing } from 'src/app/model/billing.model';
 
 @Component({
@@ -30,12 +32,17 @@ export class PaymentComponent implements OnInit {
   private stripe: Stripe;
   public disabledBtn: boolean = true;
   private elements: StripeElements;
-  constructor(private renderer: Renderer2, private router: Router) {}
+  constructor(
+    private renderer: Renderer2,
+    private router: Router,
+    private orderService: OrderService
+  ) {}
 
   async ngOnInit(): Promise<void> {
     this.loadStripeScript();
     await new Promise((f) => setTimeout(f, 1000));
 
+    //
     this.disabledBtn = false;
     this.elements = this.stripe.elements({
       locale: 'ar',
