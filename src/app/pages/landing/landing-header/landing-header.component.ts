@@ -75,9 +75,17 @@ export class LandingHeaderComponent implements OnInit, OnDestroy {
         }
       }
     });
-    this.authService.getProfile().subscribe((user) => {
-      this.user = user;
-    });
+
+    this.authService
+      .getProfile()
+      .then((user) => {
+        console.log(user);
+
+        this.user = user;
+      })
+      .catch((a) => {
+        console.log(a);
+      });
   }
 
   ngOnDestroy(): void {

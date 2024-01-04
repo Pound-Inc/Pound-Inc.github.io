@@ -53,22 +53,22 @@ export class LoginComponent implements OnInit {
     const loginObject: { email: string; password: string } =
       this.form.getRawValue();
 
-    this.authService.login(loginObject).subscribe({
-      next: () => {
+    this.authService
+      .login(loginObject)
+      .then(() => {
         this.valid = true;
         setTimeout(() => {
           this.valid = false;
           const redirectUrl = '/';
           this.router.navigate([redirectUrl]);
         }, 2000);
-      },
-      error: (error) => {
+      })
+      .catch(() => {
         this.invalidMessage = true;
         setTimeout(() => {
           this.invalidMessage = false;
         }, 5000);
-      },
-    });
+      });
   }
   onSubmit(): void {
     this.submitted = true;
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    (JSON.stringify(this.form.value, null, 2));
+    JSON.stringify(this.form.value, null, 2);
   }
 
   logout() {

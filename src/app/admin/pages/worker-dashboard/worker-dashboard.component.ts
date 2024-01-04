@@ -17,11 +17,11 @@ export class WorkerDashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.getProfile().subscribe(async (coach: Coach) => {
-      console.log(coach);
+    // this.authService.getProfile().subscribe(async (coach: Coach) => {
+    //   console.log(coach);
 
-      this.coach = coach;
-    });
+    //   this.coach = coach;
+    // });
   }
   openCreateProgramModal() {
     const modalRef = this.modalService.open(CreateProgramModalComponent, {
