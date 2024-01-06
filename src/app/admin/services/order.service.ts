@@ -17,11 +17,19 @@ import { Order } from 'src/app/model/order.model';
 export class OrderService {
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _orders$ = new BehaviorSubject<Order[]>([]);
+  private headers: HttpHeaders;
+  private authToken: string;
 
   constructor(
     private http: HttpClient,
     private headersService: HeadersService
-  ) {}
+  ) {
+    this.authToken = localStorage.getItem('Authentication') as string;
+
+    this.headers = new HttpHeaders({
+      Authentication: `Bearer ${this.authToken}`,
+    });
+  }
 
   async getRelatedOrders(userId: string) {
     return await firstValueFrom(
@@ -65,19 +73,26 @@ export class OrderService {
     );
   }
 
-  setBilling(request: any): Observable<any> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('authorization')}`,
+  public setBilling(request: any): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      return this.http
+        .post<any>(`${ORDERS_API}/set_billing`, request, {
+          headers: this.headers,
+          withCredentials: true,
+        })
+        .subscribe({
+          next: (response: any) => {
+            if (response) {
+              return resolve(response);
+            }
+          },
+          error: (error) => {
+            return reject(error.errorMessage);
+          },
+        });
     });
-    if (headers) {
-      console.log(headers.get('Authorization'));
-
-      return this.http.post<any>(`${ORDERS_API}/set_billing`, request, {
-        headers,
-      });
-    }
-    return of(null);
   }
+
   async createNewOrder(request: any) {
     return await firstValueFrom(
       this.http

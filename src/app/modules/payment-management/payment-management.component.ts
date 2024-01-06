@@ -16,48 +16,57 @@ export class PaymentManagementComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private orderService: OrderService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
-  async ngOnInit(): Promise<void> {
-    this.route.queryParams.subscribe(async (params) => {
-      // Access the query parameters here
-      const paymentIntentClientSecret = params['payment_intent_client_secret'];
-      const paymentStatus = params['redirect_status'];
+  ngOnInit() {
+    this.authService.getProfile().then((user) => {
+      this.user = user;
+      if (user) {
+        this.route.queryParams.subscribe(async (params) => {
+          // Access the query parameters here
+          const paymentIntentClientSecret =
+            params['payment_intent_client_secret'];
+          const paymentStatus = params['redirect_status'];
 
-      await this.orderService
-        .getOrderByClientSecret(paymentIntentClientSecret)
-        .then(async (response) => {
-          if (response.response.length > 0) {
-            this.router.navigate(['/']);
-          } else {
-            if (paymentStatus === 'succeeded') {
-              const cartData: Cart = JSON.parse(
-                localStorage.getItem('cart') as string
-              );
+          await this.orderService
+            .getOrderByClientSecret(paymentIntentClientSecret)
+            .then(async (response) => {
+              if (response.response.length > 0) {
+                this.router.navigate(['/']);
+              } else {
+                if (paymentStatus === 'succeeded') {
+                  const cartData: Cart = JSON.parse(
+                    localStorage.getItem('cart') as string
+                  );
 
-              const amount = this.calculateAmount(cartData);
-              const order = this.setNewOrder(
-                cartData,
-                amount,
-                this.user._id,
-                paymentIntentClientSecret
-              );
+                  const amount = this.calculateAmount(cartData);
+                  const order = this.setNewOrder(
+                    cartData,
+                    amount,
+                    this.user._id,
+                    paymentIntentClientSecret
+                  );
 
-              await this.orderService.createNewOrder(order).then((response) => {
-                if (response) {
-                  const navigationExtras: NavigationExtras = {
-                    state: {
-                      orderData: response,
-                    },
-                  };
+                  await this.orderService
+                    .createNewOrder(order)
+                    .then((response) => {
+                      if (response) {
+                        const navigationExtras: NavigationExtras = {
+                          state: {
+                            orderData: response,
+                          },
+                        };
 
-                  this.router.navigate(['/invoice'], navigationExtras);
+                        this.router.navigate(['/invoice'], navigationExtras);
+                      }
+                    });
                 }
-              });
-            }
-          }
+              }
+            });
         });
+      }
     });
   }
 

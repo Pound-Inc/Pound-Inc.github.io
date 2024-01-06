@@ -44,7 +44,7 @@ export class CartComponent implements OnInit {
     private billingService: BillingService
   ) {}
   async ngOnInit(): Promise<void> {
-    this.authService.getCurrentUser.subscribe((user) => {
+    this.authService.getProfile().then((user) => {
       this.user = user;
     });
 
@@ -126,8 +126,9 @@ export class CartComponent implements OnInit {
     this.payBtn = true;
     this.setBillingArray();
 
-    this.orderService.setBilling(this.billing).subscribe({
-      next: (response) => {
+    this.orderService
+      .setBilling(this.billing)
+      .then((response) => {
         const clientSecret: string = response.response;
         const modalRef = this.modalService.open(PaymentComponent, {
           size: 'md',
@@ -135,15 +136,12 @@ export class CartComponent implements OnInit {
           keyboard: false,
         });
 
+        modalRef.componentInstance.clientSecret = clientSecret;
         modalRef.componentInstance.billing = this.billing;
         modalRef.componentInstance.amount = this.getTotalAmountIncVat();
-        modalRef.componentInstance.clientSecret = clientSecret;
         this.payBtn = false;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+      })
+      .catch((error) => {});
   }
 
   async onPurchase() {

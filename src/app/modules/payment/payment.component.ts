@@ -40,7 +40,7 @@ export class PaymentComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.loadStripeScript();
-    await new Promise((f) => setTimeout(f, 1000));
+    await new Promise((f) => setTimeout(f, 2000));
 
     //
     this.disabledBtn = false;

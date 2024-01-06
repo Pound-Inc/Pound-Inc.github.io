@@ -71,21 +71,14 @@ export class LandingHeaderComponent implements OnInit, OnDestroy {
       if (event instanceof NavigationEnd) {
         window.scrollTo(0, 0);
         if (event.url === '/') {
-          // window.location.reload();
+          window.location.reload();
         }
       }
     });
 
-    this.authService
-      .getProfile()
-      .then((user) => {
-        console.log(user);
-
-        this.user = user;
-      })
-      .catch((a) => {
-        console.log(a);
-      });
+    this.authService.getProfile().then((user) => {
+      this.user = user;
+    });
   }
 
   ngOnDestroy(): void {

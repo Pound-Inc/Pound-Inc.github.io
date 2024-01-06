@@ -77,25 +77,24 @@ export class AuthService {
   getProfile(): Promise<User> {
     let response: User;
 
-    console.log(this.authToken);
-
     return new Promise<User>((resolve, reject) => {
       if (this.authToken) {
         return this.http
-          .get<User>(`${AUTH_API}/users/user/me`, {
+          .get<User>(`${AUTH_API}/users/user/me/`, {
             headers: this.headers,
-            withCredentials: true,
+            withCredentials: true, 
           })
           .subscribe({
             next: (response: any) => {
               if (response) {
-                console.log(response);
+                this.currentUser.next(response.user);
+                this.isAuthenticated.next(true); 
                 return resolve(response);
               }
             },
-            error: (error) => {
+            error: (error) => { 
               console.log(error);
-
+              
               return reject(error.errorMessage);
             },
           });
@@ -107,39 +106,11 @@ export class AuthService {
   logout(): void {
     this.isAuthenticated.next(false);
     this.currentUser.next(null);
-    this.cookieService.delete('authorization');
-    localStorage.removeItem('authorization');
+    this.cookieService.delete('Authentication');
+    localStorage.removeItem('Authentication');
   }
 
-  private handleHttpError(error: any): void {
-    // Handle HTTP errors here, e.g., check for unauthorized status (401) and logout
-    if (error.status === 401) {
-      this.logout();
-    }
-    // Add more handling logic for other HTTP errors as needed
-  }
-
-  private handleNetworkError(error: any): void {
-    // Handle network errors here, e.g., show a notification to the user
-    console.error('Network error occurred:', error);
-    // Add more handling logic for other network errors as needed
-  }
-
-  get getIsAuthenticated(): Observable<boolean> {
-    return this.isAuthenticated.asObservable();
-  }
-
-  get getCurrentUser(): Observable<any> {
+  get authenticatedUser() {
     return this.currentUser.asObservable();
-  }
-
-  private setHeaders() {
-    const token = this.cookieService.get('authorization');
-    const tokenLocalStorage = localStorage.getItem('authorization');
-    if (token || tokenLocalStorage) {
-      this.headers = new HttpHeaders({
-        Authorization: `Bearer ${tokenLocalStorage}`,
-      });
-    }
   }
 }

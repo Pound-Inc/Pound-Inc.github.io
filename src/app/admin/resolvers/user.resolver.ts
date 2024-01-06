@@ -9,5 +9,4 @@ export const userResolver: ResolveFn<any> = async (
 ) => {
   const userService = inject(UserService);
   const authService = inject(AuthService);
-  // return authService.currentUser.getValue();
 };

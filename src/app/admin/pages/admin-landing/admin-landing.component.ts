@@ -19,9 +19,9 @@ export class AdminLandingComponent implements OnInit, OnDestroy {
     private authService: AuthService
   ) {}
   ngOnInit(): void {
-    // this.authService.getProfile().subscribe((user) => {
-    //   this.user = user;
-    // });
+    this.authService.getProfile().then((user) => {
+      this.user = user;
+    });
   }
   ngOnDestroy(): void {
     if (this.routeSubscription) {

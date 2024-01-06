@@ -26,7 +26,7 @@ export class UserDashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.getCurrentUser.subscribe(async (user: User) => {
+    this.authService.getProfile().then(async (user: User) => {
       this.user = user;
       const userOrders = (
         await this.orderService.getRelatedOrders(this.user._id)

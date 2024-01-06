@@ -17,11 +17,9 @@ export class WorkerDashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.authService.getProfile().subscribe(async (coach: Coach) => {
-    //   console.log(coach);
-
-    //   this.coach = coach;
-    // });
+    this.authService.getProfile().then((coach) => {
+      this.coach = coach as Coach;
+    });
   }
   openCreateProgramModal() {
     const modalRef = this.modalService.open(CreateProgramModalComponent, {
