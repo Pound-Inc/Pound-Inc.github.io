@@ -25,6 +25,8 @@ import { UserDashboardComponent } from '../pages/user-dashboard/user-dashboard.c
 import { WorkerDashboardComponent } from '../pages/worker-dashboard/worker-dashboard.component';
 import { UserOrdersComponent } from '../pages/user-dashboard/user-orders/user-orders.component';
 import { UserProfileModalComponent } from '../pages/user-dashboard/user-profile-modal/user-profile-modal.component';
+import { OrderTableComponent } from '../components/order-table/order-table.component';
+import { BillingTableComponent } from '../components/billing-table/billing-table.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { UserProfileModalComponent } from '../pages/user-dashboard/user-profile-
     WorkerDashboardComponent,
     UserOrdersComponent,
     UserProfileModalComponent,
+    OrderTableComponent,
+    BillingTableComponent,
   ],
   imports: [
     CommonModule,

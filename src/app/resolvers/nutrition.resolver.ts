@@ -18,8 +18,9 @@ export const nutritionResolver: ResolveFn<any> = async (
   const plans = (await plansService.getPlans()).data;
   const receipts = receiptService.getReceiptsTemp();
 
-  const programs: TrainingProgram[] = (await programService.getPrograms()).data;
-  const programsFiltered = programs.filter((p) => p.phases['cut'] > 90);
+  const programs = (await programService.getPrograms()).filter(
+    (p) => p.phases['cut'] > 90
+  );
 
   const users: User[] = (await userService.getUsers()).data;
 
@@ -27,6 +28,6 @@ export const nutritionResolver: ResolveFn<any> = async (
     plans: plans,
     receipts: receipts,
     users: users,
-    programs: programsFiltered,
+    programs: programs,
   };
 };

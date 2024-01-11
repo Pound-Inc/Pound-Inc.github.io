@@ -141,4 +141,44 @@ export class OrderService {
   get orders() {
     return this._orders$.asObservable();
   }
+
+  async modifyOrderById(request: Order) {
+    return new Promise<Order>((resolve, reject) => {
+      return this.http
+        .put<Order>(`${ORDERS_API}`, request, {
+          withCredentials: true,
+        })
+        .subscribe({
+          next: (response: any) => {
+            if (response) {
+              return resolve(response.response);
+            }
+          },
+          error: (error) => {
+            return reject(error.errorMessage);
+          },
+        });
+    });
+  }
+
+  async getOrdersByProgramId(programId: string) {
+    return new Promise<Order[]>((resolve, reject) => {
+      return this.http
+        .get<Order[]>(`${ORDERS_API}/program/${programId}`, {
+          withCredentials: true,
+        })
+        .subscribe({
+          next: (response: any) => {
+            if (response) {
+              return resolve(response.response);
+            }
+          },
+          error: (error) => {
+            console.log(error);
+
+            return reject(error.errorMessage);
+          },
+        });
+    });
+  }
 }

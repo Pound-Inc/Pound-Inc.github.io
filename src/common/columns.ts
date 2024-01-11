@@ -217,7 +217,7 @@ export const orderTableColumns: Array<DataGridColumn> = [
     hidden: false,
     icon: '',
     iconFile: '',
-    width: '200',
+    width: '300',
     type: 'array',
   },
   {
@@ -228,7 +228,7 @@ export const orderTableColumns: Array<DataGridColumn> = [
     hidden: false,
     icon: '',
     iconFile: '',
-    width: '200',
+    width: '300',
     type: 'array',
   },
 
@@ -253,7 +253,29 @@ export const orderTableColumns: Array<DataGridColumn> = [
     icon: '',
     iconFile: '',
     width: '250',
-    type: 'text',
+    type: 'dropdown',
+  },
+  {
+    _id: 'createdAt',
+    name: 'Created At',
+    sortable: true,
+    headerTooltip: 'Created At',
+    hidden: false,
+    icon: '',
+    iconFile: '',
+    width: '150',
+    type: 'date',
+  },
+  {
+    _id: 'updatedAt',
+    name: 'Updated At',
+    sortable: true,
+    headerTooltip: 'Updated At',
+    hidden: false,
+    icon: '',
+    iconFile: '',
+    width: '250',
+    type: 'date',
   },
 ];
 export const invoiceTableColumns: Array<DataGridColumn> = [

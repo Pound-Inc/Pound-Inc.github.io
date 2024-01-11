@@ -18,9 +18,8 @@ export const coachResolver: ResolveFn<any> = async (
   const planService = inject(PlanService);
   const coachId = route.params['coachId'];
 
-  const programs = (await programService.getPrograms())
-    .data as TrainingProgram[];
 
+  const programs = await programService.getPrograms();
   const relatedPrograms = programs.filter((p) => p.coach_id === coachId);
   let relatedStories: any[] = [];
   let relatedReceipts: any[] = [];

@@ -17,8 +17,7 @@ export const programsResolver: ResolveFn<any> = async (
 
   const plans = (await plansService.getPlans()).data;
   const receipts = receiptService.getReceiptsTemp();
-
-  const programs: TrainingProgram = (await programService.getPrograms()).data;
+  const programs = await programService.getPrograms();
 
   const users: User[] = (await userService.getUsers()).data;
 

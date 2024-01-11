@@ -1,7 +1,5 @@
-<button class="btn btn-primary" (click)="openCreateProgramModal()">
+<button *ngIf="coach" class="btn btn-primary" (click)="openCreateProgramModal()">
   Create Program
 </button>
 
-<button class="btn btn-primary" (click)="openModifyPlanModal()">
-  Create plan
-</button>
+<app-order-table [coach]="coach" *ngIf="coach"></app-order-table>

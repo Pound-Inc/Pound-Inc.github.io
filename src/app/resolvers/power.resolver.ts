@@ -1,7 +1,6 @@
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { ProgramService } from '../admin/services/program.service';
-import { TrainingProgram } from '../model/training-program.model';
 import { UserService } from '../admin/services/user.service';
 import { PlanService } from '../admin/services/plan.service';
 import { ReceiptService } from '../admin/services/receipt.service';
@@ -18,8 +17,9 @@ export const powerResolver: ResolveFn<any> = async (
   const plans = (await plansService.getPlans()).data;
   const receipts = receiptService.getReceiptsTemp();
 
-  const programs: TrainingProgram[] = (await programService.getPrograms()).data;
-  const programsFiltered = programs.filter((p) => p.phases['muscle'] > 90);
+  const programs = (await programService.getPrograms()).filter(
+    (p) => p.phases['muscle'] > 90
+  );
 
   const users: User[] = (await userService.getUsers()).data;
 
@@ -27,6 +27,6 @@ export const powerResolver: ResolveFn<any> = async (
     plans: plans,
     receipts: receipts,
     users: users,
-    programs: programsFiltered,
+    programs: programs,
   };
 };

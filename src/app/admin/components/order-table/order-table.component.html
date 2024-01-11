@@ -1,0 +1,56 @@
+<div class="table-responsive bg-secondary" style="height: 545px">
+  <table class="table border m-2" *ngIf="orders.length > 0">
+    <thead>
+      <tr>
+        <th *ngFor="let column of columns">
+          {{ column.name }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td
+          *ngFor="let column of columns"
+          [style.minWidth]="column.width + 'px'"
+        >
+          <ng-container *ngIf="column.type === 'text'">
+            {{ order[column._id] }}
+          </ng-container>
+          <ng-container *ngIf="column.type === 'number'">
+            {{ order[column._id] | currency }}
+          </ng-container>
+          <ng-container *ngIf="column.type === 'date'">
+            <span class="mdi mdi-calendar"></span>
+            {{ order[column._id] | date : "dd/MM/yyyy" }}
+            <br />
+            <span class="mdi mdi-clock-outline"></span>
+            {{ order[column._id] | date : "HH:mm:ss" }}
+          </ng-container>
+          <ng-container *ngIf="column.type === 'array'">
+            <ul>
+              <li *ngFor="let item of order[column._id]">
+                {{ item.name }}
+                <br />
+                {{ item.price | currency }}
+              </li>
+            </ul>
+          </ng-container>
+          <ng-container *ngIf="column.type === 'dropdown'">
+            <select
+              class="form-control"
+              (change)="onStatusChange($event, order)"
+            >
+              <option
+                *ngFor="let status of orderStatuses"
+                [ngValue]="status"
+                [selected]="status === order.status"
+              >
+                {{ status }}
+              </option>
+            </select>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

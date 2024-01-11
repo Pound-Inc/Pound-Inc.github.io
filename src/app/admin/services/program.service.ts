@@ -6,52 +6,44 @@ import {
   firstValueFrom,
   map,
   of,
-  throwError,
 } from 'rxjs';
 import { TrainingProgram } from 'src/app/model/training-program.model';
 import { PROGRAMS_API } from 'src/common/constants/endpoints';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { HeadersService } from 'src/common/services/headers.service';
+import { HttpClient } from '@angular/common/http';
 import { API_Response } from 'src/common/interfaces/response.interface';
 
 @Injectable({ providedIn: 'root' })
 export class ProgramService {
-  private _loading$ = new BehaviorSubject<boolean>(true);
   private _programs$ = new BehaviorSubject<TrainingProgram[]>([]);
 
-  constructor(
-    private http: HttpClient,
-    private headersService: HeadersService
-  ) {
+  constructor(private http: HttpClient) {
     this.getPrograms();
   }
 
-  async getPrograms() {
-    return await firstValueFrom(
-      this.http
+  getPrograms(): Promise<TrainingProgram[]> {
+    return new Promise<TrainingProgram[]>((resolve, reject) => {
+      return this.http
         .get<API_Response>(`${PROGRAMS_API}/`, {
-          headers: this.headersService.getHeaders,
           withCredentials: true,
         })
-        .pipe(
-          map((response: API_Response) => {
-            this._programs$.next(response.data);
-
-            return {
-              status: response.status,
-              message: response.message,
-              data: response.data,
-            };
-          })
-        )
-    );
+        .subscribe({
+          next: (response: any) => {
+            if (response) {
+              this._programs$.next(response.data);
+              return resolve(response.data);
+            }
+          },
+          error: (error) => {
+            return reject(error.errorMessage);
+          },
+        });
+    });
   }
 
   async getProgramById(programId: string) {
     return await firstValueFrom(
       this.http
         .get<API_Response>(`${PROGRAMS_API}/program/${programId}/`, {
-          headers: this.headersService.getHeaders,
           withCredentials: true,
         })
         .pipe(
@@ -64,15 +56,9 @@ export class ProgramService {
   }
 
   createNewProgram(request: any): Observable<any> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('authorization')}`,
+    return this.http.post<any>(`${PROGRAMS_API}`, request, {
+      withCredentials: true,
     });
-    if (headers) {
-      return this.http.post<any>(`${PROGRAMS_API}`, request, {
-        headers,
-      });
-    }
-    return of(null);
   }
 
   get programs() {

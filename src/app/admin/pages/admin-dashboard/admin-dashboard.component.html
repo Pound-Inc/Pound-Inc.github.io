@@ -431,7 +431,10 @@
           </div>
         </div>
 
-        <div class="row row-cols-xl-5 row-cols-md-2 row-cols-1">
+        <div
+          class="row row-cols-xl-5 row-cols-md-2 row-cols-1"
+          *ngIf="users && orders"
+        >
           <div class="col mt-4">
             <a
               href="#!"
@@ -446,7 +449,9 @@
                     {{ translateBaseRoute + "Visitor" | translate }}
                   </h6>
                   <p class="fs-5 text-dark fw-bold mb-0">
-                    <span class="counter-value" data-target="4589">2100</span>
+                    <span class="counter-value" data-target="4589">
+                      {{ users.length }}
+                    </span>
                   </p>
                 </div>
               </div>
@@ -496,7 +501,9 @@
                 <div class="flex-1 ms-3">
                   <h6 class="mb-0 text-muted">Orders</h6>
                   <p class="fs-5 text-dark fw-bold mb-0">
-                    <span class="counter-value" data-target="4800">3402</span>
+                    <span class="counter-value" data-target="4800">
+                      {{ orders.length }}
+                    </span>
                   </p>
                 </div>
               </div>
@@ -556,22 +563,20 @@
           </div>
           <!--end col-->
         </div>
-        <!--end row-->
-        <button (click)="apicheck()">api checks</button>
-        <!--end row-->
 
         <div class="row d-flex">
-          <div class="col-xl-12 mt-4">
+          <div class="col-12 mt-4">
             <app-user-table></app-user-table>
           </div>
-          <div class="col-xl-4 mt-4">
-            <app-user-card></app-user-card>
-          </div>
-          <div class="col-xl-8 mt-4">
-            <app-program-table></app-program-table>
-          </div>
-          <div class="col-xl-4 mt-4">
-            <app-plan-table></app-plan-table>
+          <div class="container">
+            <div class="row mt-4">
+              <div class="col-8">
+                <app-program-table></app-program-table>
+              </div>
+              <div class="col-4">
+                <app-plan-table></app-plan-table>
+              </div>
+            </div>
           </div>
         </div>
       </div>

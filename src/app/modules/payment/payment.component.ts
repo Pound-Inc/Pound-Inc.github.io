@@ -76,8 +76,10 @@ export class PaymentComponent implements OnInit {
     script.async = true;
     script.onload = async () => {
       // Stripe.js has loaded, initialize it
+      // pk_test_51OJQt3DgRKOECkRdFTqG5zYGtuGeHzaEJGjRA0k7XuPREWz7g8F27KnpBqFrtvssk8BfUUsXCXz0FbAeZbhvfiPD004lnnconj
+      // pk_live_51OJQt3DgRKOECkRdOzKfWFdnvqLFuSQGqM0VlWotmZSkLSKv7dgYLyxmSPCWGPyXt7ekajSbCim9lEgGuZvFfCXq00uQXDXpXr
       this.stripe = (await loadStripe(
-        'pk_live_51OJQt3DgRKOECkRdOzKfWFdnvqLFuSQGqM0VlWotmZSkLSKv7dgYLyxmSPCWGPyXt7ekajSbCim9lEgGuZvFfCXq00uQXDXpXr'
+        'pk_test_51OJQt3DgRKOECkRdFTqG5zYGtuGeHzaEJGjRA0k7XuPREWz7g8F27KnpBqFrtvssk8BfUUsXCXz0FbAeZbhvfiPD004lnnconj'
       )) as Stripe;
     };
     this.renderer.appendChild(document.body, script);

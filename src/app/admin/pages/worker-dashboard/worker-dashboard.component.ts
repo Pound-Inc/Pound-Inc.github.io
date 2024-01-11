@@ -10,11 +10,13 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   styleUrls: ['./worker-dashboard.component.scss'],
 })
 export class WorkerDashboardComponent implements OnInit {
-  private coach: Coach;
+  public coach: Coach;
   constructor(
     private modalService: NgbModal,
     private authService: AuthService
-  ) {}
+  ) {
+    document.dir = 'ltr';
+  }
 
   ngOnInit(): void {
     this.authService.getProfile().then((coach) => {
@@ -27,20 +29,5 @@ export class WorkerDashboardComponent implements OnInit {
     });
 
     modalRef.componentInstance.coach = this.coach;
-
-    modalRef.componentInstance.closeModal.subscribe(() => {
-      modalRef.close();
-    });
-  }
-  openModifyPlanModal() {
-    const modalRef = this.modalService.open(CreateProgramModalComponent, {
-      size: 'xl',
-    });
-
-    modalRef.componentInstance.coach = this.coach;
-
-    modalRef.componentInstance.closeModal.subscribe(() => {
-      modalRef.close();
-    });
   }
 }

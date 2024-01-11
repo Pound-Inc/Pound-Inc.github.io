@@ -1,4 +1,4 @@
-<div class="card border-0">
+<div class="card border-0 ">
   <div>
     <h4 class="p-4">
       {{ translateBaseRoute + "Training Programs" | translate }}
@@ -42,6 +42,7 @@
   </div>
 
   <div
+    *ngIf="users$"
     class="table-responsive border-bottom border-light border-top rounded-bottom"
     style="height: 545px"
   >
@@ -71,7 +72,7 @@
                   {{ formatValue(program[column._id]) }}
                   <div>
                     <small class="text-muted">
-                      add reference to the lookup
+                      {{ getRelatedUser(program[column._id])?.name }}
                     </small>
                   </div>
                 </td>

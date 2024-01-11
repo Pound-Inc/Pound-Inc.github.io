@@ -18,8 +18,7 @@ export const cardioResolver: ResolveFn<any> = async (
   const plans = (await plansService.getPlans()).data;
   const receipts = receiptService.getReceiptsTemp();
 
-  const programs: TrainingProgram[] = (await programService.getPrograms()).data;
-  const programsFiltered = programs.filter(
+  const programs = (await programService.getPrograms()).filter(
     (p) => p.phases['cut'] > 90 && p.phases['bulk'] === 0
   );
 
@@ -29,6 +28,6 @@ export const cardioResolver: ResolveFn<any> = async (
     plans: plans,
     receipts: receipts,
     users: users,
-    programs: programsFiltered,
+    programs: programs,
   };
 };

@@ -24,5 +24,5 @@ export interface DataGridColumn {
   /** Icon file to use. */
   iconFile?: string;
 
-  type: 'link' | 'text' | 'array' | 'object' | 'number' | 'lookup' | 'date';
+  type: 'link' | 'text' | 'array' | 'object' | 'number' | 'lookup' | 'date' | 'dropdown';
 }

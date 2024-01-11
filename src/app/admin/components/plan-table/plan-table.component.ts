@@ -35,14 +35,9 @@ export class PlanTableComponent implements OnInit, OnDestroy {
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
   constructor(private planService: PlanService) {}
-  ngOnInit(): void {
-    this.planService.plans.subscribe((plans: ProgramPlan[]) => {
-      if (plans) {
-        this.plans$ = plans;
-        this.filteredPlans$ = plans;
-        this.selectedRow = null;
-      }
-    });
+  async ngOnInit(): Promise<void> {
+    this.plans$ = (await this.planService.getPlans()).data;
+
     this.programSubscription = this.planService
       .getSelectedProgramData()
       .subscribe((program: TrainingProgram) => {

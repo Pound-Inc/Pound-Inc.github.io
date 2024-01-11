@@ -34,6 +34,7 @@ export class UserService {
         })
         .pipe(
           map((response: API_Response) => {
+            this._users$.next(response.data)
             return {
               status: response.status,
               message: response.message,
@@ -133,7 +134,6 @@ export class UserService {
   }
 
   async getUserById(userId: string) {
-
     return await firstValueFrom(
       this.http.get<any>(`${AUTH_API}/users/${userId}`).pipe(
         map((response: any) => {

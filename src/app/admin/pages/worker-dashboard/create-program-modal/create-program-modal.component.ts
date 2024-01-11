@@ -19,8 +19,6 @@ export class CreateProgramModalComponent implements OnInit {
   @Input() coach: Coach;
   imgbbLink: string = '';
 
-  @Output() closeModal: EventEmitter<boolean> = new EventEmitter<boolean>();
-
   constructor(
     private fb: FormBuilder,
     private modalService: NgbModal,
@@ -56,7 +54,7 @@ export class CreateProgramModalComponent implements OnInit {
 
     const programData = this.programForm.value;
     const newProgram = {
-      coach_id: this.programForm.value.coach_id,
+      coach_id: this.coach._id,
       name: this.programForm.value.name,
       img: this.imgbbLink,
       description: this.programForm.value.description,
@@ -70,8 +68,6 @@ export class CreateProgramModalComponent implements OnInit {
     this.programService
       .createNewProgram(newProgram)
       .subscribe(async (createdProgram) => {
-        console.log(createdProgram);
-        
         await this.createThreeRelatedPlans(createdProgram);
       });
   }
@@ -112,12 +108,6 @@ export class CreateProgramModalComponent implements OnInit {
 
     // Wait for both the modal to close and the plan to be saved
     await Promise.all([closeModal]);
-
-    this.sendDataAndCloseModal();
-  }
-
-  sendDataAndCloseModal() {
-    this.closeModal.emit(true);
   }
 
   async onInput(e: Event) {

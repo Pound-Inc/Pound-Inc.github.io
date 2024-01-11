@@ -1,11 +1,12 @@
 import {
   Component,
+  OnInit,
   QueryList,
   TemplateRef,
   ViewChildren,
   inject,
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom, map } from 'rxjs';
 import { NgbdSortableHeader, SortEvent } from '../../sortable.directive';
 import { ProgramService } from '../../services/program.service';
 import { TrainingProgram } from 'src/app/model/training-program.model';
@@ -14,17 +15,20 @@ import { DataGridColumn } from 'src/common/interfaces/datagrid.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Table } from 'src/common/interfaces/table.interface';
 import { PlanService } from '../../services/plan.service';
+import { UserService } from '../../services/user.service';
+import { User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-program-table',
   templateUrl: './program-table.component.html',
   styleUrls: ['./program-table.component.scss'],
 })
-export class ProgramTableComponent {
+export class ProgramTableComponent implements OnInit {
   public translateBaseRoute = 'routing.admin.dashboard.program.';
 
   public columns: DataGridColumn[] = programTableColumns;
   public programs$: Observable<TrainingProgram[]>;
+  public users$: User[];
   public total$: Observable<number>;
   public selectedRow: any;
   private modalService = inject(NgbModal);
@@ -33,9 +37,13 @@ export class ProgramTableComponent {
 
   constructor(
     private programService: ProgramService,
-    private planService: PlanService
+    private planService: PlanService,
+    private userService: UserService
   ) {
     this.programs$ = this.programService.programs;
+  }
+  async ngOnInit(): Promise<void> {
+    this.users$ = (await this.userService.getUsers()).data;
   }
 
   formatValue(value: any) {
@@ -51,7 +59,6 @@ export class ProgramTableComponent {
   onRowClick(rowData: TrainingProgram) {
     this.selectedRow = rowData;
 
-    // -> Observable for Program Plans
     this.planService.setSelectedProgramData(rowData);
   }
   editRow() {}
@@ -63,6 +70,10 @@ export class ProgramTableComponent {
         (result) => {},
         (reason) => {}
       );
+  }
+
+  getRelatedUser(userId: string) {
+    return this.users$.find((u) => u._id === userId);
   }
 
   deleteRow() {}
