@@ -51,7 +51,7 @@ export class CartComponent implements OnInit {
     const userCart = localStorage.getItem('cart') as string;
     const cart: Cart = JSON.parse(userCart);
     if (cart) {
-      const plans: ProgramPlan[] = (await this.planService.getPlans()).data;
+      const plans: ProgramPlan[] = await this.planService.getPlans();
       const main = plans.find(
         (p) => p._id === cart.main._id && p.price === cart.main.price
       );
@@ -129,7 +129,7 @@ export class CartComponent implements OnInit {
     this.orderService
       .setBilling(this.billing)
       .then((response) => {
-        const clientSecret: string = response.response;
+        const clientSecret: string = response.data;
         const modalRef = this.modalService.open(PaymentComponent, {
           size: 'md',
           backdrop: 'static',
@@ -155,7 +155,9 @@ export class CartComponent implements OnInit {
       status: OrderStatusEnum.New,
     };
 
-    await this.orderService.createNewOrder(newOrder).then((response: any) => {
+    this.orderService.createNewOrder(newOrder).then((response: any) => {
+      console.log(response);
+      
       if (response) {
         const navigationExtras: NavigationExtras = {
           state: {

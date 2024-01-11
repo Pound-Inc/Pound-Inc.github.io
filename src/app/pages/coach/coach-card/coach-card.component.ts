@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Coach } from 'src/app/model/coach.model';
+import { Order } from 'src/app/model/order.model';
 import { ProgramPlan } from 'src/app/model/program-plan.model';
 import { Receipt } from 'src/app/model/receipt.model';
 import { TrainingProgram } from 'src/app/model/training-program.model';
@@ -15,7 +16,7 @@ export class CoachCardComponent implements OnInit {
   @Input() coach: Coach;
   @Input() relatedPrograms: TrainingProgram[] | undefined;
   @Input() relatedCertifier: User | undefined;
-  @Input() relatedReceipts: Receipt[];
+  @Input() relatedOrders: Order[];
 
   constructor() {}
 

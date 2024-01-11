@@ -19,6 +19,9 @@ import { User } from 'src/app/model/user.model';
 })
 export class LandingHeaderComponent implements OnInit, OnDestroy {
   public translateBaseRoute = 'routing.landing.header.nav.';
+
+  isLoggedIn$: Observable<boolean>;
+
   public navbarItems: any[];
   public active: boolean = false;
   @ViewChild('navbar', { static: true }) navbar: ElementRef;
@@ -67,17 +70,14 @@ export class LandingHeaderComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        window.scrollTo(0, 0);
-        if (event.url === '/') {
-          window.location.reload();
-        }
+    this.authService.user$.subscribe((user) => {
+      if (user) {
+        this.user = user;
+      } else {
+        this.authService.getProfile().then((user) => {
+          this.user = user;
+        });
       }
-    });
-
-    this.authService.getProfile().then((user) => {
-      this.user = user;
     });
   }
 

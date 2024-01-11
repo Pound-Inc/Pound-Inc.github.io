@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, EMPTY } from 'rxjs';
+import { BehaviorSubject, EMPTY, Subject, catchError, of, tap } from 'rxjs';
 import { AUTH_API } from 'src/common/constants/endpoints';
 import { CookieService } from 'ngx-cookie-service';
 import { User } from 'src/app/model/user.model';
@@ -11,36 +11,37 @@ import { loginCredentials } from 'src/common/constants/requests';
   providedIn: 'root',
 })
 export class AuthService {
-  private isAuthenticated = new BehaviorSubject<boolean>(false);
-  private currentUser = new BehaviorSubject<any>(null);
-  private headers: HttpHeaders;
-  private authToken: string;
+  private readonly authenticated = new Subject<boolean>();
+  public authenticated$ = this.authenticated.asObservable();
 
-  redirectUrl: string | null = null;
+  private readonly user = new BehaviorSubject<User | undefined>(undefined);
+  public user$ = this.user.asObservable();
 
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+  constructor(private http: HttpClient) {}
+
+  public logout() {
+    this.http
+      .post(`${AUTH_API}/logout`, {}, { withCredentials: true })
+      .subscribe(() => {
+        this.authenticated.next(false);
+      });
+  }
 
   public login(loginPayload: loginCredentials): Promise<User> {
-    let response: User;
     return new Promise<User>((resolve, reject) => {
       return this.http
         .post<User>(`${AUTH_API}/login`, loginPayload, {
           withCredentials: true,
         })
         .subscribe({
-          next: (response: any) => {
-            if (response) {
-              localStorage.setItem('Authentication', response.token);
-
-              const expires = new Date();
-              expires.setSeconds(expires.getSeconds() + 21600);
-
-              this.currentUser.next(response.User);
-              return resolve(response);
+          next: (user: any) => {
+            if (user) {
+              this.user.next(user);
+              return resolve(user);
             }
           },
           error: (error) => {
-            return reject(error.errorMessage);
+            return reject(error.error.message);
           },
         });
     });
@@ -49,33 +50,23 @@ export class AuthService {
   getProfile(): Promise<User> {
     return new Promise<User>((resolve, reject) => {
       return this.http
-        .get<User>(`${AUTH_API}/users/user/me/`, {
+        .get<User>(`${AUTH_API}/users/me/`, {
           withCredentials: true,
         })
         .subscribe({
-          next: (response: any) => {
-            if (response) {
-              this.currentUser.next(response.user);
-              this.isAuthenticated.next(true);
-              return resolve(response);
+          next: (user: User) => {
+            if (user) {
+              this.user.next(user);
+              this.authenticated.next(true);
+              return resolve(user);
             }
           },
           error: (error) => {
-            console.log(error);
-
-            return reject(error.errorMessage);
+            this.user.complete();
+            this.authenticated.next(false);
+            return reject(error.error.message);
           },
         });
     });
-  }
-
-  logout(): void {
-    this.isAuthenticated.next(false);
-    this.currentUser.next(null);
-    localStorage.removeItem('Authentication');
-  }
-
-  get authenticatedUser() {
-    return this.currentUser.asObservable();
   }
 }

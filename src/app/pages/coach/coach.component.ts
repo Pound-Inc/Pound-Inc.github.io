@@ -7,6 +7,7 @@ import { Receipt } from 'src/app/model/receipt.model';
 import { TrainingProgram } from 'src/app/model/training-program.model';
 import { User } from 'src/app/model/user.model';
 import { ProgramStory } from 'src/app/model/story.model';
+import { Order } from 'src/app/model/order.model';
 
 @Component({
   selector: 'app-coach',
@@ -18,7 +19,7 @@ export class CoachComponent implements OnInit, OnDestroy {
   public coach: Coach;
   public programs: TrainingProgram[];
   public users: User[];
-  public receipts: Receipt[];
+  public orders: Order[];
   public plans: ProgramPlan[];
   public stories: ProgramStory[];
 
@@ -33,14 +34,14 @@ export class CoachComponent implements OnInit, OnDestroy {
         programs: TrainingProgram[];
         users: User[];
         plans: ProgramPlan[];
-        receipts: Receipt[];
+        orders: Order[];
         stories: ProgramStory[];
       } = data['coach'];
 
       this.coach = programData.coach;
       this.programs = programData.programs;
       this.users = programData.users;
-      this.receipts = programData.receipts;
+      this.orders = programData.orders;
       this.plans = programData.plans;
       this.stories = programData.stories;
     });

@@ -6,9 +6,10 @@ import { Coach } from '../../model/coach.model';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/model/user.model';
 import { PlanService } from 'src/app/admin/services/plan.service';
-import { ReceiptService } from 'src/app/admin/services/receipt.service';
 import { ProgramPlan } from 'src/app/model/program-plan.model';
 import { Receipt } from 'src/app/model/receipt.model';
+import { Order } from 'src/app/model/order.model';
+import { OrderService } from 'src/app/admin/services/order.service';
 
 @Component({
   selector: 'app-coaches',
@@ -19,39 +20,39 @@ export class CoachesComponent implements OnInit, OnDestroy {
   public programs: TrainingProgram[];
   public coaches: Coach[];
   public users: User[];
-  public receipts: Receipt[];
+  public orders: Order[];
   public plans: ProgramPlan[];
 
   private programsSubscription: Subscription;
   private coachesSubscription: Subscription;
-  private receiptsSubscription: Subscription;
+  private ordersSubscription: Subscription;
   private plansSubscription: Subscription;
 
   constructor(
     private userService: UserService,
     private programService: ProgramService,
-    private receiptService: ReceiptService,
-    private plansService: PlanService
+    private plansService: PlanService,
+    private orderService: OrderService
   ) {}
-  ngOnInit(): void {
-    this.programsSubscription = this.programService.programs.subscribe(
+  async ngOnInit(): Promise<void> {
+    await this.userService.getUsers();
+    this.programs =await this.programService.getPrograms();
+    this.orders = await this.orderService.getOrders();
+    this.plans = await this.plansService.getPlans();
+
+    this.programsSubscription = this.programService.programs$.subscribe(
       (programs: TrainingProgram[]) => {
         this.programs = programs;
       }
     );
-    this.coachesSubscription = this.userService.users.subscribe(
+    this.coachesSubscription = this.userService.users$.subscribe(
       (users: any[]) => {
         this.users = users;
         this.coaches = users.filter((user: User) => user.roles.Worker);
       }
     );
 
-    this.receiptsSubscription = this.receiptService
-      .getReceipts()
-      .subscribe((receipts: Receipt[]) => {
-        this.receipts = receipts;
-      });
-    this.plansSubscription = this.plansService.plans.subscribe(
+    this.plansSubscription = this.plansService.plans$.subscribe(
       (plans: ProgramPlan[]) => {
         this.plans = plans;
       }
@@ -64,8 +65,8 @@ export class CoachesComponent implements OnInit, OnDestroy {
     if (this.coachesSubscription) {
       this.coachesSubscription.unsubscribe();
     }
-    if (this.receiptsSubscription) {
-      this.receiptsSubscription.unsubscribe();
+    if (this.ordersSubscription) {
+      this.ordersSubscription.unsubscribe();
     }
     if (this.plansSubscription) {
       this.plansSubscription.unsubscribe();
@@ -82,24 +83,30 @@ export class CoachesComponent implements OnInit, OnDestroy {
       ? this.plans.filter((plan) => plan.program_id === programId)
       : undefined;
   }
-  public getRelatedReceipts(coachId: string): Receipt[] {
-    let receipts: Receipt[] = [];
-    const relatedPrograms = this.getRelatedPrograms(coachId);
-    if (relatedPrograms) {
-      for (const program of relatedPrograms) {
-        const relatedPlans = this.getRelatedPlans(program._id);
-        if (relatedPlans)
-          for (const plan of relatedPlans) {
-            const receipt = this.receipts.find(
-              (receipt) => receipt.plan_id === plan._id
-            );
-            if (receipt) {
-              receipts.push(receipt);
-            }
-          }
+  public getRelatedOrders(coachId: string) {
+    let orders: Order[] = [];
+    const relatedPrograms = this.programs.filter((p) => p.coach_id === coachId);
+    for (const program of relatedPrograms) {
+      const relatedPlans = this.plans.filter(
+        (p) => p.program_id === program._id
+      );
+
+      console.log(this.orders);
+
+      for (const plan of relatedPlans) {
+        const relatedOrders = this.orders.filter(
+          (o) => o.items[0]._id === plan._id
+        );
+
+        console.log(relatedOrders);
+
+        orders = [...orders, ...relatedOrders];
       }
     }
-    return receipts;
+
+    console.log(orders);
+
+    return orders;
   }
 
   public getRelatedUsers(userId: string): User | undefined {

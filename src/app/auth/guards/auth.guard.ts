@@ -2,7 +2,6 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../services/auth.service';
-import { catchError, delay, from, map, of, switchMap, tap } from 'rxjs';
 
 export const authGuard = () => {
   const authService = inject(AuthService);
@@ -14,12 +13,11 @@ export const authGuard = () => {
       if (user) {
         return true;
       }
-
-      router.navigate(['/']);
+      router.navigate(['auth/login']);
       return false;
     })
     .catch(() => {
-      router.navigate(['/']);
+      router.navigate(['auth/login']);
       return false;
     });
 };

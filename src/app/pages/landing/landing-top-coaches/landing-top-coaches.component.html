@@ -12,7 +12,9 @@
     </div>
     <!--end row-->
 
-    <div class="row justify-content-center">
+    <div
+      class="row justify-content-center"
+    >
       <div class="col-lg-10 col-11 row">
         <div
           class="col-lg-4 col-md-6 col-12 mt-4 pt-2 box-outer"
@@ -28,7 +30,9 @@
                 *ngIf="coaches[0] === coach"
                 class="ribbon ribbon-left ribbon-danger overflow-hidden"
               >
-                <span class="text-center d-block shadow small h6 p-1">أفضل إختيار</span>
+                <span class="text-center d-block shadow small h6 p-1"
+                  >أفضل إختيار</span
+                >
               </div>
               <div class="col">
                 <div class="d-flex gap-1 px-2">
@@ -96,9 +100,11 @@
                   <span> {{ getRelatedPrograms(coach._id)?.length }} </span>
                 </li>
                 <li class="h6">
-                  <span class="mdi mdi-account-group text-warning me-2"></span>
+                  <span
+                    class="mdi mdi-account-group text-warning me-2"
+                  ></span>
                   <span class="me-2 text-muted">عدد العملاء:</span>
-                  <span> {{ getRelatedReceipts(coach._id).length }} </span>
+                  <span> {{ getRelatedOrders(coach._id).length }} </span>
                 </li>
                 <li class="h6">
                   <span class="mdi mdi-translate me-2"></span>

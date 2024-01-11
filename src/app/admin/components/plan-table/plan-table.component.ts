@@ -25,8 +25,8 @@ import { Table } from 'src/common/interfaces/table.interface';
 export class PlanTableComponent implements OnInit, OnDestroy {
   public translateBaseRoute = 'routing.admin.dashboard.plan.';
   public columns: DataGridColumn[] = planTableColumns;
-  public plans$: ProgramPlan[];
-  public filteredPlans$: ProgramPlan[];
+  public plans$: ProgramPlan[] = [];
+  public filteredPlans$: ProgramPlan[] = [];
   public total$: Observable<number>;
   public selectedRow: ProgramPlan | null;
   private modalService = inject(NgbModal);
@@ -36,7 +36,7 @@ export class PlanTableComponent implements OnInit, OnDestroy {
 
   constructor(private planService: PlanService) {}
   async ngOnInit(): Promise<void> {
-    this.plans$ = (await this.planService.getPlans()).data;
+    this.plans$ = await this.planService.getPlans();
 
     this.programSubscription = this.planService
       .getSelectedProgramData()

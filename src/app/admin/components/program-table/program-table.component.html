@@ -1,4 +1,4 @@
-<div class="card border-0 ">
+<div class="card border-0">
   <div>
     <h4 class="p-4">
       {{ translateBaseRoute + "Training Programs" | translate }}
@@ -57,7 +57,7 @@
         </thead>
         <tbody>
           <tr
-            *ngFor="let program of programs$ | async"
+            *ngFor="let program of programs$"
             (click)="onRowClick(program)"
             [class.clicked-row]="selectedRow && selectedRow._id === program._id"
           >
@@ -138,11 +138,7 @@
               </ng-container>
             </td>
           </tr>
-          <tr
-            *ngIf="!(programs$ | async)"
-            colspan="4"
-            style="text-align: center"
-          >
+          <tr *ngIf="!programs$" colspan="4" style="text-align: center">
             No programs found
           </tr>
         </tbody>

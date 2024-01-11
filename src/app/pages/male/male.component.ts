@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Order } from '@stripe/stripe-js';
 import { Subscription } from 'rxjs';
 import { PlanService } from 'src/app/admin/services/plan.service';
 import { ProgramService } from 'src/app/admin/services/program.service';
-import { ReceiptService } from 'src/app/admin/services/receipt.service';
 import { UserService } from 'src/app/admin/services/user.service';
 import { Coach } from 'src/app/model/coach.model';
 import { ProgramPlan } from 'src/app/model/program-plan.model';
@@ -30,16 +30,15 @@ export class MaleComponent implements OnInit, OnDestroy {
   constructor(
     private userService: UserService,
     private programService: ProgramService,
-    private receiptService: ReceiptService,
     private plansService: PlanService
   ) {}
   ngOnInit(): void {
-    this.programsSubscription = this.programService.programs.subscribe(
+    this.programsSubscription = this.programService.programs$.subscribe(
       (programs: TrainingProgram[]) => {
         this.programs = programs;
       }
     );
-    this.coachesSubscription = this.userService.users.subscribe(
+    this.coachesSubscription = this.userService.users$.subscribe(
       (users: any[]) => {
         this.users = users;
         this.coaches = users.filter(
@@ -48,12 +47,7 @@ export class MaleComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.receiptsSubscription = this.receiptService
-      .getReceipts()
-      .subscribe((receipts: Receipt[]) => {
-        this.receipts = receipts;
-      });
-    this.plansSubscription = this.plansService.plans.subscribe(
+    this.plansSubscription = this.plansService.plans$.subscribe(
       (plans: ProgramPlan[]) => {
         this.plans = plans;
       }
@@ -84,25 +78,7 @@ export class MaleComponent implements OnInit, OnDestroy {
       ? this.plans.filter((plan) => plan.program_id === programId)
       : undefined;
   }
-  public getRelatedReceipts(coachId: string): Receipt[] {
-    let receipts: Receipt[] = [];
-    const relatedPrograms = this.getRelatedPrograms(coachId);
-    if (relatedPrograms) {
-      for (const program of relatedPrograms) {
-        const relatedPlans = this.getRelatedPlans(program._id);
-        if (relatedPlans)
-          for (const plan of relatedPlans) {
-            const receipt = this.receipts.find(
-              (receipt) => receipt.plan_id === plan._id
-            );
-            if (receipt) {
-              receipts.push(receipt);
-            }
-          }
-      }
-    }
-    return receipts;
-  }
+  public getRelatedReceipts(coachId: string) {}
 
   public getRelatedUsers(userId: string): User | undefined {
     return this.users

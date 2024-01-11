@@ -34,7 +34,7 @@
                               {{ coach.name }}
                             </h4>
                             <p class="text-muted mb-0 text-end">
-                              <span>({{ receipts.length || 14 }})</span>
+                              <!-- <span>({{ receipts.length || 14 }})</span> -->
                               <span class="me-1 text-dark">{{
                                 coach.stars
                               }}</span>
@@ -125,7 +125,7 @@
                     <h4 class="col text-start px-4 m-0">{{ plan.price }}$</h4>
                   </div>
                   <h6 class="text-dark px-3 mt-0 pt-0">
-                    {{ getRelatedReceipts(plan._id).length }} طلب
+                    {{ getRelatedOrders(plan._id).length }} طلب
                   </h6>
                   <p class="px-3 text-muted mb-3">
                     {{ plan.description }}

@@ -17,6 +17,7 @@ import { map } from 'rxjs';
 import { BillingService } from 'src/app/admin/services/billing.service';
 import { OrderService } from 'src/app/admin/services/order.service';
 import { Billing } from 'src/app/model/billing.model';
+import { frontEndUrl } from 'src/common/constants/endpoints';
 
 @Component({
   selector: 'app-payment',
@@ -93,7 +94,7 @@ export class PaymentComponent implements OnInit {
     const { error } = await this.stripe.confirmPayment({
       elements: this.elements,
       confirmParams: {
-        return_url: 'http://localhost:4200/payment-management',
+        return_url: `${frontEndUrl}/payment-management`,
       },
     });
 

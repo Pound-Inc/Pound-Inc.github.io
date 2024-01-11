@@ -5,9 +5,10 @@ import { TrainingProgram } from '../model/training-program.model';
 import { UserService } from '../admin/services/user.service';
 import { Coach } from '../model/coach.model';
 import { PlanService } from '../admin/services/plan.service';
-import { ReceiptService } from '../admin/services/receipt.service';
 import { CommentService } from '../admin/services/comment.service';
 import { StoryService } from '../admin/services/story.service';
+import { User } from '../model/user.model';
+import { OrderService } from '../admin/services/order.service';
 
 export const programResolver: ResolveFn<any> = async (
   route: ActivatedRouteSnapshot
@@ -17,26 +18,26 @@ export const programResolver: ResolveFn<any> = async (
   const plansService = inject(PlanService);
   const commentService = inject(CommentService);
   const storyService = inject(StoryService);
-  const receiptService = inject(ReceiptService);
+  const orderService = inject(OrderService);
   const programId = route.params['programId'];
 
-  const plans = (await plansService.getRelatedPlans(programId)).data;
+  const plans = await plansService.getRelatedPlans(programId);
   const comments = (await commentService.getRelatedComments(programId)).data;
   const stories = (await storyService.getRelatedStories(programId)).data;
-  const receipts = receiptService.getReceiptsTemp();
+  const orders = await orderService.getOrders();
 
   const program: TrainingProgram = await programService.getProgramById(
     programId
   );
 
-  const coach: Coach = await userService.getUserById(program.coach_id);
+  const coach: User = await userService.getUserById(program.coach_id);
 
   return {
     coach: coach,
     program: program,
     plans: plans,
-    receipts: receipts,
     comments: comments,
     stories: stories,
+    orders: orders,
   };
 };

@@ -33,8 +33,8 @@ export class PaymentManagementComponent implements OnInit {
           await this.orderService
             .getOrderByClientSecret(paymentIntentClientSecret)
             .then(async (response) => {
-              if (response.response.length > 0) {
-                this.router.navigate(['/']);
+              if (response) {
+                // this.router.navigate(['/']);
               } else {
                 if (paymentStatus === 'succeeded') {
                   const cartData: Cart = JSON.parse(
@@ -49,19 +49,17 @@ export class PaymentManagementComponent implements OnInit {
                     paymentIntentClientSecret
                   );
 
-                  await this.orderService
-                    .createNewOrder(order)
-                    .then((response) => {
-                      if (response) {
-                        const navigationExtras: NavigationExtras = {
-                          state: {
-                            orderData: response,
-                          },
-                        };
+                  this.orderService.createNewOrder(order).then((response) => {
+                    if (response) {
+                      const navigationExtras: NavigationExtras = {
+                        state: {
+                          orderData: response,
+                        },
+                      };
 
-                        this.router.navigate(['/invoice'], navigationExtras);
-                      }
-                    });
+                      this.router.navigate(['/invoice'], navigationExtras);
+                    }
+                  });
                 }
               }
             });

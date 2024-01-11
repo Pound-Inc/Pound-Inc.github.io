@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
+import { UserService } from 'src/app/admin/services/user.service';
 import { User } from 'src/app/model/user.model';
 
 @Component({
@@ -15,11 +16,13 @@ import { User } from 'src/app/model/user.model';
   styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent implements OnInit, OnChanges, OnDestroy {
-  public user: User;
+  public users: User[];
   private authSubscription: Subscription;
-  constructor(private meta: Meta) {}
+  constructor(private meta: Meta, private userService: UserService) {}
 
   async ngOnInit() {
+    this.users = await this.userService.getUsers();
+
     this.meta.updateTag({
       name: 'description',
       content:

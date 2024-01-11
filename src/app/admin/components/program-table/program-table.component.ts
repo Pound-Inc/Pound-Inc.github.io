@@ -27,7 +27,7 @@ export class ProgramTableComponent implements OnInit {
   public translateBaseRoute = 'routing.admin.dashboard.program.';
 
   public columns: DataGridColumn[] = programTableColumns;
-  public programs$: Observable<TrainingProgram[]>;
+  public programs$: TrainingProgram[];
   public users$: User[];
   public total$: Observable<number>;
   public selectedRow: any;
@@ -39,11 +39,10 @@ export class ProgramTableComponent implements OnInit {
     private programService: ProgramService,
     private planService: PlanService,
     private userService: UserService
-  ) {
-    this.programs$ = this.programService.programs;
-  }
+  ) {}
   async ngOnInit(): Promise<void> {
-    this.users$ = (await this.userService.getUsers()).data;
+    this.programs$ = await this.programService.getPrograms();
+    this.users$ = await this.userService.getUsers();
   }
 
   formatValue(value: any) {

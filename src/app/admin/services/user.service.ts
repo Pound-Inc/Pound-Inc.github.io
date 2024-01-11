@@ -1,90 +1,53 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, of, firstValueFrom, map, catchError } from 'rxjs';
+import { of, firstValueFrom, map, catchError, Subject, BehaviorSubject } from 'rxjs';
 import { AUTH_API } from 'src/common/constants/endpoints';
 import { API_Response } from 'src/common/interfaces/response.interface';
-import { HeadersService } from 'src/common/services/headers.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/model/user.model';
-import { Coach } from 'src/app/model/coach.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private _loading$ = new BehaviorSubject<boolean>(true);
-  private _users$ = new BehaviorSubject<User[]>([]);
+  private readonly users = new BehaviorSubject<User[]>([]);
+  public users$ = this.users.asObservable();
 
-  constructor(
-    private headersService: HeadersService,
-    private http: HttpClient
-  ) {
-    this.getUsers().then((response: any) => {
-      this._users$.next(response.data);
+  constructor(private http: HttpClient) {}
+
+  getUsers() {
+    return new Promise<User[]>((resolve, reject) => {
+      return this.http
+        .get<API_Response>(`${AUTH_API}/users/`, {
+          withCredentials: true,
+        })
+        .subscribe({
+          next: (response: API_Response) => {
+            this.users.next(response.data);
+            return resolve(response.data);
+          },
+          error: (error) => {
+            return reject(error.error.message);
+          },
+        });
     });
   }
 
-  get users() {
-    return this._users$.asObservable();
-  }
-
-  async getUsers() {
-    return await firstValueFrom(
-      this.http
-        .get<API_Response>(`${AUTH_API}/users/`, {
-          headers: this.headersService.getHeaders,
+  createNewUser(user: any) {
+    return new Promise<User>((resolve, reject) => {
+      return this.http
+        .post<API_Response>(`${AUTH_API}/users/user`, user, {
           withCredentials: true,
         })
-        .pipe(
-          map((response: API_Response) => {
-            this._users$.next(response.data)
-            return {
-              status: response.status,
-              message: response.message,
-              data: response.data,
-            };
-          })
-        )
-    );
-  }
-
-  async validateCreateUserFirstStep(userEmail: string) {
-    try {
-      return await firstValueFrom(
-        this.http
-          .post<any>(
-            `${AUTH_API}/users/validateEmail`,
-            { email: userEmail },
-            {
-              withCredentials: true,
-            }
-          )
-          .pipe(
-            map((response: any) => {
-              if (response) {
-                return;
-              }
-            })
-          )
-      );
-    } catch (error) {
-      throw new Error('error');
-    }
-  }
-
-  async createNewUser(user: any) {
-    return await firstValueFrom(
-      this.http
-        .post<API_Response>(`${AUTH_API}/users/`, user, {
-          withCredentials: true,
-        })
-        .pipe(
-          map((response: API_Response) => {
+        .subscribe({
+          next: (response: API_Response) => {
             if (response) {
               localStorage.setItem('isUser', 'true');
-              return response.data;
+              return resolve(response.data);
             }
-          }),
-          catchError((error) => of(error))
-        )
-    );
+          },
+          error: (error) => {
+            return reject(error.error.message);
+          },
+        });
+    });
   }
 
   async setUserInfo(clientIpAddress: string) {
@@ -123,24 +86,61 @@ export class UserService {
     return;
   }
 
-  private async insertGuest(userLocaleStorage: object) {
-    await firstValueFrom(
-      this.http
-        .post<API_Response>(`${AUTH_API}/users/guest/`, userLocaleStorage, {
+  private insertGuest(userLocaleStorage: object) {
+    return new Promise<User>((resolve, reject) => {
+      return this.http
+        .post<API_Response>(`${AUTH_API}/users/guest`, userLocaleStorage, {
           withCredentials: true,
         })
-        .pipe(catchError((error) => of(error)))
-    );
+        .subscribe({
+          next: (response: API_Response) => {
+            resolve(response.data);
+          },
+          error: (error) => {
+            return reject(error.error.message);
+          },
+        });
+    });
   }
 
-  async getUserById(userId: string) {
-    return await firstValueFrom(
-      this.http.get<any>(`${AUTH_API}/users/${userId}`).pipe(
-        map((response: any) => {
-          return response;
-        }),
-        catchError((error) => of(error))
-      )
-    );
+  getUserById(userId: string) {
+    return new Promise<User>((resolve, reject) => {
+      return this.http
+        .get<User>(`${AUTH_API}/users/user/${userId}`, {
+          withCredentials: true,
+        })
+        .subscribe({
+          next: (response: User) => {
+            resolve(response);
+          },
+          error: (error) => {
+            return reject(error.error.message);
+          },
+        });
+    });
+  }
+
+  async validateCreateUserFirstStep(userEmail: string) {
+    try {
+      return await firstValueFrom(
+        this.http
+          .post<any>(
+            `${AUTH_API}/users/validateEmail`,
+            { email: userEmail },
+            {
+              withCredentials: true,
+            }
+          )
+          .pipe(
+            map((response: any) => {
+              if (response) {
+                return;
+              }
+            })
+          )
+      );
+    } catch (error) {
+      throw new Error('error');
+    }
   }
 }

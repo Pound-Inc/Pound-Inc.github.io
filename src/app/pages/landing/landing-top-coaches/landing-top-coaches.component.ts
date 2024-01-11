@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { OrderService } from 'src/app/admin/services/order.service';
 import { PlanService } from 'src/app/admin/services/plan.service';
 import { ProgramService } from 'src/app/admin/services/program.service';
-import { ReceiptService } from 'src/app/admin/services/receipt.service';
 import { UserService } from 'src/app/admin/services/user.service';
 import { Coach } from 'src/app/model/coach.model';
+import { Order } from 'src/app/model/order.model';
 import { ProgramPlan } from 'src/app/model/program-plan.model';
 import { Receipt } from 'src/app/model/receipt.model';
 import { TrainingProgram } from 'src/app/model/training-program.model';
@@ -19,7 +20,7 @@ export class LandingTopCoachesComponent implements OnInit, OnDestroy {
   public programs: TrainingProgram[];
   public coaches: Coach[];
   public users: User[];
-  public receipts: Receipt[];
+  public orders: Order[];
   public plans: ProgramPlan[];
 
   private programsSubscription: Subscription;
@@ -30,29 +31,20 @@ export class LandingTopCoachesComponent implements OnInit, OnDestroy {
   constructor(
     private userService: UserService,
     private programService: ProgramService,
-    private receiptService: ReceiptService,
-    private plansService: PlanService
+    private plansService: PlanService,
+    private orderService: OrderService
   ) {}
   async ngOnInit(): Promise<void> {
-    this.plans = (await this.plansService.getPlans()).data;
+    this.plans = await this.plansService.getPlans();
+    this.orders = await this.orderService.getOrders();
+    this.programs = await this.programService.getPrograms();
 
-    this.programsSubscription = this.programService.programs.subscribe(
-      (programs: TrainingProgram[]) => {
-        this.programs = programs;
-      }
-    );
-    this.coachesSubscription = this.userService.users.subscribe(
+    this.coachesSubscription = this.userService.users$.subscribe(
       (users: any[]) => {
         this.users = users;
         this.coaches = users.filter((user: User) => user.roles.Worker);
       }
     );
-
-    this.receiptsSubscription = this.receiptService
-      .getReceipts()
-      .subscribe((receipts: Receipt[]) => {
-        this.receipts = receipts;
-      });
   }
   ngOnDestroy(): void {
     if (this.programsSubscription) {
@@ -79,22 +71,23 @@ export class LandingTopCoachesComponent implements OnInit, OnDestroy {
       ? this.plans.filter((plan) => plan.program_id === programId)
       : undefined;
   }
-  public getRelatedReceipts(coachId: string): Receipt[] {
-    let receipts: any[] = [];
+  public getRelatedOrders(coachId: string) {
+    let orders: any[] = [];
     const relatedPrograms = this.programs.filter((p) => p.coach_id === coachId);
     for (const program of relatedPrograms) {
       const relatedPlans = this.plans.filter(
         (p) => p.program_id === program._id
       );
+
       for (const plan of relatedPlans) {
-        const relatedReceipts = this.receipts.filter(
-          (r) => r.plan_id === plan._id
+        const relatedOrders = this.orders.filter(
+          (o) => o.items[0]._id === plan._id
         );
-        receipts = [...receipts, ...relatedReceipts];
+        orders = [...orders, ...relatedOrders];
       }
     }
 
-    return receipts;
+    return orders;
   }
 
   public getRelatedUsers(userId: string): User | undefined {

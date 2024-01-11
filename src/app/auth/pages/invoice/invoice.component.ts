@@ -41,10 +41,12 @@ export class InvoiceComponent implements OnInit, AfterViewInit {
     if (!orderData) {
       this.router.navigate(['/']);
     } else {
+      console.log(orderData);
+      
       this.orderData = orderData;
-      this.user = await this.userService.getUserById(
-        orderData.response.user_id
-      );
+      this.userService.getUserById(this.orderData.user_id).then((user) => {
+        this.user = user;
+      });
     }
   }
 }

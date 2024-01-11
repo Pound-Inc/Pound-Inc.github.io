@@ -36,7 +36,7 @@ export class UserTableComponent implements OnInit, OnDestroy {
 
   constructor(public userService: UserService) {}
   ngOnInit(): void {
-    this.userSubscription = this.userService.users.subscribe(
+    this.userSubscription = this.userService.users$.subscribe(
       (users: User[] | Coach[]) => {
         this.users = users;
       }

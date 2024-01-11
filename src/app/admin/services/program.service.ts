@@ -14,11 +14,10 @@ import { API_Response } from 'src/common/interfaces/response.interface';
 
 @Injectable({ providedIn: 'root' })
 export class ProgramService {
-  private _programs$ = new BehaviorSubject<TrainingProgram[]>([]);
+  private readonly programs = new BehaviorSubject<TrainingProgram[]>([]);
+  public programs$ = this.programs.asObservable();
 
-  constructor(private http: HttpClient) {
-    this.getPrograms();
-  }
+  constructor(private http: HttpClient) {}
 
   getPrograms(): Promise<TrainingProgram[]> {
     return new Promise<TrainingProgram[]>((resolve, reject) => {
@@ -29,7 +28,7 @@ export class ProgramService {
         .subscribe({
           next: (response: any) => {
             if (response) {
-              this._programs$.next(response.data);
+              this.programs.next(response.data);
               return resolve(response.data);
             }
           },
@@ -40,28 +39,26 @@ export class ProgramService {
     });
   }
 
-  async getProgramById(programId: string) {
-    return await firstValueFrom(
-      this.http
-        .get<API_Response>(`${PROGRAMS_API}/program/${programId}/`, {
+  getProgramById(programId: string) {
+    return new Promise<TrainingProgram>((resolve, reject) => {
+      return this.http
+        .get<TrainingProgram>(`${PROGRAMS_API}/program/${programId}/`, {
           withCredentials: true,
         })
-        .pipe(
-          map((response: any) => {
-            return response;
-          }),
-          catchError((error) => of(error))
-        )
-    );
+        .subscribe({
+          next: (response: TrainingProgram) => {
+            resolve(response);
+          },
+          error: (error) => {
+            return reject(error.error.message);
+          },
+        });
+    });
   }
 
   createNewProgram(request: any): Observable<any> {
     return this.http.post<any>(`${PROGRAMS_API}`, request, {
       withCredentials: true,
     });
-  }
-
-  get programs() {
-    return this._programs$.asObservable();
   }
 }

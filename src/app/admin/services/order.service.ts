@@ -1,83 +1,58 @@
 import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  Observable,
-  catchError,
-  firstValueFrom,
-  map,
-  of,
-} from 'rxjs';
+import { BehaviorSubject, firstValueFrom, map } from 'rxjs';
 import { ORDERS_API } from 'src/common/constants/endpoints';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { HeadersService } from 'src/common/services/headers.service';
+import { HttpClient } from '@angular/common/http';
 import { API_Response } from 'src/common/interfaces/response.interface';
 import { Order } from 'src/app/model/order.model';
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {
-  private _loading$ = new BehaviorSubject<boolean>(true);
-  private _orders$ = new BehaviorSubject<Order[]>([]);
-  private headers: HttpHeaders;
-  private authToken: string;
+  private readonly orders = new BehaviorSubject<Order[]>([]);
+  public orders$ = this.orders.asObservable();
 
-  constructor(
-    private http: HttpClient,
-    private headersService: HeadersService
-  ) {
-    this.authToken = localStorage.getItem('Authentication') as string;
+  constructor(private http: HttpClient) {}
 
-    this.headers = new HttpHeaders({
-      Authentication: `Bearer ${this.authToken}`,
+  getRelatedOrders(userId: string) {
+    return new Promise<Order[]>((resolve, reject) => {
+      return this.http
+        .get<API_Response>(`${ORDERS_API}/user/${userId}/`, {
+          withCredentials: true,
+        })
+        .subscribe({
+          next: (response: API_Response) => {
+            this.orders.next(response.data);
+            return resolve(response.data);
+          },
+          error: (error) => {
+            return reject(error.error.message);
+          },
+        });
+    });
+  }
+  getOrders() {
+    return new Promise<Order[]>((resolve, reject) => {
+      return this.http
+        .get<API_Response>(`${ORDERS_API}/`, {
+          withCredentials: true,
+        })
+        .subscribe({
+          next: (response: API_Response) => {
+            console.log(response);
+
+            this.orders.next(response.data);
+            return resolve(response.data);
+          },
+          error: (error) => {
+            return reject(error.error.message);
+          },
+        });
     });
   }
 
-  async getRelatedOrders(userId: string) {
-    return await firstValueFrom(
-      this.http
-        .get<API_Response>(`${ORDERS_API}/user/${userId}/`, {
-          headers: this.headersService.getHeaders,
-          withCredentials: true,
-        })
-        .pipe(
-          map((response: API_Response) => {
-            this._orders$.next(response.data);
-
-            return {
-              status: response.status,
-              message: response.message,
-              data: response.data,
-              response: response.response,
-            };
-          })
-        )
-    );
-  }
-  async getOrders() {
-    return await firstValueFrom(
-      this.http
-        .get<API_Response>(`${ORDERS_API}/`, {
-          headers: this.headersService.getHeaders,
-          withCredentials: true,
-        })
-        .pipe(
-          map((response: API_Response) => {
-            this._orders$.next(response.data);
-
-            return {
-              status: response.status,
-              message: response.message,
-              data: response.data,
-            };
-          })
-        )
-    );
-  }
-
-  public setBilling(request: any): Promise<any> {
+  setBilling(request: any): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       return this.http
         .post<any>(`${ORDERS_API}/set_billing`, request, {
-          headers: this.headers,
           withCredentials: true,
         })
         .subscribe({
@@ -94,52 +69,53 @@ export class OrderService {
   }
 
   async createNewOrder(request: any) {
-    return await firstValueFrom(
-      this.http
+    return new Promise<Order>((resolve, reject) => {
+      return this.http
         .post<any>(`${ORDERS_API}`, request, {
-          headers: this.headersService.getHeaders,
           withCredentials: true,
         })
-        .pipe(
-          map((response: any) => {
-            return response;
-          })
-        )
-    );
+        .subscribe({
+          next: (response: API_Response) => {
+            return resolve(response?.data);
+          },
+          error: (error) => {
+            return reject(error.error.message);
+          },
+        });
+    });
   }
 
-  async getOrderById(orderId: string) {
-    return await firstValueFrom(
-      this.http
-        .get<API_Response>(`${ORDERS_API}/${orderId}/`, {
-          headers: this.headersService.getHeaders,
+  getOrderById(orderId: string) {
+    return new Promise<Order>((resolve, reject) => {
+      return this.http
+        .get<Order>(`${ORDERS_API}/${orderId}/`, {
           withCredentials: true,
         })
-        .pipe(
-          map((response: any) => {
-            return response;
-          }),
-          catchError((error) => of(error))
-        )
-    );
+        .subscribe({
+          next: (response: Order) => {
+            return resolve(response);
+          },
+          error: (error) => {
+            return reject(error.error.message);
+          },
+        });
+    });
   }
-  async getOrderByClientSecret(clientSecret: string) {
-    return await firstValueFrom(
-      this.http
+  getOrderByClientSecret(clientSecret: string) {
+    return new Promise<Order>((resolve, reject) => {
+      return this.http
         .get<API_Response>(`${ORDERS_API}/clientSecret/${clientSecret}/`, {
-          headers: this.headersService.getHeaders,
           withCredentials: true,
         })
-        .pipe(
-          map((response: any) => {
-            if (response) return response;
-          })
-        )
-    );
-  }
-
-  get orders() {
-    return this._orders$.asObservable();
+        .subscribe({
+          next: (response: API_Response) => {
+            return resolve(response?.data);
+          },
+          error: (error) => {
+            return reject(error.error.message);
+          },
+        });
+    });
   }
 
   async modifyOrderById(request: Order) {

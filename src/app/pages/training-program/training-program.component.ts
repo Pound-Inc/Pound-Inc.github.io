@@ -10,7 +10,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { PlanService } from 'src/app/admin/services/plan.service';
 import { ProgramService } from 'src/app/admin/services/program.service';
-import { ReceiptService } from 'src/app/admin/services/receipt.service';
 import { UserService } from 'src/app/admin/services/user.service';
 import { Coach } from 'src/app/model/coach.model';
 import { ProgramPlan } from 'src/app/model/program-plan.model';
@@ -24,6 +23,7 @@ import { ProgramComment } from 'src/app/model/comment.model';
 import { ProgramCommentService } from 'src/app/admin/services/program.comment.service';
 import { ProgramStory } from 'src/app/model/story.model';
 import { PlanAddonModalComponent } from './plan-addon-modal/plan-addon-modal.component';
+import { Order } from 'src/app/model/order.model';
 
 @Component({
   selector: 'app-training-program',
@@ -36,7 +36,7 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
   public users: User[];
   public program: TrainingProgram;
   public plans: ProgramPlan[];
-  public receipts: Receipt[];
+  public orders: Order[];
   public comments: ProgramComment[];
   public stories: ProgramStory[];
   public columns: DataGridColumn[] = planTableColumns;
@@ -50,7 +50,7 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
         coach: Coach;
         program: TrainingProgram;
         plans: ProgramPlan[];
-        receipts: Receipt[];
+        orders: Order[];
         comments: ProgramComment[];
         stories: ProgramStory[];
       } = data['program'];
@@ -58,11 +58,9 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
       this.program = programData.program;
       this.coach = programData.coach;
       this.plans = programData.plans;
-      this.receipts = programData.receipts;
+      this.orders = programData.orders;
       this.comments = programData.comments;
       this.stories = programData.stories;
-
-      // this.receipts = data['receipts'];
     });
   }
   ngOnDestroy(): void {
@@ -71,8 +69,10 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
     }
   }
 
-  getRelatedReceipts(planId: string) {
-    return this.receipts.filter((r) => r.plan_id === planId);
+  public getRelatedOrders(planId: string) {
+    const relatedOrders = this.orders.filter((o) => o.items[0]._id === planId);
+
+    return relatedOrders;
   }
 
   compareBtn() {
