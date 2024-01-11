@@ -47,20 +47,20 @@ export class LandingHeaderComponent implements OnInit, OnDestroy {
           {
             title: `${this.translateBaseRoute}categories.children.nutrition`,
             isActive: false,
-            routerLink: '',
+            routerLink: '/nutrition',
             image: 'https://pankind.org.au/media/1653/istock-854725402_900.jpg',
           },
           {
             title: `${this.translateBaseRoute}categories.children.cardio`,
             isActive: false,
-            routerLink: '',
+            routerLink: '/cardio',
             image:
               'https://blog.myfitnesspal.com/wp-content/uploads/2019/01/Essential-Guide-to-Hydration-1200x900.jpg',
           },
           {
             title: `${this.translateBaseRoute}categories.children.strength`,
             isActive: false,
-            routerLink: '',
+            routerLink: '/power',
             image:
               'https://www.eatthis.com/wp-content/uploads/sites/4/2022/04/strength-training.jpg?quality=82&strip=all',
           },

@@ -63,7 +63,7 @@
               <ul class="submenu megamenu">
                 <li *ngFor="let child of item.children">
                   <!-- (click)="scrollToElement(child.position)" -->
-                  <a href="" class="sub-menu-item">
+                  <a [routerLink]="[child.routerLink]" class="sub-menu-item">
                     <div class="text-lg-center">
                       <span class="d-none d-lg-block"
                         ><img
