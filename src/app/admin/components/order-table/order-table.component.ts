@@ -34,6 +34,7 @@ export class OrderTableComponent implements AfterViewInit {
 
     for (const program of relatedPrograms) {
       this.orderService.getOrdersByProgramId(program._id).then((orders) => {
+
         this.orders = [...this.orders, ...orders];
       });
     }

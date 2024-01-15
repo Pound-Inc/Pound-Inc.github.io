@@ -42,7 +42,15 @@ export class LandingTopCoachesComponent implements OnInit, OnDestroy {
     this.coachesSubscription = this.userService.users$.subscribe(
       (users: any[]) => {
         this.users = users;
-        this.coaches = users.filter((user: User) => user.roles.Worker);
+        this.coaches = users
+          .filter(
+            (user: User) =>
+              user.roles.Worker &&
+              (user._id === '6589944c51e834930eecbb33' ||
+                user._id === '658994b851e834930eecbb38' ||
+                user._id === '65a28fc03d3afe44db6f2229')
+          )
+          .reverse();
       }
     );
   }

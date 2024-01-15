@@ -1,0 +1,24 @@
+<div class="container">
+  <h2 class="title">LETS GO!!!</h2>
+  <div class="result">
+    <p class="text-light">
+      Toadys excires will focues on pushing weights, we need to warm up the most
+      of the body
+    </p>
+  </div>
+
+  <div class="settings mt-4" *ngFor="let exercise of exercises">
+    <span class="settings__title field-title">
+      {{ exercise.description }}
+    </span>
+    <div class="setting">
+      <input type="checkbox" id="uppercase" checked />
+      <label for="uppercase">{{ exercise.name }}</label>
+    </div>
+    <div class="length range__slider mt-0" data-min="0" data-max="12">
+      <input id="slider" type="range" min="0" max="12" value="0" />
+    </div>
+  </div>
+
+  <button class="btn generate" id="generate">Generate Password</button>
+</div>

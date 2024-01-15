@@ -9,7 +9,6 @@ export const profileGuard = async (route: ActivatedRouteSnapshot) => {
   const coachId = route.params['coachId'];
 
   const user = await userService.getUserById(coachId);
-  console.log(user);
   
   if (user) {
     return true;

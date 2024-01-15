@@ -20,6 +20,14 @@
           </h5>
         </div>
         <div
+          class="py-3 bg-warning rounded align-items-center px-4"
+          *ngIf="redirectMessage"
+        >
+          <h5 class="text-center">
+            {{ translateBaseRoute + "You have to be loggedin in order to purchase the program" | translate }}...
+          </h5>
+        </div>
+        <div
           class="py-3 bg-success rounded align-items-center px-4"
           *ngIf="valid"
         >

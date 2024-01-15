@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Order } from 'src/app/model/order.model';
 import { ProgramPlan } from 'src/app/model/program-plan.model';
 import { TrainingProgram } from 'src/app/model/training-program.model';
 import { User } from 'src/app/model/user.model';
@@ -14,6 +15,7 @@ export class CardioComponent implements OnInit, OnDestroy {
   public translateBaseRoute = 'routing.coach.';
   public programs: TrainingProgram[] = [];
   public plans: ProgramPlan[] = [];
+  public orders: Order[] = [];
   public users: User[];
 
   private routeSubscription: Subscription;
@@ -26,11 +28,13 @@ export class CardioComponent implements OnInit, OnDestroy {
         users: User[];
         programs: TrainingProgram[];
         plans: ProgramPlan[];
+        orders: Order[];
       } = data['programs'];
 
       this.programs = programData.programs;
       this.users = programData.users;
       this.plans = programData.plans;
+      this.orders = programData.orders;
     });
   }
 
@@ -49,6 +53,11 @@ export class CardioComponent implements OnInit, OnDestroy {
     return this.plans
       ? this.plans.find((plan) => plan.program_id === programId)
       : undefined;
+  }
+
+  public getOrders(programId: string): number {
+    const programsData = this.programs.find((p) => p._id === programId) as any;
+    return programsData.orders;
   }
 
   public getColor(value: number): string {

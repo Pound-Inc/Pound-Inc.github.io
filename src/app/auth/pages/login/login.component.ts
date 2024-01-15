@@ -18,6 +18,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginComponent implements OnInit {
   translateBaseRoute = 'routing.auth.login.';
   invalidMessage = false;
+  redirectMessage = false;
   valid = false;
 
   form: FormGroup = new FormGroup({
@@ -32,6 +33,14 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
   ngOnInit(): void {
+    const redirectUrl = localStorage.getItem('redirectURL');
+    if (redirectUrl) {
+      this.redirectMessage = true;
+      setTimeout(() => {
+        this.redirectMessage = false;
+      }, 5000);
+    }
+
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: [
@@ -59,8 +68,13 @@ export class LoginComponent implements OnInit {
         this.valid = true;
         setTimeout(() => {
           this.valid = false;
-          const redirectUrl = '/';
-          this.router.navigate([redirectUrl]);
+          const redirectURL = localStorage.getItem('redirectURL');
+          if (redirectURL) {
+            localStorage.removeItem('redirectURL');
+            this.router.navigate([redirectURL]);
+          } else {
+            this.router.navigate(['/']);
+          }
         }, 2000);
       })
       .catch(() => {

@@ -57,7 +57,7 @@ export class ProgramService {
   }
 
   createNewProgram(request: any): Observable<any> {
-    return this.http.post<any>(`${PROGRAMS_API}`, request, {
+    return this.http.post<any>(`${PROGRAMS_API}/newProgramAuth`, request, {
       withCredentials: true,
     });
   }

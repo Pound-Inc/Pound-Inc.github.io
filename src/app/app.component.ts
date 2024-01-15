@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
     private http: HttpClient,
     private authService: AuthService
   ) {
+    localStorage.setItem('v', '1');
     if (!localStorage.getItem('selectedLanguage')) {
       localStorage.setItem('selectedLanguage', 'ar');
     }

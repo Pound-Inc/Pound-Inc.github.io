@@ -46,10 +46,7 @@
           style="font-size: 12px"
         >
           <span> موثّق من قِبل </span>
-          <a
-            class="text-dark"
-            [routerLink]="['/coach/' + coach.certified_by_id]"
-          >
+          <a class="text-dark">
             {{ relatedCertifier?.name }}
           </a>
           <span class="mdi mdi-check-decagram text-dark me-1"></span>

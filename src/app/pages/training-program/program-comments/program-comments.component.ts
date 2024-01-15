@@ -12,11 +12,8 @@ export class ProgramCommentsComponent implements OnInit {
   @Input() comments: ProgramComment[];
   users: User[] = [];
   constructor(private userService: UserService) {}
-  ngOnInit(): void {
-
-    this.userService.getUsers().then((response: any) => {
-      this.users = response['data'];
-    });
+  async ngOnInit(): Promise<void> {
+    this.users = await this.userService.getUsers();
   }
 
   getRelatedUser(userId: any) {

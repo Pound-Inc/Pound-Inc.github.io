@@ -1,8 +1,4 @@
-<div
-  style="background-color: black; overflow-y: hidden"
-  *ngIf="step === 2"
-  class="h-100"
->
+<div style="background-color: black" *ngIf="step === 2">
   <div class="bg-video-wrapper">
     <iframe
       src="https://player.vimeo.com/video/302450585?end=24s&background=1&autoplay=1&loop=1&byline=0&title=0#t=20s"
@@ -106,7 +102,11 @@
                   id="city"
                   (change)="onCityChange()"
                 >
-                  <option *ngFor="let city of cities" [value]="city | json" [selected]="city === cities[0]">
+                  <option
+                    *ngFor="let city of cities"
+                    [value]="city | json"
+                    [selected]="city === cities[0]"
+                  >
                     {{ city.name }}
                   </option>
                 </select>

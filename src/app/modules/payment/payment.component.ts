@@ -44,6 +44,8 @@ export class PaymentComponent implements OnInit {
     await new Promise((f) => setTimeout(f, 2000));
 
     //
+    console.log(this.clientSecret);
+    
     this.disabledBtn = false;
     this.elements = this.stripe.elements({
       locale: 'ar',
@@ -80,7 +82,7 @@ export class PaymentComponent implements OnInit {
       // pk_test_51OJQt3DgRKOECkRdFTqG5zYGtuGeHzaEJGjRA0k7XuPREWz7g8F27KnpBqFrtvssk8BfUUsXCXz0FbAeZbhvfiPD004lnnconj
       // pk_live_51OJQt3DgRKOECkRdOzKfWFdnvqLFuSQGqM0VlWotmZSkLSKv7dgYLyxmSPCWGPyXt7ekajSbCim9lEgGuZvFfCXq00uQXDXpXr
       this.stripe = (await loadStripe(
-        'pk_test_51OJQt3DgRKOECkRdFTqG5zYGtuGeHzaEJGjRA0k7XuPREWz7g8F27KnpBqFrtvssk8BfUUsXCXz0FbAeZbhvfiPD004lnnconj'
+        'pk_live_51OJQt3DgRKOECkRdOzKfWFdnvqLFuSQGqM0VlWotmZSkLSKv7dgYLyxmSPCWGPyXt7ekajSbCim9lEgGuZvFfCXq00uQXDXpXr'
       )) as Stripe;
     };
     this.renderer.appendChild(document.body, script);

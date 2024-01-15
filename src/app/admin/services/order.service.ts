@@ -37,8 +37,6 @@ export class OrderService {
         })
         .subscribe({
           next: (response: API_Response) => {
-            console.log(response);
-
             this.orders.next(response.data);
             return resolve(response.data);
           },
@@ -127,7 +125,7 @@ export class OrderService {
         .subscribe({
           next: (response: any) => {
             if (response) {
-              return resolve(response.response);
+              return resolve(response.data);
             }
           },
           error: (error) => {
@@ -146,7 +144,8 @@ export class OrderService {
         .subscribe({
           next: (response: any) => {
             if (response) {
-              return resolve(response.response);
+              
+              return resolve(response.data);
             }
           },
           error: (error) => {

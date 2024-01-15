@@ -17,12 +17,27 @@ export class CustomersStoryComponent implements OnInit {
   @Input() relatedUsers: User[];
   constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  getRelatedUser(userId: any) {
+    return this.relatedUsers.find((u) => u._id === userId);
   }
 
-  public getRelatedUsers(userId: string): User | undefined {
-    return this.relatedUsers
-      ? this.relatedUsers.find((user) => user._id === userId)
-      : undefined;
+  public cutDescription(desc: string) {
+    const maxLength = 80;
+
+    if (desc.length > maxLength) {
+      const truncatedDesc = desc.substring(0, maxLength);
+      const lastSpaceIndex = truncatedDesc.lastIndexOf(' ');
+
+      if (lastSpaceIndex !== -1) {
+        return {
+          isLong: true,
+          desc: truncatedDesc.substring(0, lastSpaceIndex),
+        };
+      }
+    }
+
+    return { isLong: false, desc: desc };
   }
 }

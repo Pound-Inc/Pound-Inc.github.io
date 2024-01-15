@@ -3,34 +3,49 @@
 </h5>
 <div class="row">
   <div class="col-md-6 mt-4 pt-2" *ngFor="let story of relatedStories">
-    <div class="card blog blog-primary rounded border-0 shadow">
+    <div class="card blog blog-primary rounded">
       <div class="position-relative">
         <ngb-carousel>
           <ng-template ngbSlide *ngFor="let img of story.imgs">
             <div class="picsum-img-wrapper">
-              <img [src]="img" alt="..." class="card-img-top rounded-top" />
+              <img
+                [src]="img"
+                alt="..."
+                class="card-img-top rounded-top"
+                style="
+                  width: 100%;
+                  min-height: 200px;
+                  max-height: 200px;
+                  object-fit: cover;
+                  object-position: center;
+                "
+              />
             </div>
           </ng-template>
         </ngb-carousel>
         <div class="overlay rounded-top"></div>
       </div>
       <div class="card-body content">
-        <h5>
-          <a href="javascript:void(0)" class="card-title title text-dark">
-            {{ story.title }}
-          </a>
-        </h5>
-        <div class="d-flex justify-content-between pt-2 border-top">
-          <h5 class="mb-0">{{ getRelatedUsers(story.user_id)?.name }}</h5>
-          <h6 class="text-dark mb-0">{{ story.duration }}</h6>
+        <div class="row d-flex">
+          <h5 class="col">
+            <a href="javascript:void(0)" class="card-title title text-dark">
+              {{ story.title }}
+            </a>
+          </h5>
+          <h6 class="col text-start text-dark mb-0">{{ story.duration }}</h6>
         </div>
-        <p class="text-secondary mb-0">
-          {{ story.description }}
+        <div class="d-flex justify-content-between pt-2 border-top"></div>
+        <p
+          class="text-secondary mb-0"
+          *ngIf="cutDescription(story.description).isLong"
+        >
+          {{ cutDescription(story.description).desc }}
+          ...
         </p>
       </div>
       <div class="author">
         <small class="user d-block">
-          {{ getRelatedUsers(story.user_id)?.name }} <i class="uil uil-user"></i>
+          {{ getRelatedUser(story.user_id)?.name }} <i class="uil uil-user"></i>
         </small>
       </div>
     </div>

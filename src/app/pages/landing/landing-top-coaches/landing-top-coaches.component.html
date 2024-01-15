@@ -12,9 +12,7 @@
     </div>
     <!--end row-->
 
-    <div
-      class="row justify-content-center"
-    >
+    <div class="row justify-content-center">
       <div class="col-lg-10 col-11 row">
         <div
           class="col-lg-4 col-md-6 col-12 mt-4 pt-2 box-outer"
@@ -22,18 +20,29 @@
         >
           <div
             class="job-box job-primary company-list card border-0 main_box rounded shadow"
+            [routerLink]="['/coach/' + coach._id]"
           >
             <div
               class="card-top row align-items-center justify-content-between pt-2"
             >
               <div
-                *ngIf="coaches[0] === coach"
+                *ngIf="coaches[0] === coach; else newCoach"
                 class="ribbon ribbon-left ribbon-danger overflow-hidden"
               >
                 <span class="text-center d-block shadow small h6 p-1"
-                  >أفضل إختيار</span
-                >
+                  >أكثر مبيعاَ
+                </span>
               </div>
+              <ng-template #newCoach>
+                <div
+                  *ngIf="coaches[1] === coach"
+                  class="ribbon ribbon-left ribbon-success overflow-hidden"
+                >
+                  <span class="text-center d-block shadow small h6 p-1"
+                    >جديد
+                  </span>
+                </div>
+              </ng-template>
               <div class="col">
                 <div class="d-flex gap-1 px-2">
                   <div
@@ -95,15 +104,13 @@
               <h5>تفاصيل المدرب:</h5>
               <ul class="list-unstyled mb-4 px-1">
                 <li class="h6">
-                  <span class="mdi mdi-package text-success me-2"></span>
+                  <span class="mdi mdi-dumbbell text-dark me-2"></span>
                   <span class="me-2 text-muted">عدد البرامج:</span>
                   <span> {{ getRelatedPrograms(coach._id)?.length }} </span>
                 </li>
                 <li class="h6">
-                  <span
-                    class="mdi mdi-account-group text-warning me-2"
-                  ></span>
-                  <span class="me-2 text-muted">عدد العملاء:</span>
+                  <span class="mdi mdi-archive text-dark me-2"></span>
+                  <span class="me-2 text-muted">عدد الطلبات:</span>
                   <span> {{ getRelatedOrders(coach._id).length }} </span>
                 </li>
                 <li class="h6">

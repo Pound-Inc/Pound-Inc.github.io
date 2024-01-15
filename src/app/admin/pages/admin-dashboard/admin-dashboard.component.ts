@@ -5,6 +5,8 @@ import { BillingService } from '../../services/billing.service';
 import { User } from 'src/app/model/user.model';
 import { Billing } from 'src/app/model/billing.model';
 import { Order } from 'src/app/model/order.model';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -20,7 +22,9 @@ export class AdminDashboardComponent implements OnInit {
   constructor(
     private userService: UserService,
     private orderService: OrderService,
-    private billingService: BillingService
+    private billingService: BillingService,
+    private authService: AuthService,
+    private router: Router
   ) {
     document.dir = 'ltr';
   }
@@ -31,6 +35,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   api() {
-    this.orderService.createNewOrder({});
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 }

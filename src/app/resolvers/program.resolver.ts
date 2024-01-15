@@ -22,7 +22,8 @@ export const programResolver: ResolveFn<any> = async (
   const programId = route.params['programId'];
 
   const plans = await plansService.getRelatedPlans(programId);
-  const comments = (await commentService.getRelatedComments(programId)).data;
+  const comments = (await commentService.getRelatedComments(programId));
+  
   const stories = (await storyService.getRelatedStories(programId)).data;
   const orders = await orderService.getOrders();
 

@@ -27,6 +27,8 @@ import { UserOrdersComponent } from '../pages/user-dashboard/user-orders/user-or
 import { UserProfileModalComponent } from '../pages/user-dashboard/user-profile-modal/user-profile-modal.component';
 import { OrderTableComponent } from '../components/order-table/order-table.component';
 import { BillingTableComponent } from '../components/billing-table/billing-table.component';
+import { PlannerComponent } from '../components/planner/planner.component';
+import { PlannerDetailsModalComponent } from '../components/planner-details-modal/planner-details-modal.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { BillingTableComponent } from '../components/billing-table/billing-table
     UserProfileModalComponent,
     OrderTableComponent,
     BillingTableComponent,
+    PlannerComponent,
+    PlannerDetailsModalComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +54,7 @@ import { BillingTableComponent } from '../components/billing-table/billing-table
     DecimalPipe,
     FormsModule,
     AsyncPipe,
+    NgbModule,
     NgbHighlight,
     NgbdSortableHeader,
     NgbPaginationModule,

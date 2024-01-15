@@ -20,11 +20,23 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   public logout() {
-    this.http
-      .post(`${AUTH_API}/logout`, {}, { withCredentials: true })
-      .subscribe(() => {
-        this.authenticated.next(false);
-      });
+    localStorage.removeItem('isLoggedIn');
+    return new Promise<any>((resolve, reject) => {
+      return this.http
+        .post<any>(
+          `${AUTH_API}/logout`,
+          {},
+          {
+            withCredentials: true,
+          }
+        )
+        .subscribe({
+          next: (user: any) => {},
+          error: (error) => {
+            return reject(error.error.message);
+          },
+        });
+    });
   }
 
   public login(loginPayload: loginCredentials): Promise<User> {
@@ -36,6 +48,7 @@ export class AuthService {
         .subscribe({
           next: (user: any) => {
             if (user) {
+              localStorage.setItem('isLoggedIn', 'true');
               this.user.next(user);
               return resolve(user);
             }
@@ -48,25 +61,31 @@ export class AuthService {
   }
 
   getProfile(): Promise<User> {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+
     return new Promise<User>((resolve, reject) => {
-      return this.http
-        .get<User>(`${AUTH_API}/users/me/`, {
-          withCredentials: true,
-        })
-        .subscribe({
-          next: (user: User) => {
-            if (user) {
-              this.user.next(user);
-              this.authenticated.next(true);
-              return resolve(user);
-            }
-          },
-          error: (error) => {
-            this.user.complete();
-            this.authenticated.next(false);
-            return reject(error.error.message);
-          },
-        });
+      if (isLoggedIn) {
+        return this.http
+          .get<User>(`${AUTH_API}/users/me/`, {
+            withCredentials: true,
+          })
+          .subscribe({
+            next: (user: User) => {
+              if (user) {
+                this.user.next(user);
+                this.authenticated.next(true);
+                return resolve(user);
+              }
+            },
+            error: (error) => {
+              this.logout();
+            },
+          });
+      } else {
+        this.logout();
+
+        return;
+      }
     });
   }
 }

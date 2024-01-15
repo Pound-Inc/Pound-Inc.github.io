@@ -123,6 +123,11 @@ export class CartComponent implements OnInit {
   }
 
   setBilling() {
+    if (!this.user) {
+      localStorage.setItem('redirectURL', 'cart');
+      this.router.navigate(['/auth/login']);
+    }
+
     this.payBtn = true;
     this.setBillingArray();
 
@@ -142,31 +147,5 @@ export class CartComponent implements OnInit {
         this.payBtn = false;
       })
       .catch((error) => {});
-  }
-
-  async onPurchase() {
-    this.payBtn = false;
-    const total = this.total.addons + this.total.main;
-    const newOrder = {
-      user_id: this.user._id,
-      items: [this.main],
-      addons: this.userAddons,
-      price: total,
-      status: OrderStatusEnum.New,
-    };
-
-    this.orderService.createNewOrder(newOrder).then((response: any) => {
-      console.log(response);
-      
-      if (response) {
-        const navigationExtras: NavigationExtras = {
-          state: {
-            orderData: response,
-          },
-        };
-
-        this.router.navigate(['/invoice'], navigationExtras);
-      }
-    });
   }
 }
