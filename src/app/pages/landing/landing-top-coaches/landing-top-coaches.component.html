@@ -26,20 +26,30 @@
               class="card-top row align-items-center justify-content-between pt-2"
             >
               <div
-                *ngIf="coaches[0] === coach; else newCoach"
+                *ngIf="coaches[0] === coach; else bestCoach"
                 class="ribbon ribbon-left ribbon-danger overflow-hidden"
               >
                 <span class="text-center d-block shadow small h6 p-1"
                   >أكثر مبيعاَ
                 </span>
               </div>
-              <ng-template #newCoach>
+              <!-- <ng-template #newCoach>
                 <div
-                  *ngIf="coaches[1] === coach"
+                  *ngIf="coaches[2] === coach; else bestCoach"
                   class="ribbon ribbon-left ribbon-success overflow-hidden"
                 >
                   <span class="text-center d-block shadow small h6 p-1"
                     >جديد
+                  </span>
+                </div>
+              </ng-template> -->
+              <ng-template #bestCoach>
+                <div
+                  *ngIf="coaches[1] === coach"
+                  class="ribbon ribbon-left ribbon-info overflow-hidden"
+                >
+                  <span class="text-center d-block shadow small h6 p-1"
+                    >أفضل قيمة
                   </span>
                 </div>
               </ng-template>

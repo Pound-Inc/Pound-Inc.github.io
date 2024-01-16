@@ -25,6 +25,7 @@
     "@generic-ui/fabric": "^0.19.0",
     "@generic-ui/hermes": "^0.19.0",
     "@generic-ui/ngx-grid": "^0.19.0",
+    "@hotjar/browser": "^1.0.9",
     "@iconscout/unicons": "^4.0.8",
     "@mdi/font": "^7.3.67",
     "@ng-bootstrap/ng-bootstrap": "^14.2.0",

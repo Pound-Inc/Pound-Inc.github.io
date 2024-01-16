@@ -7,6 +7,7 @@ import { AuthService } from './auth/services/auth.service';
 import { HeadersService } from 'src/common/services/headers.service';
 import { UserService } from './admin/services/user.service';
 import { HttpClient } from '@angular/common/http';
+import Hotjar from '@hotjar/browser';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,11 @@ export class AppComponent implements OnInit {
     private http: HttpClient,
     private authService: AuthService
   ) {
+    const siteId = 3826939;
+    const hotjarVersion = 6;
+
+    Hotjar.init(siteId, hotjarVersion);
+
     localStorage.setItem('v', '1');
     if (!localStorage.getItem('selectedLanguage')) {
       localStorage.setItem('selectedLanguage', 'ar');

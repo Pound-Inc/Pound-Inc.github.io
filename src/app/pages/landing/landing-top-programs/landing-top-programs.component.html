@@ -4,7 +4,7 @@
       <div class="col-lg-10">
         <div class="col-lg-3 col-md-4 mt-4 mt-sm-0 pt-2 pt-sm-0">
           <div class="form custom-form">
-            <h1 class="mb-0">برامج الاسبوع</h1>
+            <h1 class="mb-0 text-dark">برامج الاسبوع</h1>
           </div>
         </div>
       </div>
@@ -36,50 +36,64 @@
                 </div>
               </div>
               <div class="card-body content border-0">
-                <div class="row d-flex gap-2 align-items-center">
-                  <div class="col-2">
-                    <img
-                      src="{{ getRelatedCoach(program.coach_id)?.img }}"
-                      alt="profile img"
-                      class="rounded-circle"
-                      width="42"
-                    />
+                <div>
+                  <div class="d-flex justify-content-between align-items-start">
+                    <h5 class="mb-0 col-10" style="line-height: 28px; color: #4d4d4d;">
+                      {{ program.name }}
+                    </h5>
+                    <h3 class="mb-0 align-items-start" style="color: #72af78">
+                      ${{ getRelatedPlan(program._id)?.price }}
+                    </h3>
                   </div>
-                  <div class="col row d-flex align-items-center pt-1">
-                    <h6 class="p-0 m-0 text-secondary">
-                      {{ getRelatedCoach(program.coach_id)?.name }}
-                      <span
-                        class="fi fi-{{
-                          getRelatedCoach(program.coach_id)?.address?.country
-                        }} me-1"
-                      >
-                      </span>
-                      <br />
-                      <small style="font-weight: 300">
+                  <p
+                    class="text-secondary mb-0 col-9 mt-2"
+                    style="max-height: 50px; overflow: hidden"
+                  >
+                    {{ program.description }}
+                  </p>
+                </div>
+                <div class="row mt-2 border-top pt-2">
+                  <div
+                    class="col row d-flex justify-content-start align-items-start"
+                  >
+                    <div class="col-2">
+                      <img
+                        src="{{ getRelatedCoach(program.coach_id)?.img }}"
+                        alt="profile img"
+                        class="rounded-circle"
+                        width="42"
+                      />
+                    </div>
+                    <div class="col">
+                      <small class="text-muted" style="white-space: nowrap">
+                        {{ getRelatedCoach(program.coach_id)?.name }}
+                      </small>
+                      <h6 class="text-muted my-0 py-0">
                         <div class="badge bg-white text-secondary px-2 py-1">
                           <span class="mdi mdi-check-decagram text-primary">
                             موثّق
                           </span>
                         </div>
-                      </small>
-                    </h6>
+                      </h6>
+                    </div>
+                  </div>
+                  <div class="col-1 d-flex justify-content-end align-items-end">
+                    <span class="text-muted ms-2 py-0 my-0">
+                      {{ getRelatedOrders(program._id).length }}
+                    </span>
+                    <span
+                      *ngFor="let starIndex of getStarRange(); let i = index"
+                      class="py-0 my-0"
+                      [class]="
+                        i < 4
+                          ? 'mdi mdi-star text-warning'
+                          : 'mdi mdi-star-outline text-warning'
+                      "
+                    ></span>
                   </div>
                 </div>
-
-                <div class="d-flex justify-content-between pt-4">
-                  <h5 class="mb-0 text-dark">{{ program.name }}</h5>
-                  <h2 class="text-success mb-0 align-items-start">
-                    ${{ getRelatedPlan(program._id)?.price }}
-                  </h2>
-                </div>
-                <p
-                  class="text-secondary mb-0 col-9"
-                  style="max-height: 50px; overflow: hidden"
-                >
-                  {{ program.description }}
-                </p>
               </div>
-              <div class="card-footer border-0 pt-3">
+              <div class="card-footer border-0">
                 <div class="d-flex justify-content-between row pb-4 pt-2">
                   <div
                     *ngFor="let item of program.phases | keyvalue"
