@@ -1,7 +1,22 @@
-<button *ngIf="coach" class="btn btn-primary" (click)="openCreateProgramModal()">
-  Create Program
-</button> 
-
-<app-order-table [coach]="coach" *ngIf="coach"></app-order-table>
-
-<!-- <app-planner></app-planner> -->
+<div class="bg-light">
+  <!-- Start Page Content -->
+  <main class="page-content bg-light p-4">
+    <div class="layout-specing">
+      <div class="row d-flex">
+        <div class="col-12 mt-4">
+          <app-order-table [coach]="coach"></app-order-table>
+        </div>
+        <div class="container">
+          <div class="row mt-4">
+            <div class="col-8">
+              <app-program-table></app-program-table>
+            </div>
+            <div class="col-4">
+              <app-plan-table></app-plan-table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnInit,
+  TemplateRef,
+} from '@angular/core';
 import { OrderService } from '../../services/order.service';
 import { Coach } from 'src/app/model/coach.model';
 import { ProgramService } from '../../services/program.service';
@@ -19,6 +25,7 @@ export class OrderTableComponent implements AfterViewInit {
   public orderStatuses = Object.values(OrderStatusEnum);
   public orders: Order[] = [];
   public columns: DataGridColumn[] = orderTableColumns;
+  public selectedRow: Order;
 
   constructor(
     private orderService: OrderService,
@@ -34,7 +41,6 @@ export class OrderTableComponent implements AfterViewInit {
 
     for (const program of relatedPrograms) {
       this.orderService.getOrdersByProgramId(program._id).then((orders) => {
-
         this.orders = [...this.orders, ...orders];
       });
     }
@@ -53,4 +59,25 @@ export class OrderTableComponent implements AfterViewInit {
       );
     });
   }
+
+  formatValue(value: any) {
+    if (value === null || value === undefined) {
+      return '';
+    } else if (typeof value === 'object') {
+      return Object.keys(value);
+    } else {
+      return value.toString();
+    }
+  }
+
+  onRowClick(rowData: Order) {
+    this.selectedRow = rowData;
+  }
+  editRow() {}
+
+  open(content: TemplateRef<any>) {}
+
+  getRelatedUser(userId: string) {}
+
+  deleteRow() {}
 }

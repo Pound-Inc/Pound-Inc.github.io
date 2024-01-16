@@ -8,7 +8,25 @@ import { API_Response } from 'src/common/interfaces/response.interface';
 export class CommentService {
   constructor(private http: HttpClient) {}
 
-  async getRelatedComments(programId: string) {
+  getComments() {
+    return new Promise<any>((resolve, reject) => {
+      return this.http
+        .get<any>(`${PROGRAMS_API}/comments/`, {
+          withCredentials: true,
+        })
+        .subscribe({
+          next: (response: any) => {
+            if (response) {
+              return resolve(response.data);
+            }
+          },
+          error: (error) => {
+            return reject(error.errorMessage);
+          },
+        });
+    });
+  }
+  getRelatedComments(programId: string) {
     return new Promise<any>((resolve, reject) => {
       return this.http
         .get<any>(`${PROGRAMS_API}/comments/${programId}`, {

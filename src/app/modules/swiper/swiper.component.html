@@ -1,0 +1,83 @@
+<section class="section pt-4">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-10">
+        <div class="col-lg-3 col-md-4 mt-4 mt-sm-0 pt-2 pt-sm-0">
+          <div class="form custom-form">
+            <h1 class="mb-0">آراء العملاء</h1>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-11 row">
+        <swiper-container
+          [attr.slides-per-view]="getSlidesPerView()"
+          pagination="true"
+        >
+          <swiper-slide
+            *ngFor="let comment of comments"
+            class="col-lg-4 col-md-6 col-12 mt-4 pt-2 box-outer"
+            style="padding-bottom: 60px"
+          >
+            <div class="d-flex client-testi m-2">
+              <div class="card flex-1 content p-3 rounded position-relative">
+                <div class="d-flex justify-content-start align-items-end">
+                  <span
+                    *ngFor="let starIndex of getStarRange(); let i = index"
+                    class="py-0 my-0"
+                    [class]="
+                      i < comment.rating
+                        ? 'mdi mdi-star text-warning'
+                        : 'mdi mdi-star-outline text-warning'
+                    "
+                  ></span>
+                </div>
+                <p
+                  class="text-muted mt-2 w-100"
+                  style="max-height: 40px; overflow: hidden"
+                >
+                  "{{ comment.comment }}"
+                </p>
+                <h6 class="text-primary">
+                  - {{ getRelatedUser(comment.user_id)?.name }}
+                </h6>
+                <div
+                  [routerLink]="['/program/' + comment.program_id]"
+                  class="col row d-flex justify-content-start align-items-start mt-2 border-top pt-2"
+                  style="cursor: pointer"
+                >
+                  <div class="col-3">
+                    <img
+                      src="{{ getRelatedProgram(comment.program_id)?.img }}"
+                      alt=""
+                      width="42"
+                      style="
+                        max-height: 40px;
+                        min-height: 40px;
+                        object-fit: cover;
+                      "
+                    />
+                  </div>
+                  <div class="col">
+                    <small class="text-muted">
+                      {{ getRelatedProgram(comment.program_id)?.name }}
+                    </small>
+                  </div>
+                </div>
+              </div>
+              <img
+                src="{{ getRelatedUser(comment.user_id)?.img }}"
+                class="avatar avatar-small client-image rounded"
+                alt=""
+              />
+            </div>
+          </swiper-slide>
+        </swiper-container>
+      </div>
+    </div>
+  </div>
+</section>

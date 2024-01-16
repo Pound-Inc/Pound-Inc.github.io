@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -73,6 +73,7 @@ import { LOCALE_ID } from '@angular/core';
 import '@angular/common/locales/ar';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentManagementComponent } from './payment-management/payment-management.component';
+import { SwiperComponent } from './swiper/swiper.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -131,6 +132,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     InvoiceComponent,
     PaymentComponent,
     PaymentManagementComponent,
+    SwiperComponent,
   ],
   imports: [
     BrowserModule,
@@ -155,5 +157,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [LoadingService, { provide: LOCALE_ID, useValue: 'ar' }],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

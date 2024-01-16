@@ -31,6 +31,7 @@
               "node_modules/@iconscout/unicons/css/line.css",
               "node_modules/tobii/dist/css/tobii.min.css",
               "node_modules/flag-icons/css/flag-icons.min.css",
+              "node_modules/swiper/swiper.min.css",
               "src/assets/css/style.min.css",
               "src/assets/css/style.css",
               "src/styles.scss"
@@ -40,6 +41,7 @@
               "node_modules/simplebar/dist/simplebar.min.js",
               "node_modules/jarallax/dist/jarallax.min.js",
               "node_modules/tobii/dist/js/tobii.min.js",
+              "node_modules/swiper/swiper.min.js",
               "src/assets/js/plugins.init.js",
               "src/assets/js/app.js",
               "src/assets/js/checkout.js"
@@ -97,13 +99,14 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": [
+          "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@mdi/font/css/materialdesignicons.min.css",
               "node_modules/simplebar/dist/simplebar.min.css",
               "node_modules/@iconscout/unicons/css/line.css",
               "node_modules/tobii/dist/css/tobii.min.css",
               "node_modules/flag-icons/css/flag-icons.min.css",
+              "node_modules/swiper/swiper.min.css",
               "src/assets/css/style.min.css",
               "src/assets/css/style.css",
               "src/styles.scss"
@@ -113,6 +116,7 @@
               "node_modules/simplebar/dist/simplebar.min.js",
               "node_modules/jarallax/dist/jarallax.min.js",
               "node_modules/tobii/dist/js/tobii.min.js",
+              "node_modules/swiper/swiper.min.js",
               "src/assets/js/plugins.init.js",
               "src/assets/js/app.js",
               "src/assets/js/checkout.js"
