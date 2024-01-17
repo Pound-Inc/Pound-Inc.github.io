@@ -40,7 +40,6 @@ export class CreatePlanModalComponent implements OnInit {
       return;
     }
     const planData = this.planForm.value;
-    console.log(planData);
     const modifiedPlan = {
       _id: this.plan._id,
       program_id: this.program._id,

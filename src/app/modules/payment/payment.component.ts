@@ -44,7 +44,6 @@ export class PaymentComponent implements OnInit {
     await new Promise((f) => setTimeout(f, 2000));
 
     //
-    console.log(this.clientSecret);
     
     this.disabledBtn = false;
     this.elements = this.stripe.elements({

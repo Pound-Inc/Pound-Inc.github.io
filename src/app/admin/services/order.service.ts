@@ -144,13 +144,10 @@ export class OrderService {
         .subscribe({
           next: (response: any) => {
             if (response) {
-              
               return resolve(response.data);
             }
           },
           error: (error) => {
-            console.log(error);
-
             return reject(error.errorMessage);
           },
         });

@@ -188,6 +188,17 @@ export const userTableColumns: Array<DataGridColumn> = [
 
 export const orderTableColumns: Array<DataGridColumn> = [
   {
+    _id: 'status',
+    name: 'Status',
+    sortable: true,
+    headerTooltip: 'Status',
+    hidden: false,
+    icon: '',
+    iconFile: '',
+    width: '100',
+    type: 'dropdown',
+  },
+  {
     _id: '_id',
     name: 'Order ID',
     sortable: true,
@@ -198,17 +209,7 @@ export const orderTableColumns: Array<DataGridColumn> = [
     width: '',
     type: 'text',
   },
-  {
-    _id: 'user_id',
-    name: 'User ID',
-    sortable: true,
-    headerTooltip: 'User ID',
-    hidden: false,
-    icon: '',
-    iconFile: '',
-    width: '300',
-    type: 'text',
-  },
+
   {
     _id: 'items',
     name: 'Items',
@@ -217,7 +218,7 @@ export const orderTableColumns: Array<DataGridColumn> = [
     hidden: false,
     icon: '',
     iconFile: '',
-    width: '300',
+    width: '350',
     type: 'array',
   },
   {
@@ -230,30 +231,6 @@ export const orderTableColumns: Array<DataGridColumn> = [
     iconFile: '',
     width: '300',
     type: 'array',
-  },
-
-  {
-    _id: 'price',
-    name: 'Price',
-    sortable: true,
-    headerTooltip: 'Price',
-    hidden: false,
-    icon: '',
-    iconFile: '',
-    width: '250',
-    type: 'number',
-  },
-
-  {
-    _id: 'status',
-    name: 'Status',
-    sortable: true,
-    headerTooltip: 'Status',
-    hidden: false,
-    icon: '',
-    iconFile: '',
-    width: '250',
-    type: 'dropdown',
   },
   {
     _id: 'createdAt',

@@ -68,7 +68,8 @@ import { PowerComponent } from '../auth/pages/power/power.component';
 import { CreatePlanModalComponent } from '../admin/pages/worker-dashboard/create-plan-modal/create-plan-modal.component';
 import { CreateProgramModalComponent } from '../admin/pages/worker-dashboard/create-program-modal/create-program-modal.component';
 import { InvoiceComponent } from '../auth/pages/invoice/invoice.component';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCardModule } from '@angular/material/card';
 import { LOCALE_ID } from '@angular/core';
 import '@angular/common/locales/ar';
 import { PaymentComponent } from './payment/payment.component';

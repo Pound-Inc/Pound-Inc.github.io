@@ -17,9 +17,16 @@ export class CoachCardComponent implements OnInit {
   @Input() relatedPrograms: TrainingProgram[] | undefined;
   @Input() relatedCertifier: User | undefined;
   @Input() relatedOrders: Order[];
+  messageConfirmationToast: boolean = false;
 
   constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  purchaseConfirmation() {
+    this.messageConfirmationToast = true;
+    setTimeout(() => {
+      this.messageConfirmationToast = false;
+    }, 3000);
   }
 }

@@ -29,6 +29,8 @@ import { OrderTableComponent } from '../components/order-table/order-table.compo
 import { BillingTableComponent } from '../components/billing-table/billing-table.component';
 import { PlannerComponent } from '../components/planner/planner.component';
 import { PlannerDetailsModalComponent } from '../components/planner-details-modal/planner-details-modal.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { PlannerDetailsModalComponent } from '../components/planner-details-moda
     AdminRoutingModule,
     DecimalPipe,
     FormsModule,
+    MatTooltipModule,
+    MatCardModule,
     AsyncPipe,
     NgbModule,
     NgbHighlight,

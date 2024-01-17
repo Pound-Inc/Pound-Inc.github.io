@@ -1,0 +1,13 @@
+/* app.component.scss */
+.floating-alert-container {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 1000;
+}
+
+.floating-alert {
+  margin-top: 70px; /* Adjust the margin to leave space for the alert */
+}

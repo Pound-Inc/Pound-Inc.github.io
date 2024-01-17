@@ -54,6 +54,20 @@
       </div>
     </div>
   </div>
+  <ngb-alert
+    *ngIf="messageConfirmationToast && coach.gender === 'Female'"
+    type="warning"
+    [dismissible]="false"
+  >
+    ستتمكّن من مراسلة المدرّبة بعد شرائك لبرنامج تدريبي.
+  </ngb-alert>
+  <ngb-alert
+    *ngIf="messageConfirmationToast && coach.gender === 'Male'"
+    type="warning"
+    [dismissible]="false"
+  >
+    ستتمكّن من مراسلة المدرّب بعد شرائك لبرنامج تدريبي.
+  </ngb-alert>
   <div class="row justify-content-center d-flex gap-1 mb-2 mt-0">
     <div class="col-4 bg-light border-bottom py-2 rounded text-center">
       <h5 class="text-dark pt-1">
@@ -106,12 +120,15 @@
   </div>
 
   <div class="row justify-content-center mt-3">
-    <button class="btn btn-dark col-11 mb-1 py-2 text-center">
+    <button
+      class="btn btn-dark col-11 mb-1 py-2 text-center"
+      (click)="purchaseConfirmation()"
+    >
       <i class="uil uil-message p-2"></i>
       {{ translateBaseRoute + "profile-card.buttons.message" | translate }}
     </button>
   </div>
-  <div class="row justify-content-center mt-1">
+  <!-- <div class="row justify-content-center mt-1">
     <button class="btn btn-secondary col-6 ms-1 py-2 text-center">
       <i class="uil uil-comments-alt p-2"></i>
       {{ translateBaseRoute + "profile-card.buttons.testimonials" | translate }}
@@ -120,5 +137,5 @@
       <i class="uil uil-box p-2"></i>
       {{ translateBaseRoute + "profile-card.buttons.products" | translate }}
     </button>
-  </div>
+  </div> -->
 </div>

@@ -91,20 +91,17 @@ export class CoachesComponent implements OnInit, OnDestroy {
         (p) => p.program_id === program._id
       );
 
-      console.log(this.orders);
 
       for (const plan of relatedPlans) {
         const relatedOrders = this.orders.filter(
           (o) => o.items[0]._id === plan._id
         );
 
-        console.log(relatedOrders);
 
         orders = [...orders, ...relatedOrders];
       }
     }
 
-    console.log(orders);
 
     return orders;
   }

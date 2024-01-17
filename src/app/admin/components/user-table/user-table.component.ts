@@ -63,7 +63,6 @@ export class UserTableComponent implements OnInit, OnDestroy {
   }
   editRow() {
     if (this.selectedRow) {
-      console.log('Edit button clicked for:', this.selectedRow);
     }
   }
 
@@ -93,7 +92,6 @@ export class UserTableComponent implements OnInit, OnDestroy {
     modalRef.componentInstance.user = correctData;
 
     modalRef.componentInstance.saveChanges.subscribe((updatedUser: User) => {
-      console.log(updatedUser);
     });
   }
   onSaveChanges(asd: any) {}
