@@ -16,7 +16,6 @@ import { User } from 'src/app/model/user.model';
   styleUrls: ['./landing-top-programs.component.scss'],
 })
 export class LandingTopProgramsComponent implements OnInit, OnDestroy {
-  public translateBaseRoute = 'routing.coach.';
   public programs: TrainingProgram[] = [];
   public plans: ProgramPlan[] = [];
   public users: User[];

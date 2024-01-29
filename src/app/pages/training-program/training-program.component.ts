@@ -31,7 +31,6 @@ import { Order } from 'src/app/model/order.model';
   styleUrls: ['./training-program.component.scss'],
 })
 export class TrainingProgramComponent implements OnInit, OnDestroy {
-  public translateBaseRoute = 'routing.program.';
   public coach: Coach;
   public users: User[];
   public program: TrainingProgram;

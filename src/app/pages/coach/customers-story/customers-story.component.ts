@@ -10,7 +10,6 @@ import { User } from 'src/app/model/user.model';
   styleUrls: ['./customers-story.component.scss'],
 })
 export class CustomersStoryComponent implements OnInit {
-  @Input() translateBaseRoute: string;
   @Input() coach: Coach;
   @Input() relatedStories: ProgramStory[];
   @Input() relatedPrograms: TrainingProgram[];

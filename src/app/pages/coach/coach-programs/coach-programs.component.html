@@ -1,6 +1,4 @@
-<h5 class="mt-4 mb-0">
-  {{ translateBaseRoute + "training-programs" | translate }}:
-</h5>
+<h5 class="mt-4 mb-0">{{ "training programs" | translate }}:</h5>
 <div class="row border-bottom pb-4">
   <div class="col-md-6 mt-4 pt-2" *ngFor="let program of relatedPrograms">
     <a [routerLink]="['/program/' + program._id]">
@@ -76,7 +74,7 @@
                 ></div>
               </div>
               <h6 class="title text-secondary mt-2 mb-0">
-                {{ translateBaseRoute + "phases." + item.key | translate }}
+                {{ item.key | translate }}
               </h6>
             </div>
           </div>

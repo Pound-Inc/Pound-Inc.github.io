@@ -19,7 +19,6 @@
         "
       >
         <app-coach-card
-          [translateBaseRoute]="translateBaseRoute"
           [coach]="coach"
           [relatedCertifier]="getRelatedUsers(coach.certified_by_id)"
           [relatedOrders]="orders"
@@ -28,13 +27,9 @@
       </div>
 
       <div class="col-lg-8 col-md-6 col-12 mb-4">
-        <app-coach-info
-          [translateBaseRoute]="translateBaseRoute"
-          [coach]="coach"
-        ></app-coach-info>
+        <app-coach-info [coach]="coach"></app-coach-info>
 
         <app-coach-programs
-          [translateBaseRoute]="translateBaseRoute"
           [coach]="coach"
           [relatedCertifier]="getRelatedUsers(coach.certified_by_id)"
           [relatedOrders]="orders"
@@ -42,13 +37,9 @@
           [relatedPlans]="plans"
         ></app-coach-programs>
 
-        <app-coach-experiences
-          [translateBaseRoute]="translateBaseRoute"
-          [coach]="coach"
-        ></app-coach-experiences>
+        <app-coach-experiences [coach]="coach"></app-coach-experiences>
 
         <app-customers-story
-          [translateBaseRoute]="translateBaseRoute"
           [coach]="coach"
           [relatedPrograms]="programs"
           [relatedStories]="stories"

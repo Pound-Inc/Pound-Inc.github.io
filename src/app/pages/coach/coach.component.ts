@@ -15,7 +15,6 @@ import { Order } from 'src/app/model/order.model';
   styleUrls: ['./coach.component.scss'],
 })
 export class CoachComponent implements OnInit, OnDestroy {
-  translateBaseRoute = 'routing.coach.';
   public coach: Coach;
   public programs: TrainingProgram[];
   public users: User[];

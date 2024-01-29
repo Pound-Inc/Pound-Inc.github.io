@@ -12,7 +12,6 @@ import { User } from 'src/app/model/user.model';
   styleUrls: ['./coach-card.component.scss'],
 })
 export class CoachCardComponent implements OnInit {
-  @Input() translateBaseRoute: string;
   @Input() coach: Coach;
   @Input() relatedPrograms: TrainingProgram[] | undefined;
   @Input() relatedCertifier: User | undefined;

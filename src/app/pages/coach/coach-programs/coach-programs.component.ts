@@ -12,7 +12,6 @@ import { User } from 'src/app/model/user.model';
   styleUrls: ['./coach-programs.component.scss'],
 })
 export class CoachProgramsComponent {
-  @Input() translateBaseRoute: string;
   @Input() coach: Coach;
   @Input() relatedPrograms: TrainingProgram[] | undefined;
   @Input() relatedCertifier: User | undefined;

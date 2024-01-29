@@ -7,7 +7,7 @@
   >
     <div class="row col-12 col-md-9 col-lg-5 m-4">
       <h4 class="text-light text-center">
-        {{ translateBaseRoute + "login" | translate }}
+        {{  "login" | translate }}
       </h4>
 
       <div class="register-form">
@@ -16,7 +16,7 @@
           *ngIf="invalidMessage"
         >
           <h5 class="text-center">
-            {{ translateBaseRoute + "invalid credentials" | translate }}...
+            {{  "invalid credentials" | translate }}...
           </h5>
         </div>
         <div
@@ -24,7 +24,7 @@
           *ngIf="redirectMessage"
         >
           <h5 class="text-center">
-            {{ translateBaseRoute + "You have to be loggedin in order to purchase the program" | translate }}...
+            {{  "You have to be loggedin in order to purchase the program" | translate }}...
           </h5>
         </div>
         <div
@@ -32,12 +32,12 @@
           *ngIf="valid"
         >
           <h5 class="text-center">
-            {{ translateBaseRoute + "signing in" | translate }}
+            {{  "signing in" | translate }}
           </h5>
         </div>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label>{{ translateBaseRoute + "email" | translate }}*</label>
+            <label>{{  "email" | translate }}*</label>
             <input
               type="text"
               formControlName="email"
@@ -49,18 +49,18 @@
               class="invalid-feedback"
             >
               <div *ngIf="f['email'].errors['required']">
-                {{ translateBaseRoute + "email" | translate }}
-                {{ translateBaseRoute + "required" | translate }}
+                {{  "email" | translate }}
+                {{  "required" | translate }}
               </div>
               <div *ngIf="f['email'].errors['email']">
-                {{ translateBaseRoute + "email" | translate }}
-                {{ translateBaseRoute + "required" | translate }}
+                {{  "email" | translate }}
+                {{  "required" | translate }}
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label>{{ translateBaseRoute + "password" | translate }}*</label>
+            <label>{{  "password" | translate }}*</label>
             <input
               type="password"
               formControlName="password"
@@ -72,20 +72,20 @@
               class="invalid-feedback"
             >
               <div *ngIf="f['password'].errors['required']">
-                {{ translateBaseRoute + "password" | translate }}
-                {{ translateBaseRoute + "required" | translate }}
+                {{  "password" | translate }}
+                {{  "required" | translate }}
               </div>
               <div *ngIf="f['password'].errors['minlength']">
-                {{ translateBaseRoute + "password" | translate }}
-                {{ translateBaseRoute + "must be" | translate }}
-                {{ translateBaseRoute + "at least" | translate }} 6
-                {{ translateBaseRoute + "characters" | translate }}
+                {{  "password" | translate }}
+                {{  "must be" | translate }}
+                {{  "at least" | translate }} 6
+                {{  "characters" | translate }}
               </div>
               <div *ngIf="f['password'].errors['maxlength']">
-                {{ translateBaseRoute + "password" | translate }}
-                {{ translateBaseRoute + "must be" | translate }}
-                {{ translateBaseRoute + "less than" | translate }} 40
-                {{ translateBaseRoute + "characters" | translate }}
+                {{  "password" | translate }}
+                {{  "must be" | translate }}
+                {{  "less than" | translate }} 40
+                {{  "characters" | translate }}
               </div>
             </div>
             <div class="form-group">
@@ -94,7 +94,7 @@
                 class="btn btn-dark col-12 py-3 mt-4"
                 (click)="login()"
               >
-                {{ translateBaseRoute + "login" | translate }}
+                {{  "login" | translate }}
               </button>
             </div>
           </div>
@@ -102,7 +102,7 @@
       </div>
       <p class="mb-0 mt-3">
         <small class="text-light me-2">{{
-          translateBaseRoute + "don't have an account?" | translate
+           "don't have an account?" | translate
         }}</small>
         <a
           href="javascript:void(0)"
@@ -112,7 +112,7 @@
           [routerLink]="['/auth/register']"
         >
           <span class="text-light me-2 fw-bold">
-            {{ translateBaseRoute + "register" | translate }}
+            {{  "register" | translate }}
           </span>
           <span class="mdi mdi-lock text-dark"></span>
         </a>

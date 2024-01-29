@@ -11,12 +11,12 @@
         <div class="title-heading">
           <h5 class="fw-bold text-white title-dark">
             <i class="mdi mdi-weight-lifter text-danger align-middle"></i>
-            {{ translateBaseRoute + "primary.text.main" | translate }}
+            {{ "main" | translate }}
           </h5>
           <h4 class="display-3 mt-4 fw-bold text-white title-dark">
-            {{ translateBaseRoute + "primary.text.dark" | translate }} <br />
+            {{ "dark" | translate }} <br />
             <span class="text-danger">
-              {{ translateBaseRoute + "primary.text.red" | translate }}
+              {{ "red" | translate }}
             </span>
           </h4>
           <span
@@ -27,21 +27,21 @@
             <span class="wrap"> </span>
           </span>
           <p class="para-desc text-white-50">
-            {{ translateBaseRoute + "secondary.text" | translate }}
+            {{ "text" | translate }}
           </p>
           <div class="mt-4">
             <a
               [routerLink]="['/programs']"
               class="btn btn-lg btn-dark rounded-pill mt-1 ms-3"
             >
-              {{ translateBaseRoute + "primary.button" | translate }}
+              {{ "our programs" | translate }}
             </a>
 
             <a
               [routerLink]="['/coaches']"
               class="btn btn-lg btn-outline-danger rounded-pill mt-1"
             >
-              {{ translateBaseRoute + "secondary.button" | translate }}
+              {{ "our coaches" | translate }}
             </a>
           </div>
         </div>

@@ -15,7 +15,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./programs.component.scss'],
 })
 export class ProgramsComponent implements OnInit, OnDestroy {
-  public translateBaseRoute = 'routing.coach.';
   public programs: TrainingProgram[] = [];
   public plans: ProgramPlan[] = [];
   public users: User[];

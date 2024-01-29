@@ -6,20 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./landing-hero.component.scss'],
 })
 export class LandingHeroComponent {
-  translateBaseRoute = 'routing.landing.hero.';
   isScrolled = false;
   public cat: { title: string; subTitle: string; icon: string }[];
 
   constructor() {
     this.cat = [
       {
-        title: `${this.translateBaseRoute}cat.right.title`,
-        subTitle: `${this.translateBaseRoute}cat.right.sub-title`,
+        title: `females`,
+        subTitle: `professional training programs for females to achieve your goals.`,
         icon: `female`,
       },
       {
-        title: `${this.translateBaseRoute}cat.left.title`,
-        subTitle: `${this.translateBaseRoute}cat.left.sub-title`,
+        title: `males`,
+        subTitle: `professional training programs for males to achieve your goals.`,
         icon: `male`,
       },
     ];

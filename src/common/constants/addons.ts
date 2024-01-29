@@ -9,7 +9,7 @@ export const addons = [
     icon: 'file-check-alt',
   },
   {
-    name: 'money-back guarantee',
+    name: 'money back guarantee',
     description:
       'If you complete the program with no results, we offer a money back guarantee.',
     price: 8,

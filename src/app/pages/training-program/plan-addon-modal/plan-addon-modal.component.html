@@ -7,7 +7,7 @@
     type="button"
     class="btn btn-light shadow"
   >
-    {{ translateBaseRoute + "back" | translate }}
+    {{  "back" | translate }}
     <span class="mdi mdi-arrow-left"></span>
   </button>
 </div>
@@ -38,7 +38,7 @@
     <!-- Addons Section -->
     <div class="mb-3">
       <h5 class="mb-2 mt-4">
-        {{ translateBaseRoute + "addons" | translate }} ({{
+        {{  "addons" | translate }} ({{
           selectedAddons().length
         }})
       </h5>
@@ -60,14 +60,14 @@
         >
           <div>
             <h6 class="my-0 text-end">
-              {{ translateBaseRoute + addon.name | translate }}
+              {{  addon.name | translate }}
               <span *ngIf="addon.icon" class="uil uil-{{ addon.icon }}"></span>
             </h6>
             <p
               class="text-muted text-end w-75 mt-2 mb-0"
               style="font-size: 12px"
             >
-              {{ translateBaseRoute + addon.description | translate }}
+              {{  addon.description | translate }}
             </p>
           </div>
           <span
@@ -97,12 +97,12 @@
     >
       <div class="mb-0">
         <span class="mb-2"
-          >{{ translateBaseRoute + "price" | translate }}:</span
+          >{{  "price" | translate }}:</span
         >
         <br />
-        <span class="mb-2 text-muted">{{ translateBaseRoute + "VAT" | translate }}:</span>
+        <span class="mb-2 text-muted">{{  "VAT" | translate }}:</span>
         <br />
-        {{ translateBaseRoute + "total" | translate }}:
+        {{  "total" | translate }}:
       </div>
 
       <strong class="text-dark text-end">
@@ -120,7 +120,7 @@
     <form>
       <div class="input-group">
         <button type="submit" class="btn btn-dark px-4" (click)="setCart()">
-          {{ translateBaseRoute + "continue" | translate }}
+          {{  "continue" | translate }}
           <span class="mdi mdi-arrow-left"></span>
         </button>
       </div>
