@@ -71,17 +71,6 @@ export const programTableColumns: Array<DataGridColumn> = [
 
 export const planTableColumns: Array<DataGridColumn> = [
   {
-    _id: '_id',
-    name: 'Plan ID',
-    sortable: true,
-    headerTooltip: '#ID',
-    hidden: false,
-    icon: '',
-    iconFile: '',
-    width: '',
-    type: 'text',
-  },
-  {
     _id: 'name',
     name: 'Plan Name',
     sortable: true,
@@ -90,17 +79,6 @@ export const planTableColumns: Array<DataGridColumn> = [
     icon: '',
     iconFile: '',
     width: '',
-    type: 'text',
-  },
-  {
-    _id: 'program_id',
-    name: 'Program ID',
-    sortable: true,
-    headerTooltip: 'Program ID',
-    hidden: false,
-    icon: '',
-    iconFile: '',
-    width: '200',
     type: 'text',
   },
   {
@@ -135,6 +113,17 @@ export const planTableColumns: Array<DataGridColumn> = [
     iconFile: '',
     width: '',
     type: 'number',
+  },
+  {
+    _id: '_id',
+    name: 'Plan ID',
+    sortable: true,
+    headerTooltip: '#ID',
+    hidden: false,
+    icon: '',
+    iconFile: '',
+    width: '',
+    type: 'text',
   },
 ];
 
@@ -195,21 +184,9 @@ export const orderTableColumns: Array<DataGridColumn> = [
     hidden: false,
     icon: '',
     iconFile: '',
-    width: '100',
+    width: '150',
     type: 'dropdown',
   },
-  {
-    _id: '_id',
-    name: 'Order ID',
-    sortable: true,
-    headerTooltip: '#ID',
-    hidden: false,
-    icon: '',
-    iconFile: '',
-    width: '',
-    type: 'text',
-  },
-
   {
     _id: 'items',
     name: 'Items',
@@ -253,6 +230,17 @@ export const orderTableColumns: Array<DataGridColumn> = [
     iconFile: '',
     width: '250',
     type: 'date',
+  },
+  {
+    _id: '_id',
+    name: 'Order ID',
+    sortable: true,
+    headerTooltip: '#ID',
+    hidden: false,
+    icon: '',
+    iconFile: '',
+    width: '',
+    type: 'text',
   },
 ];
 export const invoiceTableColumns: Array<DataGridColumn> = [

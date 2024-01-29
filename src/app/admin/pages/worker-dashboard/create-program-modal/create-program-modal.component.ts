@@ -16,8 +16,19 @@ import { ImgbbService } from 'src/app/admin/services/imgbb.service';
 })
 export class CreateProgramModalComponent implements OnInit {
   programForm: FormGroup;
+
+  //new program?
   @Input() coach: Coach;
-  imgbbLink: string = '';
+  @Input() name: string;
+  @Input() img: string;
+  @Input() fileimg: string;
+  @Input() description: string;
+  @Input() bulk: number;
+  @Input() cut: number;
+  @Input() muscle: number;
+
+  //modify?
+  @Input() programId: string;
 
   constructor(
     private fb: FormBuilder,
@@ -31,23 +42,23 @@ export class CreateProgramModalComponent implements OnInit {
   ngOnInit(): void {
     this.programForm = this.fb.group({
       coach_id: [this.coach._id, Validators.required],
-      name: ['', Validators.required],
-      img: [this.imgbbLink, Validators.required],
-      fileimg: ['', Validators.required],
-      description: ['', Validators.required],
-      bulk: ['', Validators.required],
-      cut: ['', Validators.required],
-      muscle: ['', Validators.required],
+      name: [this.name || '', Validators.required],
+      img: [this.img, Validators.required],
+      fileimg: [''],
+      description: [this.description || '', Validators.required],
+      bulk: [this.bulk || '', Validators.required],
+      cut: [this.cut || '', Validators.required],
+      muscle: [this.muscle || '', Validators.required],
       rating: [[]],
     });
 
     this.programForm.get('coach_id')?.disable();
     this.programForm.get('img')?.disable();
-    this.config.backdrop = 'static';
-    this.config.keyboard = false;
   }
 
   async onSubmit() {
+    console.log(this.programForm);
+
     if (this.programForm.invalid) {
       return;
     }
@@ -56,7 +67,7 @@ export class CreateProgramModalComponent implements OnInit {
     const newProgram = {
       coach_id: this.coach._id,
       name: this.programForm.value.name,
-      img: this.imgbbLink,
+      img: this.img,
       description: this.programForm.value.description,
       phases: {
         bulk: this.programForm.value.bulk,
@@ -65,11 +76,16 @@ export class CreateProgramModalComponent implements OnInit {
       },
     };
 
-    this.programService
-      .createNewProgram(newProgram)
-      .subscribe(async (createdProgram) => {
-        await this.createThreeRelatedPlans(createdProgram);
-      });
+    if (this.programId !== undefined) {
+      await this.programService.modifyProgramById(this.programId, newProgram);
+      console.log('program modifed');
+    } else {
+      this.programService
+        .createNewProgram(newProgram)
+        .subscribe(async (createdProgram) => {
+          await this.createThreeRelatedPlans(createdProgram);
+        });
+    }
   }
   async createThreeRelatedPlans(program: TrainingProgram) {
     for (let i = 1; i < 4; i++) {
@@ -114,7 +130,7 @@ export class CreateProgramModalComponent implements OnInit {
     const input = e.target as HTMLInputElement;
     if (input.files) {
       const imgbbLink = await this.imgbbService.upload(input.files[0]);
-      this.imgbbLink = imgbbLink;
+      this.img = imgbbLink;
     }
   }
 }

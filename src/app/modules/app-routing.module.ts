@@ -79,7 +79,7 @@ const routes: Routes = [
     resolve: { coach: coachResolver },
   },
   { path: '', component: LandingComponent, data: { title: 'Pound Inc.' } },
-  // { path: '**', redirectTo: '',  },
+  { path: '**', redirectTo: '',  },
 ];
 
 @NgModule({

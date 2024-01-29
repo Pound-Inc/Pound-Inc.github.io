@@ -11,11 +11,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, Subscription } from 'rxjs';
 import { planTableColumns } from 'src/common/columns';
 import { DataGridColumn } from 'src/common/interfaces/datagrid.interface';
-import { NgbdSortableHeader, SortEvent } from '../../sortable.directive';
 import { ProgramPlan } from 'src/app/model/program-plan.model';
 import { PlanService } from '../../services/plan.service';
 import { TrainingProgram } from 'src/app/model/training-program.model';
-import { Table } from 'src/common/interfaces/table.interface';
+import { CreatePlanModalComponent } from '../../pages/worker-dashboard/create-plan-modal/create-plan-modal.component';
+import { ProgramService } from '../../services/program.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-plan-table',
@@ -26,28 +27,24 @@ export class PlanTableComponent implements OnInit, OnDestroy {
   public translateBaseRoute = 'routing.admin.dashboard.plan.';
   public columns: DataGridColumn[] = planTableColumns;
   public plans$: ProgramPlan[] = [];
-  public filteredPlans$: ProgramPlan[] = [];
-  public total$: Observable<number>;
   public selectedRow: ProgramPlan | null;
-  private modalService = inject(NgbModal);
   private programSubscription: Subscription;
 
-  @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
-
-  constructor(private planService: PlanService) {}
+  constructor(
+    private planService: PlanService,
+    private modalService: NgbModal,
+    private programService: ProgramService,
+    private userService: UserService
+  ) {}
   async ngOnInit(): Promise<void> {
-    this.plans$ = await this.planService.getPlans();
-
     this.programSubscription = this.planService
       .getSelectedProgramData()
-      .subscribe((program: TrainingProgram) => {
+      .subscribe(async (program: TrainingProgram) => {
         this.selectedRow = null;
         if (program) {
-          this.filteredPlans$ = this.plans$.filter(
-            (plan) => plan.program_id === program._id
-          );
+          this.plans$ = await this.planService.getRelatedPlans(program._id);
         } else {
-          this.filteredPlans$ = this.plans$;
+          this.plans$ = [];
         }
       });
   }
@@ -65,7 +62,21 @@ export class PlanTableComponent implements OnInit, OnDestroy {
   onRowClick(rowData: ProgramPlan) {
     this.selectedRow = rowData;
   }
-  editRow() {}
+  async editRow() {
+    const selectedRow = this.selectedRow as ProgramPlan;
+    const program = await this.programService.getProgramById(
+      selectedRow.program_id
+    );
+    const coach = await this.userService.getUserById(program.coach_id);
+
+    const modalRef = this.modalService.open(CreatePlanModalComponent, {
+      size: 'md',
+    });
+
+    modalRef.componentInstance.plan = this.selectedRow;
+    modalRef.componentInstance.program = program;
+    modalRef.componentInstance.coach = coach;
+  }
 
   open(content: TemplateRef<any>) {
     this.modalService

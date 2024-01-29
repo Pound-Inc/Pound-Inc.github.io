@@ -56,6 +56,43 @@ export class ProgramService {
     });
   }
 
+  deleteProgramById(programId: string) {
+    return new Promise<TrainingProgram>((resolve, reject) => {
+      return this.http
+        .delete<TrainingProgram>(`${PROGRAMS_API}/program/${programId}/`, {
+          withCredentials: true,
+        })
+        .subscribe({
+          next: (response: TrainingProgram) => {
+            resolve(response);
+          },
+          error: (error) => {
+            return reject(error.error.message);
+          },
+        });
+    });
+  }
+  modifyProgramById(programId: string, request: any) {
+    return new Promise<TrainingProgram>((resolve, reject) => {
+      return this.http
+        .put<TrainingProgram>(
+          `${PROGRAMS_API}/program/${programId}/`,
+          request,
+          {
+            withCredentials: true,
+          }
+        )
+        .subscribe({
+          next: (response: TrainingProgram) => {
+            resolve(response);
+          },
+          error: (error) => {
+            return reject(error.error.message);
+          },
+        });
+    });
+  }
+
   createNewProgram(request: any): Observable<any> {
     return this.http.post<any>(`${PROGRAMS_API}/newProgramAuth`, request, {
       withCredentials: true,

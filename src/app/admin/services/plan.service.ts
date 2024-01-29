@@ -74,6 +74,23 @@ export class PlanService {
         });
     });
   }
+
+  deletePlanByProgramId(programId: any) {
+    return new Promise<ProgramPlan>((resolve, reject) => {
+      return this.http
+        .delete<any>(`${PLANS_API}/plans/${programId}`, {
+          withCredentials: true,
+        })
+        .subscribe({
+          next: (response: any) => {
+            return resolve(response);
+          },
+          error: (error) => {
+            return reject(error.error.message);
+          },
+        });
+    });
+  }
   modifyPlan(plan: any) {
     return new Promise<ProgramPlan>((resolve, reject) => {
       return this.http

@@ -20,8 +20,6 @@ import { User } from 'src/app/model/user.model';
 export class LandingHeaderComponent implements OnInit, OnDestroy {
   public translateBaseRoute = 'routing.landing.header.nav.';
 
-  isLoggedIn$: Observable<boolean>;
-
   public navbarItems: any[];
   public active: boolean = false;
   @ViewChild('navbar', { static: true }) navbar: ElementRef;

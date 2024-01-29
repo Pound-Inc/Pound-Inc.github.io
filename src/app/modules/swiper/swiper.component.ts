@@ -25,9 +25,8 @@ export class SwiperComponent implements OnInit {
   }
   async ngOnInit(): Promise<void> {
     this.programs = await this.programService.getPrograms();
-    this.comments = await this.commentService.getComments();
+    this.comments = (await this.commentService.getComments()).slice(0, 5);
     this.users = await this.userService.getUsers();
-    this.comments.filter((c) => c.rating === 5);
   }
 
   getRelatedUser(userId: string) {

@@ -75,6 +75,7 @@ import '@angular/common/locales/ar';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentManagementComponent } from './payment-management/payment-management.component';
 import { SwiperComponent } from './swiper/swiper.component';
+import { AuthModule } from '../auth/modules/auth.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -136,12 +137,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     SwiperComponent,
   ],
   imports: [
+    AdminModule,
+    AuthModule,
     BrowserModule,
-    AppRoutingModule,
     ReactiveFormsModule,
     NgbModule,
-    AdminModule,
-    AuthRoutingModule,
     HttpClientModule,
     MatSnackBarModule,
     NgbDatepickerModule,
@@ -155,6 +155,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
     BrowserAnimationsModule,
+    AppRoutingModule,
   ],
   providers: [LoadingService, { provide: LOCALE_ID, useValue: 'ar' }],
   bootstrap: [AppComponent],

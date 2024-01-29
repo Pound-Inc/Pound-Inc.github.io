@@ -1,5 +1,6 @@
 import {
   Component,
+  Input,
   OnInit,
   QueryList,
   TemplateRef,
@@ -17,6 +18,7 @@ import { Table } from 'src/common/interfaces/table.interface';
 import { PlanService } from '../../services/plan.service';
 import { UserService } from '../../services/user.service';
 import { User } from 'src/app/model/user.model';
+import { CreateProgramModalComponent } from '../../pages/worker-dashboard/create-program-modal/create-program-modal.component';
 
 @Component({
   selector: 'app-program-table',
@@ -27,23 +29,16 @@ export class ProgramTableComponent implements OnInit {
   public translateBaseRoute = 'routing.admin.dashboard.program.';
 
   public columns: DataGridColumn[] = programTableColumns;
-  public programs$: TrainingProgram[];
-  public users$: User[];
-  public total$: Observable<number>;
-  public selectedRow: any;
-  private modalService = inject(NgbModal);
-
-  @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
+  @Input() programs$: TrainingProgram[];
+  public selectedRow: TrainingProgram;
 
   constructor(
-    private programService: ProgramService,
     private planService: PlanService,
-    private userService: UserService
+    private modalService: NgbModal,
+    private userService: UserService,
+    private programService: ProgramService
   ) {}
-  async ngOnInit(): Promise<void> {
-    this.programs$ = await this.programService.getPrograms();
-    this.users$ = await this.userService.getUsers();
-  }
+  async ngOnInit(): Promise<void> {}
 
   formatValue(value: any) {
     if (value === null || value === undefined) {
@@ -62,18 +57,38 @@ export class ProgramTableComponent implements OnInit {
   }
   editRow() {}
 
-  open(content: TemplateRef<any>) {
-    this.modalService
-      .open(content, { ariaLabelledBy: 'modal-basic-title' })
-      .result.then(
-        (result) => {},
-        (reason) => {}
-      );
+  async modifyProgram() {
+    const coach = await this.userService.getUserById(this.selectedRow.coach_id);
+    const modalRef = this.modalService.open(CreateProgramModalComponent, {
+      size: 'md',
+    });
+
+    modalRef.componentInstance.coach = coach;
+    modalRef.componentInstance.programId = this.selectedRow._id;
+    modalRef.componentInstance.name = this.selectedRow.name;
+    modalRef.componentInstance.img = this.selectedRow.img;
+    modalRef.componentInstance.description = this.selectedRow.description;
+    modalRef.componentInstance.bulk = this.selectedRow.phases['bulk'];
+    modalRef.componentInstance.cut = this.selectedRow.phases['cut'];
+    modalRef.componentInstance.muscle = this.selectedRow.phases['muscle'];
   }
 
-  getRelatedUser(userId: string) {
-    return this.users$.find((u) => u._id === userId);
+  async newProgram() {
+    const coach = await this.userService.getUserById(this.selectedRow.coach_id);
+    const modalRef = this.modalService.open(CreateProgramModalComponent, {
+      size: 'md',
+    });
+
+    modalRef.componentInstance.coach = coach;
   }
 
-  deleteRow() {}
+  async deleteRow() {
+    window.alert('all plans will be deleted as well, are you sure?');
+    await this.programService.deleteProgramById(this.selectedRow._id);
+    for (let i = 0; i < 3; i++) {
+      await this.planService.deletePlanByProgramId(this.selectedRow._id);
+    }
+
+    console.log('everything has been deleted....');
+  }
 }

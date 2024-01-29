@@ -8,12 +8,10 @@ const adminRoutes: Routes = [
   {
     path: 'dashboard',
     canActivate: [authGuard],
-    resolve: { user: userResolver },
     children: [
       {
         path: '',
         component: AdminLandingComponent,
-        canActivate: [authGuard],
       },
     ],
   },

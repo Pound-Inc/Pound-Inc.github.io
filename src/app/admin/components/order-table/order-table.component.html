@@ -2,39 +2,30 @@
   <div>
     <h4 class="p-4">{{ "Orders" | translate }} ({{ orders.length }})</h4>
     <div
-      class="mb-3 row align-items-center justify-content-start ms-1 gap-2 px-2 col-12"
+      class="mb-3 row align-items-center justify-content-start ms-1 gap-2 p-2"
     >
-      <div class="col-3 px-0 mx-0">
-        <input
-          id="table-complete-search"
-          type="text"
-          class="form-control"
-          name="searchTerm"
-          placeholder="Search by Name..."
-        />
-      </div>
-      <div class="col-2 px-0 mx-0">
-        <button class="btn btn-light w-100 px-0 mx-0" (click)="editRow()">
-          <span class="mdi mdi-plus"></span>
+      <div class="col-1">
+        <button class="btn btn-light" (click)="refreshGrid()">
+          <span class="mdi mdi-refresh my-0 py-0"></span>
+          Refresh
         </button>
       </div>
-      <div class="col-2 px-0 mx-0">
-        <button
-          class="btn btn-secondary w-100 px-0 mx-0"
-          [disabled]="!selectedRow"
-          (click)="editRow()"
+      <div class="col-2">
+        <label for="filterByStatus"> Filter By: </label>
+        <select
+          name="filterByStatus"
+          class="form-control py-0 my-0"
+          (change)="onFilterChange($event)"
         >
-          <span class="mdi mdi-pencil"></span>
-        </button>
-      </div>
-      <div class="col-1 px-0 mx-0">
-        <button
-          class="btn btn-danger w-100 px-0 mx-0"
-          [disabled]="!selectedRow"
-          (click)="deleteRow()"
-        >
-          <span class="mdi mdi-delete"></span>
-        </button>
+          <option selected>-</option>
+          <option
+            *ngFor="let status of orderStatuses"
+            [ngValue]="status"
+            [value]="status"
+          >
+            {{ status }} ({{ getOrdersLength(status) }})
+          </option>
+        </select>
       </div>
     </div>
   </div>
@@ -80,7 +71,9 @@
                   <span class="mdi mdi-clock-outline"></span>
                   {{ order[column._id] | date : "HH:mm:ss" }}
                 </ng-container>
-                <ng-container *ngIf="column.type === 'array'">
+                <ng-container
+                  *ngIf="column.type === 'array' && column._id === 'items'"
+                >
                   <ul>
                     <li *ngFor="let item of order[column._id]">
                       <div class="row d-flex gap-2 align-items-start">
@@ -100,21 +93,43 @@
                             <strong>PROGRAM ID:</strong> {{ item.program_id }}
                           </h6>
                           <h6 style="font-weight: lighter">
-                            <strong>PLAN ID:</strong> {{ item._id }}
+                            <strong>PLAN ID:</strong> {{ item.name }}
+                          </h6>
+                          <h6 style="font-weight: lighter">
+                            <strong>PRICE:</strong> {{ item.price | currency }}
                           </h6>
                         </div>
                       </div>
                     </li>
                   </ul>
                 </ng-container>
+                <ng-container
+                  *ngIf="column.type === 'array' && column._id === 'addons'"
+                >
+                  {{ getAddons(order[column._id]) | json }}
+                  <h6 style="font-weight: lighter">
+                    <strong>TOTAL:</strong>
+                    {{ getAddonsTotalPrice(order[column._id]) | currency }}
+                  </h6>
+                </ng-container>
                 <ng-container *ngIf="column.type === 'dropdown'">
                   <select
                     class="form-control"
                     (change)="onStatusChange($event, order)"
+                    [disabled]="order.status === 'Canceled'"
+                    [ngClass]="{
+                      'New': order.status === 'New',
+                      'InProgress': order.status === 'InProgress',
+                      'Delivered': order.status === 'Delivered',
+                      'Closed': order.status === 'Closed',
+                      'Canceled': order.status === 'Canceled',
+                      'Completed': order.status === 'Completed',
+                    }"
                   >
                     <option
                       *ngFor="let status of orderStatuses"
                       [ngValue]="status"
+                      [value]="status"
                       [selected]="status === order.status"
                     >
                       {{ status }}
@@ -133,11 +148,11 @@
       style="height: 545px"
     >
       <div class="card-header bg-light border-0">User Details</div>
-      <div class="card-body" *ngIf="selectedRow">
+      <div class="card-body" *ngIf="selectedRow && user">
         <div class="row d-flex gap-2 align-items-center">
           <div class="col-2">
             <img
-              src="{{ getRelatedUser(selectedRow.user_id)?.img }}"
+              src="{{ this.user.img }}"
               alt="profile img"
               class="rounded-circle"
               width="42"
@@ -145,8 +160,13 @@
           </div>
           <div class="col">
             <h6 class="p-0 m-0">
-              {{ getRelatedUser(selectedRow.user_id)?.name }}
+              {{ this.user.name }}
             </h6>
+            <span>{{ this.user.email }}</span>
+            <br />
+            <span>
+              {{ this.user.dob | date : "YYYY/MM/dd" }}
+            </span>
           </div>
         </div>
 
@@ -159,7 +179,7 @@
                 <span class="mdi mdi-human-male-height-variant"></span>
               </h4>
               <h6 class="col py-0 my-0 text-end">
-                {{ getRelatedUser(selectedRow.user_id)?.height || 0 }} cm
+                {{ this.user.height || 0 }} cm
               </h6>
             </div>
           </li>
@@ -171,7 +191,7 @@
                 <span class="mdi mdi-weight"></span>
               </h4>
               <h6 class="col py-0 my-0 text-end">
-                {{ getRelatedUser(selectedRow.user_id)?.weight || 0 }} kg
+                {{ this.user.weight || 0 }} kg
               </h6>
             </div>
           </li>
@@ -183,7 +203,7 @@
                 <span class="mdi mdi-ray-start-vertex-end"></span>
               </h4>
               <h6 class="col py-0 my-0 text-end">
-                {{ getRelatedUser(selectedRow.user_id)?.level || 0 }}
+                {{ this.user.level || 0 }}
               </h6>
             </div>
           </li>
@@ -195,14 +215,29 @@
                 <span class="mdi mdi-flag-checkered"></span>
               </h4>
               <h6 class="col py-0 my-0 text-end">
-                {{
-                  getUserGoals(getRelatedUser(selectedRow.user_id)?.goals)
-                    | json
-                }}
+                {{ getUserGoals(this.user.goals) | json }}
               </h6>
             </div>
           </li>
         </ul>
+        <button
+          class="btn btn-primary mt-2 w-100"
+          [disabled]="
+            !(
+              selectedRow.status !== 'Completed' &&
+              selectedRow.status !== 'Canceled' &&
+              selectedRow.status !== 'Delivered'
+            )
+          "
+        >
+          Create Training Program
+        </button>
+        <button
+          [disabled]="!(selectedRow.status === 'Completed')"
+          class="btn btn-secondary mt-2 w-100"
+        >
+          Deliver Program
+        </button>
       </div>
     </div>
   </div>

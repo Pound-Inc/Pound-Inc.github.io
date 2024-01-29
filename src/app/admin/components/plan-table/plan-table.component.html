@@ -18,26 +18,12 @@
         />
       </div>
       <div class="col-2 px-0 mx-0">
-        <button class="btn btn-light w-100 px-0 mx-0" (click)="editRow()">
-          <span class="mdi mdi-plus"></span>
-        </button>
-      </div>
-      <div class="col-2 px-0 mx-0">
         <button
           class="btn btn-secondary w-100 px-0 mx-0"
           [disabled]="!selectedRow"
           (click)="editRow()"
         >
           <span class="mdi mdi-pencil"></span>
-        </button>
-      </div>
-      <div class="col-1 px-0 mx-0">
-        <button
-          class="btn btn-danger w-100 px-0 mx-0"
-          [disabled]="!selectedRow"
-          (click)="deleteRow()"
-        >
-          <span class="mdi mdi-delete"></span>
         </button>
       </div>
     </div>
@@ -58,7 +44,7 @@
         </thead>
         <tbody>
           <tr
-            *ngFor="let plan of filteredPlans$"
+            *ngFor="let plan of plans$"
             (click)="onRowClick(plan)"
             [class.clicked-row]="selectedRow && selectedRow._id === plan._id"
           >
@@ -75,24 +61,11 @@
               </ng-container>
             </td>
           </tr>
-          <tr *ngIf="!filteredPlans$" colspan="4" style="text-align: center">
+          <tr *ngIf="!plans$" colspan="4" style="text-align: center">
             No plans found
           </tr>
         </tbody>
       </table>
     </form>
   </div>
-  <div class="d-flex justify-content-between p-2">
-    <ngb-pagination [collectionSize]="(total$ | async)!"> </ngb-pagination>
-
-    <select class="form-select" style="width: auto" name="pageSize">
-      <option [ngValue]="10">10 items per page</option>
-      <option [ngValue]="50">50 items per page</option>
-      <option [ngValue]="100">100 items per page</option>
-    </select>
-  </div>
 </div>
-
-<ng-template #content let-modal>
-  <div class="modal-body">ad</div>
-</ng-template>

@@ -16,7 +16,7 @@
         />
       </div>
       <div class="col-2 px-0 mx-0">
-        <button class="btn btn-light w-100 px-0 mx-0" (click)="editRow()">
+        <button class="btn btn-light w-100 px-0 mx-0" (click)="newProgram()">
           <span class="mdi mdi-plus"></span>
         </button>
       </div>
@@ -24,7 +24,7 @@
         <button
           class="btn btn-secondary w-100 px-0 mx-0"
           [disabled]="!selectedRow"
-          (click)="editRow()"
+          (click)="modifyProgram()"
         >
           <span class="mdi mdi-pencil"></span>
         </button>
@@ -42,7 +42,6 @@
   </div>
 
   <div
-    *ngIf="users$"
     class="table-responsive border-bottom border-light border-top rounded-bottom"
     style="height: 545px"
   >
@@ -70,11 +69,6 @@
               <ng-container *ngIf="column.type === 'lookup'">
                 <td [style.minWidth]="column.width + 'px'">
                   {{ formatValue(program[column._id]) }}
-                  <div>
-                    <small class="text-muted">
-                      {{ getRelatedUser(program[column._id])?.name }}
-                    </small>
-                  </div>
                 </td>
               </ng-container>
 
@@ -111,28 +105,16 @@
               </ng-container>
               <ng-container *ngIf="column.type === 'link'">
                 <td [style.minWidth]="column.width + 'px'">
-                  <button
-                    class="btn btn-light btn-sm me-1"
-                    (click)="open(content)"
-                  >
-                    <span class="mdi mdi-content-copy"></span>
-                  </button>
-                  <button
-                    class="btn btn-light btn-sm me-1"
-                    (click)="open(content)"
-                  >
-                    <span class="mdi mdi-pencil"></span>
-                  </button>
-                  <button class="btn btn-light btn-sm" (click)="open(content)">
-                    <span class="mdi mdi-open-in-new"></span>
-                  </button>
                   <div
                     class="mt-1 truncate-text"
                     [ngStyle]="{ 'max-width.px': column.width }"
                   >
-                    <small class="text-muted truncate-text">
-                      {{ formatValue(program[column._id]) }}
-                    </small>
+                    <img
+                      src="{{ formatValue(program[column._id]) }}"
+                      alt="program img"
+                      style="object-fit: cover; height: 42px"
+                      [ngStyle]="{ 'width.px': column.width }"
+                    />
                   </div>
                 </td>
               </ng-container>
@@ -145,17 +127,4 @@
       </table>
     </form>
   </div>
-  <div class="d-flex justify-content-between p-2">
-    <ngb-pagination [collectionSize]="(total$ | async)!"> </ngb-pagination>
-
-    <select class="form-select" style="width: auto" name="pageSize">
-      <option [ngValue]="10">10 items per page</option>
-      <option [ngValue]="50">50 items per page</option>
-      <option [ngValue]="100">100 items per page</option>
-    </select>
-  </div>
 </div>
-
-<ng-template #content let-modal>
-  <div class="modal-body">ad</div>
-</ng-template>

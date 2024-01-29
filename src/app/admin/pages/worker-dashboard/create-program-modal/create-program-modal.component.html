@@ -1,6 +1,7 @@
 <!-- create-program-modal.component.html -->
 <div class="modal-header">
-  <h4 class="modal-title">Create Program</h4>
+  <h4 class="modal-title" *ngIf="!programId">Create Program</h4>
+  <h4 class="modal-title" *ngIf="programId">Modify Program</h4>
   <button type="button" class="close btn-danger btn" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -35,7 +36,7 @@
         id="img"
         formControlName="img"
         class="form-control"
-        [value]="this.imgbbLink"
+        [value]="this.img"
       />
       <input
         type="file"
@@ -95,6 +96,11 @@
       />
     </div>
 
-    <button type="submit" class="btn btn-primary">Create Program</button>
+    <button type="submit" class="btn btn-primary" *ngIf="!programId">
+      Create Program
+    </button>
+    <button type="submit" class="btn btn-primary" *ngIf="programId">
+      Modify Program
+    </button>
   </form>
 </div>

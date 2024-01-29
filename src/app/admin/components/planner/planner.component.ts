@@ -139,3 +139,7 @@ export class PlannerComponent {
   }
   
 }
+
+
+// Create planner -> opens modal with requested cells. e.g., 3 weeks x 7 days:
+// worker select card, card gets generated with special id.

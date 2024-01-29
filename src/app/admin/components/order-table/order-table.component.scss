@@ -4,7 +4,7 @@ option {
 }
 .custom-tooltip {
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(197, 197, 197, 0.1);
   padding: 10px;
   /* Add any other custom styles you need */
 }
@@ -12,4 +12,35 @@ option {
 .tooltip-card {
   position: fixed;
   z-index: 1000;
+}
+
+$success-color: #8bc34a58; // Light green for Delivered
+$danger-color: #ef535058; // Light red for Canceled
+$neutral-color: #b0bec558; // Light gray for Closed
+$info-color: #5c6bc058; // Light blue for Completed
+$warning-color: #ffc10758; // Light yellow for InProgress
+$primary-color: #e0e0e058; // Light gray for New
+
+.Delivered {
+  background-color: $success-color;
+}
+
+.Canceled {
+  background-color: $danger-color;
+}
+
+.Closed {
+  background-color: $neutral-color;
+}
+
+.Completed {
+  background-color: $info-color;
+}
+
+.InProgress {
+  background-color: $warning-color;
+}
+
+.New {
+  background-color: $primary-color;
 }

@@ -9,14 +9,11 @@ import { OrderService } from '../../services/order.service';
 import { Coach } from 'src/app/model/coach.model';
 import { ProgramService } from '../../services/program.service';
 import { TrainingProgram } from 'src/app/model/training-program.model';
-import { Order, OrderStatusEnum } from 'src/app/model/order.model';
+import { Order, OrderStatus, OrderStatusEnum } from 'src/app/model/order.model';
 import { orderTableColumns } from 'src/common/columns';
 import { DataGridColumn } from 'src/common/interfaces/datagrid.interface';
-import { Addon } from 'src/app/model/addon.model';
-import { ProgramPlan } from 'src/app/model/program-plan.model';
+import { Trainee } from 'src/app/model/trainee.model';
 import { UserService } from '../../services/user.service';
-import { User } from 'src/app/model/user.model';
-import { GoalType, Trainee } from 'src/app/model/trainee.model';
 
 @Component({
   selector: 'app-order-table',
@@ -24,29 +21,28 @@ import { GoalType, Trainee } from 'src/app/model/trainee.model';
   styleUrls: ['./order-table.component.scss'],
 })
 export class OrderTableComponent implements AfterViewInit {
-  public columns: DataGridColumn[] = orderTableColumns;
   @Input() coach: Coach;
-  public orderStatuses = Object.values(OrderStatusEnum);
-  public orders: Order[] = [];
-  public users: Trainee[] = [];
-  public programs: TrainingProgram[] = [];
-  public selectedRow: Order;
+  @Input() AllOrders: Order[] = [];
+  @Input() orders: Order[] = [];
+  @Input() programs: TrainingProgram[] = [];
+  public selectedRow: Order | undefined;
+  public user: Trainee;
+  public columns: DataGridColumn[] = orderTableColumns;
+  public readonly orderStatuses = Object.values(OrderStatusEnum);
 
   constructor(
     private orderService: OrderService,
-    private programService: ProgramService,
     private userService: UserService
   ) {}
 
-  async ngAfterViewInit(): Promise<void> {
-    this.users = (await this.userService.getUsers()) as Trainee[];
-    this.programs = (await this.programService.getPrograms()).filter(
-      (p) => p.coach_id === this.coach._id
-    );
+  async ngAfterViewInit(): Promise<void> {}
 
+  refreshGrid() {
+    this.orders = [];
+    this.AllOrders = [];
     for (const program of this.programs) {
       this.orderService.getOrdersByProgramId(program._id).then((orders) => {
-        this.orders = [...this.orders, ...orders];
+        this.AllOrders = this.orders = [...this.orders, ...orders];
       });
     }
   }
@@ -55,10 +51,6 @@ export class OrderTableComponent implements AfterViewInit {
     const newStatus = event.target.value;
     order.status = newStatus;
     this.handleStatusChange(order);
-  }
-
-  getRelatedUser(userId: string) {
-    return this.users.find((u) => u._id === userId);
   }
 
   getRelatedProgram(programId: string) {
@@ -83,14 +75,25 @@ export class OrderTableComponent implements AfterViewInit {
     }
   }
 
-  onRowClick(rowData: Order) {
+  async onRowClick(rowData: Order) {
     this.selectedRow = rowData;
+    this.user = (await this.userService.getUserById(
+      rowData.user_id
+    )) as Trainee;
   }
-  editRow() {}
 
-  open(content: TemplateRef<any>) {}
+  getAddons(addons: any[]) {
+    const userAddons = addons.map((a) => a.name);
+    return userAddons;
+  }
+  getAddonsTotalPrice(addons: any[]) {
+    let price = 0;
+    for (const addon of addons) {
+      price += addon.price;
+    }
 
-  deleteRow() {}
+    return price;
+  }
 
   getUserGoals(goals: any) {
     let userGoals = [];
@@ -110,5 +113,19 @@ export class OrderTableComponent implements AfterViewInit {
       }
     }
     return highestRole;
+  }
+  onFilterChange(event: any): void {
+    this.selectedRow = undefined;
+    const newStatus = event.target.value as OrderStatus;
+    if (event.target.value === '-') {
+      this.orders = this.AllOrders;
+      return;
+    }
+
+    this.orders = this.AllOrders.filter((o) => o.status === newStatus);
+  }
+
+  getOrdersLength(orderStatus: OrderStatus) {
+    return this.AllOrders.filter((o) => o.status === orderStatus).length;
   }
 }
