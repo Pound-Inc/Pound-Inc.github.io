@@ -1,8 +1,18 @@
 <section class="bg-video-studio d-flex align-items-center" id="home">
   <div class="bg-video-wrapper">
-    <iframe
-      src="https://player.vimeo.com/video/112645809?background=1&autoplay=1&loop=0&byline=0&title=0#t=20s"
-    ></iframe> 
+    <video
+      autoplay
+      [muted]="'muted'"
+      [loop]="true"
+      style="object-fit: cover"
+      height="100%"
+      width="100%"
+    >
+      <source
+        src="assets/imgs/common/hero-videoo.mp4#t=15"
+        type="video/mp4"
+      />
+    </video>
   </div>
   <div class="bg-overlay bg-linear-gradient-3" style="opacity: 0.9"></div>
   <div class="container">

@@ -8,6 +8,7 @@
   },
 
   "females": "إناث",
+  "power":"القّوة",
   "professional training programs for females to achieve your goals.": "برامج تدريبية احترافية للإناث لتحقيق أهدافك.",
   "professional training programs for males to achieve your goals.": "برامج تدريبية احترافية للذكور لتحقيق أهدافك.",
   "males": "ذكور",
@@ -18,6 +19,7 @@
   "password": "كلمة المرور",
   "register": "تسجيل",
   "required": "مطلوب",
+  "deep dive": "للتعمّق",
   "invalid credentials": "بيانات التسجيل غير صالحة",
   "You have to be loggedin in order to purchase the program": "يجب عليك تسجيل الدخول لتتمكن من شراء البرنامج",
   "signing in": "جاري تسحيل الدخول",
