@@ -1,0 +1,86 @@
+<section class="section">
+  <div id="output" class="text-center">
+    <h1
+      class="text-muted py-2 w-75 rounded"
+      style="margin: auto; background-color: rgba(255, 255, 255, 0.636)"
+    >
+      {{ "your dream weight?" | translate }}
+    </h1>
+  </div>
+
+  <div class="container px-4 mt-4">
+    <div class="row rounded" style="overflow: hidden">
+      <input
+        class="col py-0 my-0 bg-dark text-light"
+        type="number"
+        id="input"
+        [(ngModel)]="inputValue"
+        placeholder="{{ 'eg' | translate }}: 55"
+        (input)="checkValidity()"
+      />
+      <div class="side-info col-3 bg-black">
+        <h2 class="text-light" style="top: 35%; position: relative">
+          {{ "kg" | translate }}
+        </h2>
+      </div>
+    </div>
+    <div>
+      <ngb-alert
+        [type]="alert.type"
+        class="mt-3"
+        *ngIf="
+          isInputValid && alert.type === 'danger' && alert.title === 'lose'
+        "
+        [dismissible]="false"
+      >
+        <span class="mdi mdi-{{ alert.icon }}"></span>
+        <h6>{{ "Uh-oh! Low weight alert!" | translate }}:</h6>
+        <br />
+        {{ "A normal weight range for your height is between" | translate }}
+        {{ normalWeightRange.min }} {{ "kg" | translate }}
+        {{ "and" | translate }} {{ normalWeightRange.max }}
+        {{ "kg" | translate }}
+        {{ "Any weight below" | translate }}
+        {{ normalWeightRange.min }} {{ "kg" | translate }}
+        {{
+          "classified as underweight and is not recommended by World Health Organization."
+            | translate
+        }}
+      </ngb-alert>
+
+      <ngb-alert
+        [type]="alert.type"
+        class="mt-3"
+        *ngIf="isInputValid && alert.type === 'light'"
+        [dismissible]="false"
+      >
+        <span class="mdi mdi-{{ alert.icon }}"></span>
+        <h6>
+          <span> {{ "it is worth it" | translate }}: </span>
+
+          {{ alert.title | translate }}
+          {{ calculation.value | percent }}
+          {{ "of your weight" | translate }}
+        </h6>
+        <br />
+        {{ alert.text | translate }}
+      </ngb-alert>
+
+      <p *ngIf="!isInputValid">
+        <small style="font-size: 14px">
+          {{ "Please, enter a value between 25 and 300 kg" | translate }}
+        </small>
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="next-btn border-top">
+  <button
+    (click)="onSubmitStep()"
+    class="w-100 btn btn-dark py-2"
+    [disabled]="!isInputValid"
+  >
+  {{ "next" | translate }}
+  </button>
+</div>

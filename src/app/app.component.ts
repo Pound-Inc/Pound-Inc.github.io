@@ -58,6 +58,7 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
     const savedLanguage = localStorage.getItem('selectedLanguage') || 'ar';
     this.translate.use(savedLanguage);
+
     this.translate.setDefaultLang('ar');
 
     // Set the text direction based on the selected language

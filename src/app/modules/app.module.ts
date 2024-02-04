@@ -72,10 +72,25 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
 import { LOCALE_ID } from '@angular/core';
 import '@angular/common/locales/ar';
-import { PaymentComponent } from './payment/payment.component';
-import { PaymentManagementComponent } from './payment-management/payment-management.component';
-import { SwiperComponent } from './swiper/swiper.component';
+import { PaymentComponent } from '../pages/payment/payment.component';
+import { PaymentManagementComponent } from '../pages/payment-management/payment-management.component';
+import { SwiperComponent } from '../pages/landing/swiper/swiper.component';
 import { AuthModule } from '../auth/modules/auth.module';
+import { LandingOfferSwiperComponent } from '../pages/landing/landing-offer-swiper/landing-offer-swiper.component';
+import { OnboardingStep1Component } from '../pages/onboarding/onboarding-step1/onboarding-step1.component';
+import { OnboardingStep2Component } from '../pages/onboarding/onboarding-step2/onboarding-step2.component';
+import { OnboardingStep3Component } from '../pages/onboarding/onboarding-step3/onboarding-step3.component';
+import { OnboardingStep4Component } from '../pages/onboarding/onboarding-step4/onboarding-step4.component';
+import { OnboardingComponent } from '../pages/onboarding/onboarding.component';
+import { OnboardingStep5Component } from '../pages/onboarding/onboarding-step5/onboarding-step5.component';
+import { OnboardingStep6Component } from '../pages/onboarding/onboarding-step6/onboarding-step6.component';
+import { OnboardingStep7Component } from '../pages/onboarding/onboarding-step7/onboarding-step7.component';
+import { OnboardingStep8Component } from '../pages/onboarding/onboarding-step8/onboarding-step8.component';
+import { OnboardingStep9Component } from '../pages/onboarding/onboarding-step9/onboarding-step9.component';
+import { OnboardingStep10Component } from '../pages/onboarding/onboarding-step10/onboarding-step10.component';
+import { NgChartsModule } from 'ng2-charts';
+import { OnboardingStep11Component } from '../pages/onboarding/onboarding-step11/onboarding-step11.component';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -135,6 +150,19 @@ export function HttpLoaderFactory(http: HttpClient) {
     PaymentComponent,
     PaymentManagementComponent,
     SwiperComponent,
+    LandingOfferSwiperComponent,
+    OnboardingComponent,
+    OnboardingStep1Component,
+    OnboardingStep2Component,
+    OnboardingStep3Component,
+    OnboardingStep4Component,
+    OnboardingStep5Component,
+    OnboardingStep6Component,
+    OnboardingStep7Component,
+    OnboardingStep8Component,
+    OnboardingStep9Component,
+    OnboardingStep10Component,
+    OnboardingStep11Component,
   ],
   imports: [
     AdminModule,
@@ -147,6 +175,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgbDatepickerModule,
     NgbAlertModule,
     FormsModule,
+    NgApexchartsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -156,6 +185,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     BrowserAnimationsModule,
     AppRoutingModule,
+    NgChartsModule,
   ],
   providers: [LoadingService, { provide: LOCALE_ID, useValue: 'ar' }],
   bootstrap: [AppComponent],

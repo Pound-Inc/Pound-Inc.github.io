@@ -7,7 +7,12 @@ import { Component } from '@angular/core';
 })
 export class LandingHeroComponent {
   isScrolled = false;
-  public cat: { title: string; subTitle: string; icon: string }[];
+  public cat: {
+    title: string;
+    subTitle: string;
+    icon: string;
+    imgUrl: string;
+  }[];
 
   constructor() {
     this.cat = [
@@ -15,11 +20,13 @@ export class LandingHeroComponent {
         title: `females`,
         subTitle: `professional training programs for females to achieve your goals.`,
         icon: `female`,
+        imgUrl: 'assets/imgs/common/felames-background.png',
       },
       {
         title: `males`,
         subTitle: `professional training programs for males to achieve your goals.`,
         icon: `male`,
+        imgUrl: 'assets/imgs/common/males-background.png',
       },
     ];
   }

@@ -13,7 +13,7 @@ import { Order, OrderStatusEnum } from 'src/app/model/order.model';
 import { ProgramPlan } from 'src/app/model/program-plan.model';
 import { TrainingProgram } from 'src/app/model/training-program.model';
 import { User } from 'src/app/model/user.model';
-import { PaymentComponent } from 'src/app/modules/payment/payment.component';
+import { PaymentComponent } from 'src/app/pages/payment/payment.component';
 import { addons } from 'src/common/constants/addons';
 
 @Component({

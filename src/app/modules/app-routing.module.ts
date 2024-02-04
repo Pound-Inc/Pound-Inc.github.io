@@ -23,8 +23,9 @@ import { powerResolver } from '../resolvers/power.resolver';
 import { cardioResolver } from '../resolvers/cardio.resolver';
 import { InvoiceComponent } from '../auth/pages/invoice/invoice.component';
 import { authGuard } from '../auth/guards/auth.guard';
-import { PaymentComponent } from './payment/payment.component';
-import { PaymentManagementComponent } from './payment-management/payment-management.component';
+import { PaymentComponent } from '../pages/payment/payment.component';
+import { PaymentManagementComponent } from '../pages/payment-management/payment-management.component';
+import { OnboardingComponent } from '../pages/onboarding/onboarding.component';
 
 const routes: Routes = [
   {
@@ -71,6 +72,7 @@ const routes: Routes = [
   { path: 'coaches', component: CoachesComponent },
   { path: 'invoice', component: InvoiceComponent },
   { path: 'payment', component: PaymentComponent },
+  { path: 'onboarding', component: OnboardingComponent },
   { path: 'payment-management', component: PaymentManagementComponent },
   {
     path: 'coach/:coachId',
@@ -78,8 +80,9 @@ const routes: Routes = [
     canActivate: [profileGuard],
     resolve: { coach: coachResolver },
   },
+
   { path: '', component: LandingComponent, data: { title: 'Pound Inc.' } },
-  { path: '**', redirectTo: '',  },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

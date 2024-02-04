@@ -1,0 +1,220 @@
+<section class="section" *ngIf="BMI">
+  <div class="container">
+    <div>
+      <h3 class="text-center">
+        {{ "this is your wellness profile" | translate }}
+      </h3>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-lg-6 col-12 order-md-2">
+        <div class="card rounded border-0 shadow ms-lg-5">
+          <div class="card-body">
+            <h5>{{ "Body Mass Index (BMI)" | translate }}</h5>
+
+            <div class="skill-bars" style="margin-bottom: 65px">
+              <div class="bar">
+                <div class="progress-line-top-data">
+                  <div class="row ruler-top text-secondary">
+                    <span class="col text-center">
+                      <span>10</span>
+                      <br />
+                      <span>|</span>
+                    </span>
+                    <span class="col text-center">
+                      <span>17</span>
+                      <br />
+                      <span>|</span>
+                    </span>
+                    <span class="col text-center">
+                      <span>24</span>
+                      <br />
+                      <span>|</span>
+                    </span>
+                    <span class="col text-center">
+                      <span>31</span>
+                      <br />
+                      <span>|</span>
+                    </span>
+                    <span class="col text-center">
+                      <span>38</span>
+                      <br />
+                      <span>|</span>
+                    </span>
+                  </div>
+                </div>
+                <div class="progress-line">
+                  <div
+                    [ngStyle]="{ right: calculateRightPosition() }"
+                    class="data"
+                  >
+                    <div class="circle bg-light shadow"></div>
+                    <div
+                      class="bg-primary shadow me-2"
+                      style="width: 2px; height: 60px"
+                    ></div>
+                    <div class="circle-info bg-primary shadow text-light">
+                      <h6 class="py-0 pt-1 px-1 my-0">
+                        {{ "you" | translate }}
+                      </h6>
+                    </div>
+                  </div>
+                  <span class="progress-value"></span>
+                </div>
+                <div class="progress-line-bottom-data">
+                  <div class="row ruler-bottom text-secondary">
+                    <span class="col text-center">
+                      <span>|</span>
+                      <br />
+                      <span>{{ "underweight" | translate }}</span>
+                    </span>
+                    <span class="col text-center">
+                      <span>|</span>
+                      <br />
+                      <span>{{ "normal" | translate }}</span>
+                    </span>
+                    <span class="col text-center">
+                      <span>|</span>
+                      <br />
+                      <span>{{ "overweight" | translate }}</span>
+                    </span>
+                    <span class="col text-center">
+                      <span>|</span>
+                      <br />
+                      <span>{{ "obese" | translate }}</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <ngb-alert type="warning" [dismissible]="false">
+                <span class="mdi mdi-alert-circle"></span>
+                {{ "Risks of unhealthy BMI:" | translate }}
+                <br />
+                <br />
+                <small>
+                  {{
+                    "High blood pressure, increased risk of heart attack, stroke, type 2 diabetes, chronic back and joint pain"
+                      | translate
+                  }}
+                </small>
+              </ngb-alert>
+            </div>
+            <img
+              [src]="
+                BMI > 25
+                  ? BODY_TYPES[2].img
+                  : BMI < 18.5
+                  ? BODY_TYPES[0].img
+                  : BODY_TYPES[1].img
+              "
+              class="card-img-top rounded-top"
+              alt="..."
+              style="
+                object-fit: cover;
+                object-position: center 20%;
+                width: 100%;
+                height: 300px;
+              "
+            />
+
+            <div class="row">
+              <div class="col-12 pt-2">
+                <div class="d-flex align-items-center p-3 rounded border">
+                  <div
+                    class="text-center rounded-circle ms-3 bg-light pt-1"
+                    style="width: 40px; height: 40px"
+                  >
+                    <span class="mdi mdi-human" style="font-size: 20px"></span>
+                  </div>
+                  <div class="flex-1">
+                    <small>{{ "body type:" | translate }}</small>
+                    <h5 class="my-0 py-0">
+                      {{
+                        (BMI > 25
+                          ? BODY_TYPES[2].name
+                          : BMI < 18.5
+                          ? BODY_TYPES[0].name
+                          : BODY_TYPES[1].name
+                        ) | translate
+                      }}
+
+                      <span
+                        class="mdi mdi-information rounded-circle text-muted p-3 px-1"
+                        [ngbTooltip]="
+                          (BMI > 25
+                            ? BODY_TYPES[2].description
+                            : BMI < 18.5
+                            ? BODY_TYPES[0].description
+                            : BODY_TYPES[1].description
+                          ) | translate
+                        "
+                        style="font-size: 20px"
+                      ></span>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 pt-2">
+                <div class="d-flex align-items-center p-3 rounded border">
+                  <div
+                    class="text-center rounded-circle ms-3 bg-light pt-1"
+                    style="width: 40px; height: 40px"
+                  >
+                    <span
+                      class="mdi mdi-dumbbell"
+                      style="font-size: 20px"
+                    ></span>
+                  </div>
+                  <div class="flex-1">
+                    <small>{{ "Fitness level:" | translate }}</small>
+                    <h5 class="my-0 py-0">
+                      {{
+                        (BMI > 25
+                          ? "Beginner"
+                          : BMI < 18.5
+                          ? "Beginner"
+                          : "Intermediate"
+                        ) | translate
+                      }}
+                    </h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 pt-2">
+                <div class="d-flex align-items-center p-3 rounded border">
+                  <div
+                    class="text-center rounded-circle ms-3 bg-light pt-1"
+                    style="width: 40px; height: 40px"
+                  >
+                    <span class="mdi mdi-fire" style="font-size: 20px"></span>
+                  </div>
+                  <div class="flex-1">
+                    <small>{{ "Metabolism:" | translate }}</small>
+                    <p class="my-0 py-0">
+                      {{ "Moderate, challenging to stay trimmed." | translate }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!--end col-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+  </div>
+</section>
+
+<!--  graphgoal -->
+<!--  generating -->
+<!--  email -->
+<!--  name -->
+
+<div class="next-btn border-0 bg-light w-100 shadow">
+  <button (click)="onSubmitStep()" class="w-100 btn btn-dark py-2">
+    {{ "next" | translate }}
+  </button>
+</div>

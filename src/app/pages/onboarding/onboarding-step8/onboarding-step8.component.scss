@@ -1,0 +1,38 @@
+section {
+    // background-image: url("/assets/imgs/common/how-tall-are-you.png");
+    height: 100vh;
+    background-position: center;
+  }
+  h1,
+  p {
+    font-family: sans-serif;
+    text-align: center;
+    color: #323330;
+    font-size: 100px;
+  }
+  
+  p {
+    font-size: 30px;
+  }
+  
+  input,
+  .side-info {
+    background-color: #eee;
+    border: none;
+    color: #000;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 30px;
+    height: 10vh;
+  }
+  
+  .next-btn {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90vw;
+    padding: 14px;
+  }
+  

@@ -1,0 +1,65 @@
+<section class="section pb-4">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-dark text-center">
+        <div class="section-title mb-4 pb-2">
+          <h4 class="title mb-4">
+            {{ "body shape" | translate }}
+          </h4>
+          <p class="para-desc mx-auto mb-0 text-muted">
+            {{
+              "The trainee must choose the body shape so that the trainers can customize an appropriate training program suitable for her individual needs."
+                | translate
+            }}
+          </p>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
+    <div class="row">
+      <div
+        class="col-lg-3 col-6 col-md-3 mt-4 pt-2"
+        *ngFor="let phase of SHAPE_PHASES"
+        (click)="selectPhase(phase.title)"
+      >
+        <div
+          class="card blog blog-primary rounded bg-white border-0"
+          style="overflow: hidden"
+        >
+          <div class="position-relative" style="overflow: hidden">
+            <img
+              src="{{ phase.img }}"
+              class="card-img-top rounded-top"
+              alt="..."
+              style="
+                object-fit: cover;
+                object-position: center 20%;
+                width: 100%;
+                height: auto;
+              "
+            />
+          </div>
+          <div
+            class="card-body bg-light row card-title my-0 py-0 pt-2 align-items-center"
+          >
+            <h5 class="col my-0 py-0 mb-1">
+              <span
+                class="mdi mdi-arrow-right bg-white text-muted rounded p-2 pb-0"
+              ></span>
+            </h5>
+            <h5 class="col my-0 py-0 text-muted text-start">
+              {{ phase.title | translate }}
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <p class="para-desc mx-auto mb-0 text-muted text-center border-top p-4">
+    {{
+      "By choosing your age and continuing you agree to our Terms of Service | Privacy Policy Please review before continuing"
+        | translate
+    }}
+  </p> -->

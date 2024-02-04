@@ -1,0 +1,60 @@
+<section class="section">
+  <div id="output" class="text-center">
+    <h1
+      class="text-muted py-2 w-75 rounded"
+      style="margin: auto; background-color: rgba(255, 255, 255, 0.636)"
+    >
+      {{ "How old are you?" | translate }}
+    </h1>
+  </div>
+
+  <div class="container px-4 mt-4">
+    <div class="row rounded" style="overflow: hidden">
+      <input
+        class="col py-0 my-0 bg-dark text-light"
+        type="number"
+        id="input"
+        [(ngModel)]="inputValue"
+        placeholder="{{ 'eg' | translate }} : 23"
+        (input)="checkValidity()"
+      />
+      <div class="side-info col-3 bg-black">
+        <h2 class="text-light" style="top: 35%; position: relative">
+          {{ "year" | translate }}
+        </h2>
+      </div>
+    </div>
+    <div>
+      <ngb-alert
+        type="light"
+        class="mt-2"
+        *ngIf="isInputValid"
+        [dismissible]="false"
+      >
+        <span class="mdi mdi-human"></span>
+        <strong>
+          {{ "We ask about your age to personalize your plan" | translate }}
+        </strong>
+        <br />
+        <br />
+
+        <small>
+          {{
+            "Older people are found to have a higher body fat percentage than younger people with the same BMI."
+              | translate
+          }}
+        </small>
+      </ngb-alert>
+    </div>
+  </div>
+</section>
+
+<div class="next-btn border-top">
+  <button
+    (click)="onSubmitStep()"
+    class="w-100 btn btn-dark py-2"
+    [disabled]="!isInputValid"
+  >
+  {{ "next" | translate }}
+  </button>
+</div>

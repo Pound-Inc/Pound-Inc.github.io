@@ -1,0 +1,10 @@
+.logo-container {
+  position: fixed;
+  top: 10px; /* Adjust the top distance as needed */
+  left: 10px; /* Adjust the left distance as needed */
+}
+
+.logo-container img {
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+}

@@ -1,0 +1,85 @@
+.skill-bars {
+  width: 100%;
+}
+.skill-bars .bar {
+  margin: 20px 0;
+}
+@keyframes showText {
+  100% {
+    opacity: 1;
+  }
+}
+
+.progress-line-top-data .ruler-top {
+  font-size: 12px;
+}
+.progress-line-bottom-data .ruler-bottom {
+  font-size: 12px;
+}
+.skill-bars .bar .progress-line {
+  height: 15px;
+  width: 100%;
+  background: #f0f0f0;
+  position: relative;
+  transform: scaleX(0);
+  transform-origin: right;
+  border-radius: 10px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05),
+    0 1px rgba(255, 255, 255, 0.8);
+  animation: animate 1s cubic-bezier(1, 0, 0.5, 1) forwards;
+}
+@keyframes animate {
+  100% {
+    transform: scaleX(1);
+  }
+}
+.bar .progress-line .progress-value {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  border-radius: 10px;
+  transform: scaleX(0);
+  transform-origin: right;
+  background: linear-gradient(0.25turn, #fc8970, #f1ed82, #b2f0bb, #99dbfc);
+  animation: animate 1s 1s cubic-bezier(1, 0, 0.5, 1) forwards;
+}
+
+.data {
+  position: absolute;
+  z-index: 2;
+}
+
+.circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  opacity: 0;
+  animation: fadeIn 2s ease 2s forwards;
+}
+.circle-info {
+  opacity: 0;
+  bottom: 5px;
+  padding: 4px !important;
+  border-radius: 2px;
+  animation: fadeIn 2s ease 2s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1; /* Opacity at the end of the animation */
+  }
+}
+
+@keyframes showText2 {
+  100% {
+    opacity: 1;
+  }
+}
+.next-btn {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  padding: 14px;
+}

@@ -1,0 +1,62 @@
+<section class="section">
+  <div id="output" class="text-center">
+    <h1
+      class="text-muted py-2 w-75 rounded"
+      style="margin: auto; background-color: rgba(255, 255, 255, 0.636)"
+    >
+      {{ "your current weight?" | translate }}
+    </h1>
+  </div>
+
+  <div class="container px-4 mt-4">
+    <div class="row rounded" style="overflow: hidden">
+      <input
+        class="col py-0 my-0 bg-dark text-light"
+        type="number"
+        id="input"
+        [(ngModel)]="inputValue"
+        placeholder="{{ 'eg' | translate }}: 55"
+        (input)="checkValidity()"
+      />
+      <div class="side-info col-3 bg-black">
+        <h2 class="text-light" style="top: 35%; position: relative">
+          {{ "kg" | translate }}
+        </h2>
+      </div>
+    </div>
+    <div>
+      <ngb-alert
+        [type]="alert.type"
+        class="mt-3"
+        *ngIf="isInputValid"
+        [dismissible]="false"
+      >
+        <span class="mdi mdi-{{ alert.icon }}"></span>
+        <h6>
+          {{ "Your BMI is" | translate }}
+          <span>({{ BMI }})</span>
+          {{ "which is considered" | translate }}
+          "{{ alert.title | translate }}"
+        </h6>
+        <br />
+        {{ alert.text | translate }}
+      </ngb-alert>
+
+      <p *ngIf="!isInputValid">
+        <small style="font-size: 14px">
+          {{ "Please, enter a value between 25 and 300 kg" | translate }}
+        </small>
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="next-btn border-top">
+  <button
+    (click)="onSubmitStep()"
+    class="w-100 btn btn-dark py-2"
+    [disabled]="!isInputValid"
+  >
+    Submit
+  </button>
+</div>

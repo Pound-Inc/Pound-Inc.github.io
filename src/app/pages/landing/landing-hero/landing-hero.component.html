@@ -1,59 +1,38 @@
-<section class="bg-video-studio d-flex align-items-center" id="home">
-  <div class="bg-video-wrapper">
+
+<section
+  class="bg-video-studio d-flex align-items-center mb-0 pb-0"
+  id="home"
+  style="max-height: 100vh; overflow-y: hidden"
+>
+  <div class="bg-video-wrapper" style="overflow-y: hidden">
     <video
       autoplay
       [muted]="'muted'"
       [loop]="true"
-      style="object-fit: cover"
+      style="object-fit: cover; scale: 1.5"
       height="100%"
       width="100%"
     >
-      <source
-        src="assets/imgs/common/hero-videoo.mp4#t=15"
-        type="video/mp4"
-      />
+      <source src="assets/imgs/common/1157252607.mp4#t=20" type="video/mp4" />
     </video>
   </div>
-  <div class="bg-overlay bg-linear-gradient-3" style="opacity: 0.9"></div>
+  <div class="hero-gradient-overlay" style="opacity: 0.9"></div>
   <div class="container">
     <div class="row mt-5 mt-md-4">
       <div class="col-12">
         <div class="title-heading">
-          <h5 class="fw-bold text-white title-dark">
-            <i class="mdi mdi-weight-lifter text-danger align-middle"></i>
-            {{ "main" | translate }}
-          </h5>
-          <h4 class="display-3 mt-4 fw-bold text-white title-dark">
-            {{ "dark" | translate }} <br />
-            <span class="text-danger">
-              {{ "red" | translate }}
+          <h1 class="mt-4 fw-bold">
+            <span class="text-white" style="font-size: 50px">
+              {{ "benefit from your fasting, Ramadan journey for" | translate }}
             </span>
-          </h4>
-          <span
-            class="text-primary typewrite"
-            data-period="2000"
-            data-type='[ "Agency", "Software", "Technology", "Studio", "Webapps" ]'
-          >
-            <span class="wrap"> </span>
-          </span>
-          <p class="para-desc text-white-50">
-            {{ "text" | translate }}
-          </p>
-          <div class="mt-4">
-            <a
-              [routerLink]="['/programs']"
-              class="btn btn-lg btn-dark rounded-pill mt-1 ms-3"
-            >
-              {{ "our programs" | translate }}
-            </a>
+          </h1>
+          <h2 class="text-danger" style="font-size: 50px; margin-top: 12px">
+            {{ "red" | translate }}
+          </h2>
 
-            <a
-              [routerLink]="['/coaches']"
-              class="btn btn-lg btn-outline-danger rounded-pill mt-1"
-            >
-              {{ "our coaches" | translate }}
-            </a>
-          </div>
+          <p class="para-desc text-white-50 w-75">
+            حيث يجتمع المدربون والأطباء لإعداد برنامج تدريبي وتغذية خاص بك.
+          </p>
         </div>
       </div>
       <!--end col-->
@@ -62,32 +41,35 @@
   </div>
 </section>
 <!-- FEATURES START -->
-<section class="section pb-0">
+<section class="pb-0 mb-0">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <div class="features-absolute">
-          <div class="row g-2">
-            <div class="col-md-6 col-6" *ngFor="let card of cat">
-              <a
-                [routerLink]="['/' + card.icon]"
-                class="card features feature-primary feature-full-bg rounded shadow p-4 position-relative overflow-hidden border-0"
+        <div class="features-absolute" style="top: -10px">
+          <div class="row g-2 d-flex">
+            <div class="col-6 col-lg-3 mt-4 pt-2" *ngFor="let card of cat">
+              <div
+                class="card features feature-primary feature-clean explore-feature p-4 border-0 rounded-md text-center"
               >
+                <div class="img-holder">
+                  <img
+                    src="{{ card.imgUrl }}"
+                    alt="{{ card.title | translate }}"
+                  />
+                </div>
+                <div class="gradient-overlay"></div>
+                <div class="icons text-center mx-auto"></div>
+
                 <div class="card-body p-0 content">
-                  <h5 class="mb-3">
-                    {{ card.title | translate }}
+                  <h5>
+                    <a class="text-light">
+                      {{ card.title | translate }}
+                    </a>
                   </h5>
-                  <p class="para text-muted mb-3">
-                    {{ card.subTitle | translate }}
-                  </p>
                 </div>
-                <div class="position-absolute top-0 end-0">
-                  <span
-                    class="mdi mdi-human-{{ card.icon }} display-1 opacity-05"
-                  ></span>
-                </div>
-              </a>
+              </div>
             </div>
+            <!--end col-->
           </div>
         </div>
       </div>
