@@ -188,7 +188,7 @@ export class OnboardingStep11Component implements OnInit {
   }
 
   onSubmitStep(): void {
-    const data = { step: 8, data: null };
+    const data = { step: 10, data: null };
     this.onboardingService.setCurrentStepData(data);
   }
 }

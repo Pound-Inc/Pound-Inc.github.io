@@ -52,7 +52,7 @@ export class OnboardingStep10Component implements OnInit {
   }
 
   onSubmitStep(): void {
-    const data = { step: 8, data: null };
+    const data = { step: 9, data: null };
     this.onboardingService.setCurrentStepData(data);
   }
 }

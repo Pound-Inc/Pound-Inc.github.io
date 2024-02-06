@@ -91,6 +91,8 @@ import { OnboardingStep10Component } from '../pages/onboarding/onboarding-step10
 import { NgChartsModule } from 'ng2-charts';
 import { OnboardingStep11Component } from '../pages/onboarding/onboarding-step11/onboarding-step11.component';
 import { NgApexchartsModule } from "ng-apexcharts";
+import { OnboardingStep12Component } from '../pages/onboarding/onboarding-step12/onboarding-step12.component';
+import { OnboardingStep13Component } from '../pages/onboarding/onboarding-step13/onboarding-step13.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -163,6 +165,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     OnboardingStep9Component,
     OnboardingStep10Component,
     OnboardingStep11Component,
+    OnboardingStep12Component,
+    OnboardingStep13Component,
   ],
   imports: [
     AdminModule,

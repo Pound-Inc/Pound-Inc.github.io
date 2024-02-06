@@ -14,7 +14,7 @@ export class OnboardingComponent implements OnInit {
   ngOnInit(): void {
     this.onboardingService.getOnBoardingData().subscribe((data: any[]) => {
       if (data.length === 0) {
-        this.step = 10;
+        this.step = 12;
       } else {
         this.step = data.length;
         console.log(data);
