@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OnboardingService } from 'src/app/admin/services/onboarding.service';
+import { StepName } from 'src/app/model/steps.model';
 
 @Component({
   selector: 'app-onboarding-step5',
@@ -27,8 +28,8 @@ export class OnboardingStep5Component {
   constructor(private onboardingService: OnboardingService) {}
 
   submitSelections(): void {
-    const data = { step: 4, data: this.selectedPhases };
-    this.onboardingService.setCurrentStepData(data);
+    const data = { step: StepName.PAIN_AREAS, data: this.selectedPhases };
+    this.onboardingService.setCurrentOnboardingStep(data);
   }
 
   toggleSelection(phaseTitle: string): void {

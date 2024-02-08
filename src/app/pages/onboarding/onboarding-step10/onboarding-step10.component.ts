@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OnboardingService } from 'src/app/admin/services/onboarding.service';
+import { StepName } from 'src/app/model/steps.model';
 
 @Component({
   selector: 'app-onboarding-step10',
@@ -29,7 +30,7 @@ export class OnboardingStep10Component implements OnInit {
 
   constructor(private onboardingService: OnboardingService) {}
   ngOnInit(): void {
-    this.onboardingService.getOnBoardingData().subscribe((data: any[]) => {
+    this.onboardingService.getOnboardingData().subscribe((data: any[]) => {
       if (data) {
         console.log(data);
         this.BMI = data.find((item) => item.step === 6)?.data.bmi || 10;
@@ -52,7 +53,7 @@ export class OnboardingStep10Component implements OnInit {
   }
 
   onSubmitStep(): void {
-    const data = { step: 9, data: null };
-    this.onboardingService.setCurrentStepData(data);
+    const data = { step: StepName.WELLNESS_PROFILE, data: null };
+    this.onboardingService.setCurrentOnboardingStep(data);
   }
 }

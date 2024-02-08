@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OnboardingService } from 'src/app/admin/services/onboarding.service';
+import { StepName } from 'src/app/model/steps.model';
 
 @Component({
   selector: 'app-onboarding-step6',
@@ -17,7 +18,7 @@ export class OnboardingStep6Component {
   }
 
   onSubmitStep(): void {
-    const data = { step: 5, data: this.inputValue };
-    this.onboardingService.setCurrentStepData(data);
+    const data = { step: StepName.HEIGHT, data: this.inputValue };
+    this.onboardingService.setCurrentOnboardingStep(data);
   }
 }

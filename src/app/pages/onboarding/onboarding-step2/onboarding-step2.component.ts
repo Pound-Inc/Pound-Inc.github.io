@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OnboardingService } from 'src/app/admin/services/onboarding.service';
+import { StepName } from 'src/app/model/steps.model';
 
 @Component({
   selector: 'app-onboarding-step2',
@@ -25,7 +26,7 @@ export class OnboardingStep2Component {
   constructor(private onboardingService: OnboardingService) {}
 
   selectPhase(phase: string): void {
-    const data = { step: 1, data: phase };
-    this.onboardingService.setCurrentStepData(data);
+    const data = { step: StepName.BODY_SHAPE, data: phase };
+    this.onboardingService.setCurrentOnboardingStep(data);
   }
 }

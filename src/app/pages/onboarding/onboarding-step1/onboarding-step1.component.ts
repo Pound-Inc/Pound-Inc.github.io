@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OnboardingService } from 'src/app/admin/services/onboarding.service';
+import { StepName } from 'src/app/model/steps.model';
 
 @Component({
   selector: 'app-onboarding-step1',
@@ -16,7 +17,7 @@ export class OnboardingStep1Component {
   constructor(private onboardingService: OnboardingService) {}
 
   selectPhase(phase: string): void {
-    const data = { step: 0, data: phase };
-    this.onboardingService.setCurrentStepData(data);
+    const data = { step: StepName.AGE_RANGE, data: phase };
+    this.onboardingService.setCurrentOnboardingStep(data);
   }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OnboardingService } from 'src/app/admin/services/onboarding.service';
+import { OnboardingStep, StepName } from 'src/app/model/steps.model';
 
 @Component({
   selector: 'app-onboarding-step8',
@@ -50,10 +51,10 @@ export class OnboardingStep8Component {
 
   getWeight() {
     return new Promise<any>((resolve, reject) => {
-      return this.onboardingService.getOnBoardingData().subscribe({
-        next: (data: any[]) => {
+      return this.onboardingService.getOnboardingData().subscribe({
+        next: (data: OnboardingStep[]) => {
           if (data) {
-            const currentWeightStep = data.find((d) => d.step === 6);
+            const currentWeightStep = data.find((d) => d.step === StepName.WEIGHT);
             this.weight = currentWeightStep?.data.weight;
             this.normalWeightRange = currentWeightStep?.data.normalWeightRange;
             return resolve(this.weight);
@@ -116,7 +117,7 @@ export class OnboardingStep8Component {
   }
 
   onSubmitStep(): void {
-    const data = { step: 7, data: this.calculation };
-    this.onboardingService.setCurrentStepData(data);
+    const data = { step: StepName.DREAM_WEIGHT, data: this.calculation };
+    this.onboardingService.setCurrentOnboardingStep(data);
   }
 }

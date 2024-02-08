@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OnboardingService } from 'src/app/admin/services/onboarding.service';
+import { OnboardingStep, StepName } from 'src/app/model/steps.model';
 
 @Component({
   selector: 'app-onboarding-step7',
@@ -22,10 +23,10 @@ export class OnboardingStep7Component {
   }
   getHeight() {
     return this.onboardingService
-      .getOnBoardingData()
-      .subscribe((data: any[]) => {
-        const heightStep = data.find((d) => d.step === 5);
-        this.height = heightStep.data;
+      .getOnboardingData()
+      .subscribe((data: OnboardingStep[]) => {
+        const heightStep = data.find((d) => d.step === StepName.HEIGHT);
+        this.height = heightStep?.data;
       });
   }
 
@@ -77,13 +78,13 @@ export class OnboardingStep7Component {
 
   onSubmitStep(): void {
     const data = {
-      step: 6,
+      step: StepName.WEIGHT,
       data: {
         weight: this.inputValue,
         normalWeightRange: this.normalWeightRange,
         bmi: this.BMI,
       },
     };
-    this.onboardingService.setCurrentStepData(data);
+    this.onboardingService.setCurrentOnboardingStep(data);
   }
 }

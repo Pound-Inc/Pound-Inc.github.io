@@ -1,29 +1,42 @@
-<section class="section">
+<section class="section" style="min-height: 105vh;">
   <div id="output" class="text-center">
     <h1
       class="text-muted py-2 w-75 rounded"
       style="margin: auto; background-color: rgba(255, 255, 255, 0.636)"
     >
-      {{ "How old are you?" | translate }}
+      {{ "dob" | translate }}
     </h1>
   </div>
 
   <div class="container px-4 mt-4">
-    <div class="row rounded" style="overflow: hidden">
-      <input
-        class="col py-0 my-0 bg-dark text-light"
-        type="number"
-        id="input"
-        [(ngModel)]="inputValue"
-        placeholder="{{ 'eg' | translate }} : 23"
-        (input)="checkValidity()"
-      />
-      <div class="side-info col-3 bg-black">
-        <h2 class="text-light" style="top: 35%; position: relative">
-          {{ "year" | translate }}
-        </h2>
+    <form [formGroup]="form">
+      <div>
+        <div class="row">
+          <div class="col p-0">
+            <input
+              class="form-control h-75"
+              placeholder="2002-03-14"
+              name="dp"
+              [(ngModel)]="model"
+              ngbDatepicker
+              #d="ngbDatepicker"
+              [minDate]="{ year: 1950, month: 1, day: 1 }"
+              [maxDate]="{ year: 2006, month: 12, day: 31 }"
+              (input)="checkValidity()"
+              formControlName="dob"
+              (closed)="checkValidity()"
+            />
+          </div>
+          <div class="col-2 p-0">
+            <button
+              class="btn btn-secondary mdi mdi-calendar rounded w-100 h-75"
+              (click)="d.toggle()"
+              type="button"
+            ></button>
+          </div>
+        </div>
       </div>
-    </div>
+    </form>
     <div>
       <ngb-alert
         type="light"
@@ -55,6 +68,6 @@
     class="w-100 btn btn-dark py-2"
     [disabled]="!isInputValid"
   >
-  {{ "next" | translate }}
+    {{ "next" | translate }}
   </button>
 </div>

@@ -1,35 +1,57 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { OnboardingStep } from 'src/app/model/steps.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class OnboardingService {
-  private readonly onBoardingData = new BehaviorSubject<any[]>([]);
+  private readonly onBoardingData = new BehaviorSubject<OnboardingStep[]>([]);
   private readonly stepData = new BehaviorSubject<any>({});
-  private isSubmitting: boolean = false;
+  private isSubmitting = false;
 
-  public setCurrentStepData(data: any) {
+  private setOnboardingDataIntoLocalStorage() {
+    const stepData = JSON.stringify(this.onBoardingData.value);
+    localStorage.setItem('onBoardingSteps', stepData);
+  }
+
+  private getOnboardingDataFromLocalStorage(): OnboardingStep[] | null {
+    const localStorageData = localStorage.getItem('onBoardingSteps');
+    if (localStorageData) {
+      try {
+        return JSON.parse(localStorageData);
+      } catch (error) {
+        console.error('Error parsing local storage data:', error);
+      }
+    }
+    return null;
+  }
+
+  public setCurrentOnboardingStep(data: OnboardingStep) {
     if (this.isSubmitting) return;
-    this.isSubmitting = !this.isSubmitting;
+
+    this.isSubmitting = true;
     setTimeout(() => {
       this.stepData.next(data);
-      this.setOnBoardingData(data);
-      this.isSubmitting = !this.isSubmitting;
+      this.setOnboardingData(data);
+      this.isSubmitting = false;
     }, 1000);
   }
 
-  public getCurrentStepData(): Observable<any> {
+  public getCurrentOnboardingStep(): Observable<any> {
     return this.stepData.asObservable();
   }
 
-  public setOnBoardingData(stepData: any) {
+  public setOnboardingData(stepData: OnboardingStep) {
     const prevData = this.onBoardingData.value;
     const newData = [...prevData, stepData];
     this.onBoardingData.next(newData);
+    this.setOnboardingDataIntoLocalStorage();
   }
 
-  public getOnBoardingData(): Observable<any> {
+  public getOnboardingData(): Observable<OnboardingStep[]> {
+    const localStorageData = this.getOnboardingDataFromLocalStorage();
+    if (localStorageData) {
+      this.onBoardingData.next(localStorageData);
+    }
     return this.onBoardingData.asObservable();
   }
 }

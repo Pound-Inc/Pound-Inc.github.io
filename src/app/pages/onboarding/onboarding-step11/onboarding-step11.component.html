@@ -1,4 +1,4 @@
-<section class="section">
+<section class="section" style="min-height: 105vh">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-6 col-12 order-md-2">
@@ -11,7 +11,7 @@
             </h5>
 
             <div id="chart" class="card p-2">
-              <i style="font-size: 6px" class="text-start text-muted">
+              <i style="font-size: 8px" class="text-start text-muted">
                 ({{ "kg" | translate }})
               </i>
               <apx-chart
@@ -28,7 +28,7 @@
                 [tooltip]="{ enabled: false }"
                 [legend]="{ show: false }"
               ></apx-chart>
-              <i style="font-size: 6px" class="text-center text-muted">
+              <i style="font-size: 8px" class="text-center text-muted">
                 {{
                   "Note: This chart is for forecasting only and may not be 100% accurate. Please keep in mind that results may vary and depend on changing conditions and factors. Use this information with caution and consult relevant experts before making any health decisions."
                     | translate
@@ -41,7 +41,7 @@
                 *ngIf="isPossibleDuringRamadan"
                 type="info"
                 [dismissible]="false"
-                style="font-size: 10px"
+                style="font-size: 12px"
               >
                 <span class="mdi mdi-check-circle"></span>
                 خبر سعيد! يمكنك تحقيق هدفك خلال شهر رمضان!

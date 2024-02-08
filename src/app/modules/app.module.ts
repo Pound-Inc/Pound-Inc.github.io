@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from '../app.component';
 import {
   NgbAlertModule,
+  NgbDatepickerI18n,
   NgbDatepickerModule,
   NgbModule,
   NgbToastModule,
@@ -90,9 +91,12 @@ import { OnboardingStep9Component } from '../pages/onboarding/onboarding-step9/o
 import { OnboardingStep10Component } from '../pages/onboarding/onboarding-step10/onboarding-step10.component';
 import { NgChartsModule } from 'ng2-charts';
 import { OnboardingStep11Component } from '../pages/onboarding/onboarding-step11/onboarding-step11.component';
-import { NgApexchartsModule } from "ng-apexcharts";
+import { NgApexchartsModule } from 'ng-apexcharts';
 import { OnboardingStep12Component } from '../pages/onboarding/onboarding-step12/onboarding-step12.component';
 import { OnboardingStep13Component } from '../pages/onboarding/onboarding-step13/onboarding-step13.component';
+import { OnboardingStep14Component } from '../pages/onboarding/onboarding-step14/onboarding-step14.component';
+import { CustomDatepickerI18n } from '../extensions/datepicker';
+import { OnboardingStep15Component } from '../pages/onboarding/onboarding-step15/onboarding-step15.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -167,6 +171,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     OnboardingStep11Component,
     OnboardingStep12Component,
     OnboardingStep13Component,
+    OnboardingStep14Component,
+    OnboardingStep15Component,
   ],
   imports: [
     AdminModule,
@@ -191,7 +197,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     NgChartsModule,
   ],
-  providers: [LoadingService, { provide: LOCALE_ID, useValue: 'ar' }],
+  providers: [
+    LoadingService,
+    { provide: LOCALE_ID, useValue: 'ar' },
+    { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n },
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
