@@ -12,8 +12,9 @@ import { Gender, User } from 'src/app/model/user.model';
   styleUrls: ['./onboarding.component.scss'],
 })
 export class OnboardingComponent implements OnInit {
+  private totalSteps: number = 14;
   public step: number;
-  public submitted: boolean = false;
+  public steps: number[];
   public data: OnboardingStep[];
 
   constructor(
@@ -32,10 +33,11 @@ export class OnboardingComponent implements OnInit {
         } else {
           this.step = data.length;
           this.data = data;
-          if (this.step === 14) {
+          if (this.step === this.totalSteps) {
             this.registerNewUser();
           }
         }
+        this.steps = Array.from(Array(this.totalSteps).keys());
       });
   }
 
@@ -128,5 +130,10 @@ export class OnboardingComponent implements OnInit {
     const stepData = this.data.find((item) => item.step === stepName);
 
     return stepData?.data;
+  }
+
+  stepLabel(step: number): string {
+    // Customize step labels as needed
+    return `Step ${step}`;
   }
 }

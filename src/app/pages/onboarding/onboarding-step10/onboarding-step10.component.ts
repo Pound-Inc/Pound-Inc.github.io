@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OnboardingService } from 'src/app/admin/services/onboarding.service';
-import { StepName } from 'src/app/model/steps.model';
+import { OnboardingStep, StepName } from 'src/app/model/steps.model';
 
 @Component({
   selector: 'app-onboarding-step10',
@@ -8,7 +8,7 @@ import { StepName } from 'src/app/model/steps.model';
   styleUrls: ['./onboarding-step10.component.scss'],
 })
 export class OnboardingStep10Component implements OnInit {
-  private data: any[];
+  private data: OnboardingStep[];
   public BMI: number;
   public BODY_TYPES: { name: string; description: string; img: string }[] = [
     {
@@ -30,10 +30,10 @@ export class OnboardingStep10Component implements OnInit {
 
   constructor(private onboardingService: OnboardingService) {}
   ngOnInit(): void {
-    this.onboardingService.getOnboardingData().subscribe((data: any[]) => {
+    this.onboardingService.getOnboardingData().subscribe((data: OnboardingStep[]) => {
       if (data) {
         console.log(data);
-        this.BMI = data.find((item) => item.step === 6)?.data.bmi || 10;
+        this.BMI = data.find((item) => item.step === 'WEIGHT')?.data.bmi || 10;
         console.log(this.BMI);
 
         this.data = data;
