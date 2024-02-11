@@ -14,7 +14,6 @@ import { Gender, User } from 'src/app/model/user.model';
 export class OnboardingComponent implements OnInit {
   private totalSteps: number = 14;
   public step: number;
-  public steps: number[];
   public data: OnboardingStep[];
 
   constructor(
@@ -33,11 +32,12 @@ export class OnboardingComponent implements OnInit {
         } else {
           this.step = data.length;
           this.data = data;
+          console.log(this.step);
+          
           if (this.step === this.totalSteps) {
             this.registerNewUser();
           }
         }
-        this.steps = Array.from(Array(this.totalSteps).keys());
       });
   }
 
@@ -80,6 +80,8 @@ export class OnboardingComponent implements OnInit {
 
   registerNewUser(): void {
     const user = this.createUserObject();
+    console.log(user);
+    
     this.userService
       .createNewUser(user)
       .then((response: User) => {
