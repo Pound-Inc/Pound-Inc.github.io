@@ -80,7 +80,6 @@ export class OnboardingComponent implements OnInit {
 
   registerNewUser(): void {
     const user = this.createUserObject();
-    console.log(user);
     
     this.userService
       .createNewUser(user)

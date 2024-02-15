@@ -30,15 +30,16 @@ export class OnboardingStep10Component implements OnInit {
 
   constructor(private onboardingService: OnboardingService) {}
   ngOnInit(): void {
-    this.onboardingService.getOnboardingData().subscribe((data: OnboardingStep[]) => {
-      if (data) {
-        console.log(data);
-        this.BMI = data.find((item) => item.step === 'WEIGHT')?.data.bmi || 10;
-        console.log(this.BMI);
+    this.onboardingService
+      .getOnboardingData()
+      .subscribe((data: OnboardingStep[]) => {
+        if (data) {
+          this.BMI =
+            data.find((item) => item.step === 'WEIGHT')?.data.bmi || 10;
 
-        this.data = data;
-      }
-    });
+          this.data = data;
+        }
+      });
   }
 
   calculateRightPosition() {

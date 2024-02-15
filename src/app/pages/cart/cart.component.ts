@@ -134,6 +134,7 @@ export class CartComponent implements OnInit {
     this.orderService
       .setBilling(this.billing)
       .then((response) => {
+        
         const clientSecret: string = response.data;
         const modalRef = this.modalService.open(PaymentComponent, {
           size: 'md',
