@@ -13,7 +13,7 @@ import { User } from 'src/app/model/user.model';
 })
 export class CoachCardComponent implements OnInit {
   @Input() coach: Coach;
-  @Input() relatedPrograms: TrainingProgram[] | undefined;
+  @Input() relatedPrograms: TrainingProgram[];
   @Input() relatedCertifier: User | undefined;
   @Input() relatedOrders: Order[];
   messageConfirmationToast: boolean = false;

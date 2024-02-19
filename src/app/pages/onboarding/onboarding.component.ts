@@ -33,7 +33,7 @@ export class OnboardingComponent implements OnInit {
           this.step = data.length;
           this.data = data;
           console.log(this.step);
-          
+
           if (this.step === this.totalSteps) {
             this.registerNewUser();
           }
@@ -41,11 +41,22 @@ export class OnboardingComponent implements OnInit {
       });
   }
 
+  private generateRandomPassword(length: number): string {
+    const charset =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let password = '';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      password += charset[randomIndex];
+    }
+    return password;
+  }
+
   private createUserObject() {
     const userGeoInfo = this.getUserGeoInfo();
     const userBodyInfo = this.parseOnboardingData();
 
-    const userPassword = '123123123';
+    const userPassword = this.generateRandomPassword(10);
 
     const newUser = {
       ip: userGeoInfo.ip,
@@ -73,14 +84,14 @@ export class OnboardingComponent implements OnInit {
   private login(loginPayLoad: { email: string; password: string }) {
     this.authService.login(loginPayLoad).then(() => {
       setTimeout(() => {
-        this.router.navigate(['/program/65a3da3bd36d699321423251']);
+        this.router.navigate(['/program/65a4ff3d89a087f6d585f352']);
       }, 1000);
     });
   }
 
   registerNewUser(): void {
     const user = this.createUserObject();
-    
+
     this.userService
       .createNewUser(user)
       .then((response: User) => {
@@ -110,6 +121,7 @@ export class OnboardingComponent implements OnInit {
   }
 
   private parseOnboardingData() {
+    const gender = localStorage.getItem('selectedGender') as string;
     return {
       name: this.getDataForStep(StepName.NAME),
       email: this.getDataForStep(StepName.EMAIL),
@@ -123,7 +135,7 @@ export class OnboardingComponent implements OnInit {
       pain_areas: this.getDataForStep(StepName.PAIN_AREAS),
       dream_weight: this.getDataForStep(StepName.DREAM_WEIGHT),
       dob: this.getDataForStep(StepName.AGE),
-      gender: Gender.Female,
+      gender: gender === 'female' ? Gender.Female : Gender.Male,
     };
   }
 

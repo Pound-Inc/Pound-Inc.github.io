@@ -8,22 +8,25 @@ import { StepName } from 'src/app/model/steps.model';
   styleUrls: ['./onboarding-step2.component.scss'],
 })
 export class OnboardingStep2Component {
-  public SHAPE_PHASES = [
-    { title: 'slim', img: 'assets/imgs/common/shape-phase-female-slim.png' },
-    {
-      title: 'mid',
-      img: 'assets/imgs/common/shape-phase-female-mid.png',
-    },
-    {
-      title: 'big',
-      img: 'assets/imgs/common/shape-phase-female-big.png',
-    },
-    {
-      title: 'obese',
-      img: 'assets/imgs/common/shape-phase-female-huge.png',
-    },
-  ];
-  constructor(private onboardingService: OnboardingService) {}
+  public SHAPE_PHASES: any[] = [];
+  constructor(private onboardingService: OnboardingService) {
+    const gender = localStorage.getItem('selectedGender') as string;
+    this.SHAPE_PHASES = [
+      { title: 'slim', img: `assets/imgs/common/shape-phase-${gender}-slim.png` },
+      {
+        title: 'mid',
+        img: `assets/imgs/common/shape-phase-${gender}-mid.png`,
+      },
+      {
+        title: 'big',
+        img: `assets/imgs/common/shape-phase-${gender}-big.png`,
+      },
+      {
+        title: 'obese',
+        img: `assets/imgs/common/shape-phase-${gender}-huge.png`,
+      },
+    ];
+  }
 
   selectPhase(phase: string): void {
     const data = { step: StepName.BODY_SHAPE, data: phase };

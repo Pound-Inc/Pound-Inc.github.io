@@ -10,22 +10,29 @@ import { StepName } from 'src/app/model/steps.model';
 export class OnboardingStep5Component {
   selectedPhases: string[] = [];
   canSubmit: boolean = false;
-  public SHAPE_PHASES = [
-    { title: 'BACK', img: 'assets/imgs/common/hurt-place-female-back.png' },
-    {
-      title: 'knee',
-      img: 'assets/imgs/common/hurt-place-female-knee.png',
-    },
-    {
-      title: 'neck',
-      img: 'assets/imgs/common/hurt-place-female-neck.png',
-    },
-    {
-      title: 'none',
-      img: 'assets/imgs/common/hurt-place-female-none.png',
-    },
-  ];
-  constructor(private onboardingService: OnboardingService) {}
+  public SHAPE_PHASES: any[] = [];
+  constructor(private onboardingService: OnboardingService) {
+    const gender = localStorage.getItem('selectedGender') as string;
+
+    this.SHAPE_PHASES = [
+      {
+        title: 'BACK',
+        img: `assets/imgs/common/hurt-place-${gender}-back.png`,
+      },
+      {
+        title: 'knee',
+        img: `assets/imgs/common/hurt-place-${gender}-knee.png`,
+      },
+      {
+        title: 'neck',
+        img: `assets/imgs/common/hurt-place-${gender}-neck.png`,
+      },
+      {
+        title: 'none',
+        img: `assets/imgs/common/hurt-place-${gender}-none.png`,
+      },
+    ];
+  }
 
   submitSelections(): void {
     const data = { step: StepName.PAIN_AREAS, data: this.selectedPhases };

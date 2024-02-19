@@ -52,6 +52,7 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
         orders: Order[];
         comments: ProgramComment[];
         stories: ProgramStory[];
+        users: User[];
       } = data['program'];
 
       this.program = programData.program;
@@ -60,6 +61,7 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
       this.orders = programData.orders;
       this.comments = programData.comments;
       this.stories = programData.stories;
+      this.users = programData.users;
     });
   }
   ngOnDestroy(): void {
@@ -110,5 +112,11 @@ export class TrainingProgramComponent implements OnInit, OnDestroy {
       // Light red
       return '#e57373';
     }
+  }
+
+  public getRelatedUsers(userId: string): User | undefined {
+    return this.users
+      ? this.users.find((user) => user._id === userId)
+      : undefined;
   }
 }

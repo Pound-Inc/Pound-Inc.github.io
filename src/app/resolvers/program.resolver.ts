@@ -22,8 +22,8 @@ export const programResolver: ResolveFn<any> = async (
   const programId = route.params['programId'];
 
   const plans = await plansService.getRelatedPlans(programId);
-  const comments = (await commentService.getRelatedComments(programId));
-  
+  const comments = await commentService.getRelatedComments(programId);
+
   const stories = (await storyService.getRelatedStories(programId)).data;
   const orders = await orderService.getOrders();
 
@@ -32,9 +32,11 @@ export const programResolver: ResolveFn<any> = async (
   );
 
   const coach: User = await userService.getUserById(program.coach_id);
+  const users: User[] = await userService.getUsers();
 
   return {
     coach: coach,
+    users: users,
     program: program,
     plans: plans,
     comments: comments,

@@ -35,3 +35,13 @@
   border-radius: 10px;
   background-color: #fff;
 }
+.next-btn {
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  padding: 14px;
+  border: none;
+  z-index: 9999;
+}

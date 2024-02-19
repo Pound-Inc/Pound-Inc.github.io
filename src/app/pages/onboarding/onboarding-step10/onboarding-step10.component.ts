@@ -10,25 +10,29 @@ import { OnboardingStep, StepName } from 'src/app/model/steps.model';
 export class OnboardingStep10Component implements OnInit {
   private data: OnboardingStep[];
   public BMI: number;
-  public BODY_TYPES: { name: string; description: string; img: string }[] = [
-    {
-      name: 'Ectomorph', // slender
-      description: 'Slender, less fat percentage and muscle mass',
-      img: 'assets/imgs/common/shape-phase-female-slim.png',
-    },
-    {
-      name: 'Mesomorph', // good in shape
-      description: 'Medium shape, more muscular.',
-      img: 'assets/imgs/common/goal-shape-phase-female-curvy.png',
-    },
-    {
-      name: 'Endomorph', // overweight
-      description: 'loose skin and lack of muscular tone',
-      img: 'assets/imgs/common/shape-phase-female-big.png',
-    },
-  ];
+  public BODY_TYPES: { name: string; description: string; img: string }[] = [];
 
-  constructor(private onboardingService: OnboardingService) {}
+  constructor(private onboardingService: OnboardingService) {
+    const gender = localStorage.getItem('selectedGender') as string;
+
+    this.BODY_TYPES = [
+      {
+        name: 'Ectomorph', // slender
+        description: 'Slender, less fat percentage and muscle mass',
+        img: `assets/imgs/common/shape-phase-${gender}-slim.png`,
+      },
+      {
+        name: 'Mesomorph', // good in shape
+        description: 'Medium shape, more muscular.',
+        img: `assets/imgs/common/goal-shape-phase-${gender}-curvy.png`,
+      },
+      {
+        name: 'Endomorph', // overweight
+        description: 'loose skin and lack of muscular tone',
+        img: `assets/imgs/common/shape-phase-${gender}-big.png`,
+      },
+    ];
+  }
   ngOnInit(): void {
     this.onboardingService
       .getOnboardingData()
