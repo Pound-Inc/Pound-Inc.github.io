@@ -21,6 +21,11 @@ export class LandingComponent implements OnInit, OnChanges, OnDestroy {
   constructor(private meta: Meta, private userService: UserService) {}
 
   async ngOnInit() {
+    // RESET USER ONBOARDING VALUES.
+    localStorage.removeItem('selectedGender');
+    localStorage.removeItem('graphValues');
+    localStorage.removeItem('onBoardingSteps');
+
     this.users = await this.userService.getUsers();
 
     this.meta.updateTag({

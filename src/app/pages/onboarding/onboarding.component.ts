@@ -21,7 +21,12 @@ export class OnboardingComponent implements OnInit {
     private onboardingService: OnboardingService,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    const gender = localStorage.getItem('selectedGender');
+    if (!gender) {
+      this.router.navigate(['/']);
+    }
+  }
 
   ngOnInit(): void {
     this.onboardingService
